@@ -58,7 +58,7 @@ function page(site) {
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="theme-color" content="${esc(site.accent)}">
 <link rel="canonical" href="${url}">
-<link rel="icon" href="${NET.networkUrl}/assets/favicon.svg" type="image/svg+xml">
+${require('./vendor/openvibe-shared/app-icon').headTags({ site: 'network' }).split('\n')[0]}
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="alternate" type="text/html" hreflang="en" href="${url}">
 <meta property="og:type" content="website">
