@@ -183,7 +183,7 @@ a.card:hover{transform:translateY(-3px);border-color:rgba(var(--site-rgb),.6);bo
     <a class="btn" href="${esc(NET.github)}" rel="noopener"><i class="fa-brands fa-github"></i> OpenVibers on GitHub</a>
   </div>
 </main>
-<div id="ov-footer"></div>
+${require('./vendor/openvibe-shared/footer').ssr({ service: 'network', variant: 'full' })}
 <script src="${NET.networkUrl}/shared/ov-mark.js" async></script>
 <script src="${NET.networkUrl}/shared/navbar.js"></script>
 <script src="${NET.networkUrl}/shared/footer.js"></script>
