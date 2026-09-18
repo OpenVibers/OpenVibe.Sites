@@ -1,0 +1,218 @@
+{
+  "network": {
+    "core": "OpenVibe",
+    "networkUrl": "https://openvibe.network",
+    "discord": "https://discord.gg/M6MuRUaeJj",
+    "github": "https://github.com/OpenVibers",
+    "liveSites": [
+      { "id": "live", "name": "OpenVibe.Live", "url": "https://openvibe.live", "desc": "Go live, chat, clip, restream", "icon": "fa-tower-broadcast" },
+      { "id": "tools", "name": "OpenVibe.Tools", "url": "https://openvibe.tools", "desc": "Hundreds of online tools", "icon": "fa-screwdriver-wrench" },
+      { "id": "community", "name": "OpenVibe.Community", "url": "https://openvibe.community", "desc": "Pastes, posts, people", "icon": "fa-people-group" },
+      { "id": "games", "name": "OpenVibe.Games", "url": "https://openvibe.games", "desc": "Scraplandia and browser games", "icon": "fa-gamepad" },
+      { "id": "media", "name": "OpenVibe.Media", "url": "https://openvibe.media", "desc": "VODs, clips and files", "icon": "fa-photo-film" },
+      { "id": "network", "name": "OpenVibe.Network", "url": "https://openvibe.network", "desc": "One account, every site", "icon": "fa-circle-nodes" }
+    ]
+  },
+  "sites": [
+    {
+      "domain": "openvibe.chat", "tld": "chat", "name": "OpenVibe.Chat", "icon": "fa-comments", "accent": "#a78bfa",
+      "tagline": "One chat for the whole network.",
+      "description": "OpenVibe.Chat is the communication layer of the OpenVibe network: global rooms, stream chat, direct messages, group rooms, voice calls and text-to-speech — one identity, every conversation.",
+      "pillars": [
+        ["Global rooms", "Rooms that span every OpenVibe site, with the same moderation tools everywhere."],
+        ["Direct messages", "DMs and group rooms tied to your OpenVibe account, not to one website."],
+        ["Calls & voice", "Voice rooms and streamer-to-viewer calls, the same engine Live uses today."],
+        ["TTS & audio queues", "Text-to-speech, soundboards and audio queues for streams and rooms."]
+      ],
+      "meanwhile": [
+        ["Chat on OpenVibe.Live", "https://openvibe.live/chat", "The global chat is already live there — same account, same rules."],
+        ["Voice channels", "https://openvibe.live/chat", "Voice rooms run inside Live's chat today."]
+      ],
+      "keywords": "openvibe chat, community chat, voice rooms, direct messages, free speech chat"
+    },
+    {
+      "domain": "openvibe.codes", "tld": "codes", "name": "OpenVibe.Codes", "icon": "fa-code", "accent": "#22d3ee",
+      "tagline": "Build on OpenVibe.",
+      "description": "OpenVibe.Codes is the developer portal of the OpenVibe network: API and SDK documentation, the service and capability registry, event schemas, mod publishing, starter templates and vibe-coding sessions.",
+      "pillars": [
+        ["API & SDK docs", "One place for every OpenVibe API: identity, media, chat, live, community."],
+        ["Contracts & events", "Service manifests, capability schemas and the event backbone, documented."],
+        ["Mods & templates", "Publish mods and bots, start from templates, ship to the network."],
+        ["Vibe-coding", "Publish coding sessions and let people build alongside you."]
+      ],
+      "meanwhile": [
+        ["OpenVibe on GitHub", "https://github.com/OpenVibers", "Every OpenVibe service is open source. Read, fork, contribute."],
+        ["WHIP & streaming docs", "https://openvibe.live/documentation", "The streaming API and ingest docs live on OpenVibe.Live today."],
+        ["Dev tools", "https://dev.openvibe.tools", "Formatters, encoders and validators on OpenVibe.Tools."]
+      ],
+      "keywords": "openvibe api, openvibe sdk, developer portal, open source streaming api, mods"
+    },
+    {
+      "domain": "openvibe.blog", "tld": "blog", "name": "OpenVibe.Blog", "icon": "fa-pen-nib", "accent": "#f472b6",
+      "tagline": "Long-form, yours to keep.",
+      "description": "OpenVibe.Blog is the publishing home of the OpenVibe network: the official OpenVibe blog and blogs for every member — drafts, scheduled posts, media-rich writing, comments and feeds, with your OpenVibe account.",
+      "pillars": [
+        ["The OpenVibe blog", "Release notes, network updates and the story of the project."],
+        ["Your blog", "A blog for every account: drafts, tags, media, scheduling."],
+        ["Comments & feeds", "Discussion through OpenVibe.Community; RSS for everyone."],
+        ["Themes that follow you", "Your network theme is your blog theme, if you want it to be."]
+      ],
+      "meanwhile": [
+        ["Updates on OpenVibe.Live", "https://openvibe.live/updates", "What shipped, as it ships."],
+        ["Pastes", "https://openvibe.community/pastes", "Share text and code today on OpenVibe.Community."]
+      ],
+      "keywords": "openvibe blog, community blog, open source blogging"
+    },
+    {
+      "domain": "openvibe.wiki", "tld": "wiki", "name": "OpenVibe.Wiki", "icon": "fa-book", "accent": "#34d399",
+      "tagline": "Knowledge, with sources.",
+      "description": "OpenVibe.Wiki is the knowledge space of the OpenVibe network: wiki spaces you can build and edit together, source-backed and AI-assisted, with page trees, citations, media and discussion.",
+      "pillars": [
+        ["Spaces", "A wiki space per topic, game, community or project."],
+        ["Source-backed", "Every generated page carries its sources; every edit is yours."],
+        ["Page trees & history", "Organise, revise, roll back."],
+        ["Discussion", "Talk pages through OpenVibe.Community."]
+      ],
+      "meanwhile": [
+        ["OpenVibe documentation", "https://openvibe.live/documentation", "The streaming docs are the first wiki-like space of the network."]
+      ],
+      "keywords": "openvibe wiki, community wiki, knowledge base"
+    },
+    {
+      "domain": "openvibe.news", "tld": "news", "name": "OpenVibe.News", "icon": "fa-newspaper", "accent": "#fb923c",
+      "tagline": "Sourced. Summarised. Many angles.",
+      "description": "OpenVibe.News aggregates the news with transparency: sourced stories, summaries that show their sources, multiple angles side by side, topic pages and framing you control — not an algorithm you can't see.",
+      "pillars": [
+        ["Sources first", "Every summary links to what it was built from."],
+        ["Many angles", "Read the same story from several perspectives, side by side."],
+        ["Your framing", "You choose the lens; nothing is chosen for you silently."],
+        ["Topics", "Follow topics across sources, with your OpenVibe account."]
+      ],
+      "meanwhile": [
+        ["Network updates", "https://openvibe.live/updates", "What is happening across OpenVibe."]
+      ],
+      "keywords": "openvibe news, transparent news, news aggregation, multiple perspectives"
+    },
+    {
+      "domain": "openvibe.reviews", "tld": "reviews", "name": "OpenVibe.Reviews", "icon": "fa-star-half-stroke", "accent": "#facc15",
+      "tagline": "What people actually say.",
+      "description": "OpenVibe.Reviews gathers what people say about products, services, employers, hosts and communities across many sources — with provenance, without fake ratings — and lets the community discuss it.",
+      "pillars": [
+        ["Entity pages", "One page per product, service or place, built from many sources."],
+        ["Provenance", "Every quote links back to where it was said."],
+        ["No fake ratings", "Summaries, not invented stars."],
+        ["Discussion", "Community threads through OpenVibe.Community."]
+      ],
+      "meanwhile": [
+        ["Talk about it", "https://openvibe.community", "Community threads are the first stop."]
+      ],
+      "keywords": "openvibe reviews, review aggregation, honest reviews"
+    },
+    {
+      "domain": "openvibe.tips", "tld": "tips", "name": "OpenVibe.Tips", "icon": "fa-hand-holding-heart", "accent": "#4ade80",
+      "tagline": "Support the people you watch.",
+      "description": "OpenVibe.Tips is the tipping and alerts layer of the OpenVibe network: tips, donation goals, superchats, paid text-to-speech and media requests, with alert overlays for creators.",
+      "pillars": [
+        ["Tips & goals", "Tip a creator, fund a goal, see it land on stream."],
+        ["Superchat & TTS", "Paid messages read out on stream, through OpenVibe.Chat."],
+        ["Alert overlays", "Overlays for OBS and the browser, themed with the network."],
+        ["One ledger", "Every transaction on the network's own ledger, visible to you."]
+      ],
+      "meanwhile": [
+        ["Tip with Vibes on OpenVibe.Live", "https://openvibe.live", "Tips already work on Live today."]
+      ],
+      "keywords": "openvibe tips, tip streamers, donation alerts, superchat"
+    },
+    {
+      "domain": "openvibe.vip", "tld": "vip", "name": "OpenVibe.VIP", "icon": "fa-crown", "accent": "#e879f9",
+      "tagline": "Memberships, network-wide.",
+      "description": "OpenVibe.VIP is the membership layer of the OpenVibe network: creator memberships, channel subscriptions, VIP tiers and perks that unlock across Live, Community, Blog and more.",
+      "pillars": [
+        ["Creator memberships", "Subscribe to the people you watch; perks follow you everywhere."],
+        ["Network VIP", "One membership that supports the whole network."],
+        ["Perks", "Badges, emotes, early access, gated posts — set by creators."],
+        ["Transparent", "What it costs and where it goes, in the open."]
+      ],
+      "meanwhile": [
+        ["Subscriptions on OpenVibe.Live", "https://openvibe.live", "Channel subscriptions exist on Live today."]
+      ],
+      "keywords": "openvibe vip, creator memberships, subscriptions"
+    },
+    {
+      "domain": "openvibe.trade", "tld": "trade", "name": "OpenVibe.Trade", "icon": "fa-chart-line", "accent": "#60a5fa",
+      "tagline": "Watch, discuss, decide.",
+      "description": "OpenVibe.Trade is the market intelligence room of the OpenVibe network: watchlists, alerts, summaries and community discussion for markets, collectibles and deals — information and tools, never advice.",
+      "pillars": [
+        ["Watchlists & alerts", "Track what you care about, get told when it moves."],
+        ["Summaries", "What happened and why, with sources."],
+        ["Community", "Discuss with people, not bots."],
+        ["Not advice", "Tools and information only — always labelled as such."]
+      ],
+      "meanwhile": [
+        ["Deals", "https://openvibe.deals", "Deal discovery is the sibling room."]
+      ],
+      "keywords": "openvibe trade, watchlists, market alerts, community trading tools"
+    },
+    {
+      "domain": "openvibe.host", "tld": "host", "name": "OpenVibe.Host", "icon": "fa-server", "accent": "#94a3b8",
+      "tagline": "Run it yourself.",
+      "description": "OpenVibe.Host is the hosting and deployment surface of the OpenVibe network: deploy OpenVibe services, bots, mods and static sites, with TLS, DNS and logs handled for you.",
+      "pillars": [
+        ["Service hosting", "Every OpenVibe service, deployable in one step."],
+        ["Bots & mods", "Host your bot or mod next to the network it talks to."],
+        ["Static sites", "A folder in, a domain out, with TLS."],
+        ["Open source", "The same deploy tooling the network runs on."]
+      ],
+      "meanwhile": [
+        ["Deploy docs", "https://github.com/OpenVibers", "Every service ships its own deploy scripts on GitHub."]
+      ],
+      "keywords": "openvibe host, hosting, deployment, self-hosting openvibe"
+    },
+    {
+      "domain": "openvibe.deals", "tld": "deals", "name": "OpenVibe.Deals", "icon": "fa-tags", "accent": "#f97316",
+      "tagline": "Deals worth seeing.",
+      "description": "OpenVibe.Deals is community deal discovery for the OpenVibe network: deals people vote on, hotness that reflects real interest, keyword alerts, price comparisons and honest discussion.",
+      "pillars": [
+        ["Voted, not paid for", "Deals rise because people like them."],
+        ["Alerts", "Tell it what you want; it tells you when it is cheap."],
+        ["Compare", "Summaries and comparisons, with sources."],
+        ["Discuss", "Threads through OpenVibe.Community."]
+      ],
+      "meanwhile": [
+        ["Coupons", "https://openvibe.coupons", "The coupon room is the sibling of this one."]
+      ],
+      "keywords": "openvibe deals, community deals, deal alerts"
+    },
+    {
+      "domain": "openvibe.coupons", "tld": "coupons", "name": "OpenVibe.Coupons", "icon": "fa-ticket", "accent": "#fbbf24",
+      "tagline": "Codes that actually work.",
+      "description": "OpenVibe.Coupons is community-checked coupon discovery: codes matched to stores, validity reported by real people, expirations tracked, and a browser helper on the way.",
+      "pillars": [
+        ["Checked by people", "Codes that worked, codes that didn't, reported honestly."],
+        ["Store matching", "The right codes for the store you are on."],
+        ["Expiry tracking", "Dead codes go away."],
+        ["Browser helper", "Apply codes where you shop — coming with the site."]
+      ],
+      "meanwhile": [
+        ["Deals", "https://openvibe.deals", "Deal discovery is the sibling of this room."]
+      ],
+      "keywords": "openvibe coupons, coupon codes, community coupons"
+    },
+    {
+      "domain": "openre.stream", "core": "OpenRe", "tld": "stream", "name": "OpenRe.Stream", "icon": "fa-satellite-dish", "accent": "#ef4444",
+      "tagline": "Ingest and restream, in the open.",
+      "description": "OpenRe.Stream is the ingest and restream infrastructure behind OpenVibe.Live: RTMP, WHIP and SRT ingest, stream lifecycle, restream destinations and output status — the plumbing, documented and open.",
+      "pillars": [
+        ["Ingest", "RTMP, WHIP/WebRTC and SRT, with keys and lifecycle in one place."],
+        ["Restream", "Twitch, YouTube, Kick, SRT and RobotStreamer destinations."],
+        ["Status", "Live acknowledgement, errors relayed in plain words, uptime."],
+        ["Open", "Run it yourself; the code is on GitHub."]
+      ],
+      "meanwhile": [
+        ["Go live on OpenVibe.Live", "https://openvibe.live/broadcast", "Ingest and restreaming run inside Live today."],
+        ["Restreaming docs", "https://github.com/OpenVibers/OpenVibe.Live/blob/main/docs/restreaming.md", "How the restream paths work."]
+      ],
+      "keywords": "openre stream, rtmp ingest, whip, srt, restream, open source streaming infrastructure"
+    }
+  ]
+}
