@@ -13,6 +13,13 @@
  */
 const fs = require('fs');
 const path = require('path');
+// Vendored from OpenVibe.Network/packages/openvibe-shared (copy, never edit): the network's legal documents.
+const legal = require('./vendor/openvibe-shared/legal');
+// Which clauses apply to each domain once it opens (mirrors OpenVibe.Network/server/chrome/sites.js).
+const LEGAL_PROFILE = { chat: 'ugc', codes: 'ugc', blog: 'info', wiki: 'ugc', news: 'info', reviews: 'ugc', tips: 'streaming', vip: 'account', trade: 'ugc', host: 'hosting', deals: 'info', coupons: 'info', stream: 'streaming' };
+// Sites whose own server has no page routes: their legal pages are built here and served by nginx.
+const LEGAL_ONLY = [{ domain: 'openvibe.games', name: 'OpenVibe.Games', id: 'games', profile: 'games' }];
+const legalSite = (site) => ({ id: site.tld, service: 'network', host: site.domain, name: site.name, profile: LEGAL_PROFILE[site.tld] || 'info' });
 
 const ROOT = __dirname;
 const DIST = path.join(ROOT, 'dist');
@@ -244,7 +251,7 @@ server {
 
     location / {
         add_header Cache-Control "public, max-age=600";
-        try_files $uri $uri/ /index.html;
+        try_files $uri $uri.html $uri/ /index.html;
     }
 
     location ~ /\\.(?!well-known) { deny all; }
@@ -259,8 +266,10 @@ function build() {
         out[`${site.domain}/robots.txt`] = robots(site);
         out[`${site.domain}/sitemap.xml`] = sitemap(site);
         out[`${site.domain}/manifest.webmanifest`] = manifest(site);
+        for (const kind of ['terms', 'privacy', 'dmca']) out[`${site.domain}/${kind}.html`] = legal.page(kind, legalSite(site));
         out[`../deploy/nginx/${site.domain}.conf`] = vhost(site);
     }
+    for (const g of LEGAL_ONLY) for (const kind of ['terms', 'privacy', 'dmca']) out[`${g.domain}/${kind}.html`] = legal.page(kind, { id: g.id, service: g.id, host: g.domain, name: g.name, profile: g.profile });
     return out;
 }
 
