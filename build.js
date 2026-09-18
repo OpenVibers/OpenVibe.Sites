@@ -199,7 +199,7 @@ a.card:hover{transform:translateY(-3px);border-color:rgba(var(--site-rgb),.6);bo
 
 function robots(site) { return `User-agent: *\nAllow: /\nDisallow: /auth/\nSitemap: https://${site.domain}/sitemap.xml\n`; }
 function sitemap(site) { return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url><loc>https://${site.domain}/</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>\n</urlset>\n`; }
-function manifest(site) { return JSON.stringify({ name: site.name, short_name: site.name.split('.').pop(), start_url: '/', display: 'standalone', background_color: '#0a0f1c', theme_color: site.accent, icons: [{ src: `${NET.networkUrl}/assets/logo-192.png`, sizes: '192x192', type: 'image/png' }, { src: `${NET.networkUrl}/assets/logo-512.png`, sizes: '512x512', type: 'image/png' }] }, null, 2) + '\n'; }
+function manifest(site) { return JSON.stringify(require('./vendor/openvibe-shared/app-icon').manifest({ site: 'network', name: site.name, shortName: site.name.split('.').pop(), description: site.tagline, iconBase: `${NET.networkUrl}/assets` }), null, 2) + '\n'; }
 
 /** nginx vhost: static root, wildcard cert, www → apex, long cache for the immutable bits. */
 function vhost(site) {
