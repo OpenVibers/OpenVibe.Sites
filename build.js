@@ -59,6 +59,7 @@ function page(site) {
 <meta name="theme-color" content="${esc(site.accent)}">
 <link rel="canonical" href="${url}">
 ${require('./vendor/openvibe-shared/app-icon').headTags({ site: 'network' }).split('\n')[0]}
+${require('./vendor/openvibe-shared/app-icon').CRITICAL}
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="alternate" type="text/html" hreflang="en" href="${url}">
 <meta property="og:type" content="website">
@@ -74,7 +75,7 @@ ${require('./vendor/openvibe-shared/app-icon').headTags({ site: 'network' }).spl
 <meta name="twitter:image" content="${ogImage}">
 <script type="application/ld+json">${JSON.stringify(ld)}</script>
 <script>(function(){try{var raw=localStorage.getItem('ov_theme');if(!raw)return;var t=JSON.parse(raw),v=t&&t.variables;if(!v)return;var el=document.documentElement;for(var k in v)if(k.charAt(0)==='-')el.style.setProperty(k,v[k]);if(t.id)el.setAttribute('data-theme',t.id);}catch(_){}})();</script>
-<script src="${NET.networkUrl}/shared/theme-loader.js"></script>
+<script src="${NET.networkUrl}/shared/theme-loader.js" defer></script>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
