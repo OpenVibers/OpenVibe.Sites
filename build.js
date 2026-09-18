@@ -247,7 +247,7 @@ server {
         try_files $uri $uri/ /index.html;
     }
 
-    location ~ /\.(?!well-known) { deny all; }
+    location ~ /\\.(?!well-known) { deny all; }
 }
 `;
 }
