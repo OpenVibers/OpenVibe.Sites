@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /auth/
+Sitemap: https://billing.openvibe.network/sitemap.xml

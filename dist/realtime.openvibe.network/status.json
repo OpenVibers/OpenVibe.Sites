@@ -1,0 +1,11 @@
+{
+  "domain": "realtime.openvibe.network",
+  "name": "realtime.openvibe.network",
+  "stage": "placeholder",
+  "live": false,
+  "plannedRepo": "OpenVibers/OpenVibe.Events",
+  "repoExists": false,
+  "network": "https://openvibe.network",
+  "updated": "2026-09-20",
+  "note": "Static placeholder served by OpenVibers/OpenVibe.Sites. Removed from sites.json in the same release that the real service takes over this domain."
+}
