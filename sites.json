@@ -794,7 +794,7 @@
       "icon": "fa-satellite-dish",
       "accent": "#34d399",
       "stage": "placeholder",
-      "plannedRepo": "OpenVibe.Events",
+      "plannedRepo": "OpenVibe.Realtime",
       "legalProfile": "info",
       "tagline": "Authorized live updates, resumable.",
       "description": "realtime.openvibe.network will be the browser delivery plane for events: WebSocket and SSE subscriptions with cursors, presence and gap recovery, separate from the durable event store.",

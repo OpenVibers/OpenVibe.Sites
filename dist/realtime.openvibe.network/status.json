@@ -3,9 +3,11 @@
   "name": "realtime.openvibe.network",
   "stage": "placeholder",
   "live": false,
-  "plannedRepo": "OpenVibers/OpenVibe.Events",
-  "repoExists": false,
+  "plannedRepo": "OpenVibers/OpenVibe.Realtime",
+  "repoUrl": "https://github.com/OpenVibers/OpenVibe.Realtime",
+  "repoExists": true,
+  "repoStage": "charter-only",
   "network": "https://openvibe.network",
-  "updated": "2026-09-20",
+  "updated": "2026-09-21",
   "note": "Static placeholder served by OpenVibers/OpenVibe.Sites. Removed from sites.json in the same release that the real service takes over this domain."
 }
