@@ -18,6 +18,8 @@ const legal = require('./vendor/openvibe-shared/legal');
 // Which clauses apply to each domain once it opens (mirrors OpenVibe.Network/server/chrome/sites.js).
 const LEGAL_PROFILE = { chat: 'ugc', codes: 'ugc', blog: 'info', wiki: 'ugc', news: 'info', reviews: 'ugc', tips: 'streaming', vip: 'account', trade: 'ugc', host: 'hosting', deals: 'info', coupons: 'info', stream: 'streaming' };
 // Sites whose own server has no page routes: their legal pages are built here and served by nginx.
+// Repositories that already run a real service (a placeholder subdomain is a planned surface of them, not a new codebase).
+const EXISTING_REPOS = new Set(['OpenVibe.Network', 'OpenVibe.Live', 'OpenVibe.Media', 'OpenVibe.Community', 'OpenVibe.Tools', 'OpenVibe.Games']);
 const LEGAL_ONLY = [{ domain: 'openvibe.games', name: 'OpenVibe.Games', id: 'games', profile: 'games' }];
 const legalSite = (site) => ({ id: site.tld, service: 'network', host: site.domain, name: site.name, profile: site.legalProfile || LEGAL_PROFILE[site.tld] || 'info' });
 
@@ -150,7 +152,7 @@ a.card:hover{transform:translateY(-3px);border-color:rgba(var(--site-rgb),.6);bo
       <a class="btn" href="${NET.networkUrl}/#network"><i class="fa-solid fa-circle-nodes"></i> The whole network</a>
       <a class="btn" href="${esc(NET.discord)}" rel="noopener"><i class="fa-brands fa-discord"></i> Follow the build</a>
     </div>
-    <p class="status"><i class="fa-solid fa-clock" aria-hidden="true"></i> Status: <b>coming soon</b> · this page is a placeholder, nothing here is live yet · home: ${site.plannedRepo ? `<a href="https://github.com/OpenVibers/${esc(site.plannedRepo)}" rel="noopener"><code>OpenVibers/${esc(site.plannedRepo)}</code></a> (charter only, no code yet)` : '<code>OpenVibe.Network</code> (planned as a module of the network service)'} · <a href="/status.json">status.json</a></p>
+    <p class="status"><i class="fa-solid fa-clock" aria-hidden="true"></i> Status: <b>coming soon</b> · this page is a placeholder, nothing here is live yet · home: ${site.plannedRepo ? `<a href="https://github.com/OpenVibers/${esc(site.plannedRepo)}" rel="noopener"><code>OpenVibers/${esc(site.plannedRepo)}</code></a>${EXISTING_REPOS.has(site.plannedRepo) ? ' (a surface of that existing service; not split out yet)' : ' (charter only, no code yet)'}` : '<code>OpenVibe.Network</code>'} · <a href="/status.json">status.json</a></p>
   </header>
 
   <section>
@@ -276,7 +278,7 @@ function build() {
         out[`${site.domain}/robots.txt`] = robots(site);
         out[`${site.domain}/sitemap.xml`] = sitemap(site);
         out[`${site.domain}/manifest.webmanifest`] = manifest(site);
-        out[`${site.domain}/status.json`] = JSON.stringify({ domain: site.domain, name: site.name, stage: site.stage || 'placeholder', live: false, plannedRepo: site.plannedRepo ? `OpenVibers/${site.plannedRepo}` : null, repoUrl: site.plannedRepo ? `https://github.com/OpenVibers/${site.plannedRepo}` : null, repoExists: !!site.plannedRepo, repoStage: site.plannedRepo ? 'charter-only' : null, network: NET.networkUrl, updated: today, note: 'Static placeholder served by OpenVibers/OpenVibe.Sites. Removed from sites.json in the same release that the real service takes over this domain.' }, null, 2) + '\n';
+        out[`${site.domain}/status.json`] = JSON.stringify({ domain: site.domain, name: site.name, stage: site.stage || 'placeholder', live: false, plannedRepo: site.plannedRepo ? `OpenVibers/${site.plannedRepo}` : null, repoUrl: site.plannedRepo ? `https://github.com/OpenVibers/${site.plannedRepo}` : null, repoExists: !!site.plannedRepo, repoStage: site.plannedRepo ? (EXISTING_REPOS.has(site.plannedRepo) ? 'existing-service' : 'charter-only') : null, network: NET.networkUrl, updated: today, note: 'Static placeholder served by OpenVibers/OpenVibe.Sites. Removed from sites.json in the same release that the real service takes over this domain.' }, null, 2) + '\n';
         for (const kind of ['terms', 'privacy', 'dmca']) out[`${site.domain}/${kind}.html`] = legal.page(kind, legalSite(site));
         out[`../deploy/nginx/${site.domain}.conf`] = vhost(site);
     }

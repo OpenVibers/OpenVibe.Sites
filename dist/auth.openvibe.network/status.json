@@ -6,7 +6,7 @@
   "plannedRepo": "OpenVibers/OpenVibe.Network",
   "repoUrl": "https://github.com/OpenVibers/OpenVibe.Network",
   "repoExists": true,
-  "repoStage": "charter-only",
+  "repoStage": "existing-service",
   "network": "https://openvibe.network",
   "updated": "2026-09-21",
   "note": "Static placeholder served by OpenVibers/OpenVibe.Sites. Removed from sites.json in the same release that the real service takes over this domain."
