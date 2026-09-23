@@ -2,8 +2,14 @@
   "name": "openvibe-sites",
   "private": true,
   "description": "Placeholder and hub pages for the planned OpenVibe domains (static build)",
-  "scripts": { "build": "node build.js" },
+  "scripts": {
+    "build": "node build.js",
+    "test": "node test/build.test.js"
+  },
   "dependencies": {
     "openvibe-shared": "https://codeload.github.com/OpenVibers/OpenVibe.Shared/tar.gz/refs/tags/v1.0.0"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }
