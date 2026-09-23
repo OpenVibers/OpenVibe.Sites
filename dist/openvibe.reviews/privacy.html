@@ -91,7 +91,11 @@
   .ovf-legal-inline{justify-content:center}
   .ovf-account{flex-direction:column;align-items:flex-start}
 }
-@media (prefers-reduced-motion:reduce){.ovf-account{animation:none}.ovf-col a:hover,.ovf-social a:hover,.ovf-account-links a:hover{transform:none}}</style><footer id="ov-footer" class="ovf" data-variant="compact"><div class="ovf-inner ovf-inner--compact">
+@media (prefers-reduced-motion:reduce){.ovf-account{animation:none}.ovf-col a:hover,.ovf-social a:hover,.ovf-account-links a:hover{transform:none}}
+.ovf{-webkit-tap-highlight-color:transparent}
+:where(.ovf) :where(a,button):active{scale:.97}
+:where(.ovf) :where(a,button):focus-visible{outline:2px solid var(--accent-light,var(--accent,#3b82f6));outline-offset:2px;border-radius:4px}
+@media (prefers-reduced-motion:reduce){:where(.ovf) :where(a,button):active{scale:none;opacity:.82}}</style><footer id="ov-footer" class="ovf" data-variant="compact"><div class="ovf-inner ovf-inner--compact">
                 <a class="ovf-brand ovf-brand--sm" href="/"><span class="ov-mark" data-size="20"></span><span>OpenVibe.Network</span></a>
                 <nav class="ovf-compact-links" aria-label="Site links">
                     

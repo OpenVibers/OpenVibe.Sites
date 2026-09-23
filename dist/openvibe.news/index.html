@@ -214,7 +214,11 @@ a.card:hover{transform:translateY(-3px);border-color:rgba(var(--site-rgb),.6);bo
   .ovf-legal-inline{justify-content:center}
   .ovf-account{flex-direction:column;align-items:flex-start}
 }
-@media (prefers-reduced-motion:reduce){.ovf-account{animation:none}.ovf-col a:hover,.ovf-social a:hover,.ovf-account-links a:hover{transform:none}}</style><footer id="ov-footer" class="ovf" data-variant="full"><div class="ovf-inner">
+@media (prefers-reduced-motion:reduce){.ovf-account{animation:none}.ovf-col a:hover,.ovf-social a:hover,.ovf-account-links a:hover{transform:none}}
+.ovf{-webkit-tap-highlight-color:transparent}
+:where(.ovf) :where(a,button):active{scale:.97}
+:where(.ovf) :where(a,button):focus-visible{outline:2px solid var(--accent-light,var(--accent,#3b82f6));outline-offset:2px;border-radius:4px}
+@media (prefers-reduced-motion:reduce){:where(.ovf) :where(a,button):active{scale:none;opacity:.82}}</style><footer id="ov-footer" class="ovf" data-variant="full"><div class="ovf-inner">
             <div class="ovf-cols">
                 <div class="ovf-col ovf-col--brand">
                     <a class="ovf-brand" href="/"><span class="ov-mark" data-size="26"></span><span>OpenVibe.Network</span></a>
