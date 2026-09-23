@@ -783,54 +783,6 @@
       "keywords": "openvibe realtime, openvibe network realtime, openvibe platform"
     },
     {
-      "domain": "billing.openvibe.network",
-      "zone": "openvibe.network",
-      "hostParts": [
-        "billing",
-        "openvibe.network"
-      ],
-      "tld": "billing",
-      "name": "billing.openvibe.network",
-      "icon": "fa-coins",
-      "accent": "#fbbf24",
-      "stage": "placeholder",
-      "plannedRepo": "OpenVibe.Billing",
-      "legalProfile": "account",
-      "tagline": "Money, accounted once.",
-      "description": "billing.openvibe.network will be the isolated ledger for the network: payment providers, receipts, subscriptions, entitlements, refunds and payouts, kept separate from loyalty points and from every product.",
-      "pillars": [
-        [
-          "Ledger",
-          "Append-only, balanced, reconciled against provider receipts."
-        ],
-        [
-          "Subscriptions",
-          "Plans, renewals, cancellations and refunds."
-        ],
-        [
-          "Entitlements",
-          "What an account is allowed to use, queryable by every product."
-        ],
-        [
-          "Payouts",
-          "Creator balances and withdrawals."
-        ]
-      ],
-      "meanwhile": [
-        [
-          "Tips on OpenVibe.Live",
-          "https://openvibe.live",
-          "Tipping and channel subscriptions run inside Live today."
-        ],
-        [
-          "Your account",
-          "https://openvibe.network/account",
-          "Wallet and account settings on openvibe.network."
-        ]
-      ],
-      "keywords": "openvibe billing, openvibe network billing, openvibe platform"
-    },
-    {
       "domain": "ai.openvibe.network",
       "zone": "openvibe.network",
       "hostParts": [
