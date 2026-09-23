@@ -1,8 +1,13 @@
 # OpenVibe.Sites
 
-Static front pages for the OpenVibe domains that are not full applications yet
-(`openvibe.chat`, `.codes`, `.blog`, `.wiki`, `.news`, `.reviews`, `.tips`, `.vip`, `.trade`,
-`.host`, `.deals`, `.coupons`, `openre.stream`). One catalog (`sites.json`), one template
+Static front pages for the OpenVibe domains that are not public applications yet. As of
+2026-09-23 (`sites.json`, deployed at `d3b71af`): `openvibe.chat`, `.news`, `.reviews`, `.tips`,
+`.vip`, `.trade`, `.host`, `.deals`, `.coupons`, `openre.stream`, and `auth`, `api`, `admin`,
+`themes`, `realtime` and `ai` under `openvibe.network`. Several of these already run on the host
+behind loopback (News, Reviews, Tips, VIP, Trade, Host, Deals, Coupons, OpenRe.Stream, AI, and Chat
+on openvibe.live's paths); the page stays until the service launches publicly on its domain.
+`openvibe.codes`, `openvibe.wiki`, `openvibe.blog`, `events.openvibe.network` and
+`billing.openvibe.network` have left for their own services. One catalog (`sites.json`), one template
 (`build.js`), real pages: what the site will be, what to use on the network meanwhile, the whole
 network, sign-in — with the shared navbar, footer and theme loader from openvibe.network, full
 SEO (canonical, Open Graph, Twitter, JSON-LD, robots, sitemap, manifest).
