@@ -93,53 +93,6 @@
       "plannedRepo": "OpenVibe.Chat"
     },
     {
-      "domain": "openvibe.codes",
-      "tld": "codes",
-      "name": "OpenVibe.Codes",
-      "icon": "fa-code",
-      "accent": "#22d3ee",
-      "tagline": "Build on OpenVibe.",
-      "description": "OpenVibe.Codes is the developer portal of the OpenVibe network: API and SDK documentation, the service and capability registry, event schemas, mod publishing, starter templates and vibe-coding sessions.",
-      "pillars": [
-        [
-          "API & SDK docs",
-          "One place for every OpenVibe API: identity, media, chat, live, community."
-        ],
-        [
-          "Contracts & events",
-          "Service manifests, capability schemas and the event backbone, documented."
-        ],
-        [
-          "Mods & templates",
-          "Publish mods and bots, start from templates, ship to the network."
-        ],
-        [
-          "Vibe-coding",
-          "Publish coding sessions and let people build alongside you."
-        ]
-      ],
-      "meanwhile": [
-        [
-          "OpenVibe on GitHub",
-          "https://github.com/OpenVibers",
-          "Every OpenVibe service is open source. Read, fork, contribute."
-        ],
-        [
-          "WHIP & streaming docs",
-          "https://openvibe.live/documentation",
-          "The streaming API and ingest docs live on OpenVibe.Live today."
-        ],
-        [
-          "Dev tools",
-          "https://dev.openvibe.tools",
-          "Formatters, encoders and validators on OpenVibe.Tools."
-        ]
-      ],
-      "keywords": "openvibe api, openvibe sdk, developer portal, open source streaming api, mods",
-      "stage": "placeholder",
-      "plannedRepo": "OpenVibe.Codes"
-    },
-    {
       "domain": "openvibe.news",
       "tld": "news",
       "name": "OpenVibe.News",

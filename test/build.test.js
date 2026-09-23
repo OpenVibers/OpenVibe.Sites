@@ -37,7 +37,7 @@ for (const site of catalog.sites) {
 }
 
 // A domain that a real service answers is never also a placeholder here (roadmap 7.2 rule 8).
-const LIVE_SERVICES = ['events.openvibe.network', 'billing.openvibe.network', 'openvibe.wiki', 'openvibe.blog', 'openvibe.community', 'openvibe.live', 'openvibe.media', 'openvibe.tools', 'openvibe.network'];
+const LIVE_SERVICES = ['events.openvibe.network', 'billing.openvibe.network', 'openvibe.wiki', 'openvibe.blog', 'openvibe.codes', 'openvibe.community', 'openvibe.live', 'openvibe.media', 'openvibe.tools', 'openvibe.network'];
 for (const d of LIVE_SERVICES) {
     assert.ok(!catalog.sites.some((s) => s.domain === d), `${d} is a running service and must not have a placeholder`);
 }
