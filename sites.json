@@ -740,49 +740,6 @@
       "keywords": "openvibe themes, openvibe network themes, openvibe platform"
     },
     {
-      "domain": "events.openvibe.network",
-      "zone": "openvibe.network",
-      "hostParts": [
-        "events",
-        "openvibe.network"
-      ],
-      "tld": "events",
-      "name": "events.openvibe.network",
-      "icon": "fa-bolt",
-      "accent": "#fb7185",
-      "stage": "placeholder",
-      "plannedRepo": "OpenVibe.Events",
-      "legalProfile": "info",
-      "tagline": "Durable events for the whole network.",
-      "description": "events.openvibe.network will be the durable event backbone: every meaningful thing that happens on an OpenVibe service is recorded, delivered to subscribers with retries, replayable and auditable.",
-      "pillars": [
-        [
-          "Durable delivery",
-          "Persisted before delivery, retried until acknowledged."
-        ],
-        [
-          "Subscriptions",
-          "Services, apps and mods subscribe to the topics they are allowed to see."
-        ],
-        [
-          "Replay & dead letters",
-          "Recover from consumer downtime without losing anything."
-        ],
-        [
-          "Webhooks",
-          "Signed deliveries to your own endpoints."
-        ]
-      ],
-      "meanwhile": [
-        [
-          "Live updates today",
-          "https://openvibe.live",
-          "Stream, chat and clip updates are delivered by OpenVibe.Live for now."
-        ]
-      ],
-      "keywords": "openvibe events, openvibe network events, openvibe platform"
-    },
-    {
       "domain": "realtime.openvibe.network",
       "zone": "openvibe.network",
       "hostParts": [

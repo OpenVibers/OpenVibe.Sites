@@ -29,6 +29,8 @@ const catalog = JSON.parse(fs.readFileSync(path.join(ROOT, 'sites.json'), 'utf8'
 const NET = catalog.network;
 const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const today = new Date().toISOString().slice(0, 10);
+// A page is first published once; rebuilding it later changes dateModified, never datePublished.
+const FIRST_PUBLISHED = '2026-09-17';
 
 function hexToRgb(hex) { const m = String(hex).replace('#', ''); const n = parseInt(m.length === 3 ? m.split('').map(c => c + c).join('') : m, 16); return `${(n >> 16) & 255},${(n >> 8) & 255},${n & 255}`; }
 
@@ -45,7 +47,7 @@ function page(site) {
             { '@type': 'WebSite', '@id': `${url}#site`, url, name: site.name, description: site.description, inLanguage: 'en',
               publisher: { '@type': 'Organization', '@id': `${NET.networkUrl}/#org`, name: 'OpenVibe', url: `${NET.networkUrl}/`, logo: ogImage, sameAs: [NET.github, NET.discord] },
               isPartOf: { '@type': 'WebSite', '@id': `${NET.networkUrl}/#site`, name: 'OpenVibe.Network', url: `${NET.networkUrl}/` } },
-            { '@type': 'WebPage', '@id': `${url}#page`, url, name: title, description: site.description, isPartOf: { '@id': `${url}#site` }, datePublished: today, dateModified: today,
+            { '@type': 'WebPage', '@id': `${url}#page`, url, name: title, description: site.description, isPartOf: { '@id': `${url}#site` }, datePublished: site.published || FIRST_PUBLISHED, dateModified: today,
               breadcrumb: { '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'OpenVibe', item: `${NET.networkUrl}/` }, { '@type': 'ListItem', position: 2, name: site.name, item: url }] } },
         ],
     };
