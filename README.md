@@ -8,11 +8,12 @@ network, sign-in — with the shared navbar, footer and theme loader from openvi
 SEO (canonical, Open Graph, Twitter, JSON-LD, robots, sitemap, manifest).
 
 ```
+npm ci                   # openvibe-shared: the pinned OpenVibe.Shared release (package.json)
 node build.js            # dist/<domain>/… + deploy/nginx/<domain>.conf
 node build.js --check    # fails when dist/ is stale
 ```
 
-Deploy (host): the repo lives at `/opt/openvibe.sites`; `deploy/scripts/deploy.sh` rebuilds, installs
+Deploy (host): the repo lives at `/opt/openvibe.sites`; `deploy/scripts/deploy.sh` runs `npm ci`, rebuilds, installs
 the vhosts into `/etc/nginx/sites-available`, enables them and reloads nginx. Each domain has a
 Let's Encrypt wildcard certificate (`certbot --dns-cloudflare`, see the host's renewal configs).
 

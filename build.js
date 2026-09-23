@@ -13,8 +13,8 @@
  */
 const fs = require('fs');
 const path = require('path');
-// Vendored from OpenVibe.Network/packages/openvibe-shared (copy, never edit): the network's legal documents.
-const legal = require('./vendor/openvibe-shared/legal');
+// The network's legal documents, from the pinned OpenVibe.Shared release (package.json).
+const legal = require('openvibe-shared/legal');
 // Which clauses apply to each domain once it opens (mirrors OpenVibe.Network/server/chrome/sites.js).
 const LEGAL_PROFILE = { chat: 'ugc', codes: 'ugc', blog: 'info', wiki: 'ugc', news: 'info', reviews: 'ugc', tips: 'streaming', vip: 'account', trade: 'ugc', host: 'hosting', deals: 'info', coupons: 'info', stream: 'streaming' };
 // Sites whose own server has no page routes: their legal pages are built here and served by nginx.
@@ -62,8 +62,8 @@ function page(site) {
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="theme-color" content="${esc(site.accent)}">
 <link rel="canonical" href="${url}">
-${require('./vendor/openvibe-shared/app-icon').headTags({ site: 'network' }).split('\n')[0]}
-${require('./vendor/openvibe-shared/app-icon').CRITICAL}
+${require('openvibe-shared/app-icon').headTags({ site: 'network' }).split('\n')[0]}
+${require('openvibe-shared/app-icon').CRITICAL}
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="alternate" type="text/html" hreflang="en" href="${url}">
 <meta property="og:type" content="website">
@@ -192,7 +192,7 @@ a.card:hover{transform:translateY(-3px);border-color:rgba(var(--site-rgb),.6);bo
     <a class="btn" href="${esc(NET.github)}" rel="noopener"><i class="fa-brands fa-github"></i> OpenVibers on GitHub</a>
   </div>
 </main>
-${require('./vendor/openvibe-shared/footer').ssr({ service: 'network', variant: 'full' })}
+${require('openvibe-shared/footer').ssr({ service: 'network', variant: 'full' })}
 <script src="${NET.networkUrl}/shared/ov-mark.js" async></script>
 <script src="${NET.networkUrl}/shared/navbar.js"></script>
 <script src="${NET.networkUrl}/shared/footer.js"></script>
@@ -209,7 +209,7 @@ ${require('./vendor/openvibe-shared/footer').ssr({ service: 'network', variant: 
 
 function robots(site) { return `User-agent: *\nAllow: /\nDisallow: /auth/\nSitemap: https://${site.domain}/sitemap.xml\n`; }
 function sitemap(site) { return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url><loc>https://${site.domain}/</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>\n</urlset>\n`; }
-function manifest(site) { return JSON.stringify(require('./vendor/openvibe-shared/app-icon').manifest({ site: 'network', name: site.name, shortName: site.name.split('.').pop(), description: site.tagline, iconBase: `${NET.networkUrl}/assets` }), null, 2) + '\n'; }
+function manifest(site) { return JSON.stringify(require('openvibe-shared/app-icon').manifest({ site: 'network', name: site.name, shortName: site.name.split('.').pop(), description: site.tagline, iconBase: `${NET.networkUrl}/assets` }), null, 2) + '\n'; }
 
 /** nginx vhost: static root, wildcard cert, www → apex, long cache for the immutable bits. */
 function vhost(site) {

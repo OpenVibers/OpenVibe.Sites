@@ -4,6 +4,8 @@
 set -euo pipefail
 REPO="${REPO:-/opt/openvibe.sites}"
 cd "$REPO"
+# openvibe-shared is the pinned OpenVibe.Shared release (package.json); needs outbound HTTPS to codeload.github.com.
+npm ci --omit=dev --no-audit --no-fund
 node build.js
 changed=0
 for conf in deploy/nginx/*.conf; do
