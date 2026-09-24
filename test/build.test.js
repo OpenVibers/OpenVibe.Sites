@@ -26,14 +26,29 @@ for (const site of catalog.sites) {
     pages++;
     assert.match(html, /<title>[^<]+<\/title>/, `${d}: title`);
     assert.match(html, new RegExp(`<link rel="canonical" href="https://${d.replace(/\./g, '\\.')}/?"`), `${d}: canonical`);
-    assert.match(html, /placeholder/i, `${d}: says it is a placeholder (never claim a product is live)`);
+    if (!site.kind) assert.match(html, /placeholder/i, `${d}: says it is a placeholder (never claim a product is live)`);
     assert.doesNotMatch(html, PRICING, `${d}: pricing copy`);
     assert.doesNotMatch(html, UNBACKED, `${d}: claims a hosting product that does not exist`);
     for (const m of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
         assert.doesNotThrow(() => JSON.parse(m[1]), `${d}: JSON-LD parses`);
     }
-    for (const f of ['robots.txt', 'sitemap.xml', 'manifest.webmanifest']) {
+    for (const f of ['robots.txt', 'manifest.webmanifest', 'status.json', ...(site.kind ? [] : ['sitemap.xml'])]) {
         assert.ok(fs.existsSync(path.join(ROOT, 'dist', d, f)), `${d}: ${f}`);
+    }
+    if (site.kind) {
+        // A notice (a closed product, a pointer) is not indexed, has no sitemap and is not listed as opening.
+        assert.match(html, /<meta name="robots" content="noindex, follow">/, `${d}: notice is noindex`);
+        assert.ok(!fs.existsSync(path.join(ROOT, 'dist', d, 'sitemap.xml')), `${d}: notice has no sitemap`);
+        assert.doesNotMatch(read(`dist/${d}/robots.txt`), /Sitemap:/, `${d}: robots.txt names no sitemap`);
+        assert.ok(Array.isArray(site.links) && site.links.length, `${d}: notice links where to go`);
+        for (const [, href] of site.links) assert.ok(html.includes(`href="${href}"`), `${d}: links ${href}`);
+        for (const other of catalog.sites) {
+            if (other.domain !== d) assert.ok(!read(`dist/${other.domain}/index.html`).includes(`href="https://${d}/"`), `${other.domain}: does not list the ${site.kind} ${d} as a domain still to open`);
+        }
+    }
+    if (site.kind === 'closed') {
+        assert.match(html, /Status: <b>closed<\/b>/, `${d}: says closed`);
+        assert.doesNotMatch(html, /will be|opening soon|coming soon/i, `${d}: a closed product is never described as coming`);
     }
     const conf = read(`deploy/nginx/${d}.conf`);
     assert.ok(conf.includes(`server_name ${d}`), `${d}: vhost server_name`);
@@ -53,6 +68,7 @@ for (const site of catalog.sites) {
     const html = read(`dist/${d}/index.html`);
     const status = JSON.parse(read(`dist/${d}/status.json`));
     const st = f.status || {}; const rg = f.registry || {};
+    if (st.stage === 'closed') assert.strictEqual(site.kind, 'closed', `${d}: ${site.plannedRepo} is closed (STATUS.json), so its page is a closed notice, not a placeholder`);
     const hasCode = st.code === true || ['live', 'internal'].includes(rg.state);
     if (hasCode) {
         assert.doesNotMatch(html, NO_CODE, `${d}: ${site.plannedRepo} has code, so the page never says "charter only, no code yet"`);

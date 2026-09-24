@@ -627,39 +627,33 @@
         "openvibe.network"
       ],
       "tld": "realtime",
+      "kind": "closed",
       "name": "realtime.openvibe.network",
       "icon": "fa-satellite-dish",
       "accent": "#34d399",
       "plannedRepo": "OpenVibe.Realtime",
       "legalProfile": "info",
-      "tagline": "Authorized live updates, resumable.",
-      "description": "realtime.openvibe.network will be the browser delivery plane for events: WebSocket and SSE subscriptions with cursors, presence and gap recovery, separate from the durable event store.",
-      "pillars": [
+      "tagline": "Closed: realtime delivery is part of OpenVibe.Events.",
+      "description": "OpenVibe.Realtime was planned as a separate service for live updates in the browser. Decision record ADR-005 (accepted 2026-09-22) closed it: browser realtime is part of OpenVibe.Events, as server-sent events with cursor resume at events.openvibe.network/realtime/stream. This address serves only this notice.",
+      "linksLead": "Realtime delivery for browsers is a part of OpenVibe.Events; the decision and its record are public.",
+      "links": [
         [
-          "Topics",
-          "Subscribe to exactly the streams your account may see."
+          "OpenVibe.Events",
+          "https://events.openvibe.network/",
+          "Durable events, subscriptions and signed delivery; browsers subscribe at /realtime/stream."
         ],
         [
-          "Resume",
-          "Reconnect from a cursor and get what you missed."
+          "ADR-005: realtime",
+          "https://github.com/OpenVibers/OpenVibe.Contracts/blob/main/docs/adr/ADR-005-realtime.md",
+          "The decision, and when a separate realtime service would be reconsidered."
         ],
         [
-          "Presence",
-          "Who is here, without polling."
-        ],
-        [
-          "Not media",
-          "Video and audio keep their own transports."
+          "OpenVibe.Realtime",
+          "https://github.com/OpenVibers/OpenVibe.Realtime",
+          "The repository stays as the decision record."
         ]
       ],
-      "meanwhile": [
-        [
-          "Chat and stream updates",
-          "https://openvibe.live",
-          "Realtime today runs inside OpenVibe.Live."
-        ]
-      ],
-      "keywords": "openvibe realtime, openvibe network realtime, openvibe platform"
+      "keywords": "openvibe realtime, openvibe events, server-sent events"
     },
     {
       "domain": "ai.openvibe.network",

@@ -77,7 +77,7 @@ function statusText(site) {
         const o = f.registry.origin;
         return `${repo} is live at <a href="${esc(o)}/">${esc(o.replace(/^https?:\/\//, ''))}</a>; this subdomain is not routed to it yet, so it serves this placeholder.`;
     }
-    if (k === 'closed') return `${repo} is closed, so no product launches here; this page is a placeholder.`;
+    if (k === 'closed') return `${repo} is closed and stays as a decision record; no product launches at this address.`;
     return `${repo}: charter only, no code yet; this page is a placeholder.${waits}`;
 }
 const today = new Date().toISOString().slice(0, 10);
@@ -92,7 +92,11 @@ function page(site) {
     const title = `${site.name} — ${site.tagline}`;
     const ogImage = `${NET.networkUrl}/assets/logo-512.png`;
     const others = NET.liveSites.filter(s => s.url !== url.slice(0, -1));
-    const siblings = catalog.sites.filter(s => s.domain !== site.domain);
+    // A notice (site.kind: closed) is not a placeholder for a product: it says where the work went, is not
+    // indexed and is not listed among the domains still to open.
+    const notice = !!site.kind;
+    const siblings = catalog.sites.filter(s => s.domain !== site.domain && !s.kind);
+    const primary = notice && site.links && site.links[0];
     const ld = {
         '@context': 'https://schema.org',
         '@graph': [
@@ -111,7 +115,7 @@ function page(site) {
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(site.description)}">
 <meta name="keywords" content="${esc(site.keywords || '')}">
-<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="robots" content="${notice ? 'noindex, follow' : 'index, follow, max-image-preview:large'}">
 <meta name="theme-color" content="${esc(site.accent)}">
 <link rel="canonical" href="${url}">
 ${require('openvibe-shared/app-icon').headTags({ site: 'network' }).split('\n')[0]}
@@ -202,14 +206,21 @@ a.card:hover{transform:translateY(-3px);border-color:rgba(var(--site-rgb),.6);bo
     <div class="tag">${esc(site.tagline)}</div>
     <p class="lead">${esc(site.description)}</p>
     <div class="ctas">
-      <a class="btn btn-primary" href="${NET.networkUrl}/login?return=${encodeURIComponent(url)}"><i class="fa-solid fa-right-to-bracket"></i> Sign in with OpenVibe</a>
+      ${primary ? `<a class="btn btn-primary" href="${esc(primary[1])}"><i class="fa-solid fa-arrow-right"></i> ${esc(primary[0])}</a>` : `<a class="btn btn-primary" href="${NET.networkUrl}/login?return=${encodeURIComponent(url)}"><i class="fa-solid fa-right-to-bracket"></i> Sign in with OpenVibe</a>`}
       <a class="btn" href="${NET.networkUrl}/#network"><i class="fa-solid fa-circle-nodes"></i> The whole network</a>
       <a class="btn" href="${esc(NET.discord)}" rel="noopener"><i class="fa-brands fa-discord"></i> Follow the build</a>
     </div>
     <p class="status"><i class="fa-solid fa-clock" aria-hidden="true"></i> Status: <b>${esc(STANDING[standing(site)].label)}</b> · ${statusText(site)} · as of ${esc(facts.generated)} · <a href="/status.json">status.json</a></p>
   </header>
 
-  <section id="what">
+${notice ? `  <section id="what" class="meanwhile">
+    <h2>Where to go</h2>
+    <p class="lead2">${esc(site.linksLead || 'What this address used to stand for lives here now.')}</p>
+    <div class="grid">
+      ${site.links.map(([h, href, d]) => `<a class="card" href="${esc(href)}"><div class="ic"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></div><b>${esc(h)}</b><span>${esc(d)}</span><span class="go">${esc(href.replace(/^https?:\/\//, '').replace(/\/$/, ''))} →</span></a>`).join('\n      ')}
+    </div>
+  </section>
+` : `  <section id="what">
     <h2>What ${esc(site.name)} will be</h2>
     <p class="lead2">Same account, same themes, same navbar as every other OpenVibe site — built in the open, run by its community.</p>
     <div class="grid">
@@ -224,7 +235,7 @@ a.card:hover{transform:translateY(-3px);border-color:rgba(var(--site-rgb),.6);bo
       ${(site.meanwhile || []).map(([h, href, d]) => `<a class="card" href="${esc(href)}"><div class="ic"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></div><b>${esc(h)}</b><span>${esc(d)}</span><span class="go">${esc(href.replace(/^https?:\/\//, '').replace(/\/$/, ''))} →</span></a>`).join('\n      ')}
     </div>
   </section>
-
+`}
   <section class="net">
     <h2>The OpenVibe network</h2>
     <p class="lead2">One account for all of it. Sign in once and every site signs you in.</p>
@@ -250,7 +261,7 @@ ${require('openvibe-shared/footer').ssr({ service: 'network', variant: 'full' })
 <script src="${NET.networkUrl}/shared/footer.js"></script>
 <script>
 (function () {
-  if (window.OpenVibeNavbar) { try { OpenVibeNavbar.init({ service: '${esc(site.tld)}', apiBase: '${NET.networkUrl}', links: [{ label: 'What it will be', href: '#what' }, { label: 'The network', href: '${NET.networkUrl}/#network', external: false }], history: { type: 'page', title: '${esc(site.name)}' } }); } catch (e) {} }
+  if (window.OpenVibeNavbar) { try { OpenVibeNavbar.init({ service: '${esc(site.tld)}', apiBase: '${NET.networkUrl}', links: [{ label: '${notice ? 'Where to go' : 'What it will be'}', href: '#what' }, { label: 'The network', href: '${NET.networkUrl}/#network', external: false }], history: { type: 'page', title: '${esc(site.name)}' } }); } catch (e) {} }
   if (window.OpenVibeFooter) { try { OpenVibeFooter.init({ service: '${esc(site.tld)}', variant: 'full', links: [{ heading: '${esc(site.name)}', items: [{ name: 'Sign in', url: '${NET.networkUrl}/login?return=${encodeURIComponent(url)}' }, { name: 'The network', url: '${NET.networkUrl}/#network' }, { name: 'Discord', url: '${esc(NET.discord)}' }] }] }); } catch (e) {} }
 })();
 </script>
@@ -259,7 +270,8 @@ ${require('openvibe-shared/footer').ssr({ service: 'network', variant: 'full' })
 `;
 }
 
-function robots(site) { return `User-agent: *\nAllow: /\nDisallow: /auth/\nSitemap: https://${site.domain}/sitemap.xml\n`; }
+// A notice page is noindex and has no sitemap; a placeholder lists its one page.
+function robots(site) { return `User-agent: *\nAllow: /\nDisallow: /auth/\n${site.kind ? '' : `Sitemap: https://${site.domain}/sitemap.xml\n`}`; }
 function sitemap(site) { return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url><loc>https://${site.domain}/</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>\n</urlset>\n`; }
 function manifest(site) { return JSON.stringify(require('openvibe-shared/app-icon').manifest({ site: 'network', name: site.name, shortName: site.name.split('.').pop(), description: site.tagline, iconBase: `${NET.networkUrl}/assets` }), null, 2) + '\n'; }
 
@@ -349,7 +361,7 @@ function build() {
     for (const site of catalog.sites) {
         out[`${site.domain}/index.html`] = page(site);
         out[`${site.domain}/robots.txt`] = robots(site);
-        out[`${site.domain}/sitemap.xml`] = sitemap(site);
+        if (!site.kind) out[`${site.domain}/sitemap.xml`] = sitemap(site);
         out[`${site.domain}/manifest.webmanifest`] = manifest(site);
         out[`${site.domain}/status.json`] = statusJson(site);
         for (const kind of ['terms', 'privacy', 'dmca']) out[`${site.domain}/${kind}.html`] = legal.page(kind, legalSite(site));

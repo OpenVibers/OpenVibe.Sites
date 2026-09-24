@@ -1,7 +1,7 @@
 {
   "domain": "realtime.openvibe.network",
   "name": "realtime.openvibe.network",
-  "stage": "placeholder",
+  "stage": "closed",
   "live": false,
   "plannedRepo": "OpenVibers/OpenVibe.Realtime",
   "repoUrl": "https://github.com/OpenVibers/OpenVibe.Realtime",

@@ -1,7 +1,7 @@
 {
   "name": "realtime.openvibe.network",
   "short_name": "network",
-  "description": "Authorized live updates, resumable.",
+  "description": "Closed: realtime delivery is part of OpenVibe.Events.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
