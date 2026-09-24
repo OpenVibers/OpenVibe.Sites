@@ -51,48 +51,6 @@
   },
   "sites": [
     {
-      "domain": "openvibe.chat",
-      "tld": "chat",
-      "name": "OpenVibe.Chat",
-      "icon": "fa-comments",
-      "accent": "#a78bfa",
-      "tagline": "One chat for the whole network.",
-      "description": "OpenVibe.Chat is the chat service of the OpenVibe network. It already runs the chat on OpenVibe.Live: global and stream chat, direct messages and text-to-speech. openvibe.chat is planned as its own home: rooms that span every OpenVibe site, group rooms and voice, one identity for every conversation.",
-      "pillars": [
-        [
-          "Global rooms",
-          "Rooms that span every OpenVibe site, with the same moderation tools everywhere."
-        ],
-        [
-          "Direct messages",
-          "DMs and group rooms tied to your OpenVibe account, not to one website."
-        ],
-        [
-          "Calls & voice",
-          "Voice rooms and streamer-to-viewer calls, the same engine Live uses today."
-        ],
-        [
-          "TTS & audio queues",
-          "Text-to-speech, soundboards and audio queues for streams and rooms."
-        ]
-      ],
-      "meanwhile": [
-        [
-          "Chat on OpenVibe.Live",
-          "https://openvibe.live/chat",
-          "The global chat is already live there — same account, same rules."
-        ],
-        [
-          "Voice channels",
-          "https://openvibe.live/chat",
-          "Voice rooms run inside Live's chat today."
-        ]
-      ],
-      "keywords": "openvibe chat, community chat, voice rooms, direct messages, free speech chat",
-      "plannedRepo": "OpenVibe.Chat",
-      "launch": "its own web client at this address; the service already runs the chat on OpenVibe.Live"
-    },
-    {
       "domain": "openvibe.news",
       "tld": "news",
       "name": "OpenVibe.News",
