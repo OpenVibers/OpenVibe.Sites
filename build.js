@@ -359,6 +359,7 @@ server {
     listen [::]:443 ssl;
     http2 on;
     server_name ${d};
+    include snippets/security-txt.conf;   # /.well-known/security.txt (host file; SECURITY.md in every repo)
 
     ssl_certificate     /etc/letsencrypt/live/${cert}/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/${cert}/privkey.pem;
