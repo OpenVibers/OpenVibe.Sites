@@ -57,7 +57,7 @@
       "icon": "fa-comments",
       "accent": "#a78bfa",
       "tagline": "One chat for the whole network.",
-      "description": "OpenVibe.Chat is the communication layer of the OpenVibe network: global rooms, stream chat, direct messages, group rooms, voice calls and text-to-speech — one identity, every conversation.",
+      "description": "OpenVibe.Chat is the chat service of the OpenVibe network. It already runs the chat on OpenVibe.Live: global and stream chat, direct messages and text-to-speech. openvibe.chat is planned as its own home: rooms that span every OpenVibe site, group rooms and voice, one identity for every conversation.",
       "pillars": [
         [
           "Global rooms",
@@ -89,8 +89,8 @@
         ]
       ],
       "keywords": "openvibe chat, community chat, voice rooms, direct messages, free speech chat",
-      "stage": "placeholder",
-      "plannedRepo": "OpenVibe.Chat"
+      "plannedRepo": "OpenVibe.Chat",
+      "launch": "its own web client at this address; the service already runs the chat on OpenVibe.Live"
     },
     {
       "domain": "openvibe.news",
@@ -126,8 +126,8 @@
         ]
       ],
       "keywords": "openvibe news, transparent news, news aggregation, multiple perspectives",
-      "stage": "placeholder",
-      "plannedRepo": "OpenVibe.News"
+      "plannedRepo": "OpenVibe.News",
+      "launch": "a person to verify a news source's terms and an editor to publish the first reviewed story"
     },
     {
       "domain": "openvibe.reviews",
@@ -163,8 +163,8 @@
         ]
       ],
       "keywords": "openvibe reviews, review aggregation, honest reviews",
-      "stage": "placeholder",
-      "plannedRepo": "OpenVibe.Reviews"
+      "plannedRepo": "OpenVibe.Reviews",
+      "launch": "a person to verify a review source's terms and an editor to publish the first reviewed summary"
     },
     {
       "domain": "openvibe.tips",
@@ -200,8 +200,8 @@
         ]
       ],
       "keywords": "openvibe tips, tip streamers, donation alerts, superchat",
-      "stage": "placeholder",
-      "plannedRepo": "OpenVibe.Tips"
+      "plannedRepo": "OpenVibe.Tips",
+      "launch": "the payments cutover to OpenVibe.Billing and a security review; tips keep working on OpenVibe.Live meanwhile"
     },
     {
       "domain": "openvibe.vip",
@@ -237,8 +237,8 @@
         ]
       ],
       "keywords": "openvibe vip, creator memberships, subscriptions",
-      "stage": "placeholder",
-      "plannedRepo": "OpenVibe.VIP"
+      "plannedRepo": "OpenVibe.VIP",
+      "launch": "the payments cutover to OpenVibe.Billing; checkout stays closed until then"
     },
     {
       "domain": "openvibe.trade",
@@ -274,8 +274,8 @@
         ]
       ],
       "keywords": "openvibe trade, watchlists, market alerts, community trading tools",
-      "stage": "placeholder",
-      "plannedRepo": "OpenVibe.Trade"
+      "plannedRepo": "OpenVibe.Trade",
+      "launch": "a verified data source and editors adding the first instruments"
     },
     {
       "domain": "openvibe.host",
@@ -311,8 +311,8 @@
         ]
       ],
       "keywords": "openvibe host, hosting, deployment, self-hosting openvibe",
-      "stage": "placeholder",
-      "plannedRepo": "OpenVibe.Host"
+      "plannedRepo": "OpenVibe.Host",
+      "launch": "the owner's go on its launch checklist"
     },
     {
       "domain": "openvibe.deals",
@@ -348,8 +348,8 @@
         ]
       ],
       "keywords": "openvibe deals, community deals, deal alerts",
-      "stage": "placeholder",
-      "plannedRepo": "OpenVibe.Deals"
+      "plannedRepo": "OpenVibe.Deals",
+      "launch": "a person to verify a deals source's terms and switch it on"
     },
     {
       "domain": "openvibe.coupons",
@@ -385,8 +385,8 @@
         ]
       ],
       "keywords": "openvibe coupons, coupon codes, community coupons",
-      "stage": "placeholder",
-      "plannedRepo": "OpenVibe.Coupons"
+      "plannedRepo": "OpenVibe.Coupons",
+      "launch": "a person to verify a coupons source's terms and switch it on"
     },
     {
       "domain": "openre.stream",
@@ -396,15 +396,15 @@
       "icon": "fa-satellite-dish",
       "accent": "#ef4444",
       "tagline": "Ingest and restream, in the open.",
-      "description": "OpenRe.Stream is the ingest and restream infrastructure behind OpenVibe.Live: RTMP, WHIP and SRT ingest, stream lifecycle, restream destinations and output status — the plumbing, documented and open.",
+      "description": "OpenRe.Stream is the ingest and restream service split out of OpenVibe.Live: RTMP ingest with stream keys and lifecycle, and restreaming to RTMP, RTMPS and SRT destinations, with WHIP to follow. Broadcasters still go live through OpenVibe.Live until their stream moves over.",
       "pillars": [
         [
           "Ingest",
-          "RTMP, WHIP/WebRTC and SRT, with keys and lifecycle in one place."
+          "RTMP ingest with keys and lifecycle in one place; WHIP/WebRTC and SRT ingest to follow."
         ],
         [
           "Restream",
-          "Twitch, YouTube, Kick, SRT and RobotStreamer destinations."
+          "Twitch, YouTube, Kick and any RTMP, RTMPS or SRT destination."
         ],
         [
           "Status",
@@ -423,13 +423,13 @@
         ],
         [
           "Restreaming docs",
-          "https://github.com/OpenVibers/OpenVibe.Live/blob/main/docs/restreaming.md",
+          "https://openvibe.live/docs/restreaming",
           "How the restream paths work."
         ]
       ],
       "keywords": "openre stream, rtmp ingest, whip, srt, restream, open source streaming infrastructure",
-      "stage": "placeholder",
-      "plannedRepo": "OpenRe.Stream"
+      "plannedRepo": "OpenRe.Stream",
+      "launch": "the stream slots to move from OpenVibe.Live's ingest to OpenRe.Stream, one at a time; no stream uses it yet"
     },
     {
       "domain": "auth.openvibe.network",
@@ -442,7 +442,6 @@
       "name": "auth.openvibe.network",
       "icon": "fa-key",
       "accent": "#60a5fa",
-      "stage": "placeholder",
       "plannedRepo": "OpenVibe.Network",
       "legalProfile": "account",
       "tagline": "Sign in, once, for the whole network.",
@@ -473,8 +472,8 @@
         ],
         [
           "OIDC discovery",
-          "https://openvibe.network/.well-known/openid-configuration",
-          "The OpenID configuration is already published."
+          "https://openvibe.network/oauth/.well-known/openid-configuration",
+          "The OpenID configuration Network publishes today."
         ]
       ],
       "keywords": "openvibe auth, openvibe network auth, openvibe platform"
@@ -490,11 +489,10 @@
       "name": "api.openvibe.network",
       "icon": "fa-plug",
       "accent": "#22d3ee",
-      "stage": "placeholder",
       "plannedRepo": "OpenVibe.Network",
       "legalProfile": "info",
       "tagline": "The network, machine-readable.",
-      "description": "api.openvibe.network will expose the ecosystem registry: services, capabilities, event topics, namespaces and releases as versioned, documented APIs backed by the OpenVibe contracts.",
+      "description": "api.openvibe.network is the planned home of the network's public APIs. The ecosystem registry (services, capabilities, event topics, namespaces and releases, backed by the OpenVibe contracts) already answers on openvibe.network; this subdomain is not routed to it yet.",
       "pillars": [
         [
           "Service registry",
@@ -515,14 +513,19 @@
       ],
       "meanwhile": [
         [
-          "Developer pages",
-          "https://openvibe.network/developers",
-          "Current developer documentation on openvibe.network."
+          "Registry API",
+          "https://openvibe.network/api/v1/registry",
+          "Services, capabilities, namespaces, event topics and releases, as JSON."
         ],
         [
-          "Streaming API docs",
-          "https://openvibe.live/documentation",
-          "Ingest, WHIP and playback docs live on OpenVibe.Live."
+          "Service discovery",
+          "https://openvibe.network/.well-known/openvibe",
+          "The issuer, token and key endpoints, and where each service answers."
+        ],
+        [
+          "Developer portal",
+          "https://openvibe.codes",
+          "Projects, apps and credentials, contract and SDK docs on OpenVibe.Codes."
         ]
       ],
       "keywords": "openvibe api, openvibe network api, openvibe platform"
@@ -538,7 +541,6 @@
       "name": "admin.openvibe.network",
       "icon": "fa-shield-halved",
       "accent": "#f59e0b",
-      "stage": "placeholder",
       "plannedRepo": "OpenVibe.Network",
       "legalProfile": "account",
       "tagline": "One operator console for every service.",
@@ -581,7 +583,6 @@
       "name": "themes.openvibe.network",
       "icon": "fa-palette",
       "accent": "#a78bfa",
-      "stage": "placeholder",
       "plannedRepo": "OpenVibe.Network",
       "legalProfile": "info",
       "tagline": "Your look, on every site.",
@@ -624,7 +625,6 @@
       "name": "realtime.openvibe.network",
       "icon": "fa-satellite-dish",
       "accent": "#34d399",
-      "stage": "placeholder",
       "plannedRepo": "OpenVibe.Realtime",
       "legalProfile": "info",
       "tagline": "Authorized live updates, resumable.",
@@ -667,11 +667,11 @@
       "name": "ai.openvibe.network",
       "icon": "fa-robot",
       "accent": "#c084fc",
-      "stage": "placeholder",
       "plannedRepo": "OpenVibe.AI",
+      "launch": "a public API with its own access rules; today only other OpenVibe services call it",
       "legalProfile": "info",
       "tagline": "AI as a service, for every OpenVibe product.",
-      "description": "ai.openvibe.network will be the shared AI layer: providers and models, routing, prompt templates, workflows, runs, citations, caching and quotas, used by Live, Wiki, News and the rest instead of each product wiring its own.",
+      "description": "OpenVibe.AI is the shared AI layer of the OpenVibe network: providers and models, routing, prompt templates, workflows, runs and quotas, so each product stops wiring its own. It runs today as an internal service that OpenVibe.Live and OpenVibe.Network call; ai.openvibe.network has no public page or API yet.",
       "pillars": [
         [
           "Providers & routing",
@@ -692,9 +692,9 @@
       ],
       "meanwhile": [
         [
-          "AI clips and captions",
+          "AI on OpenVibe.Live",
           "https://openvibe.live",
-          "Live captions, translation and AI moments already run on OpenVibe.Live."
+          "Live's AI moments, recaps, summaries and translations run through OpenVibe.AI; captions still run inside Live."
         ]
       ],
       "keywords": "openvibe ai, openvibe network ai, openvibe platform"

@@ -6,8 +6,18 @@
   "plannedRepo": "OpenVibers/OpenVibe.Coupons",
   "repoUrl": "https://github.com/OpenVibers/OpenVibe.Coupons",
   "repoExists": true,
-  "repoStage": "charter-only",
+  "repoStage": "service-running",
+  "service": {
+    "stage": "alpha",
+    "code": true,
+    "deployed": true,
+    "statusCommit": "93f333b",
+    "exposure": "internal",
+    "publicOrigin": null
+  },
+  "launchWaitsFor": "a person to verify a coupons source's terms and switch it on",
+  "factsAsOf": "2026-09-24",
   "network": "https://openvibe.network",
-  "updated": "2026-09-23",
-  "note": "Static placeholder served by OpenVibers/OpenVibe.Sites. Removed from sites.json in the same release that the real service takes over this domain."
+  "updated": "2026-09-24",
+  "note": "Static page served by OpenVibers/OpenVibe.Sites; service facts come from each repository's STATUS.json and the Network registry (facts.json). Removed from sites.json in the same release that the real service takes over this domain."
 }

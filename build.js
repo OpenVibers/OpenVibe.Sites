@@ -6,10 +6,12 @@
  *   node build.js            → dist/<domain>/{index.html,robots.txt,sitemap.xml,manifest.webmanifest}
  *   node build.js --check    → exit 1 when dist/ is stale (CI / deploy guard)
  *
- * One template, one catalog (sites.json). Every page is real content for people and crawlers:
- * what the site will be, what to use meanwhile, the whole network, sign-in — with the shared
- * navbar/footer/theme loader from openvibe.network so the domain already feels like the rest of
- * the network. No build step at request time: nginx serves the files.
+ * One template, one catalog (sites.json), one snapshot of facts (facts.json, refreshed by
+ * scripts/facts.js from each repository's STATUS.json and the Network registry). Every page is real
+ * content for people and crawlers: what the site will be, where its product stands today (from
+ * facts.json, never a hand-kept list), what to use meanwhile, the whole network, sign-in — with the
+ * shared navbar/footer/theme loader from openvibe.network so the domain already feels like the rest
+ * of the network. No build step at request time: nginx serves the files.
  */
 const fs = require('fs');
 const path = require('path');
@@ -18,16 +20,66 @@ const legal = require('openvibe-shared/legal');
 // Which clauses apply to each domain once it opens (mirrors OpenVibe.Network/server/chrome/sites.js).
 const LEGAL_PROFILE = { chat: 'ugc', codes: 'ugc', blog: 'info', wiki: 'ugc', news: 'info', reviews: 'ugc', tips: 'streaming', vip: 'account', trade: 'ugc', host: 'hosting', deals: 'info', coupons: 'info', stream: 'streaming' };
 // Sites whose own server has no page routes: their legal pages are built here and served by nginx.
-// Repositories that already run a real service (a placeholder subdomain is a planned surface of them, not a new codebase).
-const EXISTING_REPOS = new Set(['OpenVibe.Network', 'OpenVibe.Live', 'OpenVibe.Media', 'OpenVibe.Community', 'OpenVibe.Tools', 'OpenVibe.Games']);
 const LEGAL_ONLY = [{ domain: 'openvibe.games', name: 'OpenVibe.Games', id: 'games', profile: 'games' }];
 const legalSite = (site) => ({ id: site.tld, service: 'network', host: site.domain, name: site.name, profile: site.legalProfile || LEGAL_PROFILE[site.tld] || 'info' });
 
 const ROOT = __dirname;
 const DIST = path.join(ROOT, 'dist');
 const catalog = JSON.parse(fs.readFileSync(path.join(ROOT, 'sites.json'), 'utf8'));
+// What is true about each repository a page names: its committed STATUS.json and Network's registry
+// exposure, snapshotted by scripts/facts.js. The build reads only this file, so it is reproducible.
+const facts = JSON.parse(fs.readFileSync(path.join(ROOT, 'facts.json'), 'utf8'));
 const NET = catalog.network;
 const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+/** The facts row for a site's repository (null when the page names none). A missing row fails the build. */
+function repoFacts(site) {
+    if (!site.plannedRepo) return null;
+    const f = facts.repos[site.plannedRepo];
+    if (!f) throw new Error(`${site.domain}: facts.json has no row for ${site.plannedRepo}; run node scripts/facts.js`);
+    return f;
+}
+/**
+ * Where the product behind a page stands, from facts only:
+ *   closed   the repository's STATUS.json says closed (a decision record, nothing to launch)
+ *   surface  the repository's service is public elsewhere; this domain is not routed to it yet
+ *   running  the service is built and runs on the host (loopback only); the domain is not public yet
+ *   code     code exists, nothing deployed
+ *   planned  charter only, no code
+ */
+function standing(site) {
+    const f = repoFacts(site);
+    if (!f) return 'planned';
+    const st = f.status || {}; const rg = f.registry || {};
+    if (st.stage === 'closed' || rg.state === 'closed') return 'closed';
+    if (rg.state === 'live' && rg.public_site === 'service') return 'surface';
+    if (rg.state === 'internal' || (st.code && st.deployed)) return 'running';
+    if (st.code) return 'code';
+    return 'planned';
+}
+const STANDING = {
+    running: { label: 'in development', repoStage: 'service-running' },
+    code: { label: 'in development', repoStage: 'code-not-deployed' },
+    surface: { label: 'not routed yet', repoStage: 'surface-of-a-live-service' },
+    planned: { label: 'planned', repoStage: 'charter-only' },
+    closed: { label: 'closed', repoStage: 'closed' },
+};
+const repoLink = (repo) => `<a href="https://github.com/OpenVibers/${esc(repo)}" rel="noopener"><code>OpenVibers/${esc(repo)}</code></a>`;
+/** The hero's status sentence: what is true about the product, and what its public launch waits for. */
+function statusText(site) {
+    const k = standing(site);
+    const f = repoFacts(site);
+    const repo = site.plannedRepo ? repoLink(site.plannedRepo) : '<code>OpenVibe.Network</code>';
+    const waits = site.launch ? ` The public launch is waiting for ${esc(site.launch)}.` : '';
+    if (k === 'running') return `${repo} is built and its service runs on the network's host, but it is not public yet; this page is a placeholder.${waits}`;
+    if (k === 'code') return `${repo} has code, but nothing is deployed yet; this page is a placeholder.${waits}`;
+    if (k === 'surface') {
+        const o = f.registry.origin;
+        return `${repo} is live at <a href="${esc(o)}/">${esc(o.replace(/^https?:\/\//, ''))}</a>; this subdomain is not routed to it yet, so it serves this placeholder.`;
+    }
+    if (k === 'closed') return `${repo} is closed, so no product launches here; this page is a placeholder.`;
+    return `${repo}: charter only, no code yet; this page is a placeholder.${waits}`;
+}
 const today = new Date().toISOString().slice(0, 10);
 // A page is first published once; rebuilding it later changes dateModified, never datePublished.
 const FIRST_PUBLISHED = '2026-09-17';
@@ -145,7 +197,7 @@ a.card:hover{transform:translateY(-3px);border-color:rgba(var(--site-rgb),.6);bo
 <main class="wrap">
   <header class="hero">
     <div class="mark"><i class="fa-solid ${esc(site.icon)}" aria-hidden="true"></i></div>
-    <div class="badge"><span class="ov-mark" data-size="16" data-variant="${esc(site.tld)}"></span> Part of the OpenVibe network · <b>opening soon</b></div>
+    <div class="badge"><span class="ov-mark" data-size="16" data-variant="${esc(site.tld)}"></span> Part of the OpenVibe network · <b>${esc(STANDING[standing(site)].label)}</b></div>
     <h1>${site.hostParts ? `<span class="d">${esc(site.hostParts[0])}</span><span class="tld">.${esc(site.hostParts[1])}</span>` : `${esc(core)}<span class="d">.</span><span class="tld">${esc(site.name.split('.').pop())}</span>`}</h1>
     <div class="tag">${esc(site.tagline)}</div>
     <p class="lead">${esc(site.description)}</p>
@@ -154,10 +206,10 @@ a.card:hover{transform:translateY(-3px);border-color:rgba(var(--site-rgb),.6);bo
       <a class="btn" href="${NET.networkUrl}/#network"><i class="fa-solid fa-circle-nodes"></i> The whole network</a>
       <a class="btn" href="${esc(NET.discord)}" rel="noopener"><i class="fa-brands fa-discord"></i> Follow the build</a>
     </div>
-    <p class="status"><i class="fa-solid fa-clock" aria-hidden="true"></i> Status: <b>coming soon</b> · this page is a placeholder, nothing here is live yet · home: ${site.plannedRepo ? `<a href="https://github.com/OpenVibers/${esc(site.plannedRepo)}" rel="noopener"><code>OpenVibers/${esc(site.plannedRepo)}</code></a>${EXISTING_REPOS.has(site.plannedRepo) ? ' (a surface of that existing service; not split out yet)' : ' (charter only, no code yet)'}` : '<code>OpenVibe.Network</code>'} · <a href="/status.json">status.json</a></p>
+    <p class="status"><i class="fa-solid fa-clock" aria-hidden="true"></i> Status: <b>${esc(STANDING[standing(site)].label)}</b> · ${statusText(site)} · as of ${esc(facts.generated)} · <a href="/status.json">status.json</a></p>
   </header>
 
-  <section>
+  <section id="what">
     <h2>What ${esc(site.name)} will be</h2>
     <p class="lead2">Same account, same themes, same navbar as every other OpenVibe site — built in the open, run by its community.</p>
     <div class="grid">
@@ -179,7 +231,7 @@ a.card:hover{transform:translateY(-3px);border-color:rgba(var(--site-rgb),.6);bo
     <div class="grid">
       ${others.map(s => `<a class="card" href="${esc(s.url)}"><div class="ic"><i class="fa-solid ${esc(s.icon)}" aria-hidden="true"></i></div><b>${esc(s.name)}</b><span>${esc(s.desc)}</span><span class="go">${esc(s.url.replace(/^https?:\/\//, ''))} →</span></a>`).join('\n      ')}
     </div>
-    <h2 style="margin-top:28px;font-size:16px">More rooms opening</h2>
+    <h2 style="margin-top:28px;font-size:16px">Other OpenVibe domains, not open yet</h2>
     <div class="rooms" style="margin-top:8px">
       ${siblings.map(s => `<a href="https://${esc(s.domain)}/"><i class="fa-solid ${esc(s.icon)}" aria-hidden="true"></i>${esc(s.name)}</a>`).join('\n      ')}
     </div>
@@ -273,6 +325,25 @@ server {
 `;
 }
 
+/** /status.json: the same facts as the page, for scripts (CORS-open). */
+function statusJson(site) {
+    const f = repoFacts(site);
+    const k = standing(site);
+    const st = (f && f.status) || null; const rg = (f && f.registry) || null;
+    return JSON.stringify({
+        domain: site.domain, name: site.name, stage: site.kind || 'placeholder', live: false,
+        plannedRepo: site.plannedRepo ? `OpenVibers/${site.plannedRepo}` : null,
+        repoUrl: site.plannedRepo ? `https://github.com/OpenVibers/${site.plannedRepo}` : null,
+        repoExists: !!site.plannedRepo,
+        repoStage: STANDING[k].repoStage,
+        service: f ? { stage: st && st.stage, code: st ? st.code : null, deployed: st ? st.deployed : null, statusCommit: st && st.commit, exposure: rg && rg.state, publicOrigin: rg && rg.origin } : null,
+        launchWaitsFor: site.launch || null,
+        factsAsOf: facts.generated,
+        network: NET.networkUrl, updated: today,
+        note: 'Static page served by OpenVibers/OpenVibe.Sites; service facts come from each repository\'s STATUS.json and the Network registry (facts.json). Removed from sites.json in the same release that the real service takes over this domain.',
+    }, null, 2) + '\n';
+}
+
 function build() {
     const out = {};
     for (const site of catalog.sites) {
@@ -280,7 +351,7 @@ function build() {
         out[`${site.domain}/robots.txt`] = robots(site);
         out[`${site.domain}/sitemap.xml`] = sitemap(site);
         out[`${site.domain}/manifest.webmanifest`] = manifest(site);
-        out[`${site.domain}/status.json`] = JSON.stringify({ domain: site.domain, name: site.name, stage: site.stage || 'placeholder', live: false, plannedRepo: site.plannedRepo ? `OpenVibers/${site.plannedRepo}` : null, repoUrl: site.plannedRepo ? `https://github.com/OpenVibers/${site.plannedRepo}` : null, repoExists: !!site.plannedRepo, repoStage: site.plannedRepo ? (EXISTING_REPOS.has(site.plannedRepo) ? 'existing-service' : 'charter-only') : null, network: NET.networkUrl, updated: today, note: 'Static placeholder served by OpenVibers/OpenVibe.Sites. Removed from sites.json in the same release that the real service takes over this domain.' }, null, 2) + '\n';
+        out[`${site.domain}/status.json`] = statusJson(site);
         for (const kind of ['terms', 'privacy', 'dmca']) out[`${site.domain}/${kind}.html`] = legal.page(kind, legalSite(site));
         out[`../deploy/nginx/${site.domain}.conf`] = vhost(site);
     }

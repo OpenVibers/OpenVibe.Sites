@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>OpenRe.Stream — Ingest and restream, in the open.</title>
-<meta name="description" content="OpenRe.Stream is the ingest and restream infrastructure behind OpenVibe.Live: RTMP, WHIP and SRT ingest, stream lifecycle, restream destinations and output status — the plumbing, documented and open.">
+<meta name="description" content="OpenRe.Stream is the ingest and restream service split out of OpenVibe.Live: RTMP ingest with stream keys and lifecycle, and restreaming to RTMP, RTMPS and SRT destinations, with WHIP to follow. Broadcasters still go live through OpenVibe.Live until their stream moves over.">
 <meta name="keywords" content="openre stream, rtmp ingest, whip, srt, restream, open source streaming infrastructure">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="theme-color" content="#ef4444">
@@ -17,14 +17,14 @@
 <meta property="og:site_name" content="OpenRe.Stream">
 <meta property="og:url" content="https://openre.stream/">
 <meta property="og:title" content="OpenRe.Stream — Ingest and restream, in the open.">
-<meta property="og:description" content="OpenRe.Stream is the ingest and restream infrastructure behind OpenVibe.Live: RTMP, WHIP and SRT ingest, stream lifecycle, restream destinations and output status — the plumbing, documented and open.">
+<meta property="og:description" content="OpenRe.Stream is the ingest and restream service split out of OpenVibe.Live: RTMP ingest with stream keys and lifecycle, and restreaming to RTMP, RTMPS and SRT destinations, with WHIP to follow. Broadcasters still go live through OpenVibe.Live until their stream moves over.">
 <meta property="og:image" content="https://openvibe.network/assets/logo-512.png">
 <meta property="og:image:alt" content="OpenVibe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OpenRe.Stream — Ingest and restream, in the open.">
-<meta name="twitter:description" content="OpenRe.Stream is the ingest and restream infrastructure behind OpenVibe.Live: RTMP, WHIP and SRT ingest, stream lifecycle, restream destinations and output status — the plumbing, documented and open.">
+<meta name="twitter:description" content="OpenRe.Stream is the ingest and restream service split out of OpenVibe.Live: RTMP ingest with stream keys and lifecycle, and restreaming to RTMP, RTMPS and SRT destinations, with WHIP to follow. Broadcasters still go live through OpenVibe.Live until their stream moves over.">
 <meta name="twitter:image" content="https://openvibe.network/assets/logo-512.png">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://openre.stream/#site","url":"https://openre.stream/","name":"OpenRe.Stream","description":"OpenRe.Stream is the ingest and restream infrastructure behind OpenVibe.Live: RTMP, WHIP and SRT ingest, stream lifecycle, restream destinations and output status — the plumbing, documented and open.","inLanguage":"en","publisher":{"@type":"Organization","@id":"https://openvibe.network/#org","name":"OpenVibe","url":"https://openvibe.network/","logo":"https://openvibe.network/assets/logo-512.png","sameAs":["https://github.com/OpenVibers","https://discord.gg/M6MuRUaeJj"]},"isPartOf":{"@type":"WebSite","@id":"https://openvibe.network/#site","name":"OpenVibe.Network","url":"https://openvibe.network/"}},{"@type":"WebPage","@id":"https://openre.stream/#page","url":"https://openre.stream/","name":"OpenRe.Stream — Ingest and restream, in the open.","description":"OpenRe.Stream is the ingest and restream infrastructure behind OpenVibe.Live: RTMP, WHIP and SRT ingest, stream lifecycle, restream destinations and output status — the plumbing, documented and open.","isPartOf":{"@id":"https://openre.stream/#site"},"datePublished":"2026-09-17","dateModified":"2026-09-23","breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"OpenVibe","item":"https://openvibe.network/"},{"@type":"ListItem","position":2,"name":"OpenRe.Stream","item":"https://openre.stream/"}]}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://openre.stream/#site","url":"https://openre.stream/","name":"OpenRe.Stream","description":"OpenRe.Stream is the ingest and restream service split out of OpenVibe.Live: RTMP ingest with stream keys and lifecycle, and restreaming to RTMP, RTMPS and SRT destinations, with WHIP to follow. Broadcasters still go live through OpenVibe.Live until their stream moves over.","inLanguage":"en","publisher":{"@type":"Organization","@id":"https://openvibe.network/#org","name":"OpenVibe","url":"https://openvibe.network/","logo":"https://openvibe.network/assets/logo-512.png","sameAs":["https://github.com/OpenVibers","https://discord.gg/M6MuRUaeJj"]},"isPartOf":{"@type":"WebSite","@id":"https://openvibe.network/#site","name":"OpenVibe.Network","url":"https://openvibe.network/"}},{"@type":"WebPage","@id":"https://openre.stream/#page","url":"https://openre.stream/","name":"OpenRe.Stream — Ingest and restream, in the open.","description":"OpenRe.Stream is the ingest and restream service split out of OpenVibe.Live: RTMP ingest with stream keys and lifecycle, and restreaming to RTMP, RTMPS and SRT destinations, with WHIP to follow. Broadcasters still go live through OpenVibe.Live until their stream moves over.","isPartOf":{"@id":"https://openre.stream/#site"},"datePublished":"2026-09-17","dateModified":"2026-09-24","breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"OpenVibe","item":"https://openvibe.network/"},{"@type":"ListItem","position":2,"name":"OpenRe.Stream","item":"https://openre.stream/"}]}}]}</script>
 <script>(function(){try{var raw=localStorage.getItem('ov_theme');if(!raw)return;var t=JSON.parse(raw),v=t&&t.variables;if(!v)return;var el=document.documentElement;for(var k in v)if(k.charAt(0)==='-')el.style.setProperty(k,v[k]);if(t.id)el.setAttribute('data-theme',t.id);}catch(_){}})();</script>
 <script src="https://openvibe.network/shared/theme-loader.js" defer></script>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
@@ -92,24 +92,24 @@ a.card:hover{transform:translateY(-3px);border-color:rgba(var(--site-rgb),.6);bo
 <main class="wrap">
   <header class="hero">
     <div class="mark"><i class="fa-solid fa-satellite-dish" aria-hidden="true"></i></div>
-    <div class="badge"><span class="ov-mark" data-size="16" data-variant="stream"></span> Part of the OpenVibe network · <b>opening soon</b></div>
+    <div class="badge"><span class="ov-mark" data-size="16" data-variant="stream"></span> Part of the OpenVibe network · <b>in development</b></div>
     <h1>OpenRe<span class="d">.</span><span class="tld">Stream</span></h1>
     <div class="tag">Ingest and restream, in the open.</div>
-    <p class="lead">OpenRe.Stream is the ingest and restream infrastructure behind OpenVibe.Live: RTMP, WHIP and SRT ingest, stream lifecycle, restream destinations and output status — the plumbing, documented and open.</p>
+    <p class="lead">OpenRe.Stream is the ingest and restream service split out of OpenVibe.Live: RTMP ingest with stream keys and lifecycle, and restreaming to RTMP, RTMPS and SRT destinations, with WHIP to follow. Broadcasters still go live through OpenVibe.Live until their stream moves over.</p>
     <div class="ctas">
       <a class="btn btn-primary" href="https://openvibe.network/login?return=https%3A%2F%2Fopenre.stream%2F"><i class="fa-solid fa-right-to-bracket"></i> Sign in with OpenVibe</a>
       <a class="btn" href="https://openvibe.network/#network"><i class="fa-solid fa-circle-nodes"></i> The whole network</a>
       <a class="btn" href="https://discord.gg/M6MuRUaeJj" rel="noopener"><i class="fa-brands fa-discord"></i> Follow the build</a>
     </div>
-    <p class="status"><i class="fa-solid fa-clock" aria-hidden="true"></i> Status: <b>coming soon</b> · this page is a placeholder, nothing here is live yet · home: <a href="https://github.com/OpenVibers/OpenRe.Stream" rel="noopener"><code>OpenVibers/OpenRe.Stream</code></a> (charter only, no code yet) · <a href="/status.json">status.json</a></p>
+    <p class="status"><i class="fa-solid fa-clock" aria-hidden="true"></i> Status: <b>in development</b> · <a href="https://github.com/OpenVibers/OpenRe.Stream" rel="noopener"><code>OpenVibers/OpenRe.Stream</code></a> is built and its service runs on the network's host, but it is not public yet; this page is a placeholder. The public launch is waiting for the stream slots to move from OpenVibe.Live&#39;s ingest to OpenRe.Stream, one at a time; no stream uses it yet. · as of 2026-09-24 · <a href="/status.json">status.json</a></p>
   </header>
 
-  <section>
+  <section id="what">
     <h2>What OpenRe.Stream will be</h2>
     <p class="lead2">Same account, same themes, same navbar as every other OpenVibe site — built in the open, run by its community.</p>
     <div class="grid">
-      <div class="card"><div class="ic"><i class="fa-solid fa-satellite-dish" aria-hidden="true"></i></div><b>Ingest</b><span>RTMP, WHIP/WebRTC and SRT, with keys and lifecycle in one place.</span></div>
-      <div class="card"><div class="ic"><i class="fa-solid fa-satellite-dish" aria-hidden="true"></i></div><b>Restream</b><span>Twitch, YouTube, Kick, SRT and RobotStreamer destinations.</span></div>
+      <div class="card"><div class="ic"><i class="fa-solid fa-satellite-dish" aria-hidden="true"></i></div><b>Ingest</b><span>RTMP ingest with keys and lifecycle in one place; WHIP/WebRTC and SRT ingest to follow.</span></div>
+      <div class="card"><div class="ic"><i class="fa-solid fa-satellite-dish" aria-hidden="true"></i></div><b>Restream</b><span>Twitch, YouTube, Kick and any RTMP, RTMPS or SRT destination.</span></div>
       <div class="card"><div class="ic"><i class="fa-solid fa-satellite-dish" aria-hidden="true"></i></div><b>Status</b><span>Live acknowledgement, errors relayed in plain words, uptime.</span></div>
       <div class="card"><div class="ic"><i class="fa-solid fa-satellite-dish" aria-hidden="true"></i></div><b>Open</b><span>Run it yourself; the code is on GitHub.</span></div>
     </div>
@@ -120,7 +120,7 @@ a.card:hover{transform:translateY(-3px);border-color:rgba(var(--site-rgb),.6);bo
     <p class="lead2">Most of this already exists somewhere on OpenVibe — start there today.</p>
     <div class="grid">
       <a class="card" href="https://openvibe.live/broadcast"><div class="ic"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></div><b>Go live on OpenVibe.Live</b><span>Ingest and restreaming run inside Live today.</span><span class="go">openvibe.live/broadcast →</span></a>
-      <a class="card" href="https://github.com/OpenVibers/OpenVibe.Live/blob/main/docs/restreaming.md"><div class="ic"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></div><b>Restreaming docs</b><span>How the restream paths work.</span><span class="go">github.com/OpenVibers/OpenVibe.Live/blob/main/docs/restreaming.md →</span></a>
+      <a class="card" href="https://openvibe.live/docs/restreaming"><div class="ic"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></div><b>Restreaming docs</b><span>How the restream paths work.</span><span class="go">openvibe.live/docs/restreaming →</span></a>
     </div>
   </section>
 
@@ -135,7 +135,7 @@ a.card:hover{transform:translateY(-3px);border-color:rgba(var(--site-rgb),.6);bo
       <a class="card" href="https://openvibe.media"><div class="ic"><i class="fa-solid fa-photo-film" aria-hidden="true"></i></div><b>OpenVibe.Media</b><span>VODs, clips and files</span><span class="go">openvibe.media →</span></a>
       <a class="card" href="https://openvibe.network"><div class="ic"><i class="fa-solid fa-circle-nodes" aria-hidden="true"></i></div><b>OpenVibe.Network</b><span>One account, every site</span><span class="go">openvibe.network →</span></a>
     </div>
-    <h2 style="margin-top:28px;font-size:16px">More rooms opening</h2>
+    <h2 style="margin-top:28px;font-size:16px">Other OpenVibe domains, not open yet</h2>
     <div class="rooms" style="margin-top:8px">
       <a href="https://openvibe.chat/"><i class="fa-solid fa-comments" aria-hidden="true"></i>OpenVibe.Chat</a>
       <a href="https://openvibe.news/"><i class="fa-solid fa-newspaper" aria-hidden="true"></i>OpenVibe.News</a>

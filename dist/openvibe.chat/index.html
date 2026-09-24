@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>OpenVibe.Chat — One chat for the whole network.</title>
-<meta name="description" content="OpenVibe.Chat is the communication layer of the OpenVibe network: global rooms, stream chat, direct messages, group rooms, voice calls and text-to-speech — one identity, every conversation.">
+<meta name="description" content="OpenVibe.Chat is the chat service of the OpenVibe network. It already runs the chat on OpenVibe.Live: global and stream chat, direct messages and text-to-speech. openvibe.chat is planned as its own home: rooms that span every OpenVibe site, group rooms and voice, one identity for every conversation.">
 <meta name="keywords" content="openvibe chat, community chat, voice rooms, direct messages, free speech chat">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="theme-color" content="#a78bfa">
@@ -17,14 +17,14 @@
 <meta property="og:site_name" content="OpenVibe.Chat">
 <meta property="og:url" content="https://openvibe.chat/">
 <meta property="og:title" content="OpenVibe.Chat — One chat for the whole network.">
-<meta property="og:description" content="OpenVibe.Chat is the communication layer of the OpenVibe network: global rooms, stream chat, direct messages, group rooms, voice calls and text-to-speech — one identity, every conversation.">
+<meta property="og:description" content="OpenVibe.Chat is the chat service of the OpenVibe network. It already runs the chat on OpenVibe.Live: global and stream chat, direct messages and text-to-speech. openvibe.chat is planned as its own home: rooms that span every OpenVibe site, group rooms and voice, one identity for every conversation.">
 <meta property="og:image" content="https://openvibe.network/assets/logo-512.png">
 <meta property="og:image:alt" content="OpenVibe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OpenVibe.Chat — One chat for the whole network.">
-<meta name="twitter:description" content="OpenVibe.Chat is the communication layer of the OpenVibe network: global rooms, stream chat, direct messages, group rooms, voice calls and text-to-speech — one identity, every conversation.">
+<meta name="twitter:description" content="OpenVibe.Chat is the chat service of the OpenVibe network. It already runs the chat on OpenVibe.Live: global and stream chat, direct messages and text-to-speech. openvibe.chat is planned as its own home: rooms that span every OpenVibe site, group rooms and voice, one identity for every conversation.">
 <meta name="twitter:image" content="https://openvibe.network/assets/logo-512.png">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://openvibe.chat/#site","url":"https://openvibe.chat/","name":"OpenVibe.Chat","description":"OpenVibe.Chat is the communication layer of the OpenVibe network: global rooms, stream chat, direct messages, group rooms, voice calls and text-to-speech — one identity, every conversation.","inLanguage":"en","publisher":{"@type":"Organization","@id":"https://openvibe.network/#org","name":"OpenVibe","url":"https://openvibe.network/","logo":"https://openvibe.network/assets/logo-512.png","sameAs":["https://github.com/OpenVibers","https://discord.gg/M6MuRUaeJj"]},"isPartOf":{"@type":"WebSite","@id":"https://openvibe.network/#site","name":"OpenVibe.Network","url":"https://openvibe.network/"}},{"@type":"WebPage","@id":"https://openvibe.chat/#page","url":"https://openvibe.chat/","name":"OpenVibe.Chat — One chat for the whole network.","description":"OpenVibe.Chat is the communication layer of the OpenVibe network: global rooms, stream chat, direct messages, group rooms, voice calls and text-to-speech — one identity, every conversation.","isPartOf":{"@id":"https://openvibe.chat/#site"},"datePublished":"2026-09-17","dateModified":"2026-09-23","breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"OpenVibe","item":"https://openvibe.network/"},{"@type":"ListItem","position":2,"name":"OpenVibe.Chat","item":"https://openvibe.chat/"}]}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://openvibe.chat/#site","url":"https://openvibe.chat/","name":"OpenVibe.Chat","description":"OpenVibe.Chat is the chat service of the OpenVibe network. It already runs the chat on OpenVibe.Live: global and stream chat, direct messages and text-to-speech. openvibe.chat is planned as its own home: rooms that span every OpenVibe site, group rooms and voice, one identity for every conversation.","inLanguage":"en","publisher":{"@type":"Organization","@id":"https://openvibe.network/#org","name":"OpenVibe","url":"https://openvibe.network/","logo":"https://openvibe.network/assets/logo-512.png","sameAs":["https://github.com/OpenVibers","https://discord.gg/M6MuRUaeJj"]},"isPartOf":{"@type":"WebSite","@id":"https://openvibe.network/#site","name":"OpenVibe.Network","url":"https://openvibe.network/"}},{"@type":"WebPage","@id":"https://openvibe.chat/#page","url":"https://openvibe.chat/","name":"OpenVibe.Chat — One chat for the whole network.","description":"OpenVibe.Chat is the chat service of the OpenVibe network. It already runs the chat on OpenVibe.Live: global and stream chat, direct messages and text-to-speech. openvibe.chat is planned as its own home: rooms that span every OpenVibe site, group rooms and voice, one identity for every conversation.","isPartOf":{"@id":"https://openvibe.chat/#site"},"datePublished":"2026-09-17","dateModified":"2026-09-24","breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"OpenVibe","item":"https://openvibe.network/"},{"@type":"ListItem","position":2,"name":"OpenVibe.Chat","item":"https://openvibe.chat/"}]}}]}</script>
 <script>(function(){try{var raw=localStorage.getItem('ov_theme');if(!raw)return;var t=JSON.parse(raw),v=t&&t.variables;if(!v)return;var el=document.documentElement;for(var k in v)if(k.charAt(0)==='-')el.style.setProperty(k,v[k]);if(t.id)el.setAttribute('data-theme',t.id);}catch(_){}})();</script>
 <script src="https://openvibe.network/shared/theme-loader.js" defer></script>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
@@ -92,19 +92,19 @@ a.card:hover{transform:translateY(-3px);border-color:rgba(var(--site-rgb),.6);bo
 <main class="wrap">
   <header class="hero">
     <div class="mark"><i class="fa-solid fa-comments" aria-hidden="true"></i></div>
-    <div class="badge"><span class="ov-mark" data-size="16" data-variant="chat"></span> Part of the OpenVibe network · <b>opening soon</b></div>
+    <div class="badge"><span class="ov-mark" data-size="16" data-variant="chat"></span> Part of the OpenVibe network · <b>in development</b></div>
     <h1>OpenVibe<span class="d">.</span><span class="tld">Chat</span></h1>
     <div class="tag">One chat for the whole network.</div>
-    <p class="lead">OpenVibe.Chat is the communication layer of the OpenVibe network: global rooms, stream chat, direct messages, group rooms, voice calls and text-to-speech — one identity, every conversation.</p>
+    <p class="lead">OpenVibe.Chat is the chat service of the OpenVibe network. It already runs the chat on OpenVibe.Live: global and stream chat, direct messages and text-to-speech. openvibe.chat is planned as its own home: rooms that span every OpenVibe site, group rooms and voice, one identity for every conversation.</p>
     <div class="ctas">
       <a class="btn btn-primary" href="https://openvibe.network/login?return=https%3A%2F%2Fopenvibe.chat%2F"><i class="fa-solid fa-right-to-bracket"></i> Sign in with OpenVibe</a>
       <a class="btn" href="https://openvibe.network/#network"><i class="fa-solid fa-circle-nodes"></i> The whole network</a>
       <a class="btn" href="https://discord.gg/M6MuRUaeJj" rel="noopener"><i class="fa-brands fa-discord"></i> Follow the build</a>
     </div>
-    <p class="status"><i class="fa-solid fa-clock" aria-hidden="true"></i> Status: <b>coming soon</b> · this page is a placeholder, nothing here is live yet · home: <a href="https://github.com/OpenVibers/OpenVibe.Chat" rel="noopener"><code>OpenVibers/OpenVibe.Chat</code></a> (charter only, no code yet) · <a href="/status.json">status.json</a></p>
+    <p class="status"><i class="fa-solid fa-clock" aria-hidden="true"></i> Status: <b>in development</b> · <a href="https://github.com/OpenVibers/OpenVibe.Chat" rel="noopener"><code>OpenVibers/OpenVibe.Chat</code></a> is built and its service runs on the network's host, but it is not public yet; this page is a placeholder. The public launch is waiting for its own web client at this address; the service already runs the chat on OpenVibe.Live. · as of 2026-09-24 · <a href="/status.json">status.json</a></p>
   </header>
 
-  <section>
+  <section id="what">
     <h2>What OpenVibe.Chat will be</h2>
     <p class="lead2">Same account, same themes, same navbar as every other OpenVibe site — built in the open, run by its community.</p>
     <div class="grid">
@@ -135,7 +135,7 @@ a.card:hover{transform:translateY(-3px);border-color:rgba(var(--site-rgb),.6);bo
       <a class="card" href="https://openvibe.media"><div class="ic"><i class="fa-solid fa-photo-film" aria-hidden="true"></i></div><b>OpenVibe.Media</b><span>VODs, clips and files</span><span class="go">openvibe.media →</span></a>
       <a class="card" href="https://openvibe.network"><div class="ic"><i class="fa-solid fa-circle-nodes" aria-hidden="true"></i></div><b>OpenVibe.Network</b><span>One account, every site</span><span class="go">openvibe.network →</span></a>
     </div>
-    <h2 style="margin-top:28px;font-size:16px">More rooms opening</h2>
+    <h2 style="margin-top:28px;font-size:16px">Other OpenVibe domains, not open yet</h2>
     <div class="rooms" style="margin-top:8px">
       <a href="https://openvibe.news/"><i class="fa-solid fa-newspaper" aria-hidden="true"></i>OpenVibe.News</a>
       <a href="https://openvibe.reviews/"><i class="fa-solid fa-star-half-stroke" aria-hidden="true"></i>OpenVibe.Reviews</a>

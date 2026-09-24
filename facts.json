@@ -1,0 +1,225 @@
+{
+  "note": "Facts the Sites placeholder copy is built from. Refresh with `node scripts/facts.js`, review the diff, run `node build.js`, commit both. Never edit by hand.",
+  "generated": "2026-09-24",
+  "sources": {
+    "status": "STATUS.json at HEAD of each OpenVibers checkout (commit recorded per repo)",
+    "registry": "https://openvibe.network/api/v1/registry/services (openvibe-contracts 0.33.0)"
+  },
+  "repos": {
+    "OpenRe.Stream": {
+      "status": {
+        "stage": "alpha",
+        "code": true,
+        "deployed": true,
+        "updated": "2026-09-23",
+        "commit": "cc70a5a"
+      },
+      "registry": {
+        "id": "openre",
+        "manifest_status": "alpha",
+        "state": "internal",
+        "public_site": "placeholder",
+        "origin": null,
+        "planned_origin": "https://openre.stream"
+      }
+    },
+    "OpenVibe.AI": {
+      "status": {
+        "stage": "alpha",
+        "code": true,
+        "deployed": true,
+        "updated": "2026-09-23",
+        "commit": "f034a9f"
+      },
+      "registry": {
+        "id": "ai",
+        "manifest_status": "alpha",
+        "state": "internal",
+        "public_site": null,
+        "origin": null,
+        "planned_origin": "https://ai.openvibe.network"
+      }
+    },
+    "OpenVibe.Chat": {
+      "status": {
+        "stage": "alpha",
+        "code": true,
+        "deployed": true,
+        "updated": "2026-09-23",
+        "commit": "fcc824a"
+      },
+      "registry": {
+        "id": "chat",
+        "manifest_status": "alpha",
+        "state": "internal",
+        "public_site": null,
+        "origin": null,
+        "planned_origin": null
+      }
+    },
+    "OpenVibe.Coupons": {
+      "status": {
+        "stage": "alpha",
+        "code": true,
+        "deployed": true,
+        "updated": "2026-09-23",
+        "commit": "93f333b"
+      },
+      "registry": {
+        "id": "coupons",
+        "manifest_status": "alpha",
+        "state": "internal",
+        "public_site": "placeholder",
+        "origin": null,
+        "planned_origin": "https://openvibe.coupons"
+      }
+    },
+    "OpenVibe.Deals": {
+      "status": {
+        "stage": "alpha",
+        "code": true,
+        "deployed": true,
+        "updated": "2026-09-23",
+        "commit": "f453cb5"
+      },
+      "registry": {
+        "id": "deals",
+        "manifest_status": "alpha",
+        "state": "internal",
+        "public_site": "placeholder",
+        "origin": null,
+        "planned_origin": "https://openvibe.deals"
+      }
+    },
+    "OpenVibe.Host": {
+      "status": {
+        "stage": "alpha",
+        "code": true,
+        "deployed": true,
+        "updated": "2026-09-23",
+        "commit": "2144ceb"
+      },
+      "registry": {
+        "id": "host",
+        "manifest_status": "alpha",
+        "state": "internal",
+        "public_site": "placeholder",
+        "origin": null,
+        "planned_origin": "https://openvibe.host"
+      }
+    },
+    "OpenVibe.Network": {
+      "status": null,
+      "registry": {
+        "id": "network",
+        "manifest_status": "stable",
+        "state": "live",
+        "public_site": "service",
+        "origin": "https://openvibe.network",
+        "planned_origin": null
+      }
+    },
+    "OpenVibe.News": {
+      "status": {
+        "stage": "alpha",
+        "code": true,
+        "deployed": true,
+        "updated": "2026-09-23",
+        "commit": "c2c31b0"
+      },
+      "registry": {
+        "id": "news",
+        "manifest_status": "alpha",
+        "state": "internal",
+        "public_site": "placeholder",
+        "origin": null,
+        "planned_origin": "https://openvibe.news"
+      }
+    },
+    "OpenVibe.Realtime": {
+      "status": {
+        "stage": "closed",
+        "code": false,
+        "deployed": false,
+        "updated": "2026-09-23",
+        "commit": "d58c62c"
+      },
+      "registry": {
+        "id": "realtime",
+        "manifest_status": "placeholder",
+        "state": "placeholder",
+        "public_site": null,
+        "origin": null,
+        "planned_origin": null
+      }
+    },
+    "OpenVibe.Reviews": {
+      "status": {
+        "stage": "alpha",
+        "code": true,
+        "deployed": true,
+        "updated": "2026-09-23",
+        "commit": "8905235"
+      },
+      "registry": {
+        "id": "reviews",
+        "manifest_status": "alpha",
+        "state": "internal",
+        "public_site": "placeholder",
+        "origin": null,
+        "planned_origin": "https://openvibe.reviews"
+      }
+    },
+    "OpenVibe.Tips": {
+      "status": {
+        "stage": "alpha",
+        "code": true,
+        "deployed": true,
+        "updated": "2026-09-23",
+        "commit": "3fb582e"
+      },
+      "registry": {
+        "id": "tips",
+        "manifest_status": "alpha",
+        "state": "internal",
+        "public_site": "placeholder",
+        "origin": null,
+        "planned_origin": "https://openvibe.tips"
+      }
+    },
+    "OpenVibe.Trade": {
+      "status": {
+        "stage": "alpha",
+        "code": true,
+        "deployed": true,
+        "updated": "2026-09-23",
+        "commit": "62ea99c"
+      },
+      "registry": {
+        "id": "trade",
+        "manifest_status": "alpha",
+        "state": "internal",
+        "public_site": "placeholder",
+        "origin": null,
+        "planned_origin": "https://openvibe.trade"
+      }
+    },
+    "OpenVibe.VIP": {
+      "status": {
+        "stage": "alpha",
+        "code": true,
+        "deployed": true,
+        "updated": "2026-09-23",
+        "commit": "a675577"
+      },
+      "registry": {
+        "id": "vip",
+        "manifest_status": "alpha",
+        "state": "internal",
+        "public_site": "placeholder",
+        "origin": null,
+        "planned_origin": "https://openvibe.vip"
+      }
+    }
+  }
+}
