@@ -15,6 +15,9 @@ execFileSync(process.execPath, [path.join(ROOT, 'build.js'), '--check'], { stdio
 
 // Pricing copy is never used on the network (no "free"/"$0"/"no ads" claims); "free speech" is fine.
 const PRICING = /\$0\b|\bfor free\b|\bfree (forever|to use|of charge|plan|tier)\b|\bno ads\b|\bad-free\b/i;
+// Claims no OpenVibe service makes good on (2026-09-24 audit): Host serves static files only (Stage C,
+// running user code, is not started) and handles neither DNS nor logs for anyone.
+const UNBACKED = /handled for you|host your (bot|mod)|bots,? (and|&amp;|&) mods hosting|\bservice hosting\b/i;
 
 let pages = 0;
 for (const site of catalog.sites) {
@@ -25,6 +28,7 @@ for (const site of catalog.sites) {
     assert.match(html, new RegExp(`<link rel="canonical" href="https://${d.replace(/\./g, '\\.')}/?"`), `${d}: canonical`);
     assert.match(html, /placeholder/i, `${d}: says it is a placeholder (never claim a product is live)`);
     assert.doesNotMatch(html, PRICING, `${d}: pricing copy`);
+    assert.doesNotMatch(html, UNBACKED, `${d}: claims a hosting product that does not exist`);
     for (const m of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
         assert.doesNotThrow(() => JSON.parse(m[1]), `${d}: JSON-LD parses`);
     }

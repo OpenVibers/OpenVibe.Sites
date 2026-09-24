@@ -1,7 +1,7 @@
 {
   "name": "OpenVibe.Host",
   "short_name": "Host",
-  "description": "Run it yourself.",
+  "description": "Static sites for OpenVibe projects.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

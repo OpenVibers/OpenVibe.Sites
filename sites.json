@@ -283,34 +283,39 @@
       "name": "OpenVibe.Host",
       "icon": "fa-server",
       "accent": "#94a3b8",
-      "tagline": "Run it yourself.",
-      "description": "OpenVibe.Host is the hosting and deployment surface of the OpenVibe network: deploy OpenVibe services, bots, mods and static sites, with TLS, DNS and logs handled for you.",
+      "tagline": "Static sites for OpenVibe projects.",
+      "description": "OpenVibe.Host is the network's deployment tooling and, next, static site hosting for OpenVibe projects. The tooling (ovhost) already runs on the network's host: deploys with automatic rollback, backups and restore drills for the network's own services. The hosting part will let a project upload a folder of HTML, CSS, JavaScript and images, serve it at <site>.openvibe.host and roll back to any earlier deploy in one step. Static files only: nothing uploaded is run as code.",
       "pillars": [
         [
-          "Service hosting",
-          "Every OpenVibe service, deployable in one step."
-        ],
-        [
-          "Bots & mods",
-          "Host your bot or mod next to the network it talks to."
-        ],
-        [
           "Static sites",
-          "A folder in, a domain out, with TLS."
+          "Upload a folder or a .tar.gz of HTML, CSS, JavaScript, images and fonts; it is served at <site>.openvibe.host over HTTPS."
         ],
         [
-          "Open source",
-          "The same deploy tooling the network runs on."
+          "Every deploy kept",
+          "Deploys are immutable and content-addressed: switch to, or roll back to, any earlier one in one step."
+        ],
+        [
+          "Your own domain",
+          "Custom domains you prove with a DNS TXT record; their certificates are issued by an operator for now."
+        ],
+        [
+          "Static only",
+          "No build step and no server-side code: nothing you upload is run. Running bots, mods or apps is not offered; that needs isolation the network has not built yet."
         ]
       ],
       "meanwhile": [
         [
-          "Deploy docs",
-          "https://github.com/OpenVibers",
-          "Every service ships its own deploy scripts on GitHub."
+          "OpenVibe.Host on GitHub",
+          "https://github.com/OpenVibers/OpenVibe.Host",
+          "The code, the launch checklist and the threat review."
+        ],
+        [
+          "Build on OpenVibe",
+          "https://openvibe.codes",
+          "Projects, apps and credentials on OpenVibe.Codes, the developer portal."
         ]
       ],
-      "keywords": "openvibe host, hosting, deployment, self-hosting openvibe",
+      "keywords": "openvibe host, static site hosting, deployment, openvibe projects",
       "plannedRepo": "OpenVibe.Host",
       "launch": "the owner's go on its launch checklist"
     },
