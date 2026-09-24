@@ -46,6 +46,13 @@ for (const site of catalog.sites) {
             if (other.domain !== d) assert.ok(!read(`dist/${other.domain}/index.html`).includes(`href="https://${d}/"`), `${other.domain}: does not list the ${site.kind} ${d} as a domain still to open`);
         }
     }
+    if (site.kind === 'status') {
+        // status.openvibe.network points at what Network publishes; it never invents a status of its own.
+        assert.ok(site.statusApi && html.includes(`fetch('${site.statusApi}'`), `${d}: reads the live status API`);
+        assert.match(html, /Status: <b>status<\/b>/, `${d}: labelled as a status pointer`);
+        assert.doesNotMatch(html, /innerHTML/, `${d}: builds the live rows with DOM nodes`);
+        assert.strictEqual(JSON.parse(read(`dist/${d}/status.json`)).repoStage, 'pointer', `${d}: status.json repoStage`);
+    }
     if (site.kind === 'closed') {
         assert.match(html, /Status: <b>closed<\/b>/, `${d}: says closed`);
         assert.doesNotMatch(html, /will be|opening soon|coming soon/i, `${d}: a closed product is never described as coming`);
@@ -97,7 +104,7 @@ for (const site of catalog.sites) {
         assert.strictEqual(status.repoStage, 'service-running', `${d}: status.json repoStage`);
         assert.strictEqual(status.launchWaitsFor, site.launch, `${d}: status.json launchWaitsFor`);
     }
-    if (rg.state === 'live' && rg.public_site === 'service') {
+    if (rg.state === 'live' && rg.public_site === 'service' && !site.kind) {
         assert.ok(html.includes(`href="${rg.origin}/"`), `${d}: links the live service ${rg.origin}`);
         assert.strictEqual(status.repoStage, 'surface-of-a-live-service', `${d}: status.json repoStage`);
     }
@@ -118,4 +125,5 @@ const LIVE_SERVICES = ['events.openvibe.network', 'billing.openvibe.network', 'o
 for (const d of LIVE_SERVICES) {
     assert.ok(!catalog.sites.some((s) => s.domain === d), `${d} is a running service and must not have a placeholder`);
 }
-console.log(`sites build: ${pages} placeholder pages current, honest and complete`);
+const notices = catalog.sites.filter(s => s.kind).length;
+console.log(`sites build: ${pages} pages (${pages - notices} placeholders, ${notices} notices) current, honest and complete`);

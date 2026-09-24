@@ -1,0 +1,23 @@
+{
+  "domain": "status.openvibe.network",
+  "name": "status.openvibe.network",
+  "stage": "status",
+  "live": false,
+  "plannedRepo": "OpenVibers/OpenVibe.Network",
+  "repoUrl": "https://github.com/OpenVibers/OpenVibe.Network",
+  "repoExists": true,
+  "repoStage": "pointer",
+  "service": {
+    "stage": null,
+    "code": null,
+    "deployed": null,
+    "statusCommit": null,
+    "exposure": "live",
+    "publicOrigin": "https://openvibe.network"
+  },
+  "launchWaitsFor": null,
+  "factsAsOf": "2026-09-24",
+  "network": "https://openvibe.network",
+  "updated": "2026-09-24",
+  "note": "Static page served by OpenVibers/OpenVibe.Sites; service facts come from each repository's STATUS.json and the Network registry (facts.json). Removed from sites.json in the same release that the real service takes over this domain."
+}

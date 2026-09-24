@@ -697,6 +697,43 @@
         ]
       ],
       "keywords": "openvibe ai, openvibe network ai, openvibe platform"
+    },
+    {
+      "domain": "status.openvibe.network",
+      "zone": "openvibe.network",
+      "hostParts": [
+        "status",
+        "openvibe.network"
+      ],
+      "tld": "status",
+      "kind": "status",
+      "name": "status.openvibe.network",
+      "icon": "fa-heart-pulse",
+      "accent": "#22c55e",
+      "plannedRepo": "OpenVibe.Network",
+      "legalProfile": "info",
+      "tagline": "Is OpenVibe up?",
+      "description": "OpenVibe.Network checks every OpenVibe service about once a minute (its readiness endpoint and the release it runs) and publishes what it saw at openvibe.network/status. This address points there.",
+      "statusApi": "https://openvibe.network/api/v1/registry/health",
+      "linksLead": "Network's own observations, stated as seen: a service that has not been checked recently shows as unknown, never as up.",
+      "links": [
+        [
+          "Status page",
+          "https://openvibe.network/status",
+          "Every service: up, degraded, down, not running or unknown, where it runs and when it was last checked."
+        ],
+        [
+          "Status API",
+          "https://openvibe.network/api/v1/status",
+          "The same rows as JSON, for scripts and monitors."
+        ],
+        [
+          "Releases",
+          "https://openvibe.network/api/v1/registry/releases",
+          "The release each service runs, and how far behind the shared libraries it is."
+        ]
+      ],
+      "keywords": "openvibe status, openvibe uptime, openvibe network status"
     }
   ]
 }

@@ -46,8 +46,10 @@ function repoFacts(site) {
  *   running  the service is built and runs on the host (loopback only); the domain is not public yet
  *   code     code exists, nothing deployed
  *   planned  charter only, no code
+ *   pointer  (kind: status) the address points at something a live service publishes elsewhere
  */
 function standing(site) {
+    if (site.kind === 'status') return 'pointer';
     const f = repoFacts(site);
     if (!f) return 'planned';
     const st = f.status || {}; const rg = f.registry || {};
@@ -63,6 +65,7 @@ const STANDING = {
     surface: { label: 'not routed yet', repoStage: 'surface-of-a-live-service' },
     planned: { label: 'planned', repoStage: 'charter-only' },
     closed: { label: 'closed', repoStage: 'closed' },
+    pointer: { label: 'status', repoStage: 'pointer' },
 };
 const repoLink = (repo) => `<a href="https://github.com/OpenVibers/${esc(repo)}" rel="noopener"><code>OpenVibers/${esc(repo)}</code></a>`;
 /** The hero's status sentence: what is true about the product, and what its public launch waits for. */
@@ -77,6 +80,7 @@ function statusText(site) {
         const o = f.registry.origin;
         return `${repo} is live at <a href="${esc(o)}/">${esc(o.replace(/^https?:\/\//, ''))}</a>; this subdomain is not routed to it yet, so it serves this placeholder.`;
     }
+    if (k === 'pointer') return `${repo} publishes the status of every OpenVibe service at <a href="${esc(site.links[0][1])}">${esc(site.links[0][1].replace(/^https?:\/\//, ''))}</a>; this address points there.`;
     if (k === 'closed') return `${repo} is closed and stays as a decision record; no product launches at this address.`;
     return `${repo}: charter only, no code yet; this page is a placeholder.${waits}`;
 }
@@ -193,7 +197,7 @@ a.card:hover{transform:translateY(-3px);border-color:rgba(var(--site-rgb),.6);bo
 .strip .ov-mark{width:44px;height:44px}
 @media (max-width:600px){.hero{padding-top:56px}.ctas .btn{width:100%;justify-content:center}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-</style>
+${site.statusApi ? STATUS_CSS : ''}</style>
 </head>
 <body>
 <div class="orbs"><i></i><i></i><i></i></div>
@@ -220,7 +224,7 @@ ${notice ? `  <section id="what" class="meanwhile">
       ${site.links.map(([h, href, d]) => `<a class="card" href="${esc(href)}"><div class="ic"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></div><b>${esc(h)}</b><span>${esc(d)}</span><span class="go">${esc(href.replace(/^https?:\/\//, '').replace(/\/$/, ''))} →</span></a>`).join('\n      ')}
     </div>
   </section>
-` : `  <section id="what">
+${site.statusApi ? liveStatus(site) : ''}` : `  <section id="what">
     <h2>What ${esc(site.name)} will be</h2>
     <p class="lead2">Same account, same themes, same navbar as every other OpenVibe site — built in the open, run by its community.</p>
     <div class="grid">
@@ -305,7 +309,7 @@ a:first-child{background:var(--site);border-color:var(--site);color:#0b0d10}
 <main>
   <p class="code">404</p>
   <h1>This page does not exist</h1>
-  <p>${esc(site.domain)} has one page for now. The address you followed is not part of it.</p>
+  <p>${esc(site.domain)} has only its front page and legal pages for now. The address you followed is not one of them.</p>
   <div class="links">
     <a href="${home}">${esc(site.name)}</a>
     <a href="${NET.networkUrl}/">OpenVibe.Network</a>
@@ -401,6 +405,59 @@ server {
 
     location ~ /\\.(?!well-known) { deny all; }
 }
+`;
+}
+
+const STATUS_CSS = `.live .sum{font-size:14px;color:var(--text-secondary);margin-bottom:14px;line-height:1.6}
+.live .sum b{color:var(--text-primary)}
+.live .tbl{overflow-x:auto;border:1px solid var(--border);border-radius:14px;background:var(--bg-card)}
+.live table{width:100%;border-collapse:collapse;font-size:13px}
+.live th,.live td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+.live th{color:var(--text-muted);font-weight:600;font-size:12px}
+.live tr:last-child td{border-bottom:0}
+.live td.st-up{color:#4ade80}.live td.st-degraded{color:#facc15}.live td.st-down{color:#f87171}.live td.st-not-running,.live td.st-unknown{color:var(--text-muted)}
+`;
+/**
+ * "Right now" on the status pointer: the summary and rows of Network's health poll, read in the browser
+ * when the page opens from /api/v1/registry/health (public discovery: CORS-open to any origin, unlike
+ * /api/v1/status, which keeps Network's first-party allow-list). Labels follow Network's status page: a
+ * service that is up but not public reads "up (loopback only)", never a bare "up". Built with DOM nodes
+ * (no innerHTML); without JavaScript, or when the API does not answer, the page says so and links the
+ * status page.
+ */
+function liveStatus(site) {
+    return `
+  <section class="live" aria-live="polite">
+    <h2>Right now</h2>
+    <p class="lead2">Read from <a href="${esc(site.statusApi)}" style="color:inherit">${esc(site.statusApi.replace(/^https?:\/\//, ''))}</a> when this page opened.</p>
+    <p class="sum" id="live-sum">Open the <a href="${esc(site.links[0][1])}" style="color:inherit">status page</a> for the current state of every service.</p>
+    <div class="tbl" id="live-tbl" hidden><table><thead><tr><th>Service</th><th>Status</th><th>Where it runs</th></tr></thead><tbody id="live-rows"></tbody></table></div>
+  </section>
+<script>
+(function () {
+  var sum = document.getElementById('live-sum'), tbl = document.getElementById('live-tbl'), rows = document.getElementById('live-rows');
+  if (!sum || !window.fetch) return;
+  var WHERE = { live: 'public', internal: 'loopback only, no public site yet', library: 'library (nothing to run)', repository: 'repository (nothing running)', placeholder: 'planned (nothing running)' };
+  function el(tag, text, cls) { var n = document.createElement(tag); if (text != null) n.textContent = String(text); if (cls) n.className = cls; return n; }
+  fetch('${esc(site.statusApi)}', { headers: { accept: 'application/json' } }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (d) {
+    var s = d.summary || {}, order = ['up', 'degraded', 'down', 'not-running', 'unknown'], parts = [];
+    sum.textContent = '';
+    order.forEach(function (k) { if (s[k] == null) return; var b = el('b', s[k]); var w = document.createDocumentFragment(); w.appendChild(b); w.appendChild(document.createTextNode(' ' + k.replace('-', ' '))); parts.push(w); });
+    parts.forEach(function (p, i) { if (i) sum.appendChild(document.createTextNode(' · ')); sum.appendChild(p); });
+    var at = d.checked_at;
+    if (at) sum.appendChild(document.createTextNode(' · checked ' + new Date(at).toUTCString().replace(/ GMT$/, ' UTC')));
+    (d.services || []).forEach(function (x) {
+      var tr = document.createElement('tr');
+      var st = String(x.status || 'unknown');
+      tr.appendChild(el('td', x.id));
+      tr.appendChild(el('td', (st === 'up' && x.state !== 'live' ? 'up (loopback only)' : st.replace('-', ' ')) + (x.stale ? ' (stale)' : ''), 'st-' + st));
+      tr.appendChild(el('td', WHERE[x.state] || x.state || 'unknown'));
+      rows.appendChild(tr);
+    });
+    if (rows.children.length) tbl.hidden = false;
+  }).catch(function () { sum.textContent = 'The status API did not answer just now. Try the status page itself: ${esc(site.links[0][1])}'; });
+})();
+</script>
 `;
 }
 
