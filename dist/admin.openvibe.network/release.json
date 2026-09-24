@@ -1,0 +1,13 @@
+{
+  "service": "admin",
+  "release": "15932573ac66",
+  "released_at": "2026-09-24T00:00:00.000Z",
+  "booted_at": null,
+  "contracts_version": null,
+  "packages": {
+    "openvibe-shared": "1.11.1"
+  },
+  "min_client_release": null,
+  "mixed_version_window_hours": 24,
+  "kind": "placeholder"
+}

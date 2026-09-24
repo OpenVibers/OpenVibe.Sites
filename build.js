@@ -3,7 +3,7 @@
 /**
  * OpenVibe.Sites — static front pages for the network's domains that are not full apps yet.
  *
- *   node build.js            → dist/<domain>/{index.html,robots.txt,sitemap.xml,manifest.webmanifest}
+ *   node build.js            → dist/<domain>/{index.html,robots.txt,sitemap.xml,manifest.webmanifest,status.json,release.json}
  *   node build.js --check    → exit 1 when dist/ is stale (CI / deploy guard)
  *
  * One template, one catalog (sites.json), one snapshot of facts (facts.json, refreshed by
@@ -396,6 +396,11 @@ server {
         add_header Access-Control-Allow-Origin "*";
         ${sec}
     }
+    location = /release.json {
+        add_header Cache-Control "no-cache";
+        add_header Access-Control-Allow-Origin "*";
+        ${sec}
+    }
 
     # Only the files in dist/ exist; anything else is a real 404 with a page, never the front page.
     error_page 404 /404.html;
@@ -465,6 +470,20 @@ function liveStatus(site) {
 `;
 }
 
+/**
+ * /release.json: what the shared release watcher (openvibe-shared release-watch, loaded by the navbar
+ * on every page) asks each site for. A placeholder's release is the hash of its page with the dates
+ * neutralised, so it changes exactly when the page does.
+ */
+function releaseJson(site, html) {
+    const release = require('crypto').createHash('sha256').update(String(html).replace(/\d{4}-\d{2}-\d{2}/g, 'DATE')).digest('hex').slice(0, 12);
+    return JSON.stringify({
+        service: site.tld, release, released_at: `${today}T00:00:00.000Z`, booted_at: null, contracts_version: null,
+        packages: { 'openvibe-shared': require('openvibe-shared/package.json').version },
+        min_client_release: null, mixed_version_window_hours: 24, kind: 'placeholder',
+    }, null, 2) + '\n';
+}
+
 /** /status.json: the same facts as the page, for scripts (CORS-open). */
 function statusJson(site) {
     const f = repoFacts(site);
@@ -488,6 +507,7 @@ function build() {
     const out = {};
     for (const site of catalog.sites) {
         out[`${site.domain}/index.html`] = page(site);
+        out[`${site.domain}/release.json`] = releaseJson(site, out[`${site.domain}/index.html`]);
         out[`${site.domain}/404.html`] = notFound(site);
         out[`${site.domain}/robots.txt`] = robots(site);
         if (!site.kind) out[`${site.domain}/sitemap.xml`] = sitemap(site);

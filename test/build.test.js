@@ -37,6 +37,13 @@ for (const site of catalog.sites) {
     for (const f of ['robots.txt', 'manifest.webmanifest', 'status.json', ...(site.kind ? [] : ['sitemap.xml'])]) {
         assert.ok(fs.existsSync(path.join(ROOT, 'dist', d, f)), `${d}: ${f}`);
     }
+    // The shared release watcher asks every page for /release.json; a placeholder publishes one, and its
+    // footer carries its own service's "shipped" line (the OpenVibe Frame).
+    const rel = JSON.parse(read(`dist/${d}/release.json`));
+    assert.strictEqual(rel.service, site.tld, `${d}: release.json service`);
+    assert.match(rel.release, /^[0-9a-f]{12}$/, `${d}: release.json release`);
+    assert.match(read(`deploy/nginx/${d}.conf`), /location = \/release\.json \{/, `${d}: nginx serves /release.json`);
+    assert.ok(html.includes(`data-ov-shipped="latest" data-service="${site.tld}"`), `${d}: the footer's shipped line`);
     if (site.kind) {
         // A notice (a closed product, a pointer) is not indexed, has no sitemap and is not listed as opening.
         assert.match(html, /<meta name="robots" content="noindex, follow">/, `${d}: notice is noindex`);
