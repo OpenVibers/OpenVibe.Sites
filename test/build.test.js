@@ -53,6 +53,13 @@ for (const site of catalog.sites) {
     const conf = read(`deploy/nginx/${d}.conf`);
     assert.ok(conf.includes(`server_name ${d}`), `${d}: vhost server_name`);
     assert.ok(conf.includes(`root /opt/openvibe.sites/dist/${d};`), `${d}: vhost root`);
+    // Unknown paths are real 404s with a page (no soft 404: the front page is never the fallback).
+    const nf = read(`dist/${d}/404.html`);
+    assert.match(nf, /<meta name="robots" content="noindex">/, `${d}: 404 page is noindex`);
+    assert.ok(nf.includes(`href="https://${d}/"`), `${d}: 404 page links the front page`);
+    assert.ok(conf.includes('error_page 404 /404.html;'), `${d}: vhost answers 404 with /404.html`);
+    assert.ok(conf.includes('try_files $uri $uri.html $uri/ =404;'), `${d}: vhost try_files ends in =404`);
+    assert.doesNotMatch(conf, /try_files[^;]*\/index\.html;/, `${d}: vhost never falls back to the front page`);
 }
 
 // Labels come from facts (facts.json: each repository's STATUS.json + the Network registry), never a

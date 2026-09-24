@@ -28,6 +28,10 @@ subdomain of a live service says it is not routed yet; only a repository with no
 "charter only". The build reads the committed snapshot, so it is reproducible; `npm test` fails
 locally when a sibling's `STATUS.json` stage or code flag no longer matches it.
 
+Every domain also gets a `404.html`: its vhost answers any path that is not a file in
+`dist/<domain>/` with status 404 and that page (`try_files … =404` + `error_page 404 /404.html`),
+never the front page.
+
 Deploy (host): the repo lives at `/opt/openvibe.sites`; `deploy/scripts/deploy.sh` runs `npm ci`, rebuilds, installs
 the vhosts into `/etc/nginx/sites-available`, enables them and reloads nginx. Each domain has a
 Let's Encrypt wildcard certificate (`certbot --dns-cloudflare`, see the host's renewal configs).

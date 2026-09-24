@@ -275,7 +275,48 @@ function robots(site) { return `User-agent: *\nAllow: /\nDisallow: /auth/\n${sit
 function sitemap(site) { return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url><loc>https://${site.domain}/</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>\n</urlset>\n`; }
 function manifest(site) { return JSON.stringify(require('openvibe-shared/app-icon').manifest({ site: 'network', name: site.name, shortName: site.name.split('.').pop(), description: site.tagline, iconBase: `${NET.networkUrl}/assets` }), null, 2) + '\n'; }
 
-/** nginx vhost: static root, wildcard cert, www → apex, long cache for the immutable bits. */
+/** 404.html: what nginx answers (with status 404) for any path that is not a file in dist/<domain>/. */
+function notFound(site) {
+    const home = `https://${site.domain}/`;
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Not found · ${esc(site.name)}</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="${esc(site.accent)}">
+${require('openvibe-shared/app-icon').headTags({ site: 'network' }).split('\n')[0]}
+${require('openvibe-shared/app-icon').CRITICAL}
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg-primary:#0a0f1c;--bg-secondary:#101828;--border:#1f2d47;--text-primary:#e6edf7;--text-secondary:#96a7c2;--site:${esc(site.accent)}}
+body{background:var(--bg-primary);color:var(--text-primary);font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-height:100vh;display:grid;place-items:center;padding:24px 16px}
+main{max-width:560px;text-align:center}
+.code{font-size:14px;font-weight:700;letter-spacing:.2em;color:var(--site)}
+h1{font-size:clamp(28px,5vw,40px);font-weight:800;letter-spacing:-.8px;margin:10px 0 12px}
+p{color:var(--text-secondary);font-size:15px;line-height:1.65}
+.links{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:24px}
+a{display:inline-block;padding:11px 18px;border-radius:12px;font-size:14px;font-weight:600;text-decoration:none;border:1px solid var(--border);color:var(--text-primary);background:var(--bg-secondary)}
+a:first-child{background:var(--site);border-color:var(--site);color:#0b0d10}
+</style>
+</head>
+<body>
+<main>
+  <p class="code">404</p>
+  <h1>This page does not exist</h1>
+  <p>${esc(site.domain)} has one page for now. The address you followed is not part of it.</p>
+  <div class="links">
+    <a href="${home}">${esc(site.name)}</a>
+    <a href="${NET.networkUrl}/">OpenVibe.Network</a>
+  </div>
+</main>
+</body>
+</html>
+`;
+}
+
+/** nginx vhost: static root, wildcard cert, www → apex, long cache for the immutable bits, real 404s. */
 function vhost(site) {
     const d = site.domain;
     // Subdomains of a zone (e.g. events.openvibe.network) use the zone's wildcard cert and have no www.
@@ -327,9 +368,13 @@ server {
     location = /manifest.webmanifest { types { application/manifest+json webmanifest; } add_header Cache-Control "public, max-age=86400"; }
     location = /status.json { add_header Cache-Control "public, max-age=600"; add_header Access-Control-Allow-Origin "*"; }
 
+    # Only the files in dist/ exist; anything else is a real 404 with a page, never the front page.
+    error_page 404 /404.html;
+    location = /404.html { internal; }
+
     location / {
         add_header Cache-Control "public, max-age=600";
-        try_files $uri $uri.html $uri/ /index.html;
+        try_files $uri $uri.html $uri/ =404;
     }
 
     location ~ /\\.(?!well-known) { deny all; }
@@ -360,6 +405,7 @@ function build() {
     const out = {};
     for (const site of catalog.sites) {
         out[`${site.domain}/index.html`] = page(site);
+        out[`${site.domain}/404.html`] = notFound(site);
         out[`${site.domain}/robots.txt`] = robots(site);
         if (!site.kind) out[`${site.domain}/sitemap.xml`] = sitemap(site);
         out[`${site.domain}/manifest.webmanifest`] = manifest(site);
