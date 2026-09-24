@@ -67,6 +67,9 @@ const STANDING = {
     closed: { label: 'closed', repoStage: 'closed' },
     pointer: { label: 'status', repoStage: 'pointer' },
 };
+// The stable marker other repositories' checks grep for (Host docs/launch.md, Network's requirement
+// ledger): every placeholder says it, a notice never does.
+const MARKER = 'this page is a placeholder, nothing here is live yet';
 const repoLink = (repo) => `<a href="https://github.com/OpenVibers/${esc(repo)}" rel="noopener"><code>OpenVibers/${esc(repo)}</code></a>`;
 /** The hero's status sentence: what is true about the product, and what its public launch waits for. */
 function statusText(site) {
@@ -74,15 +77,15 @@ function statusText(site) {
     const f = repoFacts(site);
     const repo = site.plannedRepo ? repoLink(site.plannedRepo) : '<code>OpenVibe.Network</code>';
     const waits = site.launch ? ` The public launch is waiting for ${esc(site.launch)}.` : '';
-    if (k === 'running') return `${repo} is built and its service runs on the network's host, but it is not public yet; this page is a placeholder.${waits}`;
-    if (k === 'code') return `${repo} has code, but nothing is deployed yet; this page is a placeholder.${waits}`;
+    if (k === 'running') return `${repo} is built and its service runs on the network's host, but it is not public yet: ${MARKER}.${waits}`;
+    if (k === 'code') return `${repo} has code, but nothing is deployed yet: ${MARKER}.${waits}`;
     if (k === 'surface') {
         const o = f.registry.origin;
-        return `${repo} is live at <a href="${esc(o)}/">${esc(o.replace(/^https?:\/\//, ''))}</a>; this subdomain is not routed to it yet, so it serves this placeholder.`;
+        return `${repo} is live at <a href="${esc(o)}/">${esc(o.replace(/^https?:\/\//, ''))}</a>; this subdomain is not routed to it yet: ${MARKER}.`;
     }
     if (k === 'pointer') return `${repo} publishes the status of every OpenVibe service at <a href="${esc(site.links[0][1])}">${esc(site.links[0][1].replace(/^https?:\/\//, ''))}</a>; this address points there.`;
     if (k === 'closed') return `${repo} is closed and stays as a decision record; no product launches at this address.`;
-    return `${repo}: charter only, no code yet; this page is a placeholder.${waits}`;
+    return `${repo}: charter only, no code yet: ${MARKER}.${waits}`;
 }
 const today = new Date().toISOString().slice(0, 10);
 // A page is first published once; rebuilding it later changes dateModified, never datePublished.

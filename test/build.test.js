@@ -26,7 +26,9 @@ for (const site of catalog.sites) {
     pages++;
     assert.match(html, /<title>[^<]+<\/title>/, `${d}: title`);
     assert.match(html, new RegExp(`<link rel="canonical" href="https://${d.replace(/\./g, '\\.')}/?"`), `${d}: canonical`);
-    if (!site.kind) assert.match(html, /placeholder/i, `${d}: says it is a placeholder (never claim a product is live)`);
+    // The exact phrase other repositories' checks grep for (Host docs/launch.md, Network's requirement ledger).
+    if (!site.kind) assert.ok(html.includes('this page is a placeholder, nothing here is live yet'), `${d}: says it is a placeholder (never claim a product is live)`);
+    else assert.ok(!html.includes('nothing here is live yet'), `${d}: a notice is not a placeholder`);
     assert.doesNotMatch(html, PRICING, `${d}: pricing copy`);
     assert.doesNotMatch(html, UNBACKED, `${d}: claims a hosting product that does not exist`);
     for (const m of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
