@@ -60,6 +60,14 @@ for (const site of catalog.sites) {
     assert.ok(conf.includes('error_page 404 /404.html;'), `${d}: vhost answers 404 with /404.html`);
     assert.ok(conf.includes('try_files $uri $uri.html $uri/ =404;'), `${d}: vhost try_files ends in =404`);
     assert.doesNotMatch(conf, /try_files[^;]*\/index\.html;/, `${d}: vhost never falls back to the front page`);
+    // nginx drops the server-level add_header list in any location with its own add_header: each such
+    // location must repeat the security headers (they were missing from every Sites response until 2026-09-24).
+    for (const m of conf.matchAll(/location [^{]*\{((?:[^{}]|\{[^{}]*\})*)\}/g)) {
+        if (!/add_header/.test(m[1])) continue;
+        for (const h of ['X-Content-Type-Options', 'X-Frame-Options', 'Referrer-Policy', 'Strict-Transport-Security']) {
+            assert.ok(m[1].includes(`add_header ${h} `), `${d}: ${m[0].split('{')[0].trim()} repeats ${h}`);
+        }
+    }
 }
 
 // Labels come from facts (facts.json: each repository's STATUS.json + the Network registry), never a

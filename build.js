@@ -317,8 +317,15 @@ a:first-child{background:var(--site);border-color:var(--site);color:#0b0d10}
 }
 
 /** nginx vhost: static root, wildcard cert, www → apex, long cache for the immutable bits, real 404s. */
+const SECURITY_HEADERS = [
+    'add_header X-Content-Type-Options nosniff always;',
+    'add_header X-Frame-Options SAMEORIGIN always;',
+    'add_header Referrer-Policy strict-origin-when-cross-origin always;',
+    'add_header Strict-Transport-Security "max-age=31536000" always;',
+];
 function vhost(site) {
     const d = site.domain;
+    const sec = SECURITY_HEADERS.join('\n        ');
     // Subdomains of a zone (e.g. events.openvibe.network) use the zone's wildcard cert and have no www.
     const cert = site.zone || d;
     const www = site.zone ? '' : `
@@ -355,18 +362,32 @@ server {
     access_log /var/log/nginx/${d}.access.log;
     error_log  /var/log/nginx/${d}.error.log;
 
-    add_header X-Content-Type-Options nosniff always;
-    add_header X-Frame-Options SAMEORIGIN always;
-    add_header Referrer-Policy strict-origin-when-cross-origin always;
-    add_header Strict-Transport-Security "max-age=31536000" always;
+    ${SECURITY_HEADERS.join('\n    ')}
 
     gzip on;
     gzip_types text/html text/plain text/css application/json application/javascript application/xml image/svg+xml application/manifest+json;
 
-    location = /robots.txt  { add_header Cache-Control "public, max-age=3600"; }
-    location = /sitemap.xml { add_header Cache-Control "public, max-age=3600"; types { application/xml xml; } }
-    location = /manifest.webmanifest { types { application/manifest+json webmanifest; } add_header Cache-Control "public, max-age=86400"; }
-    location = /status.json { add_header Cache-Control "public, max-age=600"; add_header Access-Control-Allow-Origin "*"; }
+    # An add_header inside a location replaces the server's list (nginx does not merge them), so every
+    # location that sets its own header repeats the security headers.
+    location = /robots.txt {
+        add_header Cache-Control "public, max-age=3600";
+        ${sec}
+    }
+    location = /sitemap.xml {
+        types { application/xml xml; }
+        add_header Cache-Control "public, max-age=3600";
+        ${sec}
+    }
+    location = /manifest.webmanifest {
+        types { application/manifest+json webmanifest; }
+        add_header Cache-Control "public, max-age=86400";
+        ${sec}
+    }
+    location = /status.json {
+        add_header Cache-Control "public, max-age=600";
+        add_header Access-Control-Allow-Origin "*";
+        ${sec}
+    }
 
     # Only the files in dist/ exist; anything else is a real 404 with a page, never the front page.
     error_page 404 /404.html;
@@ -374,6 +395,7 @@ server {
 
     location / {
         add_header Cache-Control "public, max-age=600";
+        ${sec}
         try_files $uri $uri.html $uri/ =404;
     }
 
