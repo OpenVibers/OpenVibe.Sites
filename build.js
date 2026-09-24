@@ -17,7 +17,7 @@ const fs = require('fs');
 const path = require('path');
 // The network's legal documents, from the pinned OpenVibe.Shared release (package.json).
 const legal = require('openvibe-shared/legal');
-// Which clauses apply to each domain once it opens (mirrors OpenVibe.Network/server/chrome/sites.js).
+// Which clauses apply to each domain once it opens (mirrors OpenVibe.Network/server/frame/sites.js).
 const LEGAL_PROFILE = { chat: 'ugc', codes: 'ugc', blog: 'info', wiki: 'ugc', news: 'info', reviews: 'ugc', tips: 'streaming', vip: 'account', trade: 'ugc', host: 'hosting', deals: 'info', coupons: 'info', stream: 'streaming' };
 // Sites whose own server has no page routes: their legal pages are built here and served by nginx.
 const LEGAL_ONLY = [{ domain: 'openvibe.games', name: 'OpenVibe.Games', id: 'games', profile: 'games' }];
@@ -262,7 +262,7 @@ ${site.statusApi ? liveStatus(site) : ''}` : `  <section id="what">
     <a class="btn" href="${esc(NET.github)}" rel="noopener"><i class="fa-brands fa-github"></i> OpenVibers on GitHub</a>
   </div>
 </main>
-${require('openvibe-shared/footer').ssr({ service: 'network', variant: 'full' })}
+${require('openvibe-shared/frame').footer({ service: site.tld, variant: 'full' })}
 <script src="${NET.networkUrl}/shared/ov-mark.js" async></script>
 <script src="${NET.networkUrl}/shared/navbar.js"></script>
 <script src="${NET.networkUrl}/shared/footer.js"></script>

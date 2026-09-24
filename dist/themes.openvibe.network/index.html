@@ -201,6 +201,8 @@ a.card:hover{transform:translateY(-3px);border-color:rgba(var(--site-rgb),.6);bo
   padding-inline:clamp(0px, calc(84px - (100vw - 1240px) / 2), 84px)}
 .ovf-copy{color:var(--text-muted,#8b93ad);font-size:.78rem}
 .ovf-legal-inline,.ovf-compact-links{display:flex;flex-wrap:wrap;gap:14px}
+.ovf [hidden],.ovf-account[hidden]{display:none!important}
+.ovf .ovf-shipped.ov-shipped-latest{font-size:.76rem;padding:4px 12px;max-width:min(520px,100%);background:transparent}
 .ovf-legal-inline a,.ovf-compact-links a{color:var(--text-muted,#8b93ad);font-size:.78rem;text-decoration:none;transition:color .15s}
 .ovf-legal-inline a:hover,.ovf-compact-links a:hover{color:var(--accent,#60a5fa)}
 .ovf-compact-meta{color:var(--text-muted,#8b93ad);font-size:.74rem}
@@ -220,7 +222,7 @@ a.card:hover{transform:translateY(-3px);border-color:rgba(var(--site-rgb),.6);bo
 @media (prefers-reduced-motion:reduce){:where(.ovf) :where(a,button):active{scale:none;opacity:.82}}</style><footer id="ov-footer" class="ovf" data-variant="full"><div class="ovf-inner">
             <div class="ovf-cols">
                 <div class="ovf-col ovf-col--brand">
-                    <a class="ovf-brand" href="/"><span class="ov-mark" data-size="26"></span><span>OpenVibe.Network</span></a>
+                    <a class="ovf-brand" href="/"><span class="ov-mark" data-size="26"></span><span>OpenVibe</span></a>
                     <p class="ovf-tagline">Open source and community run. Built in the open by the people using it.</p>
                     <div class="ovf-social">
                         <a href="https://github.com/OpenVibers" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg class="ovf-ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.800" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path fill="currentColor" stroke="none" d="M12 2.2a9.8 9.8 0 0 0-3.1 19.1c.5.1.7-.2.7-.5v-1.7c-2.7.6-3.3-1.2-3.3-1.2-.4-1.1-1.1-1.4-1.1-1.4-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.3-1.1.6-1.3-2.2-.2-4.5-1.1-4.5-4.8 0-1.1.4-1.9 1-2.6-.1-.2-.4-1.2.1-2.6 0 0 .8-.3 2.7 1a9.3 9.3 0 0 1 4.9 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.6.6.7 1 1.5 1 2.6 0 3.7-2.3 4.6-4.5 4.8.4.3.7.9.7 1.800v2.700c0 .3.2.6.7.5A9.8 9.8 0 0 0 12 2.200z"/></svg></a><a href="https://discord.gg/M6MuRUaeJj" target="_blank" rel="noopener" aria-label="Discord" title="Discord"><svg class="ovf-ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.800" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path fill="currentColor" stroke="none" d="M19.3 5.300a16.5 16.5 0 0 0-4.1-1.300l-.5 1a15.3 15.3 0 0 0-5.4 0l-.5-1a16.5 16.5 0 0 0-4.1 1.300C2.1 9.2 1.4 13 1.7 16.700a16.6 16.6 0 0 0 5.1 2.600l1.1-1.800c-.6-.2-1.2-.5-1.7-.8l.4-.3a11.8 11.8 0 0 0 10.8 0l.4.3c-.5.3-1.1.6-1.7.8l1.1 1.800a16.6 16.6 0 0 0 5.1-2.600c.4-4.3-.7-8.1-3-11.400zM8.7 14.400c-1 0-1.8-.9-1.8-2.100s.8-2.1 1.8-2.1 1.9 1 1.8 2.100c0 1.2-.8 2.1-1.8 2.100zm6.6 0c-1 0-1.8-.9-1.8-2.100s.8-2.1 1.8-2.1 1.9 1 1.8 2.100c0 1.2-.8 2.1-1.8 2.100z"/></svg></a>
@@ -242,7 +244,9 @@ a.card:hover{transform:translateY(-3px);border-color:rgba(var(--site-rgb),.6);bo
             <div class="ovf-account" id="ovf-account" hidden></div>
             <div class="ovf-bar">
                 <span class="ovf-copy">Open source &amp; community driven · built in the open</span>
+                <a class="ovf-shipped" data-ov-shipped="latest" data-service="themes" href="https://openvibe.network/updates?site=themes" hidden></a>
                 <span class="ovf-legal-inline">
+                    <a href="https://openvibe.network/updates?site=themes">Updates</a>
                     <a href="https://openvibe.live/tos">Terms</a><a href="https://openvibe.live/privacy">Privacy</a><a href="https://openvibe.live/dmca">DMCA</a>
                 </span>
             </div>

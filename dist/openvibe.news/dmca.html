@@ -73,6 +73,8 @@
   padding-inline:clamp(0px, calc(84px - (100vw - 1240px) / 2), 84px)}
 .ovf-copy{color:var(--text-muted,#8b93ad);font-size:.78rem}
 .ovf-legal-inline,.ovf-compact-links{display:flex;flex-wrap:wrap;gap:14px}
+.ovf [hidden],.ovf-account[hidden]{display:none!important}
+.ovf .ovf-shipped.ov-shipped-latest{font-size:.76rem;padding:4px 12px;max-width:min(520px,100%);background:transparent}
 .ovf-legal-inline a,.ovf-compact-links a{color:var(--text-muted,#8b93ad);font-size:.78rem;text-decoration:none;transition:color .15s}
 .ovf-legal-inline a:hover,.ovf-compact-links a:hover{color:var(--accent,#60a5fa)}
 .ovf-compact-meta{color:var(--text-muted,#8b93ad);font-size:.74rem}
@@ -94,8 +96,10 @@
                 <nav class="ovf-compact-links" aria-label="Site links">
                     
                     <a href="https://openvibe.network" target="_blank" rel="noopener">Network</a>
+                    <a href="https://openvibe.network/updates?site=network">Updates</a>
                     <a href="https://openvibe.live/tos">Terms</a><a href="https://openvibe.live/privacy">Privacy</a><a href="https://openvibe.live/dmca">DMCA</a>
                 </nav>
+                <a class="ovf-shipped" data-ov-shipped="latest" data-service="network" href="https://openvibe.network/updates?site=network" hidden></a>
                 <span class="ovf-compact-meta">Open source · 2026</span>
             </div></footer>
 <script src="https://openvibe.network/shared/navbar.js" defer></script><script src="https://openvibe.network/shared/footer.js" defer></script>
