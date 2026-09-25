@@ -1,11 +1,11 @@
 {
   "service": "auth",
   "release": "59fa3ef72cd0",
-  "released_at": "2026-09-24T00:00:00.000Z",
+  "released_at": "2026-09-25T00:00:00.000Z",
   "booted_at": null,
   "contracts_version": null,
   "packages": {
-    "openvibe-shared": "1.11.1"
+    "openvibe-shared": "1.12.0"
   },
   "min_client_release": null,
   "mixed_version_window_hours": 24,
