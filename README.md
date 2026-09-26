@@ -39,6 +39,10 @@ never the front page.
 Deploy (host): the repo lives at `/opt/openvibe.sites`; `deploy/scripts/deploy.sh` runs `npm ci`, rebuilds, installs
 the vhosts into `/etc/nginx/sites-available`, enables them and reloads nginx. Each domain has a
 Let's Encrypt wildcard certificate (`certbot --dns-cloudflare`, see the host's renewal configs).
+Then, for each placeholder, it runs `ovhost announce <service> --release <id> --origin https://<domain>`
+with the service and release id from that placeholder's `release.json`. OpenVibe.Host publishes each release once, as
+`host.deploy.activated`, and open tabs check `/release.json` within seconds (WS-P task 9). This is best
+effort: it is skipped without an `ovhost` that has `announce`, stops at the first failure, and never fails the deploy.
 
 When a domain becomes a real app, delete it from `sites.json`, remove its vhost, and point the
 domain's nginx block at the new service — nothing else references it.
