@@ -1,11 +1,11 @@
 {
   "service": "trade",
   "release": "66b92483e1ef",
-  "released_at": "2026-09-25T00:00:00.000Z",
+  "released_at": "2026-09-26T00:00:00.000Z",
   "booted_at": null,
   "contracts_version": null,
   "packages": {
-    "openvibe-shared": "1.13.0"
+    "openvibe-shared": "1.16.0"
   },
   "min_client_release": null,
   "mixed_version_window_hours": 24,
