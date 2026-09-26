@@ -17,7 +17,7 @@ if [ "$changed" = 1 ]; then sudo nginx -t && sudo systemctl reload nginx && echo
 echo "[sites] $(ls dist | wc -l) sites in place"
 # Release notifications (roadmap WS-P task 9): one `ovhost announce <service> --release <id> --origin
 # https://<domain>` per placeholder, from its dist/<domain>/release.json. OpenVibe.Host publishes
-# host.deploy.activated and open tabs check /release.json now instead of at their next poll; ovhost sends a
+# host.release.published and open tabs check /release.json now instead of at their next poll; ovhost sends a
 # release once, so an unchanged placeholder sends nothing. Best effort: skipped without an ovhost whose
 # --help has `announce <service>`, 20 s at most each, stops at the first failure (the rest would fail the
 # same way), and never fails the deploy (OpenVibe.Host docs/release-notifications.md).
