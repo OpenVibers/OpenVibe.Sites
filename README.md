@@ -36,13 +36,19 @@ Every domain also gets a `404.html`: its vhost answers any path that is not a fi
 `dist/<domain>/` with status 404 and that page (`try_files … =404` + `error_page 404 /404.html`),
 never the front page.
 
-Deploy (host): the repo lives at `/opt/openvibe.sites`; `deploy/scripts/deploy.sh` runs `npm ci`, rebuilds, installs
-the vhosts into `/etc/nginx/sites-available`, enables them and reloads nginx. Each domain has a
-Let's Encrypt wildcard certificate (`certbot --dns-cloudflare`, see the host's renewal configs).
-Then, for each placeholder, it runs `ovhost announce <service> --release <id> --origin https://<domain>`
-with the service and release id from that placeholder's `release.json`. OpenVibe.Host publishes each release once, as
-`host.release.published`, and open tabs check `/release.json` within seconds (WS-P task 9). This is best
-effort: it is skipped without an `ovhost` that has `announce`, stops at the first failure, and never fails the deploy.
+Deploy (host): the repo lives at `/opt/openvibe.sites`. `sudo deploy/scripts/deploy.sh` runs
+`ovhost deploy sites --restart` (OpenVibe.Host, strategy `static-build`; `DRY_RUN=1` for the plan). ovhost
+pulls first, as the checkout owner, so a stale checkout never installs old vhosts: it restores the tracked
+`dist/` the last build rewrote, fast-forwards, runs `npm ci` and `node build.js`, installs and enables every
+`deploy/nginx/*.conf` behind `nginx -t` (a failing test puts the previous vhost files back, never reloads
+nginx, and restores the checkout and `dist/`), then reloads nginx. Each domain has a Let's Encrypt wildcard
+certificate (`certbot --dns-cloudflare`, see the host's renewal configs). Then, for each placeholder, it
+publishes `host.release.published` with the service and release id from that placeholder's `release.json`
+and `https://<domain>` as the origin, once per release, so open tabs check `/release.json` within seconds
+(WS-P task 9); this is best effort, stops at the first failure and never fails the deploy. A vhost that left
+`deploy/nginx/` stays installed and is named in the output: remove it by hand once its domain is served
+elsewhere. When ovhost is missing, too old or does not deploy Sites with that strategy, the wrapper pulls
+and runs `deploy/scripts/deploy-legacy.sh`, the previous script, unchanged (`OVHOST_LEGACY=1` forces it).
 
 When a domain becomes a real app, delete it from `sites.json`, remove its vhost, and point the
 domain's nginx block at the new service — nothing else references it.

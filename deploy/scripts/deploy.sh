@@ -1,36 +1,57 @@
 #!/bin/bash
-# OpenVibe.Sites — pull, rebuild, install vhosts, reload nginx, announce each placeholder's release. Run on the host:
-#   sudo -u ubuntu git -C /opt/openvibe.sites pull --ff-only && /opt/openvibe.sites/deploy/scripts/deploy.sh
+# OpenVibe.Sites — deploy: a thin wrapper around `ovhost deploy sites` (OpenVibe.Host, strategy
+# static-build; roadmap WS-N task 11; OpenVibe.Host docs/deploy-strategies.md). Run on the host:
+#
+#   sudo /opt/openvibe.sites/deploy/scripts/deploy.sh      ovhost deploy sites --restart
+#   DRY_RUN=1 /opt/openvibe.sites/deploy/scripts/deploy.sh  ovhost plan sites
+#
+# ovhost pulls FIRST (as the checkout owner), so a stale checkout never installs old vhosts: the tracked
+# dist/ a previous build rewrote is restored from git, the checkout fast-forwards, then npm ci, node build.js,
+# every deploy/nginx/*.conf installed and enabled behind `nginx -t` (a failing test puts the previous vhost
+# files back and nginx is NOT reloaded; the checkout and dist/ go back too), then one release notification
+# per dist/<domain>/release.json. --restart makes it rebuild and reinstall even when the checkout is already
+# at origin/main (the old script did that every run, and people pulled before running it).
+#
+# Fallback: deploy-legacy.sh (the previous script, unchanged) when ovhost is missing or too old (no
+# `capabilities`, deploy-api < 1) or the host inventory does not deploy sites with strategy static-build;
+# OVHOST_LEGACY=1 forces it. The fallback keeps the old rule "pull before deploying": it restores dist/, pulls
+# as the checkout owner, then runs the freshly pulled deploy-legacy.sh.
 set -euo pipefail
+
+SERVICE=sites
+STRATEGY=static-build
 REPO="${REPO:-/opt/openvibe.sites}"
-cd "$REPO"
-# openvibe-shared is the pinned OpenVibe.Shared release (package.json); needs outbound HTTPS to codeload.github.com.
-npm ci --omit=dev --no-audit --no-fund
-node build.js
-changed=0
-for conf in deploy/nginx/*.conf; do
-    name=$(basename "$conf")
-    if ! cmp -s "$conf" "/etc/nginx/sites-available/$name"; then sudo install -m 644 "$conf" "/etc/nginx/sites-available/$name"; changed=1; fi
-    [ -L "/etc/nginx/sites-enabled/$name" ] || { sudo ln -s "/etc/nginx/sites-available/$name" "/etc/nginx/sites-enabled/$name"; changed=1; }
-done
-if [ "$changed" = 1 ]; then sudo nginx -t && sudo systemctl reload nginx && echo "[sites] nginx reloaded"; else echo "[sites] vhosts unchanged"; fi
-echo "[sites] $(ls dist | wc -l) sites in place"
-# Release notifications (roadmap WS-P task 9): one `ovhost announce <service> --release <id> --origin
-# https://<domain>` per placeholder, from its dist/<domain>/release.json. OpenVibe.Host publishes
-# host.release.published and open tabs check /release.json now instead of at their next poll; ovhost sends a
-# release once, so an unchanged placeholder sends nothing. Best effort: skipped without an ovhost whose
-# --help has `announce <service>`, 20 s at most each, stops at the first failure (the rest would fail the
-# same way), and never fails the deploy (OpenVibe.Host docs/release-notifications.md).
-OVHOST_BIN=$(command -v "${OVHOST:-ovhost}" 2>/dev/null || true)
-if [ -n "$OVHOST_BIN" ]; then
-    case "$("$OVHOST_BIN" --help 2>/dev/null || true)" in
-        *"announce <service>"*)
-            SUDO=""; [ "$(id -u)" -eq 0 ] || SUDO="sudo -n"
-            node -e 'const fs = require("fs"); for (const d of fs.readdirSync("dist").sort()) { try { const m = JSON.parse(fs.readFileSync(`dist/${d}/release.json`, "utf8")); if (/^[a-z][a-z0-9-]{1,39}$/.test(m.service) && /^[0-9a-f]{7,40}$/.test(m.release) && /^[a-z0-9.-]+$/.test(d)) console.log(`${m.service} ${m.release} ${d}`); } catch { /* no release.json */ } }' |
-            while read -r svc rel domain; do
-                timeout 20 $SUDO "$OVHOST_BIN" announce "$svc" --release "$rel" --origin "https://$domain" </dev/null 2>&1 | sed 's/^/[sites] /' \
-                    || { echo "[sites] release notification not sent for $domain; the rest are skipped (the deploy stands)"; break; }
-            done ;;
-        *) echo "[sites] release notification skipped: this ovhost has no announce" ;;
-    esac
-fi
+OVHOST="${OVHOST:-/usr/local/bin/ovhost}"
+if [ "${OVHOST_SUDO-auto}" = auto ]; then if [ "$(id -u)" -eq 0 ]; then SUDO=(); else SUDO=(sudo); fi; elif [ -n "${OVHOST_SUDO}" ]; then SUDO=("$OVHOST_SUDO"); else SUDO=(); fi
+[ "$#" -eq 0 ] || { echo "Usage: $0   (DRY_RUN=1 for the plan)"; exit 1; }
+
+legacy() {
+    echo "[sites] $1 — running deploy-legacy.sh (the previous deploy script) instead"
+    [ "${DRY_RUN:-0}" = 1 ] && { echo "[sites] ✗ deploy-legacy.sh has no DRY_RUN; nothing was done" >&2; exit 1; }
+    local owner
+    owner=$(stat -c %U "$REPO")
+    as_owner() { if [ "$(id -un)" = "$owner" ]; then "$@"; else sudo -u "$owner" "$@"; fi; }
+    as_owner git -C "$REPO" checkout -- dist/
+    as_owner git -C "$REPO" pull --ff-only
+    exec bash "${DEPLOY_LEGACY:-$REPO/deploy/scripts/deploy-legacy.sh}"
+}
+
+REASON=""
+probe() {
+    if [ "${OVHOST_LEGACY:-0}" = 1 ]; then REASON="OVHOST_LEGACY=1"; return 1; fi
+    if ! command -v "$OVHOST" >/dev/null 2>&1; then REASON="ovhost not found ($OVHOST)"; return 1; fi
+    local caps api
+    if ! caps=$("${SUDO[@]}" "$OVHOST" capabilities "$SERVICE" 2>/dev/null); then REASON="this ovhost has no 'capabilities' (too old) or no inventory entry for $SERVICE"; return 1; fi
+    api=$(printf '%s\n' "$caps" | sed -n 's/^deploy-api=//p')
+    case "$api" in ''|*[!0-9]*) REASON="this ovhost reports no deploy-api (too old)"; return 1 ;; esac
+    if [ "$api" -lt 1 ]; then REASON="this ovhost's deploy-api is $api, 1 is needed"; return 1; fi
+    if ! printf '%s\n' "$caps" | grep -qx "strategy=$STRATEGY"; then REASON="the host inventory does not deploy $SERVICE with strategy $STRATEGY ($(printf '%s\n' "$caps" | sed -n 's/^strategy=//p'))"; return 1; fi
+    if ! printf '%s\n' "$caps" | grep -qx "managed=yes"; then REASON="ovhost does not manage $SERVICE"; return 1; fi
+    return 0
+}
+
+probe || legacy "$REASON"
+
+if [ "${DRY_RUN:-0}" = 1 ]; then exec "${SUDO[@]}" "$OVHOST" plan "$SERVICE" --restart; fi
+echo "[sites] ovhost deploy $SERVICE --restart"
+exec "${SUDO[@]}" "$OVHOST" deploy "$SERVICE" --restart
