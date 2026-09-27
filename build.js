@@ -17,6 +17,10 @@ const fs = require('fs');
 const path = require('path');
 // The network's legal documents, from the pinned OpenVibe.Shared release (package.json).
 const legal = require('openvibe-shared/legal');
+// D42 (roadmap WS-P task 4): the pages run this repository's pinned copy of the shared browser files, served by
+// every Sites vhost at /shared/ from one copy in dist/_shared/, content-addressed (?v=), never openvibe.network's.
+const sharedFiles = require('openvibe-shared/files');
+const SHARED = (name) => require('openvibe-shared/serve').url(name);
 // Which clauses apply to each domain once it opens (mirrors OpenVibe.Network/server/frame/sites.js).
 const LEGAL_PROFILE = { chat: 'ugc', codes: 'ugc', blog: 'info', wiki: 'ugc', news: 'info', reviews: 'ugc', tips: 'streaming', vip: 'account', trade: 'ugc', host: 'hosting', deals: 'info', coupons: 'info', stream: 'streaming' };
 // Sites whose own server has no page routes: their legal pages are built here and served by nginx.
@@ -142,7 +146,7 @@ ${require('openvibe-shared/app-icon').CRITICAL}
 <meta name="twitter:image" content="${ogImage}">
 <script type="application/ld+json">${JSON.stringify(ld)}</script>
 <script>(function(){try{var raw=localStorage.getItem('ov_theme');if(!raw)return;var t=JSON.parse(raw),v=t&&t.variables;if(!v)return;var el=document.documentElement;for(var k in v)if(k.charAt(0)==='-')el.style.setProperty(k,v[k]);if(t.id)el.setAttribute('data-theme',t.id);}catch(_){}})();</script>
-<script src="${NET.networkUrl}/shared/theme-loader.js" defer></script>
+<script src="${SHARED('theme-loader.js')}" defer></script>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
@@ -263,9 +267,9 @@ ${site.statusApi ? liveStatus(site) : ''}` : `  <section id="what">
   </div>
 </main>
 ${require('openvibe-shared/frame').footer({ service: site.tld, variant: 'full' })}
-<script src="${NET.networkUrl}/shared/ov-mark.js" async></script>
-<script src="${NET.networkUrl}/shared/navbar.js"></script>
-<script src="${NET.networkUrl}/shared/footer.js"></script>
+<script src="${SHARED('ov-mark.js')}" async></script>
+<script src="${SHARED('navbar.js')}"></script>
+<script src="${SHARED('footer.js')}"></script>
 <script>
 (function () {
   if (window.OpenVibeNavbar) { try { OpenVibeNavbar.init({ service: '${esc(site.tld)}', apiBase: '${NET.networkUrl}', links: [{ label: '${notice ? 'Where to go' : 'What it will be'}', href: '#what' }, { label: 'The network', href: '${NET.networkUrl}/#network', external: false }], history: { type: 'page', title: '${esc(site.name)}' } }); } catch (e) {} }
@@ -401,6 +405,15 @@ server {
         add_header Access-Control-Allow-Origin "*";
         ${sec}
     }
+    # This repository's pinned shared browser files (navbar, footer, theme loader…), one copy for every Sites
+    # vhost. Pages ask for them content-addressed (?v=); the few loaded without it (navbar's companions) get
+    # the same hour.
+    location ^~ /shared/ {
+        alias /opt/openvibe.sites/dist/_shared/;
+        add_header Cache-Control "public, max-age=3600";
+        add_header Access-Control-Allow-Origin "*";
+        ${sec}
+    }
 
     # Only the files in dist/ exist; anything else is a real 404 with a page, never the front page.
     error_page 404 /404.html;
@@ -517,6 +530,8 @@ function build() {
         out[`../deploy/nginx/${site.domain}.conf`] = vhost(site);
     }
     for (const g of LEGAL_ONLY) for (const kind of ['terms', 'privacy', 'dmca']) out[`${g.domain}/${kind}.html`] = legal.page(kind, { id: g.id, service: g.id, host: g.domain, name: g.name, profile: g.profile });
+    // One copy of every browser file of the pinned openvibe-shared (the pages' scripts and what they load beside them).
+    for (const name of sharedFiles.BROWSER) out[`_shared/${name}`] = fs.readFileSync(sharedFiles.path(name), 'utf8');
     return out;
 }
 

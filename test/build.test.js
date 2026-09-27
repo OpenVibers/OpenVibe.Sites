@@ -43,6 +43,14 @@ for (const site of catalog.sites) {
     assert.strictEqual(rel.service, site.tld, `${d}: release.json service`);
     assert.match(rel.release, /^[0-9a-f]{12}$/, `${d}: release.json release`);
     assert.match(read(`deploy/nginx/${d}.conf`), /location = \/release\.json \{/, `${d}: nginx serves /release.json`);
+    // D42: the frame from this repository's pin (dist/_shared/, aliased at /shared/), never openvibe.network's.
+    assert.doesNotMatch(html, /https:\/\/openvibe\.network\/shared\/[\w.-]+\.js/, `${d}: loads a shared file from openvibe.network`);
+    for (const m of html.matchAll(/src="\/shared\/([\w.-]+\.js)\?v=([0-9a-f]{12})"/g)) {
+        assert.strictEqual(m[2], require('openvibe-shared/serve').hashOf(m[1]), `${d}: /shared/${m[1]} carries its content hash`);
+        assert.strictEqual(read(`dist/_shared/${m[1]}`), fs.readFileSync(require('openvibe-shared/files').path(m[1]), 'utf8'), `${d}: dist/_shared/${m[1]} is the pinned file`);
+    }
+    assert.match(html, /src="\/shared\/navbar\.js\?v=/, `${d}: the navbar from /shared`);
+    assert.match(read(`deploy/nginx/${d}.conf`), /location \^~ \/shared\/ \{\s+alias \/opt\/openvibe\.sites\/dist\/_shared\/;/, `${d}: nginx serves /shared/ from dist/_shared/`);
     assert.ok(html.includes(`data-ov-shipped="latest" data-service="${site.tld}"`), `${d}: the footer's shipped line`);
     if (site.kind) {
         // A notice (a closed product, a pointer) is not indexed, has no sitemap and is not listed as opening.
