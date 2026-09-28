@@ -88,7 +88,7 @@ function statusText(site) {
     if (k === 'code') return `${repo} has code, but nothing is deployed yet: ${MARKER}.${waits}`;
     if (k === 'surface') {
         const o = f.registry.origin;
-        return `${repo} is live at <a href="${esc(o)}/">${esc(o.replace(/^https?:\/\//, ''))}</a>; this subdomain is not routed to it yet: ${MARKER}.`;
+        return `${repo} is live at <a href="${esc(o)}/">${esc(o.replace(/^https?:\/\//, ''))}</a>; this address is not routed to it yet: ${MARKER}.`;
     }
     if (k === 'pointer') return `${repo} publishes the status of every OpenVibe service at <a href="${esc(site.links[0][1])}">${esc(site.links[0][1].replace(/^https?:\/\//, ''))}</a>; this address points there.`;
     if (k === 'closed') return `${repo} is closed and stays as a decision record; no product launches at this address.`;

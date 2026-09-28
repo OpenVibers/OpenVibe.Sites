@@ -1,0 +1,23 @@
+{
+  "domain": "openvibe.events",
+  "name": "OpenVibe.Events",
+  "stage": "placeholder",
+  "live": false,
+  "plannedRepo": "OpenVibers/OpenVibe.Events",
+  "repoUrl": "https://github.com/OpenVibers/OpenVibe.Events",
+  "repoExists": true,
+  "repoStage": "surface-of-a-live-service",
+  "service": {
+    "stage": "alpha",
+    "code": true,
+    "deployed": true,
+    "statusCommit": "7bccceb",
+    "exposure": "live",
+    "publicOrigin": "https://events.openvibe.network"
+  },
+  "launchWaitsFor": "the developer site and queue and stream primitives; the API runs at events.openvibe.network",
+  "factsAsOf": "2026-09-28",
+  "network": "https://openvibe.network",
+  "updated": "2026-09-28",
+  "note": "Static page served by OpenVibers/OpenVibe.Sites; service facts come from each repository's STATUS.json and the Network registry (facts.json). Removed from sites.json in the same release that the real service takes over this domain."
+}

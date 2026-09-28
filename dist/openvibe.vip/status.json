@@ -11,12 +11,12 @@
     "stage": "alpha",
     "code": true,
     "deployed": true,
-    "statusCommit": "a675577",
+    "statusCommit": "9ff4277",
     "exposure": "internal",
     "publicOrigin": null
   },
   "launchWaitsFor": "the payments cutover to OpenVibe.Billing; checkout stays closed until then",
-  "factsAsOf": "2026-09-24",
+  "factsAsOf": "2026-09-28",
   "network": "https://openvibe.network",
   "updated": "2026-09-28",
   "note": "Static page served by OpenVibers/OpenVibe.Sites; service facts come from each repository's STATUS.json and the Network registry (facts.json). Removed from sites.json in the same release that the real service takes over this domain."

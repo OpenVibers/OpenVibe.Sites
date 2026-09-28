@@ -11,12 +11,12 @@
     "stage": "alpha",
     "code": true,
     "deployed": true,
-    "statusCommit": "f034a9f",
+    "statusCommit": "9f24032",
     "exposure": "internal",
     "publicOrigin": null
   },
   "launchWaitsFor": "a public API with its own keys, quotas and playground; today only other OpenVibe services call it",
-  "factsAsOf": "2026-09-24",
+  "factsAsOf": "2026-09-28",
   "network": "https://openvibe.network",
   "updated": "2026-09-28",
   "note": "Static page served by OpenVibers/OpenVibe.Sites; service facts come from each repository's STATUS.json and the Network registry (facts.json). Removed from sites.json in the same release that the real service takes over this domain."

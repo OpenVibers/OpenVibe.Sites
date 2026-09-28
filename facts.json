@@ -1,9 +1,9 @@
 {
   "note": "Facts the Sites placeholder copy is built from. Refresh with `node scripts/facts.js`, review the diff, run `node build.js`, commit both. Never edit by hand.",
-  "generated": "2026-09-24",
+  "generated": "2026-09-28",
   "sources": {
     "status": "STATUS.json at HEAD of each OpenVibers checkout (commit recorded per repo)",
-    "registry": "https://openvibe.network/api/v1/registry/services (openvibe-contracts 0.33.0)"
+    "registry": "https://openvibe.network/api/v1/registry/services (openvibe-contracts 0.76.0)"
   },
   "repos": {
     "OpenRe.Stream": {
@@ -11,8 +11,8 @@
         "stage": "alpha",
         "code": true,
         "deployed": true,
-        "updated": "2026-09-23",
-        "commit": "cc70a5a"
+        "updated": "2026-09-28",
+        "commit": "d9f4240"
       },
       "registry": {
         "id": "openre",
@@ -28,8 +28,8 @@
         "stage": "alpha",
         "code": true,
         "deployed": true,
-        "updated": "2026-09-23",
-        "commit": "f034a9f"
+        "updated": "2026-09-28",
+        "commit": "9f24032"
       },
       "registry": {
         "id": "ai",
@@ -40,30 +40,13 @@
         "planned_origin": "https://ai.openvibe.network"
       }
     },
-    "OpenVibe.Chat": {
-      "status": {
-        "stage": "alpha",
-        "code": true,
-        "deployed": true,
-        "updated": "2026-09-23",
-        "commit": "fcc824a"
-      },
-      "registry": {
-        "id": "chat",
-        "manifest_status": "alpha",
-        "state": "internal",
-        "public_site": null,
-        "origin": null,
-        "planned_origin": null
-      }
-    },
     "OpenVibe.Coupons": {
       "status": {
         "stage": "alpha",
         "code": true,
         "deployed": true,
-        "updated": "2026-09-23",
-        "commit": "93f333b"
+        "updated": "2026-09-28",
+        "commit": "5ae03b0"
       },
       "registry": {
         "id": "coupons",
@@ -79,8 +62,8 @@
         "stage": "alpha",
         "code": true,
         "deployed": true,
-        "updated": "2026-09-23",
-        "commit": "f453cb5"
+        "updated": "2026-09-28",
+        "commit": "450af16"
       },
       "registry": {
         "id": "deals",
@@ -91,13 +74,30 @@
         "planned_origin": "https://openvibe.deals"
       }
     },
+    "OpenVibe.Events": {
+      "status": {
+        "stage": "alpha",
+        "code": true,
+        "deployed": true,
+        "updated": "2026-09-28",
+        "commit": "7bccceb"
+      },
+      "registry": {
+        "id": "events",
+        "manifest_status": "alpha",
+        "state": "live",
+        "public_site": "service",
+        "origin": "https://events.openvibe.network",
+        "planned_origin": null
+      }
+    },
     "OpenVibe.Host": {
       "status": {
         "stage": "alpha",
         "code": true,
         "deployed": true,
-        "updated": "2026-09-23",
-        "commit": "2144ceb"
+        "updated": "2026-09-28",
+        "commit": "019d853"
       },
       "registry": {
         "id": "host",
@@ -109,7 +109,13 @@
       }
     },
     "OpenVibe.Network": {
-      "status": null,
+      "status": {
+        "stage": "stable",
+        "code": true,
+        "deployed": true,
+        "updated": "2026-09-28",
+        "commit": "35233db"
+      },
       "registry": {
         "id": "network",
         "manifest_status": "stable",
@@ -124,8 +130,8 @@
         "stage": "alpha",
         "code": true,
         "deployed": true,
-        "updated": "2026-09-23",
-        "commit": "c2c31b0"
+        "updated": "2026-09-28",
+        "commit": "79a851f"
       },
       "registry": {
         "id": "news",
@@ -141,12 +147,12 @@
         "stage": "closed",
         "code": false,
         "deployed": false,
-        "updated": "2026-09-23",
-        "commit": "d58c62c"
+        "updated": "2026-09-28",
+        "commit": "a47b357"
       },
       "registry": {
         "id": "realtime",
-        "manifest_status": "placeholder",
+        "manifest_status": "retired",
         "state": "placeholder",
         "public_site": null,
         "origin": null,
@@ -158,8 +164,8 @@
         "stage": "alpha",
         "code": true,
         "deployed": true,
-        "updated": "2026-09-23",
-        "commit": "8905235"
+        "updated": "2026-09-28",
+        "commit": "298403f"
       },
       "registry": {
         "id": "reviews",
@@ -175,8 +181,8 @@
         "stage": "alpha",
         "code": true,
         "deployed": true,
-        "updated": "2026-09-23",
-        "commit": "3fb582e"
+        "updated": "2026-09-28",
+        "commit": "56fd30e"
       },
       "registry": {
         "id": "tips",
@@ -192,8 +198,8 @@
         "stage": "alpha",
         "code": true,
         "deployed": true,
-        "updated": "2026-09-23",
-        "commit": "62ea99c"
+        "updated": "2026-09-28",
+        "commit": "f80bd45"
       },
       "registry": {
         "id": "trade",
@@ -209,8 +215,8 @@
         "stage": "alpha",
         "code": true,
         "deployed": true,
-        "updated": "2026-09-23",
-        "commit": "a675577"
+        "updated": "2026-09-28",
+        "commit": "9ff4277"
       },
       "registry": {
         "id": "vip",

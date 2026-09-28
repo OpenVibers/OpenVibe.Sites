@@ -1279,6 +1279,127 @@
       ],
       "keywords": "remote control robot, stream controlled robot, raspberry pi robot control, telepresence robot, iot device control api",
       "launch": "device pairing and control leases split out of OpenVibe.Live"
+    },
+    {
+      "domain": "openvibe.watch",
+      "tld": "watch",
+      "name": "OpenVibe.Watch",
+      "icon": "fa-eye",
+      "accent": "#facc15",
+      "tagline": "Watch anything. Hear about what matters.",
+      "description": "OpenVibe.Watch will watch web pages, feeds, APIs, prices and stock, Git releases, OpenVibe activity, videos, livestreams and your own cameras, pull out what changed or what matters, and tell you, your apps or your AI agents. Checks respect site terms and robots rules, heavy work runs on shared workers, and cameras are read by a small agent on your own network so nothing is exposed to the internet.",
+      "pillars": [
+        [
+          "Any source",
+          "Pages, feeds, APIs, repos, videos, streams and cameras."
+        ],
+        [
+          "What changed",
+          "Extraction, diffs and conditions, with AI summaries when you want them."
+        ],
+        [
+          "Anywhere it matters",
+          "Notifications, events, webhooks and agent triggers."
+        ],
+        [
+          "Respectful and safe",
+          "Site terms, robots rules and fair limits on every check."
+        ]
+      ],
+      "meanwhile": [
+        [
+          "OpenVibe.Sources",
+          "https://github.com/OpenVibers/OpenVibe.Sources",
+          "Permitted-source ingestion that Watch builds on runs today."
+        ],
+        [
+          "OpenVibe.Tools",
+          "https://openvibe.tools",
+          "Dozens of tools that run in the browser today."
+        ]
+      ],
+      "keywords": "website change monitoring, uptime monitoring api, price drop alerts, restock alerts, release monitoring, youtube video analysis, security camera alerts",
+      "launch": "the watch service on the shared queue and workers",
+      "noRepo": true
+    },
+    {
+      "domain": "openvibe.actor",
+      "tld": "actor",
+      "name": "OpenVibe.Actor",
+      "icon": "fa-user-astronaut",
+      "accent": "#a78bfa",
+      "tagline": "AI agents that act for you, with your permission.",
+      "description": "OpenVibe.Actor will give you persistent AI agents that work across OpenVibe and, when you allow it, other sites and apps: they use OpenVibe's own APIs first and a sandboxed browser when they must. You decide what each agent may do, for once, a session, a while or always, and anything with real consequences (buying, sending, publishing, applying, moving a robot) waits for your approval, wherever you are on the network.",
+      "pillars": [
+        [
+          "Your agents",
+          "Personas, memory, tools, schedules and budgets you control."
+        ],
+        [
+          "Permission first",
+          "Delegated grants and approvals, never an all-powerful account."
+        ],
+        [
+          "Any model",
+          "Routed through OpenVibe.AI: hosted, open or local models."
+        ],
+        [
+          "Works with everything",
+          "Watch, Website, Work, Bot, Events, Tools and more."
+        ]
+      ],
+      "meanwhile": [
+        [
+          "OpenVibe.Tools",
+          "https://openvibe.tools",
+          "Tools agents will call, usable by people today."
+        ],
+        [
+          "OpenVibe.Codes",
+          "https://openvibe.codes",
+          "The API and SDK agents are built on."
+        ]
+      ],
+      "keywords": "ai agent platform, open source ai agent, personal ai assistant, browser automation agent, ai agent permissions",
+      "launch": "agent principals and delegated grants on OpenVibe.Network and the agent service",
+      "noRepo": true
+    },
+    {
+      "domain": "openvibe.events",
+      "tld": "events",
+      "name": "OpenVibe.Events",
+      "icon": "fa-bolt",
+      "accent": "#34d399",
+      "tagline": "Events, queues and webhooks you can build on.",
+      "description": "OpenVibe.Events is the network's event system: durable events, topics and subscriptions, signed webhooks with retries, dead-letter queues and replay, pull consumers with checkpoints, and realtime delivery to browsers with cursor resume. Every OpenVibe product already publishes through it. This domain becomes its home, with queues, streams, project namespaces and developer tools.",
+      "pillars": [
+        [
+          "Topics & webhooks",
+          "Fan out to subscribers with signed, retried deliveries."
+        ],
+        [
+          "Queues & streams",
+          "Competing consumers with leases, and ordered history with cursors."
+        ],
+        [
+          "Realtime",
+          "Server-sent events to browsers, resuming where they left off."
+        ],
+        [
+          "Replay & DLQ",
+          "Nothing is lost quietly: replay it, or inspect what failed."
+        ]
+      ],
+      "meanwhile": [
+        [
+          "OpenVibe.Codes",
+          "https://openvibe.codes",
+          "Events API and SDK reference."
+        ]
+      ],
+      "keywords": "event bus api, webhook retry service, sqs alternative, sns alternative, pub sub api, realtime sse api, dead letter queue, webhook replay",
+      "launch": "the developer site and queue and stream primitives; the API runs at events.openvibe.network",
+      "plannedRepo": "OpenVibe.Events"
     }
   ]
 }
