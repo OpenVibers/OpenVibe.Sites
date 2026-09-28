@@ -1,7 +1,7 @@
 {
   "name": "OpenRe.Stream",
   "short_name": "Stream",
-  "description": "Ingest and restream, in the open.",
+  "description": "Go live from your browser, or any encoder, and restream everywhere.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

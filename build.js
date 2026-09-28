@@ -99,6 +99,18 @@ const FIRST_PUBLISHED = '2026-09-17';
 
 function hexToRgb(hex) { const m = String(hex).replace('#', ''); const n = parseInt(m.length === 3 ? m.split('').map(c => c + c).join('') : m, 16); return `${(n >> 16) & 255},${(n >> 8) & 255},${n & 255}`; }
 
+/** A site's headline feature, shown right under the hero: { title, text, points: [..], cta: [label, href], more: [label, href] }. */
+function highlight(h) {
+    return `  <section class="highlight" aria-labelledby="highlight-h">
+    <div class="hl-card">
+      <h2 id="highlight-h"><i class="fa-solid fa-bolt" aria-hidden="true"></i> ${esc(h.title)}</h2>
+      <p>${esc(h.text)}</p>
+      ${(h.points || []).length ? `<ul>${h.points.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>` : ''}
+      <div class="ctas">${h.cta ? `<a class="btn btn-primary" href="${esc(h.cta[1])}"><i class="fa-solid fa-tower-broadcast"></i> ${esc(h.cta[0])}</a>` : ''}${h.more ? ` <a class="btn" href="${esc(h.more[1])}">${esc(h.more[0])}</a>` : ''}</div>
+    </div>
+  </section>`;
+}
+
 function page(site) {
     const core = site.core || NET.core;
     const url = `https://${site.domain}/`;
@@ -120,6 +132,8 @@ function page(site) {
               breadcrumb: { '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'OpenVibe', item: `${NET.networkUrl}/` }, { '@type': 'ListItem', position: 2, name: site.name, item: url }] } },
         ],
     };
+    // A questions section people can read is also a FAQPage for search engines and AI crawlers.
+    if (site.faq && site.faq.length) ld['@graph'].push({ '@type': 'FAQPage', '@id': `${url}#faq`, mainEntity: site.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) });
     return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -194,6 +208,11 @@ a.card:hover{transform:translateY(-3px);border-color:rgba(var(--site-rgb),.6);bo
 .card b{font-size:15px}
 .card span{font-size:13px;color:var(--text-secondary);line-height:1.55}
 .card .go{margin-top:auto;font-size:12.5px;font-weight:600;color:var(--site)}
+.highlight .hl-card{border:1px solid rgba(var(--accent-rgb),.45);background:rgba(var(--accent-rgb),.10);border-radius:18px;padding:22px 22px 18px}
+.highlight h2{margin:0 0 8px}.highlight h2 i{color:var(--accent-light)}.highlight p{margin:0 0 10px}
+.highlight ul{margin:0 0 14px;padding-left:20px}.highlight li{margin:4px 0}
+.faq details{border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px 14px;margin:8px 0}
+.faq summary{cursor:pointer;font-weight:600}.faq details p{margin:8px 0 0;opacity:.85}
 .meanwhile .card .ic{background:rgba(var(--accent-rgb),.12);color:var(--accent-light)}
 .net .card .ic{background:var(--bg-hover);color:var(--text-primary)}
 .rooms{display:flex;flex-wrap:wrap;gap:8px}
@@ -226,6 +245,7 @@ ${site.statusApi ? STATUS_CSS : ''}</style>
     <p class="status"><i class="fa-solid fa-clock" aria-hidden="true"></i> Status: <b>${esc(STANDING[standing(site)].label)}</b> · ${statusText(site)} · as of ${esc(facts.generated)} · <a href="/status.json">status.json</a></p>
   </header>
 
+${site.highlight ? highlight(site.highlight) : ''}
 ${notice ? `  <section id="what" class="meanwhile">
     <h2>Where to go</h2>
     <p class="lead2">${esc(site.linksLead || 'What this address used to stand for lives here now.')}</p>
@@ -248,6 +268,11 @@ ${site.statusApi ? liveStatus(site) : ''}` : `  <section id="what">
       ${(site.meanwhile || []).map(([h, href, d]) => `<a class="card" href="${esc(href)}"><div class="ic"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></div><b>${esc(h)}</b><span>${esc(d)}</span><span class="go">${esc(href.replace(/^https?:\/\//, '').replace(/\/$/, ''))} →</span></a>`).join('\n      ')}
     </div>
   </section>
+${site.faq && site.faq.length ? `
+  <section id="questions" class="faq">
+    <h2>Questions</h2>
+    ${site.faq.map(([q, ans]) => `<details><summary>${esc(q)}</summary><p>${esc(ans)}</p></details>`).join('\n    ')}
+  </section>` : ''}
 `}
   <section class="net">
     <h2>The OpenVibe network</h2>
