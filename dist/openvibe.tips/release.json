@@ -1,7 +1,7 @@
 {
   "service": "tips",
-  "release": "47ba1331fdca",
-  "released_at": "2026-09-27T00:00:00.000Z",
+  "release": "93d875cb1f2e",
+  "released_at": "2026-09-28T00:00:00.000Z",
   "booted_at": null,
   "contracts_version": null,
   "packages": {

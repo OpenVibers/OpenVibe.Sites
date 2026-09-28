@@ -1,7 +1,7 @@
 {
   "service": "deals",
-  "release": "94029ef33dc4",
-  "released_at": "2026-09-27T00:00:00.000Z",
+  "release": "58d538f8672e",
+  "released_at": "2026-09-28T00:00:00.000Z",
   "booted_at": null,
   "contracts_version": null,
   "packages": {

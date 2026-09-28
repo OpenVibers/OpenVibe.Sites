@@ -1,7 +1,7 @@
 {
   "service": "reviews",
-  "release": "3ed60955d255",
-  "released_at": "2026-09-27T00:00:00.000Z",
+  "release": "3ecc4eac1953",
+  "released_at": "2026-09-28T00:00:00.000Z",
   "booted_at": null,
   "contracts_version": null,
   "packages": {

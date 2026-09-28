@@ -1,7 +1,7 @@
 {
   "service": "auth",
-  "release": "fe03dc632477",
-  "released_at": "2026-09-27T00:00:00.000Z",
+  "release": "798ec755c8e4",
+  "released_at": "2026-09-28T00:00:00.000Z",
   "booted_at": null,
   "contracts_version": null,
   "packages": {

@@ -1,7 +1,7 @@
 {
   "service": "news",
-  "release": "f799922d60d7",
-  "released_at": "2026-09-27T00:00:00.000Z",
+  "release": "c2b8448b215b",
+  "released_at": "2026-09-28T00:00:00.000Z",
   "booted_at": null,
   "contracts_version": null,
   "packages": {

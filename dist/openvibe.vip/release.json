@@ -1,7 +1,7 @@
 {
   "service": "vip",
-  "release": "53c52ca7ae37",
-  "released_at": "2026-09-27T00:00:00.000Z",
+  "release": "f47ab123326b",
+  "released_at": "2026-09-28T00:00:00.000Z",
   "booted_at": null,
   "contracts_version": null,
   "packages": {

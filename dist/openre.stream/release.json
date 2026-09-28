@@ -1,7 +1,7 @@
 {
   "service": "stream",
-  "release": "efb64c0c5635",
-  "released_at": "2026-09-27T00:00:00.000Z",
+  "release": "77cabaaa4997",
+  "released_at": "2026-09-28T00:00:00.000Z",
   "booted_at": null,
   "contracts_version": null,
   "packages": {

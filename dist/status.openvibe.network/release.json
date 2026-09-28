@@ -1,7 +1,7 @@
 {
   "service": "status",
-  "release": "fe837da2e2e9",
-  "released_at": "2026-09-27T00:00:00.000Z",
+  "release": "b49cb320a767",
+  "released_at": "2026-09-28T00:00:00.000Z",
   "booted_at": null,
   "contracts_version": null,
   "packages": {

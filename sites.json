@@ -692,6 +692,280 @@
         ]
       ],
       "keywords": "openvibe status, openvibe uptime, openvibe network status"
+    },
+    {
+      "domain": "openvibe.pics",
+      "tld": "pics",
+      "name": "OpenVibe.Pics",
+      "icon": "fa-images",
+      "accent": "#f472b6",
+      "noRepo": true,
+      "tagline": "Share pictures. Fast, open, yours.",
+      "description": "OpenVibe.Pics will be the picture home of the OpenVibe network: quick uploads and share links with or without an account, albums and galleries, image processing and optimisation served from a shared CDN, and AI image tools, an open and modular alternative to Imgur that is also usable through the OpenVibe API.",
+      "pillars": [
+        [
+          "Upload & share",
+          "Drop a picture, get a link, with or without an account."
+        ],
+        [
+          "Albums & galleries",
+          "Collections, embeds and community galleries."
+        ],
+        [
+          "Processing",
+          "Resize, convert and optimise on the fly, cached close to viewers."
+        ],
+        [
+          "AI image tools",
+          "Describe, tag, edit and generate with the network's shared AI."
+        ]
+      ],
+      "meanwhile": [
+        [
+          "OpenVibe.Media",
+          "https://openvibe.media",
+          "Media already stores and serves the network's pictures and video."
+        ],
+        [
+          "Image tools",
+          "https://img.openvibe.tools",
+          "Convert, resize and compress images today."
+        ]
+      ],
+      "keywords": "openvibe pics, image hosting, image upload, imgur alternative, image cdn, ai image tools",
+      "launch": "the shared image upload and processing service"
+    },
+    {
+      "domain": "openvibe.download",
+      "tld": "download",
+      "name": "OpenVibe.Download",
+      "icon": "fa-cloud-arrow-down",
+      "accent": "#34d399",
+      "noRepo": true,
+      "tagline": "Upload anything. Share it anywhere.",
+      "description": "OpenVibe.Download will be the file home of the OpenVibe network: large uploads and simple share links with or without an account, folders, sync and backups when you sign in, and AI that previews, sorts and finds your files, in the spirit of MediaFire and MEGA, built on OpenVibe.Media and open through the API.",
+      "pillars": [
+        [
+          "Share links",
+          "Big files, simple links, clear limits."
+        ],
+        [
+          "Drive & backup",
+          "Folders, sync and backups under your OpenVibe account."
+        ],
+        [
+          "Smart files",
+          "Previews, search and summaries from the network's AI."
+        ],
+        [
+          "Built for apps",
+          "The same file service every OpenVibe site and your own apps use."
+        ]
+      ],
+      "meanwhile": [
+        [
+          "OpenVibe.Media",
+          "https://openvibe.media",
+          "Media already stores the network's uploads."
+        ],
+        [
+          "Document tools",
+          "https://docs.openvibe.tools",
+          "Convert and work with documents today."
+        ]
+      ],
+      "keywords": "openvibe download, file sharing, file upload, cloud storage, backup, mediafire alternative",
+      "launch": "the shared file service on OpenVibe.Media"
+    },
+    {
+      "domain": "openvibe.space",
+      "tld": "space",
+      "name": "OpenVibe.Space",
+      "icon": "fa-layer-group",
+      "accent": "#818cf8",
+      "noRepo": true,
+      "tagline": "Start a forum for anything.",
+      "description": "OpenVibe.Space will be the forums of the OpenVibe network: create a forum for any topic, with the depth of classic boards like XenForo and phpBB, the feel of a modern community, and AI help for topics, research and moderation. The forums on OpenVibe.Community move here when it launches.",
+      "pillars": [
+        [
+          "Any forum",
+          "Anyone can start one, for any topic."
+        ],
+        [
+          "Classic depth",
+          "Sub-forums, threads, ranks, moderation tools."
+        ],
+        [
+          "AI assist",
+          "Topic ideas, research and summaries, always labelled."
+        ],
+        [
+          "One account",
+          "Your OpenVibe identity, everywhere on the network."
+        ]
+      ],
+      "meanwhile": [
+        [
+          "OpenVibe.Community",
+          "https://openvibe.community",
+          "Forums, pastes and people live there today."
+        ]
+      ],
+      "keywords": "openvibe space, forums, create a forum, community boards, xenforo alternative, phpbb alternative",
+      "launch": "the forum engine moving over from OpenVibe.Community"
+    },
+    {
+      "domain": "openvibe.food",
+      "tld": "food",
+      "name": "OpenVibe.Food",
+      "icon": "fa-utensils",
+      "accent": "#fb923c",
+      "noRepo": true,
+      "tagline": "What should we eat?",
+      "description": "OpenVibe.Food will bring food together: compare delivery prices across apps, find coupons and budget meal kits, plan meals alone, as a couple or as a group, and turn what is in your cupboard into recipes with the network's AI. The food tools on OpenVibe.Tools will live here too.",
+      "pillars": [
+        [
+          "Compare delivery",
+          "One search across delivery apps, with prices side by side."
+        ],
+        [
+          "Kits & boxes",
+          "Meal kits and snack boxes, budget-friendly picks first."
+        ],
+        [
+          "Plan together",
+          "Shared plans and chats for couples, households and groups."
+        ],
+        [
+          "Cupboard recipes",
+          "Tell it what you have; get ideas that use it."
+        ]
+      ],
+      "meanwhile": [
+        [
+          "Food tools",
+          "https://food.openvibe.tools",
+          "The food and grocery tools work today."
+        ],
+        [
+          "OpenVibe.Coupons",
+          "https://openvibe.coupons",
+          "Coupons are the sibling room."
+        ]
+      ],
+      "keywords": "openvibe food, compare food delivery prices, meal kits, meal planning, recipe ideas, grocery tools",
+      "launch": "the food tools moving over from OpenVibe.Tools"
+    },
+    {
+      "domain": "openvibe.quest",
+      "tld": "quest",
+      "name": "OpenVibe.Quest",
+      "icon": "fa-map",
+      "accent": "#fbbf24",
+      "noRepo": true,
+      "tagline": "Quests across the whole network.",
+      "description": "OpenVibe.Quest will be the network's shared quest and rewards system: quests that span every OpenVibe site, from a streamer's getting-started steps on OpenVibe.Live to community challenges, cosmetics and OpenCoins, moddable and open to anyone through the API.",
+      "pillars": [
+        [
+          "Quests everywhere",
+          "One quest log across every OpenVibe site."
+        ],
+        [
+          "Rewards",
+          "Cosmetics, badges and OpenCoins."
+        ],
+        [
+          "Make your own",
+          "Streamers, modders and developers create quests for their communities."
+        ],
+        [
+          "Built for games",
+          "The quest layer for OpenVibe.Games and its creators."
+        ]
+      ],
+      "meanwhile": [
+        [
+          "OpenVibe.Live",
+          "https://openvibe.live",
+          "Streamers' getting-started steps are on OpenVibe.Live today."
+        ]
+      ],
+      "keywords": "openvibe quest, quests, achievements, rewards, gamification, streamer quests",
+      "launch": "the shared quest service"
+    },
+    {
+      "domain": "openvibe.rent",
+      "tld": "rent",
+      "name": "OpenVibe.Rent",
+      "icon": "fa-key",
+      "accent": "#22d3ee",
+      "noRepo": true,
+      "tagline": "Every rental, one search.",
+      "description": "OpenVibe.Rent will bring rentals into one place: apartments, rooms, commercial space, equipment and services from many listing sites, with alerts, AI summaries that link their sources, and one OpenVibe account for your searches.",
+      "pillars": [
+        [
+          "One search",
+          "Listings from many sites, in one list."
+        ],
+        [
+          "Alerts",
+          "Be told when something that fits appears."
+        ],
+        [
+          "Clear summaries",
+          "AI summaries that always link the original listing."
+        ],
+        [
+          "Your account",
+          "Saved searches and favourites under your OpenVibe account."
+        ]
+      ],
+      "meanwhile": [
+        [
+          "OpenVibe.Deals",
+          "https://openvibe.deals",
+          "Deal discovery is the sibling room."
+        ]
+      ],
+      "keywords": "openvibe rent, rental search, apartments for rent, rooms for rent, commercial rentals, rental alerts",
+      "launch": "verified listing sources and the shared discovery system"
+    },
+    {
+      "domain": "openvibe.homes",
+      "tld": "homes",
+      "name": "OpenVibe.Homes",
+      "icon": "fa-house",
+      "accent": "#a3e635",
+      "noRepo": true,
+      "tagline": "Homes to own, clearly explained.",
+      "description": "OpenVibe.Homes will be the owning side of OpenVibe.Rent: homes for sale, property records and neighbourhood context in one place, with alerts and AI summaries that always link their sources.",
+      "pillars": [
+        [
+          "Listings",
+          "Homes for sale from many sources, in one search."
+        ],
+        [
+          "Property records",
+          "Sale history and public records, with their sources."
+        ],
+        [
+          "Neighbourhoods",
+          "Context that helps you decide."
+        ],
+        [
+          "Alerts",
+          "Be told when a home that fits appears."
+        ]
+      ],
+      "meanwhile": [
+        [
+          "OpenVibe.Deals",
+          "https://openvibe.deals",
+          "Deal discovery is the sibling room."
+        ]
+      ],
+      "keywords": "openvibe homes, homes for sale, property records, real estate search, home alerts",
+      "launch": "verified listing and records sources"
     }
   ]
 }

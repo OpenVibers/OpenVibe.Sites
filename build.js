@@ -79,7 +79,8 @@ const repoLink = (repo) => `<a href="https://github.com/OpenVibers/${esc(repo)}"
 function statusText(site) {
     const k = standing(site);
     const f = repoFacts(site);
-    const repo = site.plannedRepo ? repoLink(site.plannedRepo) : '<code>OpenVibe.Network</code>';
+    // A product planned before its repository exists names itself, never another repository.
+    const repo = site.plannedRepo ? repoLink(site.plannedRepo) : site.noRepo ? `<strong>${esc(site.name)}</strong>` : '<code>OpenVibe.Network</code>';
     const waits = site.launch ? ` The public launch is waiting for ${esc(site.launch)}.` : '';
     if (k === 'running') return `${repo} is built and its service runs on the network's host, but it is not public yet: ${MARKER}.${waits}`;
     if (k === 'code') return `${repo} has code, but nothing is deployed yet: ${MARKER}.${waits}`;
@@ -89,6 +90,7 @@ function statusText(site) {
     }
     if (k === 'pointer') return `${repo} publishes the status of every OpenVibe service at <a href="${esc(site.links[0][1])}">${esc(site.links[0][1].replace(/^https?:\/\//, ''))}</a>; this address points there.`;
     if (k === 'closed') return `${repo} is closed and stays as a decision record; no product launches at this address.`;
+    if (site.noRepo) return `${repo} is planned; its repository and code do not exist yet: ${MARKER}.${waits}`;
     return `${repo}: charter only, no code yet: ${MARKER}.${waits}`;
 }
 const today = new Date().toISOString().slice(0, 10);
