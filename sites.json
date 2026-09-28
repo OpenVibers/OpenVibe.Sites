@@ -966,6 +966,122 @@
       ],
       "keywords": "openvibe homes, homes for sale, property records, real estate search, home alerts",
       "launch": "verified listing and records sources"
+    },
+    {
+      "domain": "openvibe.services",
+      "tld": "services",
+      "name": "OpenVibe.Services",
+      "icon": "fa-server",
+      "accent": "#38bdf8",
+      "noRepo": true,
+      "tagline": "One console for the whole network.",
+      "description": "OpenVibe.Services will be the console for developers and operators across the OpenVibe network: projects, keys and permissions, storage, events, functions and AI routes, usage and bills, logs and deploys, all in one place and all through the same open API and SDK.",
+      "pillars": [
+        [
+          "Projects & keys",
+          "Members, keys and scoped permissions for everything you build."
+        ],
+        [
+          "Every service",
+          "Storage, events, functions, AI, search and more, from one place."
+        ],
+        [
+          "Usage & bills",
+          "What you use, what it costs, with budgets and alerts."
+        ],
+        [
+          "Open API",
+          "Everything the console does, the API and SDK do too."
+        ]
+      ],
+      "meanwhile": [
+        [
+          "OpenVibe.Codes",
+          "https://openvibe.codes",
+          "The developer portal and docs work today."
+        ]
+      ],
+      "keywords": "openvibe services, developer console, cloud console, api keys, open cloud",
+      "launch": "the console bringing together Codes' portal and the network's admin surfaces"
+    },
+    {
+      "domain": "openvibe.run",
+      "tld": "run",
+      "name": "OpenVibe.Run",
+      "icon": "fa-terminal",
+      "accent": "#a78bfa",
+      "noRepo": true,
+      "tagline": "Run anything, safely.",
+      "description": "OpenVibe.Run will run code, tools and AI agent tasks in sandboxes: quick jobs in WebAssembly, full environments in small virtual machines, with queued jobs, live output, and files through OpenVibe.Download. A free, limited tier for everyone, and the engine the rest of the network uses to get work done.",
+      "pillars": [
+        [
+          "Sandboxed",
+          "Every run is isolated, budgeted and stoppable."
+        ],
+        [
+          "Async & streaming",
+          "Queue work, watch its output live, get the result."
+        ],
+        [
+          "Agent tasks",
+          "Let AI tools run steps for you, safely."
+        ],
+        [
+          "For every site",
+          "The same engine behind tools, pictures, video and chat."
+        ]
+      ],
+      "meanwhile": [
+        [
+          "OpenVibe.Tools",
+          "https://openvibe.tools",
+          "Hundreds of online tools work today."
+        ]
+      ],
+      "keywords": "openvibe run, code sandbox, run code online, serverless functions, ai agent tasks",
+      "launch": "the sandbox runtime"
+    },
+    {
+      "domain": "openvibe.video",
+      "tld": "video",
+      "name": "OpenVibe.Video",
+      "icon": "fa-film",
+      "accent": "#f87171",
+      "noRepo": true,
+      "tagline": "Your videos, everywhere.",
+      "description": "OpenVibe.Video will be the home of long-form video on the OpenVibe network: watch pages, channels and playlists for uploads and past streams, a creator tool that publishes one upload to many platforms, and AI captions, highlights and editing, delivered by OpenVibe.Media.",
+      "pillars": [
+        [
+          "Watch",
+          "Channels, playlists and search for uploads and past streams."
+        ],
+        [
+          "Publish everywhere",
+          "One upload, sent to the platforms you choose, tracked in one place."
+        ],
+        [
+          "AI tools",
+          "Captions, translations, highlights and shorts from long videos."
+        ],
+        [
+          "From your streams",
+          "Recordings from OpenVibe.Live land here, ready to share."
+        ]
+      ],
+      "meanwhile": [
+        [
+          "OpenVibe.Live",
+          "https://openvibe.live",
+          "Streams, recordings and clips live on OpenVibe.Live today."
+        ],
+        [
+          "OpenRe.Stream",
+          "https://openre.stream",
+          "Restreaming to many platforms is the sibling product."
+        ]
+      ],
+      "keywords": "openvibe video, video hosting, youtube alternative, multi-platform upload, ai video tools",
+      "launch": "the video service on OpenVibe.Media"
     }
   ]
 }

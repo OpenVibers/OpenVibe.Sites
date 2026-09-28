@@ -6,7 +6,7 @@ Static front pages for the OpenVibe domains that are not public applications yet
 2026-09-24 (`sites.json`; production ran `18166b1` when this was written): `openvibe.news`,
 `.reviews`, `.tips`, `.vip`, `.trade`, `.host`, `.deals`, `.coupons`, `openre.stream`, the planned products added
 2026-09-28 whose repositories do not exist yet (`noRepo`: `openvibe.pics`, `.download`, `.space`, `.food`, `.quest`,
-`.rent`, `.homes`), and `auth`,
+`.rent`, `.homes`, `.services`, `.run`, `.video`), and `auth`,
 `api`, `admin`, `themes` and `ai` under `openvibe.network`. Most of these already run on the host
 behind loopback (News, Reviews, Tips, VIP, Trade, Host, Deals, Coupons, OpenRe.Stream, AI); the page stays until the service launches publicly on its domain, and says
 so (see facts below). Two more are notices, not placeholders (`kind` in `sites.json`: noindex, no
