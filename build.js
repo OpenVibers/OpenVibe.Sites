@@ -82,6 +82,8 @@ function statusText(site) {
     // A product planned before its repository exists names itself, never another repository.
     const repo = site.plannedRepo ? repoLink(site.plannedRepo) : site.noRepo ? `<strong>${esc(site.name)}</strong>` : '<code>OpenVibe.Network</code>';
     const waits = site.launch ? ` The public launch is waiting for ${esc(site.launch)}.` : '';
+    // A product that moved to another address (site.kind: moved): the first link is where it went.
+    if (site.kind === 'moved') return `${repo} moved to <a href="${esc(site.links[0][1])}">${esc(site.links[0][1].replace(/^https?:\/\/|\/$/g, ''))}</a>; this address serves only this notice.`;
     if (k === 'running') return `${repo} is built and its service runs on the network's host, but it is not public yet: ${MARKER}.${waits}`;
     if (k === 'code') return `${repo} has code, but nothing is deployed yet: ${MARKER}.${waits}`;
     if (k === 'surface') {
@@ -117,7 +119,7 @@ function page(site) {
     const title = `${site.name} — ${site.tagline}`;
     const ogImage = `${NET.networkUrl}/assets/logo-512.png`;
     const others = NET.liveSites.filter(s => s.url !== url.slice(0, -1));
-    // A notice (site.kind: closed) is not a placeholder for a product: it says where the work went, is not
+    // A notice (site.kind: closed or moved) is not a placeholder for a product: it says where the work went, is not
     // indexed and is not listed among the domains still to open.
     const notice = !!site.kind;
     const siblings = catalog.sites.filter(s => s.domain !== site.domain && !s.kind);

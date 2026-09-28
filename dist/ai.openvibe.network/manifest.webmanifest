@@ -1,7 +1,7 @@
 {
   "name": "ai.openvibe.network",
   "short_name": "network",
-  "description": "AI as a service, for every OpenVibe product.",
+  "description": "Moved: OpenVibe.AI's public home is ai.openvibe.services.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

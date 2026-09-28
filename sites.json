@@ -665,26 +665,57 @@
       "icon": "fa-robot",
       "accent": "#c084fc",
       "plannedRepo": "OpenVibe.AI",
-      "launch": "a public API with its own access rules; today only other OpenVibe services call it",
       "legalProfile": "info",
-      "tagline": "AI as a service, for every OpenVibe product.",
-      "description": "OpenVibe.AI is the shared AI layer of the OpenVibe network: providers and models, routing, prompt templates, workflows, runs and quotas, so each product stops wiring its own. It runs today as an internal service that OpenVibe.Live and OpenVibe.Network call; ai.openvibe.network has no public page or API yet.",
+      "tagline": "Moved: OpenVibe.AI's public home is ai.openvibe.services.",
+      "description": "OpenVibe.AI's public address is now ai.openvibe.services, next to the rest of the network's programmable services on OpenVibe.Services. This address serves only this notice until every client has moved; then it redirects.",
+      "keywords": "openvibe ai, openvibe network ai, openvibe platform",
+      "kind": "moved",
+      "linksLead": "OpenVibe.AI lives on OpenVibe.Services now.",
+      "links": [
+        [
+          "ai.openvibe.services",
+          "https://ai.openvibe.services/",
+          "OpenVibe.AI: the gateway, templates, workflows and runs."
+        ],
+        [
+          "OpenVibe.Services",
+          "https://openvibe.services/",
+          "Every programmable OpenVibe service in one place."
+        ]
+      ]
+    },
+    {
+      "domain": "ai.openvibe.services",
+      "zone": "openvibe.services",
+      "hostParts": [
+        "ai",
+        "openvibe.services"
+      ],
+      "tld": "ai",
+      "name": "ai.openvibe.services",
+      "icon": "fa-robot",
+      "accent": "#c084fc",
+      "plannedRepo": "OpenVibe.AI",
+      "launch": "a public API with its own keys, quotas and playground; today only other OpenVibe services call it",
+      "legalProfile": "info",
+      "tagline": "One AI gateway for every model you choose.",
+      "description": "OpenVibe.AI is the network's AI gateway: OpenAI-compatible providers, Anthropic, local and open models behind one API, with routing for cost, speed, quality or privacy, provider fallback, versioned prompt templates and typed workflows, durable runs, structured output, embeddings, speech to text and media analysis, budgets and your own provider keys. It runs today as an internal service that OpenVibe.Live and OpenVibe.Network call; its public API and playground open here.",
       "pillars": [
         [
-          "Providers & routing",
-          "Primary and fallback models per workflow, local or hosted."
+          "Any provider",
+          "OpenAI-compatible, Anthropic, local llama.cpp and open models, one API."
         ],
         [
-          "Workflows",
-          "Versioned, schema-checked jobs with citations."
+          "Routing & fallback",
+          "Cheap, fast, best or private: routes choose, and fall back when a provider fails."
         ],
         [
-          "Quotas & cost",
-          "Budgets per service, app and user."
+          "Templates & workflows",
+          "Versioned prompts and typed workflows with durable, resumable runs."
         ],
         [
-          "Provenance",
-          "Every output remembers its sources and model."
+          "Your keys, your budget",
+          "Bring your own provider keys; quotas and budgets per project."
         ]
       ],
       "meanwhile": [
@@ -694,7 +725,7 @@
           "Live's AI moments, recaps, summaries and translations run through OpenVibe.AI; captions still run inside Live."
         ]
       ],
-      "keywords": "openvibe ai, openvibe network ai, openvibe platform"
+      "keywords": "ai gateway, open source ai api, llm router, model routing, prompt templates, ai workflows, speech to text api, openvibe ai"
     },
     {
       "domain": "status.openvibe.network",
@@ -1014,24 +1045,24 @@
       "icon": "fa-server",
       "accent": "#38bdf8",
       "noRepo": true,
-      "tagline": "One console for the whole network.",
-      "description": "OpenVibe.Services will be the console for developers and operators across the OpenVibe network: projects, keys and permissions, storage, events, functions and AI routes, usage and bills, logs and deploys, all in one place and all through the same open API and SDK.",
+      "tagline": "Build with the whole network.",
+      "description": "OpenVibe.Services will be the way into everything programmable on OpenVibe. Start from what you want to build (monitor a page and summarise changes, run an AI agent, process uploads, control a robot, add support to a site) and it assembles the services, keys, permissions and working code for you. Then operate it all in one place: projects, grants, usage, quotas, runs, events, deploys and health, with each service keeping its own data.",
       "pillars": [
         [
-          "Projects & keys",
-          "Members, keys and scoped permissions for everything you build."
+          "Discover",
+          "A catalog of services, recipes and templates, by what they do."
         ],
         [
-          "Every service",
-          "Storage, events, functions, AI, search and more, from one place."
+          "Build",
+          "Projects, apps, keys, capabilities, playgrounds and starter code."
         ],
         [
-          "Usage & bills",
-          "What you use, what it costs, with budgets and alerts."
+          "Operate",
+          "Every resource across the network: runs, events, usage, quotas, health."
         ],
         [
-          "Open API",
-          "Everything the console does, the API and SDK do too."
+          "Learn",
+          "Help, Wiki and Codes docs, linked from every page."
         ]
       ],
       "meanwhile": [
@@ -1041,8 +1072,8 @@
           "The developer portal and docs work today."
         ]
       ],
-      "keywords": "openvibe services, developer console, cloud console, api keys, open cloud",
-      "launch": "the console bringing together Codes' portal and the network's admin surfaces"
+      "keywords": "openvibe services, developer platform, open source backend, api platform, event bus api, ai gateway, website monitoring api, developer console",
+      "launch": "the catalog and console over the services that already run (AI, Events, Media, Search, Sources, Host, Tools)"
     },
     {
       "domain": "openvibe.run",
@@ -1122,6 +1153,132 @@
       ],
       "keywords": "openvibe video, video hosting, youtube alternative, multi-platform upload, ai video tools",
       "launch": "the video service on OpenVibe.Media"
+    },
+    {
+      "domain": "openvibe.website",
+      "tld": "website",
+      "name": "OpenVibe.Website",
+      "icon": "fa-globe",
+      "accent": "#22d3ee",
+      "noRepo": true,
+      "tagline": "Websites that work, not just pages.",
+      "description": "OpenVibe.Website will be an AI-assisted website and small-app builder with a real file tree: generate a site from a description, import one or fork a Git repository, edit HTML, CSS, JavaScript or Markdown by hand or visually, and publish to yourname.openvibe.website or your own domain. Sites can sign people in with OpenVibe, take bookings and forms, show media, run a blog or docs, and add chat, comments, memberships or support, with good SEO built in.",
+      "pillars": [
+        [
+          "Generate or code",
+          "Describe it, import it, fork it, or write it yourself."
+        ],
+        [
+          "Real features",
+          "Sign-in, forms, bookings, media, blogs and support from the network."
+        ],
+        [
+          "Your files",
+          "Every generated site is readable, editable source."
+        ],
+        [
+          "Publish anywhere",
+          "yourname.openvibe.website or your own domain, with rollback."
+        ]
+      ],
+      "meanwhile": [
+        [
+          "OpenVibe.Codes",
+          "https://openvibe.codes",
+          "The developer portal, API and SDK docs work today."
+        ],
+        [
+          "OpenVibe.Tools",
+          "https://openvibe.tools",
+          "Dozens of tools that run in the browser today."
+        ]
+      ],
+      "keywords": "ai website builder, open source website builder, static site builder, portfolio builder, website generator, docs site generator",
+      "launch": "tenant hosting on OpenVibe.Host (built, not launched) and the editor"
+    },
+    {
+      "domain": "openvibe.help",
+      "tld": "help",
+      "name": "OpenVibe.Help",
+      "icon": "fa-life-ring",
+      "accent": "#4ade80",
+      "noRepo": true,
+      "tagline": "Answers, support and a way to reach people.",
+      "description": "OpenVibe.Help will be the help and support center for every OpenVibe site: search answers drawn from the docs, wiki, blog and service status, follow troubleshooting guides, and open a ticket that stays one conversation on the web and by email. A Report Problem button on every site will attach the safe details staff need (release, request and trace ids) and never secrets.",
+      "pillars": [
+        [
+          "Grounded answers",
+          "From the real docs, wiki and status, with sources."
+        ],
+        [
+          "One support inbox",
+          "Signed in or not, on the web or by email."
+        ],
+        [
+          "Report a problem",
+          "Useful, privacy-scrubbed details attached for you."
+        ],
+        [
+          "For your projects",
+          "A support widget and help center for sites built on OpenVibe."
+        ]
+      ],
+      "meanwhile": [
+        [
+          "Network status",
+          "https://openvibe.network/status",
+          "Service health and incidents today."
+        ],
+        [
+          "OpenVibe.Wiki",
+          "https://openvibe.wiki",
+          "Guides and concepts."
+        ]
+      ],
+      "keywords": "openvibe help, openvibe support, help center, support tickets, troubleshooting",
+      "launch": "the ticket service and the Frame's Help button"
+    },
+    {
+      "domain": "openvibe.bot",
+      "tld": "bot",
+      "name": "OpenVibe.Bot",
+      "icon": "fa-robot",
+      "accent": "#f472b6",
+      "noRepo": true,
+      "tagline": "Robots, cameras and devices you can share safely.",
+      "description": "OpenVibe.Bot will let you register robots, Raspberry Pis, cameras, motors, sensors and other devices, pair them securely, and control them yourself or hand control to friends, stream viewers, apps or your AI agents with timed turns, queues and permissions. Safety runs on the device too: heartbeats, command time limits, speed and range limits and an emergency stop that works without the cloud. OpenVibe.Live already runs stream-controlled robots; Bot makes the device its own thing.",
+      "pillars": [
+        [
+          "Pair devices",
+          "Revocable device keys and one-time pairing codes, not stream keys."
+        ],
+        [
+          "Share control",
+          "Owner, whitelist, queues, timed turns, moderators and apps."
+        ],
+        [
+          "Safe on the device",
+          "Dead-man stop, command limits and local emergency stop."
+        ],
+        [
+          "Stream it",
+          "Connect a device to a Live stream, a game or a website."
+        ]
+      ],
+      "meanwhile": [
+        [
+          "Robots on OpenVibe.Live",
+          "https://openvibe.live",
+          "Stream-controlled robots and cameras run on Live today."
+        ],
+        [
+          "OpenVibe.Extensions",
+          "https://github.com/OpenVibers/OpenVibe.Extensions",
+          "Device-side agents and hardware scripts."
+        ]
+      ],
+      "keywords": "remote control robot, stream controlled robot, raspberry pi robot control, telepresence robot, iot device control api",
+      "launch": "device pairing and control leases split out of OpenVibe.Live"
     }
   ]
 }

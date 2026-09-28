@@ -1,7 +1,7 @@
 {
   "domain": "ai.openvibe.network",
   "name": "ai.openvibe.network",
-  "stage": "placeholder",
+  "stage": "moved",
   "live": false,
   "plannedRepo": "OpenVibers/OpenVibe.AI",
   "repoUrl": "https://github.com/OpenVibers/OpenVibe.AI",
@@ -15,7 +15,7 @@
     "exposure": "internal",
     "publicOrigin": null
   },
-  "launchWaitsFor": "a public API with its own access rules; today only other OpenVibe services call it",
+  "launchWaitsFor": null,
   "factsAsOf": "2026-09-24",
   "network": "https://openvibe.network",
   "updated": "2026-09-28",

@@ -6,11 +6,12 @@ Static front pages for the OpenVibe domains that are not public applications yet
 2026-09-24 (`sites.json`; production ran `18166b1` when this was written): `openvibe.news`,
 `.reviews`, `.tips`, `.vip`, `.trade`, `.host`, `.deals`, `.coupons`, `openre.stream`, the planned products added
 2026-09-28 whose repositories do not exist yet (`noRepo`: `openvibe.pics`, `.download`, `.space`, `.food`, `.quest`,
-`.rent`, `.homes`, `.services`, `.run`, `.video`), and `auth`,
-`api`, `admin`, `themes` and `ai` under `openvibe.network`. Most of these already run on the host
+`.rent`, `.homes`, `.services`, `.run`, `.video`, `.website`, `.help`, `.bot`), `ai.openvibe.services` (OpenVibe.AI's
+public home), and `auth`, `api`, `admin` and `themes` under `openvibe.network`. Most of these already run on the host
 behind loopback (News, Reviews, Tips, VIP, Trade, Host, Deals, Coupons, OpenRe.Stream, AI); the page stays until the service launches publicly on its domain, and says
-so (see facts below). Two more are notices, not placeholders (`kind` in `sites.json`: noindex, no
-sitemap, not listed as opening): `realtime.openvibe.network` says OpenVibe.Realtime is closed (ADR-005:
+so (see facts below). Three more are notices, not placeholders (`kind` in `sites.json`: noindex, no
+sitemap, not listed as opening): `ai.openvibe.network` says OpenVibe.AI moved to `ai.openvibe.services` (it redirects once
+every client has moved), `realtime.openvibe.network` says OpenVibe.Realtime is closed (ADR-005:
 realtime delivery is part of OpenVibe.Events), and `status.openvibe.network` points at the status
 Network publishes (`openvibe.network/status`), with a live summary read in the browser from the
 CORS-open `/api/v1/registry/health`.

@@ -1,7 +1,7 @@
 {
   "name": "OpenVibe.Services",
   "short_name": "Services",
-  "description": "One console for the whole network.",
+  "description": "Build with the whole network.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

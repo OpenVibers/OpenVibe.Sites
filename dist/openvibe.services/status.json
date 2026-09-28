@@ -8,7 +8,7 @@
   "repoExists": false,
   "repoStage": "charter-only",
   "service": null,
-  "launchWaitsFor": "the console bringing together Codes' portal and the network's admin surfaces",
+  "launchWaitsFor": "the catalog and console over the services that already run (AI, Events, Media, Search, Sources, Host, Tools)",
   "factsAsOf": "2026-09-24",
   "network": "https://openvibe.network",
   "updated": "2026-09-28",

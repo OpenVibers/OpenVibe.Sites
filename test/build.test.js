@@ -114,7 +114,7 @@ for (const site of catalog.sites) {
         assert.notStrictEqual(status.repoStage, 'charter-only', `${d}: status.json repoStage`);
     }
     const runs = rg.state === 'internal' || (st.code === true && st.deployed === true);
-    if (runs && st.stage !== 'closed' && rg.state !== 'live') {
+    if (runs && st.stage !== 'closed' && rg.state !== 'live' && site.kind !== 'moved') {   // a moved notice speaks for its address, not the product
         assert.ok(site.launch, `${d}: the service runs, so sites.json says what its public launch waits for ("launch")`);
         assert.ok(html.includes(`The public launch is waiting for ${site.launch.replace(/'/g, '&#39;')}.`), `${d}: the page says what the launch waits for`);
         assert.match(html, /in development/, `${d}: labelled in development`);
