@@ -7,7 +7,7 @@
     "test": "node test/build.test.js && node test/deploy-wrapper.test.js"
   },
   "dependencies": {
-    "openvibe-shared": "https://codeload.github.com/OpenVibers/OpenVibe.Shared/tar.gz/refs/tags/v1.28.1"
+    "openvibe-shared": "https://codeload.github.com/OpenVibers/OpenVibe.Shared/tar.gz/refs/tags/v1.29.2"
   },
   "engines": {
     "node": ">=20"

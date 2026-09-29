@@ -1,11 +1,11 @@
 {
   "service": "services",
-  "release": "27b55fe55c9d",
+  "release": "6f42ac8e6dec",
   "released_at": "2026-09-29T00:00:00.000Z",
   "booted_at": null,
   "contracts_version": null,
   "packages": {
-    "openvibe-shared": "1.28.1"
+    "openvibe-shared": "1.29.2"
   },
   "min_client_release": null,
   "mixed_version_window_hours": 24,
