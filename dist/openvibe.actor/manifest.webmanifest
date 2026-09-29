@@ -1,7 +1,7 @@
 {
   "name": "OpenVibe.Actor",
   "short_name": "Actor",
-  "description": "AI agents that act for you, with your permission.",
+  "description": "Your agent in the cloud, connected to everything OpenVibe.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

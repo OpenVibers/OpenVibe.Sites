@@ -1,7 +1,7 @@
 {
   "name": "OpenVibe.Bot",
   "short_name": "Bot",
-  "description": "Robots, cameras and devices you can share safely.",
+  "description": "Get your robot online in minutes.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

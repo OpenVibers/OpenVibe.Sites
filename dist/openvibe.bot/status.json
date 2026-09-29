@@ -8,7 +8,7 @@
   "repoExists": false,
   "repoStage": "charter-only",
   "service": null,
-  "launchWaitsFor": "device pairing and control leases split out of OpenVibe.Live",
+  "launchWaitsFor": "the Bot service, its device agent and the first robots paired",
   "factsAsOf": "2026-09-29",
   "network": "https://openvibe.network",
   "updated": "2026-09-29",

@@ -115,6 +115,93 @@ function highlight(h) {
   </section>`;
 }
 
+// A product with a worked-out vision (site.vision, owner 2026-09-29: Bot and Actor) gets a front door instead of the plain
+// "what it will be" grid: a split hero with a labelled design preview, how it works, the choices, what it does, how it
+// connects to the network, and its questions. It stays honest: the build status (with MARKER) says nothing is live yet.
+function visionViz(v) {
+    const z = v.viz || {};
+    if (z.kind === 'panel') {
+        return `<figure class="viz" aria-label="${esc(z.label)}">
+      <div class="viz-top"><span class="dot"></span><b>${esc(z.name)}</b><span class="muted">online</span><span class="lat"><i class="fa-solid fa-signal" aria-hidden="true"></i> ${esc(z.latency)}</span></div>
+      <div class="viz-video" aria-hidden="true"><div class="scan"></div><span class="onair"><i class="fa-solid fa-circle" aria-hidden="true"></i> ${esc(z.onair)}</span><span class="cam"><i class="fa-solid fa-video" aria-hidden="true"></i> Front camera</span></div>
+      <div class="viz-ctrl" aria-hidden="true">
+        <div class="dpad"><span class="u"><i class="fa-solid fa-caret-up"></i></span><span class="l"><i class="fa-solid fa-caret-left"></i></span><span class="c"></span><span class="r"><i class="fa-solid fa-caret-right"></i></span><span class="d"><i class="fa-solid fa-caret-down"></i></span></div>
+        <div class="viz-side">
+          <div class="keys">${(z.keys || []).map((k) => `<span><i class="fa-solid ${esc(k[0])}"></i> ${esc(k[1])}</span>`).join('')}</div>
+          <div class="meter"><span>Battery</span><i style="--v:${Number(z.battery) || 0}%"></i><b>${Number(z.battery) || 0}%</b></div>
+          <div class="estop">STOP</div>
+        </div>
+      </div>
+      <figcaption>${esc(z.caption)}</figcaption>
+    </figure>`;
+    }
+    if (z.kind === 'agent') {
+        return `<figure class="viz" aria-label="${esc(z.label)}">
+      <div class="viz-top"><span class="av"><i class="fa-solid ${esc(z.icon)}" aria-hidden="true"></i></span><b>${esc(z.name)}</b><span class="muted">${esc(z.role)}</span><span class="lat"><i class="fa-solid fa-cloud" aria-hidden="true"></i> ${esc(z.state)}</span></div>
+      <ol class="feed">${(z.steps || []).map((t) => `<li><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>${esc(t)}</span></li>`).join('')}
+        <li class="ask"><i class="fa-solid fa-hand" aria-hidden="true"></i><span>${esc(z.ask)}</span><span class="pills" aria-hidden="true"><span class="ok">Approve</span><span>Not yet</span></span></li></ol>
+      <figcaption>${esc(z.caption)}</figcaption>
+    </figure>`;
+    }
+    return '';
+}
+function vision(site) {
+    const v = site.vision;
+    const cards = (list) => list.map(([ic, h, d, href]) => href
+        ? `<a class="card" href="${esc(href)}"><div class="ic"><i class="fa-solid ${esc(ic)}" aria-hidden="true"></i></div><b>${esc(h)}</b><span>${esc(d)}</span><span class="go">${esc(href.replace(/^https?:\/\//, '').replace(/\/$/, ''))} →</span></a>`
+        : `<div class="card"><div class="ic"><i class="fa-solid ${esc(ic)}" aria-hidden="true"></i></div><b>${esc(h)}</b><span>${esc(d)}</span></div>`).join('\n      ');
+    return `  <section id="what">
+    <h2>${esc(v.stepsTitle)}</h2>
+    <p class="lead2">${esc(v.stepsLead)}</p>
+    <ol class="steps">
+      ${v.steps.map(([h, d], i) => `<li><span class="n">${i + 1}</span><b>${esc(h)}</b><span>${esc(d)}</span></li>`).join('\n      ')}
+    </ol>
+  </section>
+${v.choices ? `
+  <section>
+    <h2>${esc(v.choices.title)}</h2>
+    <p class="lead2">${esc(v.choices.lead)}</p>
+    <div class="choice">
+      ${v.choices.items.map((c) => `<div class="card big"><div class="ic"><i class="fa-solid ${esc(c.icon)}" aria-hidden="true"></i></div><b>${esc(c.title)}</b><span>${esc(c.text)}</span>${c.chips ? `<div class="chips">${c.chips.map((x) => `<span>${esc(x)}</span>`).join('')}</div>` : ''}</div>`).join('\n      ')}
+    </div>
+  </section>` : ''}
+
+  <section>
+    <h2>${esc(v.featuresTitle)}</h2>
+    <p class="lead2">${esc(v.featuresLead)}</p>
+    <div class="grid three">
+      ${cards(v.features)}
+    </div>
+  </section>
+${v.templates ? `
+  <section>
+    <h2>${esc(v.templates.title)}</h2>
+    <p class="lead2">${esc(v.templates.lead)}</p>
+    <div class="chips big">${v.templates.items.map(([ic, t]) => `<span><i class="fa-solid ${esc(ic)}" aria-hidden="true"></i>${esc(t)}</span>`).join('')}</div>
+  </section>` : ''}
+
+  <section class="meanwhile">
+    <h2>${esc(v.connectTitle)}</h2>
+    <p class="lead2">${esc(v.connectLead)}</p>
+    <div class="grid">
+      ${cards(v.connect)}
+    </div>
+  </section>
+${site.faq && site.faq.length ? `
+  <section id="questions" class="faq">
+    <h2>Questions</h2>
+    ${site.faq.map(([q, ans]) => `<details><summary>${esc(q)}</summary><p>${esc(ans)}</p></details>`).join('\n    ')}
+  </section>` : ''}
+
+  <section class="build">
+    <div class="card">
+      <b><i class="fa-solid fa-person-digging" aria-hidden="true"></i> Build status</b>
+      <span>${esc(v.building)} Its own service is not running yet: ${MARKER}.${site.launch ? ` It opens with ${esc(site.launch)}.` : ''} · as of ${esc(facts.generated)} · <a href="/status.json">status.json</a></span>
+    </div>
+  </section>
+`;
+}
+
 function page(site) {
     const core = site.core || NET.core;
     const url = `https://${site.domain}/`;
@@ -227,7 +314,50 @@ a.card:hover{transform:translateY(-3px);border-color:rgba(var(--site-rgb),.6);bo
 .strip h3{font-size:19px;font-weight:700;margin:12px 0 8px}
 .strip p{font-size:14px;color:var(--text-secondary);max-width:600px;margin:0 auto 18px;line-height:1.6}
 .strip .ov-mark{width:44px;height:44px}
-@media (max-width:600px){.hero{padding-top:56px}.ctas .btn{width:100%;justify-content:center}}
+.hero.split{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:40px;align-items:center;text-align:left;padding-top:64px}
+.hero.split .ctas{justify-content:flex-start}.hero.split p.lead{margin:0}
+.viz{background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:14px;box-shadow:0 30px 80px rgba(0,0,0,.45),0 0 0 1px rgba(var(--site-rgb),.08);animation:rise .7s .25s cubic-bezier(.2,.8,.2,1) both;text-align:left}
+.viz figcaption{margin-top:10px;font-size:11.5px;color:var(--text-muted);text-align:center}
+.viz-top{display:flex;align-items:center;gap:8px;font-size:13px;padding:2px 4px 12px}
+.viz-top b{font-weight:700}.viz-top .muted{color:var(--text-muted)}
+.viz-top .lat{margin-left:auto;font-size:12px;color:var(--site);background:rgba(var(--site-rgb),.1);border:1px solid rgba(var(--site-rgb),.3);padding:3px 9px;border-radius:999px}
+.viz-top .dot{width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,.18)}
+.viz-top .av{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;background:rgba(var(--site-rgb),.15);color:var(--site);font-size:13px}
+.viz-video{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:radial-gradient(120% 90% at 30% 20%,rgba(var(--site-rgb),.28),transparent 60%),linear-gradient(160deg,#1a2338,#0b1020 70%);border:1px solid var(--border)}
+.viz-video::after{content:'';position:absolute;left:10%;right:10%;bottom:0;height:42%;background:linear-gradient(transparent,rgba(0,0,0,.35)),repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 1px,transparent 1px 38px);transform:perspective(220px) rotateX(58deg);transform-origin:bottom}
+.viz-video .scan{position:absolute;inset:0;background:linear-gradient(transparent 0,rgba(255,255,255,.04) 50%,transparent 100%);background-size:100% 6px;opacity:.5}
+.viz-video .onair{position:absolute;top:10px;left:10px;font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px;background:rgba(239,68,68,.9);color:#fff}.viz-video .onair i{font-size:7px;vertical-align:2px;margin-right:3px}
+.viz-video .cam{position:absolute;bottom:10px;right:10px;font-size:11px;color:#dbe4f5;background:rgba(0,0,0,.45);padding:3px 8px;border-radius:6px}
+.viz-ctrl{display:flex;gap:14px;align-items:center;margin-top:12px}
+.dpad{display:grid;grid-template-columns:repeat(3,34px);grid-template-rows:repeat(3,34px);gap:4px;flex:none}
+.dpad span{display:grid;place-items:center;border-radius:9px;background:var(--bg-hover);color:var(--text-primary);font-size:15px;border:1px solid var(--border)}
+.dpad .u{grid-area:1/2}.dpad .l{grid-area:2/1}.dpad .c{grid-area:2/2;background:rgba(var(--site-rgb),.15);border-color:rgba(var(--site-rgb),.35)}.dpad .r{grid-area:2/3}.dpad .d{grid-area:3/2}
+.dpad .u{background:rgba(var(--site-rgb),.22);border-color:rgba(var(--site-rgb),.5)}
+.viz-side{flex:1;min-width:0;display:grid;gap:8px}
+.viz-side .keys{display:flex;flex-wrap:wrap;gap:6px}
+.viz-side .keys span{font-size:11.5px;padding:5px 9px;border-radius:8px;background:var(--bg-secondary);border:1px solid var(--border);color:var(--text-secondary)}
+.viz-side .meter{display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--text-muted)}
+.viz-side .meter i{flex:1;height:6px;border-radius:9px;background:linear-gradient(90deg,#22c55e var(--v),var(--bg-hover) var(--v))}
+.viz-side .meter b{color:var(--text-secondary);font-weight:600}
+.viz-side .estop{justify-self:end;font-size:12px;font-weight:800;letter-spacing:.08em;color:#fff;background:#dc2626;border-radius:10px;padding:7px 16px;box-shadow:0 0 0 3px rgba(220,38,38,.25)}
+.feed{list-style:none;display:grid;gap:8px;padding:2px}
+.feed li{display:flex;align-items:flex-start;gap:10px;font-size:13.5px;line-height:1.45;padding:10px 12px;border-radius:12px;background:var(--bg-secondary);border:1px solid var(--border);color:var(--text-secondary)}
+.feed li i{color:#22c55e;margin-top:3px}
+.feed li.ask{flex-wrap:wrap;border-color:rgba(var(--site-rgb),.45);background:rgba(var(--site-rgb),.08);color:var(--text-primary)}.feed li.ask i{color:var(--site)}.feed li.ask>span:first-of-type{flex:1;min-width:160px}
+.feed .pills{display:flex;gap:6px;margin-left:auto}.feed .pills span{font-size:12px;font-weight:600;padding:4px 11px;border-radius:999px;border:1px solid var(--border);color:var(--text-secondary)}.feed .pills .ok{background:var(--site);border-color:var(--site);color:#0b0d10}
+.steps{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;counter-reset:s}
+.steps li{position:relative;background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:20px 20px 20px;display:flex;flex-direction:column;gap:8px}
+.steps .n{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:14px;color:#0b0d10;background:var(--site)}
+.steps b{font-size:15px}.steps span:last-child{font-size:13px;color:var(--text-secondary);line-height:1.55}
+.grid.three{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.choice{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.card.big{padding:24px}.card.big b{font-size:17px}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:6px}
+.chips span{font-size:12.5px;padding:6px 11px;border-radius:999px;border:1px solid var(--border);background:var(--bg-secondary);color:var(--text-secondary)}
+.chips.big span{font-size:13.5px;padding:9px 14px;color:var(--text-primary)}.chips.big span i{color:var(--site);margin-right:8px}
+.build .card{border-style:dashed;background:rgba(0,0,0,.15)}.build .card b i{color:var(--site);margin-right:6px}.build .card span a{color:var(--text-secondary)}.build .card code{font-size:12px}
+@media (max-width:860px){.hero.split{grid-template-columns:1fr;text-align:center;gap:28px}.hero.split .ctas{justify-content:center}.hero.split p.lead{margin:0 auto}}
+@media (max-width:600px){.hero{padding-top:56px}.ctas .btn{width:100%;justify-content:center}.viz-ctrl{flex-direction:column;align-items:stretch}.dpad{align-self:center}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 ${site.statusApi ? STATUS_CSS : ''}</style>
 </head>
@@ -235,18 +365,19 @@ ${site.statusApi ? STATUS_CSS : ''}</style>
 <div class="orbs"><i></i><i></i><i></i></div>
 <div id="navbar-mount"></div>
 <main class="wrap">
-  <header class="hero">
+  <header class="hero${site.vision ? ' split' : ''}">${site.vision ? '<div class="hero-main">' : ''}
     <div class="mark"><i class="fa-solid ${esc(site.icon)}" aria-hidden="true"></i></div>
-    <div class="badge"><span class="ov-mark" data-size="16" data-variant="${esc(site.tld)}"></span> Part of the OpenVibe network · <b>${esc(STANDING[standing(site)].label)}</b></div>
+    <div class="badge"><span class="ov-mark" data-size="16" data-variant="${esc(site.tld)}"></span> Part of the OpenVibe network · <b>${esc(site.vision ? site.vision.badge : STANDING[standing(site)].label)}</b></div>
     <h1>${site.hostParts ? `<span class="d">${esc(site.hostParts[0])}</span><span class="tld">.${esc(site.hostParts[1])}</span>` : `${esc(core)}<span class="d">.</span><span class="tld">${esc(site.name.split('.').pop())}</span>`}</h1>
     <div class="tag">${esc(site.tagline)}</div>
     <p class="lead">${esc(site.description)}</p>
     <div class="ctas">
       ${primary ? `<a class="btn btn-primary" href="${esc(primary[1])}"><i class="fa-solid fa-arrow-right"></i> ${esc(primary[0])}</a>` : `<a class="btn btn-primary" href="${NET.networkUrl}/login?return=${encodeURIComponent(url)}"><i class="fa-solid fa-right-to-bracket"></i> Sign in with OpenVibe</a>`}
-      <a class="btn" href="${NET.networkUrl}/#network"><i class="fa-solid fa-circle-nodes"></i> The whole network</a>
+      ${site.vision && site.vision.cta ? `<a class="btn" href="${esc(site.vision.cta[1])}"><i class="fa-solid ${esc(site.vision.cta[2])}"></i> ${esc(site.vision.cta[0])}</a>` : `<a class="btn" href="${NET.networkUrl}/#network"><i class="fa-solid fa-circle-nodes"></i> The whole network</a>`}
       <a class="btn" href="${esc(NET.discord)}" rel="noopener"><i class="fa-brands fa-discord"></i> Follow the build</a>
     </div>
-    <p class="status"><i class="fa-solid fa-clock" aria-hidden="true"></i> Status: <b>${esc(STANDING[standing(site)].label)}</b> · ${statusText(site)} · as of ${esc(facts.generated)} · <a href="/status.json">status.json</a></p>
+    ${site.vision ? `</div>
+    ${visionViz(site.vision)}` : `<p class="status"><i class="fa-solid fa-clock" aria-hidden="true"></i> Status: <b>${esc(STANDING[standing(site)].label)}</b> · ${statusText(site)} · as of ${esc(facts.generated)} · <a href="/status.json">status.json</a></p>`}
   </header>
 
 ${site.highlight ? highlight(site.highlight) : ''}
@@ -257,7 +388,7 @@ ${notice ? `  <section id="what" class="meanwhile">
       ${site.links.map(([h, href, d]) => `<a class="card" href="${esc(href)}"><div class="ic"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></div><b>${esc(h)}</b><span>${esc(d)}</span><span class="go">${esc(href.replace(/^https?:\/\//, '').replace(/\/$/, ''))} →</span></a>`).join('\n      ')}
     </div>
   </section>
-${site.statusApi ? liveStatus(site) : ''}` : `  <section id="what">
+${site.statusApi ? liveStatus(site) : ''}` : site.vision ? vision(site) : `  <section id="what">
     <h2>What ${esc(site.name)} will be</h2>
     <p class="lead2">Same account, same themes, same navbar as every other OpenVibe site — built in the open, run by its community.</p>
     <div class="grid">
@@ -303,7 +434,7 @@ ${require('openvibe-shared/frame').footer({ service: site.tld, variant: 'full' }
 <script src="${SHARED('footer.js')}"></script>
 <script>
 (function () {
-  if (window.OpenVibeNavbar) { try { OpenVibeNavbar.init({ service: '${esc(site.tld)}', apiBase: '${NET.networkUrl}', links: [{ label: '${notice ? 'Where to go' : 'What it will be'}', href: '#what' }, { label: 'The network', href: '${NET.networkUrl}/#network', external: false }], history: { type: 'page', title: '${esc(site.name)}' } }); } catch (e) {} }
+  if (window.OpenVibeNavbar) { try { OpenVibeNavbar.init({ service: '${esc(site.tld)}', apiBase: '${NET.networkUrl}', links: [{ label: '${notice ? 'Where to go' : site.vision ? 'How it works' : 'What it will be'}', href: '#what' }, { label: 'The network', href: '${NET.networkUrl}/#network', external: false }], history: { type: 'page', title: '${esc(site.name)}' } }); } catch (e) {} }
   if (window.OpenVibeFooter) { try { OpenVibeFooter.init({ service: '${esc(site.tld)}', variant: 'full', links: [{ heading: '${esc(site.name)}', items: [{ name: 'Sign in', url: '${NET.networkUrl}/login?return=${encodeURIComponent(url)}' }, { name: 'The network', url: '${NET.networkUrl}/#network' }, { name: 'Discord', url: '${esc(NET.discord)}' }] }] }); } catch (e) {} }
 })();
 </script>

@@ -1240,8 +1240,8 @@
       "icon": "fa-robot",
       "accent": "#f472b6",
       "noRepo": true,
-      "tagline": "Robots, cameras and devices you can share safely.",
-      "description": "OpenVibe.Bot will let you register robots, Raspberry Pis, cameras, motors, sensors and other devices, pair them securely, and control them yourself or hand control to friends, stream viewers, apps or your AI agents with timed turns, queues and permissions. Safety runs on the device too: heartbeats, command time limits, speed and range limits and an emergency stop that works without the cloud. OpenVibe.Live already runs stream-controlled robots; Bot makes the device its own thing.",
+      "tagline": "Get your robot online in minutes.",
+      "description": "OpenVibe.Bot is an open control panel for robots. Add a robot, pair it with one command or a QR code, and drive it from any browser with live video, real controls and a stop button that always works. Buy a ready-made bot or bring your own Raspberry Pi, ESP32, ROS 2 robot or phone. Share control, automate it, hand it to your AI agent, and stream it to OpenVibe.Live or openre.stream when you want to.",
       "pillars": [
         [
           "Pair devices",
@@ -1272,8 +1272,174 @@
           "Device-side agents and hardware scripts."
         ]
       ],
-      "keywords": "remote control robot, stream controlled robot, raspberry pi robot control, telepresence robot, iot device control api",
-      "launch": "device pairing and control leases split out of OpenVibe.Live"
+      "keywords": "robot control panel, control a robot from the browser, remote control robot online, raspberry pi robot web control, esp32 robot control, ros 2 web control, telepresence robot, stream a robot live, open source robot controller",
+      "launch": "the Bot service, its device agent and the first robots paired",
+      "vision": {
+        "badge": "being built",
+        "cta": [
+          "Robots on Live today",
+          "https://openvibe.live",
+          "fa-tower-broadcast"
+        ],
+        "viz": {
+          "kind": "panel",
+          "name": "Rover-1",
+          "latency": "84 ms",
+          "onair": "Streaming to openvibe.live",
+          "battery": 82,
+          "keys": [
+            [
+              "fa-lightbulb",
+              "Lights"
+            ],
+            [
+              "fa-bullhorn",
+              "Horn"
+            ],
+            [
+              "fa-comment",
+              "Speak"
+            ],
+            [
+              "fa-camera-rotate",
+              "Camera"
+            ]
+          ],
+          "caption": "Design preview of the robot panel",
+          "label": "Design preview: a robot control panel with live video, a drive pad, buttons, battery level and a stop button"
+        },
+        "stepsTitle": "Online in three steps",
+        "stepsLead": "No port forwarding, no stream keys, no config files.",
+        "steps": [
+          [
+            "Add a robot",
+            "Name it and pick what it is: a rover, an arm, a camera, a phone on wheels or your own design."
+          ],
+          [
+            "Pair it",
+            "Paste one command on the robot, flash a ready-made card, or scan a QR code. It gets its own key, which you can revoke any time."
+          ],
+          [
+            "Drive it",
+            "Live video and controls in any browser, phone included, with a stop button that always works."
+          ]
+        ],
+        "choices": {
+          "title": "Buy one or bring your own",
+          "lead": "Start with hardware that is known to work, or use what you already have.",
+          "items": [
+            {
+              "icon": "fa-box-open",
+              "title": "Get a robot",
+              "text": "Curated kits with parts lists, tested settings and build guides, and ready-made bots that arrive paired to your account.",
+              "chips": [
+                "Rover kits",
+                "Telepresence bots",
+                "Pan-tilt cameras",
+                "Robot arms"
+              ]
+            },
+            {
+              "icon": "fa-screwdriver-wrench",
+              "title": "Bring your own",
+              "text": "Anything with motors, a camera or sensors. Install the OpenVibe device agent or add the library, and your robot shows up in the panel.",
+              "chips": [
+                "Raspberry Pi and Linux boards",
+                "ESP32",
+                "ROS 2",
+                "Android phones",
+                "ONVIF and RTSP cameras",
+                "Serial motor boards"
+              ]
+            }
+          ]
+        },
+        "featuresTitle": "More than a stream",
+        "featuresLead": "A control panel for anything you build, whether or not anyone is watching.",
+        "features": [
+          [
+            "fa-gamepad",
+            "Real controls",
+            "Drive pad, keyboard, touch joystick and gamepad; buttons, sliders, servos and camera pan-tilt, laid out from your robot's profile."
+          ],
+          [
+            "fa-bolt",
+            "Low latency",
+            "Video and commands over WebRTC, so driving feels direct. Works behind ordinary home and mobile networks."
+          ],
+          [
+            "fa-user-group",
+            "Share control",
+            "Invite friends as operators, or open a public queue with timed turns, cooldowns and per-role limits."
+          ],
+          [
+            "fa-shield-halved",
+            "Safe by default",
+            "The robot stops itself when commands stop. An emergency stop, speed and range limits and time windows, all logged."
+          ],
+          [
+            "fa-diagram-project",
+            "Automate it",
+            "Schedules, triggers and webhooks, plus an API and SDKs for your own apps."
+          ],
+          [
+            "fa-user-astronaut",
+            "Hand it to your agent",
+            "Let your OpenVibe.Actor agent patrol, check on or perform with your robot, with your approval."
+          ]
+        ],
+        "connectTitle": "Stream it, record it, connect it",
+        "connectLead": "Optional, one toggle each. Your robot does not need an audience to be useful.",
+        "connect": [
+          [
+            "fa-tower-broadcast",
+            "Stream to OpenVibe.Live",
+            "Put the robot's camera on your channel; viewers can drive it from chat or the panel.",
+            "https://openvibe.live"
+          ],
+          [
+            "fa-satellite-dish",
+            "Stream through openre.stream",
+            "Low-latency ingest and restreaming to other platforms from the same camera.",
+            "https://openre.stream"
+          ],
+          [
+            "fa-photo-film",
+            "Record to OpenVibe.Media",
+            "Keep every run as a video and cut clips from it.",
+            "https://openvibe.media"
+          ],
+          [
+            "fa-code",
+            "Build on it",
+            "The API, SDKs and examples.",
+            "https://openvibe.codes"
+          ]
+        ],
+        "building": "OpenVibe.Bot is being built now, starting with our own robots; stream-controlled robots already run on OpenVibe.Live."
+      },
+      "faq": [
+        [
+          "Do I need to open ports on my router?",
+          "No. The robot connects out to OpenVibe, and video and controls travel over WebRTC, so it works behind ordinary home and mobile networks."
+        ],
+        [
+          "Is it only for streaming?",
+          "No. Streaming is optional. Bot is a control panel for your robot first: drive it, check on it, share it and automate it."
+        ],
+        [
+          "What hardware works?",
+          "A Raspberry Pi or another Linux board, an ESP32, a ROS 2 robot, an Android phone, or an ONVIF or RTSP camera. The curated kits list exactly what to buy."
+        ],
+        [
+          "How does it keep the robot safe?",
+          "The device stops its motors by itself when commands or the connection stop. There is an emergency stop in the panel, limits on speed, range and time, and every command is logged."
+        ],
+        [
+          "What will it cost?",
+          "Controlling your own robot will not cost anything. Limits and any paid extras will be published before launch."
+        ]
+      ]
     },
     {
       "domain": "openvibe.watch",
@@ -1323,8 +1489,8 @@
       "name": "OpenVibe.Actor",
       "icon": "fa-user-astronaut",
       "accent": "#a78bfa",
-      "tagline": "AI agents that act for you, with your permission.",
-      "description": "OpenVibe.Actor will give you persistent AI agents that work across OpenVibe and, when you allow it, other sites and apps: they use OpenVibe's own APIs first and a sandboxed browser when they must. You decide what each agent may do, for once, a session, a while or always, and anything with real consequences (buying, sending, publishing, applying, moving a robot) waits for your approval, wherever you are on the network.",
+      "tagline": "Your agent in the cloud, connected to everything OpenVibe.",
+      "description": "OpenVibe.Actor gives you an AI agent that lives in OpenVibe's cloud and works for you around the clock. It remembers, runs on schedules and triggers, uses every OpenVibe product as a tool, browses and codes in a sandbox, and asks before it does anything that matters. Talk to it from any OpenVibe site, in chat, or from your own apps.",
       "pillars": [
         [
           "Your agents",
@@ -1355,9 +1521,162 @@
           "The API and SDK agents are built on."
         ]
       ],
-      "keywords": "ai agent platform, open source ai agent, personal ai assistant, browser automation agent, ai agent permissions",
-      "launch": "agent principals and delegated grants on OpenVibe.Network and the agent service",
-      "noRepo": true
+      "keywords": "cloud ai agent, hosted ai agent, personal ai agent, ai agent with memory, autonomous ai assistant, ai agent platform, open source ai agent, mcp server, ai agent approvals",
+      "launch": "agent accounts with delegated permissions on OpenVibe.Network and the Actor service",
+      "noRepo": true,
+      "vision": {
+        "badge": "being built",
+        "cta": [
+          "See the network",
+          "https://openvibe.network/#network",
+          "fa-circle-nodes"
+        ],
+        "viz": {
+          "kind": "agent",
+          "name": "Nova",
+          "role": "stream co-host",
+          "state": "always on",
+          "icon": "fa-user-astronaut",
+          "steps": [
+            "Watched tonight's stream and marked 3 highlights",
+            "Clipped the best one on OpenVibe.Media",
+            "Drafted a post for your blog with the clip"
+          ],
+          "ask": "Publish the post on openvibe.blog?",
+          "caption": "Design preview of an agent at work",
+          "label": "Design preview: an agent's activity feed ending in a request for approval"
+        },
+        "stepsTitle": "Start in a minute",
+        "stepsLead": "Describe what you want or start from a template. Change anything later.",
+        "steps": [
+          [
+            "Create an agent",
+            "Pick a template or describe the job in your own words. Choose its model and its personality."
+          ],
+          [
+            "Decide what it may do",
+            "Grant it tools one by one. Anything with consequences, like publishing, spending or moving a robot, waits for your approval."
+          ],
+          [
+            "Let it work",
+            "It runs in the cloud on schedules and triggers, and you can reach it from any OpenVibe site."
+          ]
+        ],
+        "featuresTitle": "What your agent can do",
+        "featuresLead": "An agent is only as useful as what it can reach. Yours can reach the whole network.",
+        "features": [
+          [
+            "fa-cloud",
+            "Always on",
+            "Runs in OpenVibe's cloud around the clock. Close your laptop; it keeps going."
+          ],
+          [
+            "fa-circle-nodes",
+            "Uses the whole network",
+            "Live, Chat, Blog, Wiki, Community, Tools, Media, Host, Bot and more, each through its own API."
+          ],
+          [
+            "fa-window-maximize",
+            "Browses and codes",
+            "A sandboxed browser and code runner for work outside the network."
+          ],
+          [
+            "fa-brain",
+            "Remembers",
+            "Long-term memory you can read, edit and wipe."
+          ],
+          [
+            "fa-hand",
+            "Asks first",
+            "An approval inbox, a full activity log, spending limits and a kill switch."
+          ],
+          [
+            "fa-shuffle",
+            "Any model",
+            "Routed through OpenVibe.AI: hosted, open or local models, or your own key."
+          ]
+        ],
+        "templates": {
+          "title": "Start from a template",
+          "lead": "Each one is a starting point you can change.",
+          "items": [
+            [
+              "fa-tower-broadcast",
+              "Stream co-host"
+            ],
+            [
+              "fa-shield",
+              "Chat moderator"
+            ],
+            [
+              "fa-magnifying-glass",
+              "Research assistant"
+            ],
+            [
+              "fa-globe",
+              "Site builder"
+            ],
+            [
+              "fa-robot",
+              "Robot pilot"
+            ],
+            [
+              "fa-calendar-check",
+              "Personal assistant"
+            ]
+          ]
+        },
+        "connectTitle": "Reachable everywhere",
+        "connectLead": "Your agent is part of the network, not a separate app.",
+        "connect": [
+          [
+            "fa-bars",
+            "On every OpenVibe site",
+            "An agent button in the navbar, with the page you are on as context."
+          ],
+          [
+            "fa-comments",
+            "In chat",
+            "Direct messages on OpenVibe.Chat and @mentions in Live chat and Community threads.",
+            "https://openvibe.chat"
+          ],
+          [
+            "fa-robot",
+            "With your robots",
+            "Give it a robot on OpenVibe.Bot to patrol, check on or perform with, with your approval.",
+            "https://openvibe.bot"
+          ],
+          [
+            "fa-plug",
+            "From your own apps",
+            "An API, webhooks and an MCP server, so other assistants can use OpenVibe tools and talk to your agent.",
+            "https://openvibe.codes"
+          ]
+        ],
+        "building": "OpenVibe.Actor is being built now, on the network's accounts, AI router and event system that already run."
+      },
+      "faq": [
+        [
+          "How is this different from a chat assistant?",
+          "It keeps working when you leave: it has memory, schedules and triggers, and it can act across OpenVibe with the permissions you give it."
+        ],
+        [
+          "Can it do things without asking?",
+          "Only what you allow. You grant each tool, and anything with consequences waits for your approval. Every action is logged, and you can stop an agent at any time."
+        ],
+        [
+          "Which AI models does it use?",
+          "Any model OpenVibe.AI routes to, including open and local models, or your own API key."
+        ],
+        [
+          "Can other apps use my agent?",
+          "Yes: an API, webhooks and an MCP server connect it to other tools and assistants."
+        ],
+        [
+          "What will it cost?",
+          "You will be able to start without paying, within limits published before launch; heavier use and bigger models will be paid."
+        ]
+      ]
     },
     {
       "domain": "openvibe.events",

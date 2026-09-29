@@ -1,6 +1,6 @@
 {
   "service": "status",
-  "release": "da30bb979607",
+  "release": "e2fecfa09c74",
   "released_at": "2026-09-29T00:00:00.000Z",
   "booted_at": null,
   "contracts_version": null,

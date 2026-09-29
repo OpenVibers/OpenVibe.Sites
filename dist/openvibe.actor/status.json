@@ -8,7 +8,7 @@
   "repoExists": false,
   "repoStage": "charter-only",
   "service": null,
-  "launchWaitsFor": "agent principals and delegated grants on OpenVibe.Network and the agent service",
+  "launchWaitsFor": "agent accounts with delegated permissions on OpenVibe.Network and the Actor service",
   "factsAsOf": "2026-09-29",
   "network": "https://openvibe.network",
   "updated": "2026-09-29",
