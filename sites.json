@@ -1499,8 +1499,8 @@
       "name": "OpenVibe.Actor",
       "icon": "fa-user-astronaut",
       "accent": "#a78bfa",
-      "tagline": "One API for every AI agent. The right one for each task.",
-      "description": "OpenVibe.Actor sends each task to the agent system best suited to it, from hosted agent platforms to open-source runtimes, coding agents and OpenVibe's own, and balances them live on price, speed and success. Pick a mode (cheapest, balanced, best, fastest or private), set a budget, and get a checked result with its cost and the reason for every choice. On top of it, your own always-on agents work across the whole OpenVibe network.",
+      "tagline": "Every AI agent, every device, one command console.",
+      "description": "OpenVibe.Actor sends each task to the best agent for it, across hosted agent platforms, open-source runtimes, coding agents and OpenVibe's own, balanced live on price, speed and success. Install the OpenVibe Node on your computers, servers, Raspberry Pis and robots, and your agents can work on them for real, at the control level you choose, with a kill switch you hold. Run everything from one console, or host the whole thing yourself.",
       "pillars": [
         [
           "Your agents",
@@ -1531,7 +1531,7 @@
           "The API and SDK agents are built on."
         ]
       ],
-      "keywords": "ai agent router, openrouter for agents, agent api, route tasks to ai agents, cheapest ai agent, ai agent comparison, hosted ai agent, cloud ai agent, personal ai agent, mcp server",
+      "keywords": "ai agent router, openrouter for agents, ai agent that controls your computer, remote control computer with ai, self-hosted ai agent, computer use agent, ai command console, agent api, cloud ai agent, mcp server",
       "launch": "the task router with its first agent adapters, then personal agents on OpenVibe.Network accounts",
       "noRepo": true,
       "vision": {
@@ -1677,6 +1677,82 @@
             ]
           },
           {
+            "id": "devices",
+            "title": "Your devices, under control",
+            "lead": "Install the OpenVibe Node on a computer, a server, a Raspberry Pi or a phone. No open ports: it connects out. You decide how much an agent may do.",
+            "cards": [
+              [
+                "fa-terminal",
+                "Terminal and files",
+                "A live terminal, a file browser, processes and services, from anywhere, for you and your agents."
+              ],
+              [
+                "fa-display",
+                "Screen, keyboard and mouse",
+                "Agents can use any app on the machine the way you would, and you watch the screen while they work."
+              ],
+              [
+                "fa-code-branch",
+                "Your own coding agents",
+                "The coding agents already installed on the machine become agents Actor can hand tasks to."
+              ],
+              [
+                "fa-sliders",
+                "Four control levels",
+                "Observe, Ask, Trusted or Full control, set on the device itself. Full control is time-boxed and recorded."
+              ],
+              [
+                "fa-power-off",
+                "A kill switch you hold",
+                "A button, a hotkey or one command on the device ends any agent session at once. Work can stay inside a container."
+              ],
+              [
+                "fa-robot",
+                "Robots too",
+                "The same Node drives robots on OpenVibe.Bot, so one install covers your computers and your robots.",
+                "https://openvibe.bot"
+              ]
+            ]
+          },
+          {
+            "id": "console",
+            "title": "One console for everything",
+            "lead": "Agents, tasks, approvals, devices, robots, sites, streams and costs in one place, on the web and on your phone.",
+            "cards": [
+              [
+                "fa-keyboard",
+                "Command bar",
+                "Type what you want in plain words or as a slash command; it goes to the right agent, device or product."
+              ],
+              [
+                "fa-list-check",
+                "Tasks and approvals",
+                "Live progress for every task, and one inbox for everything waiting on you."
+              ],
+              [
+                "fa-server",
+                "Devices",
+                "Every Node with its status, a terminal, its files and its screen."
+              ],
+              [
+                "fa-robot",
+                "Robots",
+                "Your robots' control panels from OpenVibe.Bot, next to everything else.",
+                "https://openvibe.bot"
+              ],
+              [
+                "fa-tower-broadcast",
+                "Sites and streams",
+                "Deploys on OpenVibe.Host and your streams on OpenVibe.Live and openre.stream."
+              ],
+              [
+                "fa-wave-square",
+                "Events and costs",
+                "What happened across the network, live, and what every task cost."
+              ]
+            ]
+          },
+          {
             "title": "Balanced live, explained always",
             "lead": "Choices come from what actually happens, not from marketing pages.",
             "cards": [
@@ -1793,6 +1869,14 @@
         [
           "Can it act without asking?",
           "Only as far as you allow. Anything with consequences, like publishing, spending or moving a robot, waits for your approval, and every action is logged."
+        ],
+        [
+          "Can an agent take full control of my computer?",
+          "Only if you set that Node to Full control on the device itself. It is time-boxed and recorded, you can see when an agent is in control, and a button, a hotkey or one command ends it. Most people use Trusted: routine actions run and risky ones ask first."
+        ],
+        [
+          "Can I run Actor myself?",
+          "Yes. The router, the runtime, the console and the Node are open source and run on your own server with local models, and can link to openvibe.actor when you want hosted agents or the rest of the network."
         ],
         [
           "What will it cost?",

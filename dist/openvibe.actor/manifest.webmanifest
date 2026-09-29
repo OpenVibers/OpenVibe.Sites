@@ -1,7 +1,7 @@
 {
   "name": "OpenVibe.Actor",
   "short_name": "Actor",
-  "description": "One API for every AI agent. The right one for each task.",
+  "description": "Every AI agent, every device, one command console.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
