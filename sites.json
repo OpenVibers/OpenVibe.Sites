@@ -1241,7 +1241,7 @@
       "accent": "#f472b6",
       "noRepo": true,
       "tagline": "Get your robot online in minutes.",
-      "description": "OpenVibe.Bot is an open control panel for robots. Add a robot, pair it with one command or a QR code, and drive it from any browser with live video, real controls and a stop button that always works. Buy a ready-made bot or bring your own Raspberry Pi, ESP32, ROS 2 robot or phone. Share control, automate it, hand it to your AI agent, and stream it to OpenVibe.Live or openre.stream when you want to.",
+      "description": "OpenVibe.Bot is an open control panel for robots. Add a robot, pair it with one command or a QR code, and drive it from any browser with live video, real controls and a stop button that always works. Buy a ready-made bot or bring your own: a Raspberry Pi robot, an ESP32, a ROS 2 robot, a phone, or a Cozmo. Share control, automate it, hand it to your AI agent, and stream it to OpenVibe.Live or openre.stream when you want to.",
       "pillars": [
         [
           "Pair devices",
@@ -1272,7 +1272,7 @@
           "Device-side agents and hardware scripts."
         ]
       ],
-      "keywords": "robot control panel, control a robot from the browser, remote control robot online, raspberry pi robot web control, esp32 robot control, ros 2 web control, telepresence robot, stream a robot live, open source robot controller",
+      "keywords": "robot control panel, control a robot from the browser, remote control robot online, raspberry pi robot web control, esp32 robot control, ros 2 web control, telepresence robot, stream a robot live, open source robot controller, cozmo remote control, cozmo web control, cozmo sdk alternative",
       "launch": "the Bot service, its device agent and the first robots paired",
       "vision": {
         "badge": "being built",
@@ -1343,9 +1343,10 @@
             {
               "icon": "fa-screwdriver-wrench",
               "title": "Bring your own",
-              "text": "Anything with motors, a camera or sensors. Install the OpenVibe device agent or add the library, and your robot shows up in the panel.",
+              "text": "Anything with motors, a camera or sensors. Install the OpenVibe device agent on the robot, or, for robots with their own firmware like Cozmo, on a computer next to it, and your robot shows up in the panel.",
               "chips": [
                 "Raspberry Pi and Linux boards",
+                "Cozmo, through a bridge",
                 "ESP32",
                 "ROS 2",
                 "Android phones",
@@ -1431,6 +1432,10 @@
         [
           "Which robot comes first?",
           "The Adeept 4WD Smart Car Kit for Raspberry Pi: four motors, a pan-tilt camera, distance and line sensors, lights and a buzzer. OpenVibe's device agent drives it directly, so its own open control port never has to be exposed."
+        ],
+        [
+          "Does it work with Cozmo?",
+          "Yes, built in. Cozmo makes its own Wi-Fi and runs closed firmware, so the OpenVibe agent runs on a computer next to it (a Raspberry Pi or a laptop) that joins Cozmo's Wi-Fi and stays online through another connection. You get driving, the head and lift, its camera, its face display, its voice, lights and cubes, and it stops at edges on its own. No phone app needed."
         ],
         [
           "What hardware works?",
