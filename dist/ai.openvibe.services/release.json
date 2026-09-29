@@ -1,11 +1,11 @@
 {
   "service": "ai",
-  "release": "1322a55d96ef",
-  "released_at": "2026-09-28T00:00:00.000Z",
+  "release": "b04c87bc23ef",
+  "released_at": "2026-09-29T00:00:00.000Z",
   "booted_at": null,
   "contracts_version": null,
   "packages": {
-    "openvibe-shared": "1.23.0"
+    "openvibe-shared": "1.28.1"
   },
   "min_client_release": null,
   "mixed_version_window_hours": 24,
