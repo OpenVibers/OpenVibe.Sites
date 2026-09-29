@@ -143,6 +143,16 @@ function visionViz(v) {
       <figcaption>${esc(z.caption)}</figcaption>
     </figure>`;
     }
+    if (z.kind === 'router') {
+        return `<figure class="viz" aria-label="${esc(z.label)}">
+      <div class="viz-top"><span class="av"><i class="fa-solid fa-route" aria-hidden="true"></i></span><b>New task</b><span class="lat"><i class="fa-solid fa-wallet" aria-hidden="true"></i> ${esc(z.budget)}</span></div>
+      <p class="task">${esc(z.task)}</p>
+      <div class="modes" aria-hidden="true">${(z.modes || []).map((m) => `<span${m === z.mode ? ' class="on"' : ''}>${esc(m)}</span>`).join('')}</div>
+      <ol class="cands" aria-hidden="true">${(z.candidates || []).map((c) => `<li${c.pick ? ' class="pick"' : ''}><i class="fa-solid ${esc(c.icon)}"></i><b>${esc(c.name)}</b><span>${esc(c.cost)}</span><span>${esc(c.time)}</span><span>${esc(c.success)}</span>${c.pick ? '<em>picked</em>' : ''}</li>`).join('')}</ol>
+      <p class="why"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> ${esc(z.why)}</p>
+      <figcaption>${esc(z.caption)}</figcaption>
+    </figure>`;
+    }
     return '';
 }
 function vision(site) {
@@ -173,6 +183,14 @@ ${v.choices ? `
       ${cards(v.features)}
     </div>
   </section>
+${(v.more || []).map((m) => `
+  <section${m.id ? ` id="${esc(m.id)}"` : ''}>
+    <h2>${esc(m.title)}</h2>
+    <p class="lead2">${esc(m.lead)}</p>
+    <div class="grid three">
+      ${cards(m.cards)}
+    </div>
+  </section>`).join('')}
 ${v.templates ? `
   <section>
     <h2>${esc(v.templates.title)}</h2>
@@ -350,6 +368,17 @@ a.card:hover{transform:translateY(-3px);border-color:rgba(var(--site-rgb),.6);bo
 .steps .n{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:14px;color:#0b0d10;background:var(--site)}
 .steps b{font-size:15px}.steps span:last-child{font-size:13px;color:var(--text-secondary);line-height:1.55}
 .grid.three{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.viz .task{font-size:14px;line-height:1.5;padding:10px 12px;border-radius:12px;background:var(--bg-secondary);border:1px solid var(--border);color:var(--text-primary)}
+.viz .modes{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.viz .modes span{font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:999px;border:1px solid var(--border);color:var(--text-secondary)}
+.viz .modes .on{background:var(--site);border-color:var(--site);color:#0b0d10}
+.cands{list-style:none;display:grid;gap:6px}
+.cands li{display:grid;grid-template-columns:18px minmax(0,1fr) 54px 50px 44px;align-items:center;gap:8px;font-size:12.5px;padding:8px 10px;border-radius:10px;background:var(--bg-secondary);border:1px solid var(--border);color:var(--text-secondary);position:relative}
+.cands li i{color:var(--text-muted)}.cands li b{font-weight:600;color:var(--text-primary);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cands li span{text-align:right;font-variant-numeric:tabular-nums}
+.cands li.pick{border-color:rgba(var(--site-rgb),.55);background:rgba(var(--site-rgb),.09)}.cands li.pick i{color:var(--site)}
+.cands li em{position:absolute;top:-8px;right:10px;font-style:normal;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:1px 7px;border-radius:999px;background:var(--site);color:#0b0d10}
+.viz .why{margin-top:10px;font-size:12.5px;line-height:1.5;color:var(--text-secondary)}.viz .why i{color:var(--site);margin-right:4px}
 .choice{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
 .card.big{padding:24px}.card.big b{font-size:17px}
 .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:6px}
@@ -357,7 +386,7 @@ a.card:hover{transform:translateY(-3px);border-color:rgba(var(--site-rgb),.6);bo
 .chips.big span{font-size:13.5px;padding:9px 14px;color:var(--text-primary)}.chips.big span i{color:var(--site);margin-right:8px}
 .build .card{border-style:dashed;background:rgba(0,0,0,.15)}.build .card b i{color:var(--site);margin-right:6px}.build .card span a{color:var(--text-secondary)}.build .card code{font-size:12px}
 @media (max-width:860px){.hero.split{grid-template-columns:1fr;text-align:center;gap:28px}.hero.split .ctas{justify-content:center}.hero.split p.lead{margin:0 auto}}
-@media (max-width:600px){.hero{padding-top:56px}.ctas .btn{width:100%;justify-content:center}.viz-ctrl{flex-direction:column;align-items:stretch}.dpad{align-self:center}}
+@media (max-width:600px){.hero{padding-top:56px}.ctas .btn{width:100%;justify-content:center}.viz-ctrl{flex-direction:column;align-items:stretch}.dpad{align-self:center}.cands li{grid-template-columns:14px minmax(0,1fr) 30px 40px 30px;gap:6px;font-size:12px;padding:8px}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 ${site.statusApi ? STATUS_CSS : ''}</style>
 </head>

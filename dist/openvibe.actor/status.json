@@ -8,7 +8,7 @@
   "repoExists": false,
   "repoStage": "charter-only",
   "service": null,
-  "launchWaitsFor": "agent accounts with delegated permissions on OpenVibe.Network and the Actor service",
+  "launchWaitsFor": "the task router with its first agent adapters, then personal agents on OpenVibe.Network accounts",
   "factsAsOf": "2026-09-29",
   "network": "https://openvibe.network",
   "updated": "2026-09-29",
