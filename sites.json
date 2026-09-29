@@ -629,7 +629,7 @@
       "name": "realtime.openvibe.network",
       "icon": "fa-satellite-dish",
       "accent": "#34d399",
-      "plannedRepo": "OpenVibe.Realtime",
+      "noRepo": true,
       "legalProfile": "info",
       "tagline": "Closed: realtime delivery is part of OpenVibe.Events.",
       "description": "OpenVibe.Realtime was planned as a separate service for live updates in the browser. Decision record ADR-005 (accepted 2026-09-22) closed it: browser realtime is part of OpenVibe.Events, as server-sent events with cursor resume at events.openvibe.network/realtime/stream. This address serves only this notice.",
@@ -644,11 +644,6 @@
           "ADR-005: realtime",
           "https://github.com/OpenVibers/OpenVibe.Contracts/blob/main/docs/adr/ADR-005-realtime.md",
           "The decision, and when a separate realtime service would be reconsidered."
-        ],
-        [
-          "OpenVibe.Realtime",
-          "https://github.com/OpenVibers/OpenVibe.Realtime",
-          "The repository stays as the decision record."
         ]
       ],
       "keywords": "openvibe realtime, openvibe events, server-sent events"

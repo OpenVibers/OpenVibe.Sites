@@ -11,12 +11,12 @@
     "stage": "alpha",
     "code": true,
     "deployed": true,
-    "statusCommit": "d9f4240",
+    "statusCommit": "5d062bf",
     "exposure": "internal",
     "publicOrigin": null
   },
   "launchWaitsFor": "the stream slots to move from OpenVibe.Live's ingest to OpenRe.Stream, one at a time; no stream uses it yet",
-  "factsAsOf": "2026-09-28",
+  "factsAsOf": "2026-09-29",
   "network": "https://openvibe.network",
   "updated": "2026-09-29",
   "note": "Static page served by OpenVibers/OpenVibe.Sites; service facts come from each repository's STATUS.json and the Network registry (facts.json). Removed from sites.json in the same release that the real service takes over this domain."

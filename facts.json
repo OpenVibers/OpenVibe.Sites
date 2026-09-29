@@ -1,6 +1,6 @@
 {
   "note": "Facts the Sites placeholder copy is built from. Refresh with `node scripts/facts.js`, review the diff, run `node build.js`, commit both. Never edit by hand.",
-  "generated": "2026-09-28",
+  "generated": "2026-09-29",
   "sources": {
     "status": "STATUS.json at HEAD of each OpenVibers checkout (commit recorded per repo)",
     "registry": "https://openvibe.network/api/v1/registry/services (openvibe-contracts 0.76.0)"
@@ -12,7 +12,7 @@
         "code": true,
         "deployed": true,
         "updated": "2026-09-28",
-        "commit": "d9f4240"
+        "commit": "5d062bf"
       },
       "registry": {
         "id": "openre",
@@ -29,7 +29,7 @@
         "code": true,
         "deployed": true,
         "updated": "2026-09-28",
-        "commit": "9f24032"
+        "commit": "0c98c51"
       },
       "registry": {
         "id": "ai",
@@ -46,7 +46,7 @@
         "code": true,
         "deployed": true,
         "updated": "2026-09-28",
-        "commit": "5ae03b0"
+        "commit": "fb61769"
       },
       "registry": {
         "id": "coupons",
@@ -63,7 +63,7 @@
         "code": true,
         "deployed": true,
         "updated": "2026-09-28",
-        "commit": "450af16"
+        "commit": "57b4194"
       },
       "registry": {
         "id": "deals",
@@ -80,7 +80,7 @@
         "code": true,
         "deployed": true,
         "updated": "2026-09-28",
-        "commit": "7bccceb"
+        "commit": "0076761"
       },
       "registry": {
         "id": "events",
@@ -97,7 +97,7 @@
         "code": true,
         "deployed": true,
         "updated": "2026-09-28",
-        "commit": "019d853"
+        "commit": "2e7d452"
       },
       "registry": {
         "id": "host",
@@ -114,7 +114,7 @@
         "code": true,
         "deployed": true,
         "updated": "2026-09-28",
-        "commit": "35233db"
+        "commit": "5ca28e2"
       },
       "registry": {
         "id": "network",
@@ -131,7 +131,7 @@
         "code": true,
         "deployed": true,
         "updated": "2026-09-28",
-        "commit": "79a851f"
+        "commit": "08c3e75"
       },
       "registry": {
         "id": "news",
@@ -142,30 +142,13 @@
         "planned_origin": "https://openvibe.news"
       }
     },
-    "OpenVibe.Realtime": {
-      "status": {
-        "stage": "closed",
-        "code": false,
-        "deployed": false,
-        "updated": "2026-09-28",
-        "commit": "a47b357"
-      },
-      "registry": {
-        "id": "realtime",
-        "manifest_status": "retired",
-        "state": "placeholder",
-        "public_site": null,
-        "origin": null,
-        "planned_origin": null
-      }
-    },
     "OpenVibe.Reviews": {
       "status": {
         "stage": "alpha",
         "code": true,
         "deployed": true,
         "updated": "2026-09-28",
-        "commit": "298403f"
+        "commit": "34916a4"
       },
       "registry": {
         "id": "reviews",
@@ -182,7 +165,7 @@
         "code": true,
         "deployed": true,
         "updated": "2026-09-28",
-        "commit": "56fd30e"
+        "commit": "036effd"
       },
       "registry": {
         "id": "tips",
@@ -199,7 +182,7 @@
         "code": true,
         "deployed": true,
         "updated": "2026-09-28",
-        "commit": "f80bd45"
+        "commit": "5e1dcb4"
       },
       "registry": {
         "id": "trade",
@@ -216,7 +199,7 @@
         "code": true,
         "deployed": true,
         "updated": "2026-09-28",
-        "commit": "9ff4277"
+        "commit": "9fbd730"
       },
       "registry": {
         "id": "vip",

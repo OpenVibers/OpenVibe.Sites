@@ -54,6 +54,8 @@ function repoFacts(site) {
  */
 function standing(site) {
     if (site.kind === 'status') return 'pointer';
+    // A notice about a closed product says so even when its repository is archived and named nowhere.
+    if (site.kind === 'closed') return 'closed';
     const f = repoFacts(site);
     if (!f) return 'planned';
     const st = f.status || {}; const rg = f.registry || {};

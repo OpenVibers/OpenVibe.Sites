@@ -9,7 +9,7 @@
   "repoStage": "charter-only",
   "service": null,
   "launchWaitsFor": "the watch service on the shared queue and workers",
-  "factsAsOf": "2026-09-28",
+  "factsAsOf": "2026-09-29",
   "network": "https://openvibe.network",
   "updated": "2026-09-29",
   "note": "Static page served by OpenVibers/OpenVibe.Sites; service facts come from each repository's STATUS.json and the Network registry (facts.json). Removed from sites.json in the same release that the real service takes over this domain."
