@@ -1,11 +1,11 @@
 {
   "service": "coupons",
-  "release": "8770f6d712a0",
-  "released_at": "2026-09-29T00:00:00.000Z",
+  "release": "7cd4f316acce",
+  "released_at": "2026-10-01T00:00:00.000Z",
   "booted_at": null,
   "contracts_version": null,
   "packages": {
-    "openvibe-shared": "1.29.2"
+    "openvibe-shared": "2.3.1"
   },
   "min_client_release": null,
   "mixed_version_window_hours": 24,

@@ -11,6 +11,6 @@
   "launchWaitsFor": "the ticket service and the Frame's Help button",
   "factsAsOf": "2026-09-29",
   "network": "https://openvibe.network",
-  "updated": "2026-09-29",
+  "updated": "2026-10-01",
   "note": "Static page served by OpenVibers/OpenVibe.Sites; service facts come from each repository's STATUS.json and the Network registry (facts.json). Removed from sites.json in the same release that the real service takes over this domain."
 }
