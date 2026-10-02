@@ -1240,6 +1240,7 @@
       "icon": "fa-robot",
       "accent": "#f472b6",
       "noRepo": true,
+      "vhostOwner": "OpenVibers/OpenVibe.Bot",
       "tagline": "Get your robot online in minutes.",
       "description": "OpenVibe.Bot is an open control panel for robots. Add a robot, pair it with one command or a QR code, and drive it from any browser with live video, real controls and a stop button that always works. Buy a ready-made bot or bring your own: a Raspberry Pi robot, an ESP32, a ROS 2 robot, a phone, or a Cozmo. Share control, automate it, hand it to your AI agent, and stream it to OpenVibe.Live or openre.stream when you want to.",
       "pillars": [

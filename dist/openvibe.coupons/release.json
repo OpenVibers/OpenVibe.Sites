@@ -1,7 +1,7 @@
 {
   "service": "coupons",
   "release": "7cd4f316acce",
-  "released_at": "2026-10-01T00:00:00.000Z",
+  "released_at": "2026-10-02T00:00:00.000Z",
   "booted_at": null,
   "contracts_version": null,
   "packages": {

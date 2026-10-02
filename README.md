@@ -97,8 +97,11 @@ publishes `host.release.published` with the service and release id from that pla
 and `https://<domain>` as the origin, once per release, so open tabs check `/release.json` within seconds
 (WS-P task 9); this is best effort, stops at the first failure and never fails the deploy. A vhost that left
 `deploy/nginx/` stays installed and is named in the output: remove it by hand once its domain is served
-elsewhere. When ovhost is missing, too old or does not deploy Sites with that strategy, the wrapper pulls
-and runs `deploy/scripts/deploy-legacy.sh`, the previous script, unchanged (`OVHOST_LEGACY=1` forces it).
+elsewhere. openvibe.bot is the exception to removing it by hand: sites.json gives its vhost to OpenVibe.Bot
+(`vhostOwner`), whose first deploy installs its own openvibe.bot.conf over the one left here; until then the
+Sites vhost keeps serving the page. When ovhost is missing, too old or does not deploy Sites with that
+strategy, the wrapper pulls and runs `deploy/scripts/deploy-legacy.sh`, the previous script, unchanged
+(`OVHOST_LEGACY=1` forces it).
 
 Rollback: there is no ready URL, so nothing is automatic; `sudo ovhost rollback sites --to <sha>` rebuilds
 that commit and installs its vhosts behind `nginx -t`. There is no env file, unit or port: nginx serves
