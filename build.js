@@ -718,7 +718,8 @@ function build() {
         out[`${site.domain}/manifest.webmanifest`] = manifest(site);
         out[`${site.domain}/status.json`] = statusJson(site);
         for (const kind of ['terms', 'privacy', 'dmca']) out[`${site.domain}/${kind}.html`] = legal.page(kind, legalSite(site));
-        out[`../deploy/nginx/${site.domain}.conf`] = vhost(site);
+        // A site whose service repository owns the vhost keeps its pages here but its nginx config ships with that service.
+        if (!site.vhostOwner) out[`../deploy/nginx/${site.domain}.conf`] = vhost(site);
     }
     for (const g of LEGAL_ONLY) for (const kind of ['terms', 'privacy', 'dmca']) out[`${g.domain}/${kind}.html`] = legal.page(kind, { id: g.id, service: g.id, host: g.domain, name: g.name, profile: g.profile });
     // One copy of every browser file of the pinned openvibe-shared (the pages' scripts and what they load beside them).

@@ -42,7 +42,7 @@ for (const site of catalog.sites) {
     const rel = JSON.parse(read(`dist/${d}/release.json`));
     assert.strictEqual(rel.service, site.tld, `${d}: release.json service`);
     assert.match(rel.release, /^[0-9a-f]{12}$/, `${d}: release.json release`);
-    assert.match(read(`deploy/nginx/${d}.conf`), /location = \/release\.json \{/, `${d}: nginx serves /release.json`);
+    if (!site.vhostOwner) assert.match(read(`deploy/nginx/${d}.conf`), /location = \/release\.json \{/, `${d}: nginx serves /release.json`);
     // D42: the frame from this repository's pin (dist/_shared/, aliased at /shared/), never openvibe.network's.
     assert.doesNotMatch(html, /https:\/\/openvibe\.network\/shared\/[\w.-]+\.js/, `${d}: loads a shared file from openvibe.network`);
     for (const m of html.matchAll(/src="\/shared\/([\w.-]+\.js)\?v=([0-9a-f]{12})"/g)) {
@@ -50,7 +50,7 @@ for (const site of catalog.sites) {
         assert.strictEqual(read(`dist/_shared/${m[1]}`), fs.readFileSync(require('openvibe-shared/files').path(m[1]), 'utf8'), `${d}: dist/_shared/${m[1]} is the pinned file`);
     }
     assert.match(html, /src="\/shared\/navbar\.js\?v=/, `${d}: the navbar from /shared`);
-    assert.match(read(`deploy/nginx/${d}.conf`), /location \^~ \/shared\/ \{\s+alias \/opt\/openvibe\.sites\/dist\/_shared\/;/, `${d}: nginx serves /shared/ from dist/_shared/`);
+    if (!site.vhostOwner) assert.match(read(`deploy/nginx/${d}.conf`), /location \^~ \/shared\/ \{\s+alias \/opt\/openvibe\.sites\/dist\/_shared\/;/, `${d}: nginx serves /shared/ from dist/_shared/`);
     assert.ok(html.includes(`data-ov-shipped="latest" data-service="${site.tld}"`), `${d}: the footer's shipped line`);
     if (site.kind) {
         // A notice (a closed product, a pointer) is not indexed, has no sitemap and is not listed as opening.
@@ -74,24 +74,36 @@ for (const site of catalog.sites) {
         assert.match(html, /Status: <b>closed<\/b>/, `${d}: says closed`);
         assert.doesNotMatch(html, /will be|opening soon|coming soon/i, `${d}: a closed product is never described as coming`);
     }
-    const conf = read(`deploy/nginx/${d}.conf`);
-    assert.ok(conf.includes(`server_name ${d}`), `${d}: vhost server_name`);
-    assert.ok(conf.includes(`root /opt/openvibe.sites/dist/${d};`), `${d}: vhost root`);
     // Unknown paths are real 404s with a page (no soft 404: the front page is never the fallback).
     const nf = read(`dist/${d}/404.html`);
     assert.match(nf, /<meta name="robots" content="noindex">/, `${d}: 404 page is noindex`);
     assert.ok(nf.includes(`href="https://${d}/"`), `${d}: 404 page links the front page`);
-    assert.ok(conf.includes('error_page 404 /404.html;'), `${d}: vhost answers 404 with /404.html`);
-    assert.ok(conf.includes('try_files $uri $uri.html $uri/ =404;'), `${d}: vhost try_files ends in =404`);
-    assert.doesNotMatch(conf, /try_files[^;]*\/index\.html;/, `${d}: vhost never falls back to the front page`);
-    // nginx drops the server-level add_header list in any location with its own add_header: each such
-    // location must repeat the security headers (they were missing from every Sites response until 2026-09-24).
-    for (const m of conf.matchAll(/location [^{]*\{((?:[^{}]|\{[^{}]*\})*)\}/g)) {
-        if (!/add_header/.test(m[1])) continue;
-        for (const h of ['X-Content-Type-Options', 'X-Frame-Options', 'Referrer-Policy', 'Strict-Transport-Security']) {
-            assert.ok(m[1].includes(`add_header ${h} `), `${d}: ${m[0].split('{')[0].trim()} repeats ${h}`);
+    // A site whose service repository owns the vhost (vhostOwner) has its nginx config built there, not here.
+    if (!site.vhostOwner) {
+        const conf = read(`deploy/nginx/${d}.conf`);
+        assert.ok(conf.includes(`server_name ${d}`), `${d}: vhost server_name`);
+        assert.ok(conf.includes(`root /opt/openvibe.sites/dist/${d};`), `${d}: vhost root`);
+        assert.ok(conf.includes('error_page 404 /404.html;'), `${d}: vhost answers 404 with /404.html`);
+        assert.ok(conf.includes('try_files $uri $uri.html $uri/ =404;'), `${d}: vhost try_files ends in =404`);
+        assert.doesNotMatch(conf, /try_files[^;]*\/index\.html;/, `${d}: vhost never falls back to the front page`);
+        // nginx drops the server-level add_header list in any location with its own add_header: each such
+        // location must repeat the security headers (they were missing from every Sites response until 2026-09-24).
+        for (const m of conf.matchAll(/location [^{]*\{((?:[^{}]|\{[^{}]*\})*)\}/g)) {
+            if (!/add_header/.test(m[1])) continue;
+            for (const h of ['X-Content-Type-Options', 'X-Frame-Options', 'Referrer-Policy', 'Strict-Transport-Security']) {
+                assert.ok(m[1].includes(`add_header ${h} `), `${d}: ${m[0].split('{')[0].trim()} repeats ${h}`);
+            }
         }
     }
+}
+
+// openvibe.bot hands its vhost to OpenVibe.Bot (vhostOwner): no generated conf here, but Sites still
+// publishes every page for it.
+const bot = catalog.sites.find((s) => s.domain === 'openvibe.bot');
+assert.ok(bot && bot.vhostOwner, 'openvibe.bot: sites.json gives its vhost to another repository');
+assert.ok(!fs.existsSync(path.join(ROOT, 'deploy', 'nginx', 'openvibe.bot.conf')), 'openvibe.bot: no generated deploy/nginx/openvibe.bot.conf');
+for (const f of ['index.html', 'privacy.html', 'terms.html', 'dmca.html', '404.html']) {
+    assert.ok(fs.existsSync(path.join(ROOT, 'dist', 'openvibe.bot', f)), `openvibe.bot: ${f} is still built`);
 }
 
 // Labels come from facts (facts.json: each repository's STATUS.json + the Network registry), never a
