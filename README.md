@@ -2,6 +2,11 @@
 
 ## Purpose
 
+Frozen (plan T11 lane D, 2026-10-02): the product catalog lives in OpenVibe.Contracts (`products.catalog()`,
+v0.84.0) and `sites.json` is its generated mirror (`node scripts/sync-catalog.js`). The placeholder pages in
+`dist/<domain>/` and the vhosts in `deploy/nginx/` are no longer generated: they stay as committed until each
+product serves its own domain ([docs/retirement.md](docs/retirement.md)).
+
 Static front pages for the OpenVibe domains that are not public applications yet. As of
 2026-09-24 (`sites.json`; production ran `18166b1` when this was written): `openvibe.news`,
 `.reviews`, `.tips`, `.vip`, `.trade`, `.host`, `.deals`, `.coupons`, `openre.stream`, the planned products added
@@ -26,10 +31,10 @@ sitemap, manifest).
 
 ## Owns
 
-- the catalog `sites.json`, the template `build.js` and the generated `dist/<domain>/` pages
-  (checked in), with a `404.html` and a `release.json` per domain
-- the nginx vhosts `deploy/nginx/<domain>.conf` for those domains
-- `facts.json`, the committed snapshot of each repository's `STATUS.json` and Network's registry exposure
+- `sites.json`, generated from the Contracts catalog (fields Contracts does not carry keep their frozen value)
+- the frozen `dist/<domain>/` pages (checked in), with a `404.html` and a `release.json` per domain, and the
+  legal pages and `dist/_shared/` that `build.js` still writes
+- the frozen nginx vhosts `deploy/nginx/<domain>.conf` for those domains
 
 ## Does not own
 
@@ -39,9 +44,9 @@ sitemap, manifest).
 
 ## Depends on
 
-- `openvibe-shared` v1.23.0 (the Frame files, SEO helpers), pinned by release tarball
-- the sibling checkouts' `STATUS.json` and Network's `/api/v1/registry/services` (only when refreshing
-  `facts.json`); in the browser, the status page reads Network's CORS-open `/api/v1/registry/health`
+- `openvibe-shared` v2.3.1 (the Frame files, legal pages), pinned by release tarball
+- `openvibe-contracts` v0.84.0 (the product catalog `sites.json` mirrors), pinned by release tarball
+- in the browser, the status page reads Network's CORS-open `/api/v1/registry/health`
 - OpenVibe.Host (`ovhost deploy sites`, strategy `static-build`) and nginx on the host
 
 ## Capabilities
@@ -52,25 +57,19 @@ only their own files, and the status notice reads Network's public health endpoi
 ## Tests and build
 
 ```
-npm ci                   # openvibe-shared: the pinned OpenVibe.Shared release (package.json)
-node scripts/facts.js    # refresh facts.json (each repo's STATUS.json + Network's registry exposure)
-node build.js            # dist/<domain>/… + deploy/nginx/<domain>.conf
-node build.js --check    # fails when dist/ is stale
-npm test                 # dist current; labels match facts.json; facts.json matches the sibling STATUS.json files
+npm ci                              # the pinned openvibe-shared and openvibe-contracts (package.json)
+node scripts/sync-catalog.js        # rewrite sites.json from the Contracts catalog
+node scripts/sync-catalog.js --check  # fails when sites.json differs from it
+node build.js                       # dist/<domain>/{terms,privacy,dmca}.html + dist/_shared/
+node build.js --check               # fails when those are stale
+npm test
 ```
 
-What a page says about its product comes from `facts.json`, never from a hand-kept list: each
-repository's committed `STATUS.json` (read from the sibling `~/OpenVibers/<repo>` checkouts at HEAD)
-and Network's registry exposure (`/api/v1/registry/services`). A product whose service runs is
-labelled "in development" with what its public launch waits for (`launch` in `sites.json`); a
-subdomain of a live service says it is not routed yet; only a repository with no code says
-"charter only". The build reads the committed snapshot, so it is reproducible; `npm test` fails
-locally when a sibling's `STATUS.json` stage or code flag no longer matches it.
-
-`npm test` runs `test/build.test.js` (dist is current; every label matches `facts.json`; no shared file
-comes from openvibe.network and each `/shared` URL carries its file's hash; a live service's domain is
-never also a placeholder; 404 pages) and `test/deploy-wrapper.test.js` (the deploy wrapper and its
-fallback, against a fake ovhost and a temp checkout).
+`npm test` runs `test/build.test.js` (the legal pages and `dist/_shared/` are current; every frozen page,
+404 page and vhost is still there and honest; a live service's domain is never also a placeholder),
+`test/sync-catalog.test.js` (`sites.json` matches the Contracts catalog and every vhost's domain is in it)
+and `test/deploy-wrapper.test.js` (the deploy wrapper and its fallback, against a fake ovhost and a temp
+checkout).
 
 Every domain also gets a `404.html`: its vhost answers any path that is not a file in
 `dist/<domain>/` with status 404 and that page (`try_files … =404` + `error_page 404 /404.html`),
@@ -82,7 +81,7 @@ Reporting a vulnerability: [SECURITY.md](SECURITY.md). The pages are static: no 
 forms and no secrets (the Frame's navbar asks Network for the visitor's session, as on every site). Every vhost sets `X-Content-Type-Options`,
 `X-Frame-Options`, `Referrer-Policy` and HSTS (repeated in each location that adds headers), and answers
 unknown paths with 404. Placeholders are `noindex` where they are notices and never claim a product is
-live (`test/build.test.js` holds labels to `facts.json`).
+live (`test/build.test.js` checks the frozen pages).
 
 ## Deploy
 
@@ -104,5 +103,5 @@ Rollback: there is no ready URL, so nothing is automatic; `sudo ovhost rollback 
 that commit and installs its vhosts behind `nginx -t`. There is no env file, unit or port: nginx serves
 `dist/` directly.
 
-When a domain becomes a real app, delete it from `sites.json`, remove its vhost, and point the
-domain's nginx block at the new service — nothing else references it.
+Which product takes over each domain: [docs/retirement.md](docs/retirement.md). A domain leaves `sites.json`
+when it leaves the Contracts catalog; its vhost goes only once its product serves the domain.

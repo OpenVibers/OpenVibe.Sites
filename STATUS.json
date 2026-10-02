@@ -38,16 +38,16 @@
     "realtime.openvibe.network (closed notice)",
     "status.openvibe.network (status notice)"
   ],
-  "contracts": "none: package.json pins no openvibe-contracts (openvibe-shared v1.23.0 only)",
+  "contracts": "openvibe-contracts v0.84.0: sites.json mirrors products.catalog() (scripts/sync-catalog.js)",
   "deployed": true,
   "deployment": "Deployed with `sudo ovhost deploy sites --restart` (OpenVibe.Host strategy static-build since the 2026-09-27 cutover): /opt/openvibe.sites, nginx serves dist/<domain>/ through deploy/nginx/<domain>.conf; no unit, no port, no env file",
   "features": [
-    "one catalog and one template for every placeholder and notice page",
-    "labels built from facts.json (each repository's STATUS.json and Network's registry), never a hand-kept list",
+    "frozen: the placeholder and notice pages are committed, no longer generated",
+    "sites.json generated from the OpenVibe.Contracts product catalog",
     "the pinned OpenVibe Frame served from dist/_shared/",
     "full SEO: canonical, Open Graph, Twitter, JSON-LD, robots, sitemap, manifest",
-    "404 pages and generated nginx vhosts",
+    "404 pages and frozen nginx vhosts",
     "a release.json per domain and host.release.published on deploy"
   ],
-  "updated": "2026-09-28"
+  "updated": "2026-10-02"
 }

@@ -1,12 +1,13 @@
 {
   "name": "openvibe-sites",
   "private": true,
-  "description": "Placeholder and hub pages for the planned OpenVibe domains (static build)",
+  "description": "Frozen placeholder pages for the planned OpenVibe domains; sites.json mirrors the OpenVibe.Contracts product catalog",
   "scripts": {
     "build": "node build.js",
-    "test": "node test/build.test.js && node test/deploy-wrapper.test.js"
+    "test": "node test/build.test.js && node test/sync-catalog.test.js && node test/deploy-wrapper.test.js"
   },
   "dependencies": {
+    "openvibe-contracts": "https://codeload.github.com/OpenVibers/OpenVibe.Contracts/tar.gz/refs/tags/v0.84.0",
     "openvibe-shared": "https://codeload.github.com/OpenVibers/OpenVibe.Shared/tar.gz/refs/tags/v2.3.1"
   },
   "engines": {
