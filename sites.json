@@ -1145,6 +1145,43 @@
       "launch": "job listings and alerts"
     },
     {
+      "domain": "openvibe.zone",
+      "tld": "zone",
+      "name": "OpenVibe.Zone",
+      "icon": "fa-box-archive",
+      "accent": "#2dd4bf",
+      "noRepo": true,
+      "tagline": "Your data, in zones.",
+      "description": "OpenVibe.Zone will keep your data and files in zones — S3-style buckets for persistent storage that every OpenVibe service and agent can use with your permission, also offered to developers through OpenVibe.Services. Part of the OpenVibe network, with one account for every site.",
+      "pillars": [
+        [
+          "An S3-style API",
+          "Buckets, objects and signed links that existing tools already speak."
+        ],
+        [
+          "Durable storage",
+          "Files and data that stay put, with copies kept safe."
+        ],
+        [
+          "Access you control",
+          "Decide which services, agents and people can read or write each zone."
+        ],
+        [
+          "Used across the network",
+          "The same zones back your streams, media, agents and apps."
+        ]
+      ],
+      "meanwhile": [
+        [
+          "OpenVibe.Network",
+          "https://openvibe.network",
+          "One free account for every OpenVibe site, ready today."
+        ]
+      ],
+      "keywords": "openvibe zone, object storage, s3 compatible storage, buckets, persistent storage, file storage api",
+      "launch": "zones for data and files"
+    },
+    {
       "domain": "openvibe.video",
       "tld": "video",
       "name": "OpenVibe.Video",
