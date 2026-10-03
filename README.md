@@ -39,7 +39,7 @@ sitemap, manifest).
 
 ## Depends on
 
-- `openvibe-shared` v1.23.0 (the Frame files, SEO helpers), pinned by release tarball
+- `openvibe-shared` v2.5.0 (the Frame files, SEO helpers), pinned by release tarball
 - the sibling checkouts' `STATUS.json` and Network's `/api/v1/registry/services` (only when refreshing
   `facts.json`); in the browser, the status page reads Network's CORS-open `/api/v1/registry/health`
 - OpenVibe.Host (`ovhost deploy sites`, strategy `static-build`) and nginx on the host
