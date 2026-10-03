@@ -67,10 +67,11 @@ subdomain of a live service says it is not routed yet; only a repository with no
 "charter only". The build reads the committed snapshot, so it is reproducible; `npm test` fails
 locally when a sibling's `STATUS.json` stage or code flag no longer matches it.
 
-`npm test` runs `test/build.test.js` (dist is current; every label matches `facts.json`; no shared file
-comes from openvibe.network and each `/shared` URL carries its file's hash; a live service's domain is
-never also a placeholder; 404 pages) and `test/deploy-wrapper.test.js` (the deploy wrapper and its
-fallback, against a fake ovhost and a temp checkout).
+`npm test` runs `test/run.js`, which runs each `test/*.test.js` in its own process: `test/build.test.js`
+(dist is current; every label matches `facts.json`; no shared file comes from openvibe.network and each
+`/shared` URL carries its file's hash; a live service's domain is never also a placeholder; 404 pages)
+and `test/deploy-wrapper.test.js` (the deploy wrapper and its fallback, against a fake ovhost and a temp
+checkout).
 
 Every domain also gets a `404.html`: its vhost answers any path that is not a file in
 `dist/<domain>/` with status 404 and that page (`try_files … =404` + `error_page 404 /404.html`),
