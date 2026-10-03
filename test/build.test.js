@@ -13,6 +13,13 @@ const read = (p) => fs.readFileSync(path.join(ROOT, p), 'utf8');
 // dist/ and the vhosts must match sites.json + build.js (deploy serves dist/ as committed).
 execFileSync(process.execPath, [path.join(ROOT, 'build.js'), '--check'], { stdio: 'pipe' });
 
+// package.json keeps the shared runner shape (`node test/run.js`, what every other repository here uses):
+// a bare "npm test" of another shape is refused inside agent jobs by openvibe-agents' PATH shim, so
+// `ov test` could not run the suite at all (review of OpenVibers/openvibe-agents#51).
+const pkg = JSON.parse(read('package.json'));
+assert.strictEqual(pkg.scripts.test, 'node test/run.js', 'package.json: test runs node test/run.js');
+assert.ok(fs.existsSync(path.join(ROOT, 'test', 'run.js')), 'test/run.js exists (the shared runner)');
+
 // Pricing copy is never used on the network (no "free"/"$0"/"no ads" claims); "free speech" is fine.
 const PRICING = /\$0\b|\bfor free\b|\bfree (forever|to use|of charge|plan|tier)\b|\bno ads\b|\bad-free\b/i;
 // Claims no OpenVibe service makes good on (2026-09-24 audit): Host serves static files only (Stage C,
