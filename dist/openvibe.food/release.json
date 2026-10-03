@@ -1,7 +1,7 @@
 {
   "service": "food",
-  "release": "878d27edfc5d",
-  "released_at": "2026-10-02T00:00:00.000Z",
+  "release": "3793c2c34492",
+  "released_at": "2026-10-03T00:00:00.000Z",
   "booted_at": null,
   "contracts_version": null,
   "packages": {

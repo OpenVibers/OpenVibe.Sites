@@ -1,7 +1,7 @@
 {
   "service": "trade",
-  "release": "79714d6af69e",
-  "released_at": "2026-10-02T00:00:00.000Z",
+  "release": "7becc8767002",
+  "released_at": "2026-10-03T00:00:00.000Z",
   "booted_at": null,
   "contracts_version": null,
   "packages": {

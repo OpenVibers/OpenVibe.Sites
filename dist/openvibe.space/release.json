@@ -1,7 +1,7 @@
 {
   "service": "space",
-  "release": "7b78873f7f1a",
-  "released_at": "2026-10-02T00:00:00.000Z",
+  "release": "9f09bf95808c",
+  "released_at": "2026-10-03T00:00:00.000Z",
   "booted_at": null,
   "contracts_version": null,
   "packages": {

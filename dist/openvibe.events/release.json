@@ -1,7 +1,7 @@
 {
   "service": "events",
-  "release": "a605c9f9d88c",
-  "released_at": "2026-10-02T00:00:00.000Z",
+  "release": "2e49b0eacef8",
+  "released_at": "2026-10-03T00:00:00.000Z",
   "booted_at": null,
   "contracts_version": null,
   "packages": {

@@ -1,7 +1,7 @@
 {
   "service": "watch",
-  "release": "f1bb66bd706f",
-  "released_at": "2026-10-02T00:00:00.000Z",
+  "release": "0c56ce9fba75",
+  "released_at": "2026-10-03T00:00:00.000Z",
   "booted_at": null,
   "contracts_version": null,
   "packages": {
