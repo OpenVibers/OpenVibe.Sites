@@ -1,7 +1,7 @@
 {
   "name": "openvibe-sites",
   "private": true,
-  "description": "Placeholder and hub pages for the planned OpenVibe domains (static build)",
+  "description": "Static notices and frozen product pages for OpenVibe domains",
   "scripts": {
     "build": "node build.js",
     "test": "node test/run.js"

@@ -1,0 +1,70 @@
+[
+  {
+    "domain": "ai.openvibe.network",
+    "tld": "ai",
+    "name": "ai.openvibe.network",
+    "tagline": "Moved: OpenVibe.AI's public home is ai.openvibe.services.",
+    "description": "OpenVibe.AI's public address is now ai.openvibe.services, next to the rest of the network's programmable services on OpenVibe.Services. This address serves only this notice until every client has moved; then it redirects.",
+    "accent": "#c084fc",
+    "zone": "openvibe.network",
+    "legalProfile": "info",
+    "kind": "moved",
+    "links": [
+      {
+        "label": "ai.openvibe.services",
+        "href": "https://ai.openvibe.services/"
+      },
+      {
+        "label": "OpenVibe.Services",
+        "href": "https://openvibe.services/"
+      }
+    ]
+  },
+  {
+    "domain": "realtime.openvibe.network",
+    "tld": "realtime",
+    "name": "realtime.openvibe.network",
+    "tagline": "Closed: realtime delivery is part of OpenVibe.Events.",
+    "description": "OpenVibe.Realtime was planned as a separate service for live updates in the browser. Decision record ADR-005 (accepted 2026-09-22) closed it: browser realtime is part of OpenVibe.Events, as server-sent events with cursor resume at events.openvibe.network/realtime/stream. This address serves only this notice.",
+    "accent": "#34d399",
+    "zone": "openvibe.network",
+    "legalProfile": "info",
+    "kind": "closed",
+    "links": [
+      {
+        "label": "OpenVibe.Events",
+        "href": "https://events.openvibe.network/"
+      },
+      {
+        "label": "ADR-005: realtime",
+        "href": "https://github.com/OpenVibers/OpenVibe.Contracts/blob/main/docs/adr/ADR-005-realtime.md"
+      }
+    ]
+  },
+  {
+    "domain": "status.openvibe.network",
+    "tld": "status",
+    "name": "status.openvibe.network",
+    "tagline": "Is OpenVibe up?",
+    "description": "OpenVibe.Network checks every OpenVibe service about once a minute (its readiness endpoint and the release it runs) and publishes what it saw at openvibe.network/status. This address points there.",
+    "accent": "#22c55e",
+    "zone": "openvibe.network",
+    "legalProfile": "info",
+    "statusApi": "https://openvibe.network/api/v1/registry/health",
+    "kind": "status",
+    "links": [
+      {
+        "label": "Status page",
+        "href": "https://openvibe.network/status"
+      },
+      {
+        "label": "Status API",
+        "href": "https://openvibe.network/api/v1/status"
+      },
+      {
+        "label": "Releases",
+        "href": "https://openvibe.network/api/v1/registry/releases"
+      }
+    ]
+  }
+]

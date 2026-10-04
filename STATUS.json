@@ -42,12 +42,12 @@
   "deployed": true,
   "deployment": "Deployed with `sudo ovhost deploy sites --restart` (OpenVibe.Host strategy static-build since the 2026-09-27 cutover): /opt/openvibe.sites, nginx serves dist/<domain>/ through deploy/nginx/<domain>.conf; no unit, no port, no env file",
   "features": [
-    "one catalog and one template for every placeholder and notice page",
-    "labels built from facts.json (each repository's STATUS.json and Network's registry), never a hand-kept list",
+    "three generated notices and 32 frozen product domains",
+    "notice pages use preserved presentation; product pages are no longer generated",
     "the pinned OpenVibe Frame served from dist/_shared/",
-    "full SEO: canonical, Open Graph, Twitter, JSON-LD, robots, sitemap, manifest",
-    "404 pages and generated nginx vhosts",
+    "noindex notices with robots, manifest and real 404 pages",
+    "generated notice vhosts and preserved product vhosts",
     "a release.json per domain and host.release.published on deploy"
   ],
-  "updated": "2026-09-28"
+  "updated": "2026-10-03"
 }
