@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 /**
- * Runs every test/*.test.js in its own process and fails if any fails. build.test.js rebuilds the pages in
- * memory (`node build.js --check`) and checks them against sites.json and the committed facts.json;
+ * Runs every test/*.test.js in its own process and fails if any fails. build.test.js checks generated notices and the frozen product files;
  * deploy-wrapper.test.js drives the deploy wrapper against a fake ovhost and a temp checkout. Neither
  * needs the network or a running site.
  *

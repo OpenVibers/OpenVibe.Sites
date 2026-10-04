@@ -1,0 +1,96 @@
+[
+  {
+    "domain": "ai.openvibe.network",
+    "tld": "ai",
+    "name": "ai.openvibe.network",
+    "tagline": "Moved: OpenVibe.AI's public home is ai.openvibe.services.",
+    "description": "OpenVibe.AI's public address is now ai.openvibe.services, next to the rest of the network's programmable services on OpenVibe.Services. This address serves only this notice until every client has moved; then it redirects.",
+    "accent": "#c084fc",
+    "zone": "openvibe.network",
+    "legalProfile": "info",
+    "kind": "moved",
+    "links": [
+      {
+        "label": "ai.openvibe.services",
+        "href": "https://ai.openvibe.services/"
+      },
+      {
+        "label": "OpenVibe.Services",
+        "href": "https://openvibe.services/"
+      }
+    ]
+  },
+  {
+    "domain": "realtime.openvibe.network",
+    "tld": "realtime",
+    "name": "realtime.openvibe.network",
+    "tagline": "Closed: realtime delivery is part of OpenVibe.Events.",
+    "description": "OpenVibe.Realtime was planned as a separate service for live updates in the browser. Decision record ADR-005 (accepted 2026-09-22) closed it: browser realtime is part of OpenVibe.Events, as server-sent events with cursor resume at events.openvibe.network/realtime/stream. This address serves only this notice.",
+    "accent": "#34d399",
+    "zone": "openvibe.network",
+    "legalProfile": "info",
+    "kind": "closed",
+    "links": [
+      {
+        "label": "OpenVibe.Events",
+        "href": "https://events.openvibe.network/"
+      },
+      {
+        "label": "ADR-005: realtime",
+        "href": "https://github.com/OpenVibers/OpenVibe.Contracts/blob/main/docs/adr/ADR-005-realtime.md"
+      }
+    ]
+  },
+  {
+    "domain": "status.openvibe.network",
+    "tld": "status",
+    "name": "status.openvibe.network",
+    "tagline": "Is OpenVibe up?",
+    "description": "OpenVibe.Network checks every OpenVibe service about once a minute (its readiness endpoint and the release it runs) and publishes what it saw at openvibe.network/status. This address points there.",
+    "accent": "#22c55e",
+    "zone": "openvibe.network",
+    "legalProfile": "info",
+    "statusApi": "https://openvibe.network/api/v1/registry/health",
+    "kind": "status",
+    "links": [
+      {
+        "label": "Status page",
+        "href": "https://openvibe.network/status"
+      },
+      {
+        "label": "Status API",
+        "href": "https://openvibe.network/api/v1/status"
+      },
+      {
+        "label": "Releases",
+        "href": "https://openvibe.network/api/v1/registry/releases"
+      }
+    ]
+  },
+  {
+    "domain": "openvibe.actor",
+    "tld": "actor",
+    "name": "OpenVibe.Actor",
+    "tagline": "Every AI agent, every device, one command console.",
+    "description": "OpenVibe.Actor sends each task to the best agent for it, across hosted agent platforms, open-source runtimes, coding agents and OpenVibe's own, balanced live on price, speed and success. Install the OpenVibe Node on your computers, servers, Raspberry Pis and robots, and your agents can work on them for real, at the control level you choose, with a kill switch you hold. Run everything from one console, or host the whole thing yourself.",
+    "accent": "#a78bfa",
+    "kind": "router",
+    "links": []
+  },
+  {
+    "domain": "openvibe.bot",
+    "tld": "bot",
+    "name": "OpenVibe.Bot",
+    "tagline": "Get your robot online in minutes.",
+    "description": "OpenVibe.Bot is an open control panel for robots. Add a robot, pair it with one command or a QR code, and drive it from any browser with live video, real controls and a stop button that always works. Buy a ready-made bot or bring your own: a Raspberry Pi robot, an ESP32, a ROS 2 robot, a phone, or a Cozmo. Share control, automate it, hand it to your AI agent, and stream it to OpenVibe.Live or openre.stream when you want to.",
+    "accent": "#f472b6",
+    "vhostOwner": "OpenVibers/OpenVibe.Bot",
+    "kind": "panel",
+    "links": [
+      {
+        "label": "openvibe.bot",
+      "href": "https://openvibe.bot/"
+      }
+    ]
+  }
+]

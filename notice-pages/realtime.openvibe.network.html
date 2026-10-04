@@ -3,28 +3,28 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>OpenVibe.Actor — Every AI agent, every device, one command console.</title>
-<meta name="description" content="OpenVibe.Actor sends each task to the best agent for it, across hosted agent platforms, open-source runtimes, coding agents and OpenVibe&#39;s own, balanced live on price, speed and success. Install the OpenVibe Node on your computers, servers, Raspberry Pis and robots, and your agents can work on them for real, at the control level you choose, with a kill switch you hold. Run everything from one console, or host the whole thing yourself.">
-<meta name="keywords" content="ai agent router, openrouter for agents, ai agent that controls your computer, remote control computer with ai, self-hosted ai agent, computer use agent, ai command console, agent api, cloud ai agent, mcp server">
+<title>realtime.openvibe.network — Closed: realtime delivery is part of OpenVibe.Events.</title>
+<meta name="description" content="OpenVibe.Realtime was planned as a separate service for live updates in the browser. Decision record ADR-005 (accepted 2026-09-22) closed it: browser realtime is part of OpenVibe.Events, as server-sent events with cursor resume at events.openvibe.network/realtime/stream. This address serves only this notice.">
+<meta name="keywords" content="openvibe realtime, openvibe events, server-sent events">
 <meta name="robots" content="noindex, follow">
-<meta name="theme-color" content="#a78bfa">
-<link rel="canonical" href="https://openvibe.actor/">
+<meta name="theme-color" content="#34d399">
+<link rel="canonical" href="https://realtime.openvibe.network/">
 <link rel="icon" type="image/svg+xml" data-ov-icon="network" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%22-32%20-32%2064%2064%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22ring%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2360a5fa%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%232563eb%22%2F%3E%3C%2FlinearGradient%3E%0A%3CradialGradient%20id%3D%22glow%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2360a5fa%22%20stop-opacity%3D%22.34%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2360a5fa%22%20stop-opacity%3D%220%22%2F%3E%3C%2FradialGradient%3E%0A%3CradialGradient%20id%3D%22bg%22%20cx%3D%22.5%22%20cy%3D%22.38%22%20r%3D%22.8%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2316223a%22%2F%3E%3Cstop%20offset%3D%22.6%22%20stop-color%3D%22%230a0f1c%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23060912%22%2F%3E%3C%2FradialGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%22-32%22%20y%3D%22-32%22%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2215%22%20fill%3D%22url(%23bg)%22%2F%3E%3Cg%20transform%3D%22scale(1.22)%22%3E%0A%3Ccircle%20r%3D%2221%22%20fill%3D%22url(%23glow)%22%2F%3E%0A%3Ccircle%20r%3D%2218%22%20fill%3D%22none%22%20stroke%3D%22url(%23ring)%22%20stroke-width%3D%224%22%20opacity%3D%22.38%22%2F%3E%0A%3Cpath%20d%3D%22M0%2C-18%20A18%2C18%200%200%2C1%2017.4%2C4.6%22%20fill%3D%22none%22%20stroke%3D%22url(%23ring)%22%20stroke-width%3D%224.4%22%20stroke-linecap%3D%22round%22%2F%3E%0A%3Cpath%20d%3D%22M-9.5%2C-7%20L0%2C10%20L9.5%2C-7%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%224.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%3Ccircle%20cx%3D%2217.4%22%20cy%3D%224.6%22%20r%3D%223.2%22%20fill%3D%22%23ffffff%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E">
 <style id="ov-critical">html{background:#0a0f1c;color:#e6edf7;color-scheme:dark}</style><script>(function(){try{var r=localStorage.getItem('ov_theme');if(!r)return;var t=JSON.parse(r),v=t&&t.variables;if(!v)return;var e=document.documentElement;for(var k in v)if(k.charAt(0)==='-')e.style.setProperty(k,v[k]);if(v['--bg-primary'])e.style.background=v['--bg-primary'];if(v['--text-primary'])e.style.color=v['--text-primary'];if(v['--color-scheme']==='light'||v['--color-scheme']==='dark')e.style.colorScheme=v['--color-scheme'];if(t.id)e.setAttribute('data-theme',t.id)}catch(_){}})();</script>
 <link rel="manifest" href="/manifest.webmanifest">
-<link rel="alternate" type="text/html" hreflang="en" href="https://openvibe.actor/">
+<link rel="alternate" type="text/html" hreflang="en" href="https://realtime.openvibe.network/">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="OpenVibe.Actor">
-<meta property="og:url" content="https://openvibe.actor/">
-<meta property="og:title" content="OpenVibe.Actor — Every AI agent, every device, one command console.">
-<meta property="og:description" content="OpenVibe.Actor sends each task to the best agent for it, across hosted agent platforms, open-source runtimes, coding agents and OpenVibe&#39;s own, balanced live on price, speed and success. Install the OpenVibe Node on your computers, servers, Raspberry Pis and robots, and your agents can work on them for real, at the control level you choose, with a kill switch you hold. Run everything from one console, or host the whole thing yourself.">
+<meta property="og:site_name" content="realtime.openvibe.network">
+<meta property="og:url" content="https://realtime.openvibe.network/">
+<meta property="og:title" content="realtime.openvibe.network — Closed: realtime delivery is part of OpenVibe.Events.">
+<meta property="og:description" content="OpenVibe.Realtime was planned as a separate service for live updates in the browser. Decision record ADR-005 (accepted 2026-09-22) closed it: browser realtime is part of OpenVibe.Events, as server-sent events with cursor resume at events.openvibe.network/realtime/stream. This address serves only this notice.">
 <meta property="og:image" content="https://openvibe.network/assets/logo-512.png">
 <meta property="og:image:alt" content="OpenVibe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="OpenVibe.Actor — Every AI agent, every device, one command console.">
-<meta name="twitter:description" content="OpenVibe.Actor sends each task to the best agent for it, across hosted agent platforms, open-source runtimes, coding agents and OpenVibe&#39;s own, balanced live on price, speed and success. Install the OpenVibe Node on your computers, servers, Raspberry Pis and robots, and your agents can work on them for real, at the control level you choose, with a kill switch you hold. Run everything from one console, or host the whole thing yourself.">
+<meta name="twitter:title" content="realtime.openvibe.network — Closed: realtime delivery is part of OpenVibe.Events.">
+<meta name="twitter:description" content="OpenVibe.Realtime was planned as a separate service for live updates in the browser. Decision record ADR-005 (accepted 2026-09-22) closed it: browser realtime is part of OpenVibe.Events, as server-sent events with cursor resume at events.openvibe.network/realtime/stream. This address serves only this notice.">
 <meta name="twitter:image" content="https://openvibe.network/assets/logo-512.png">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://openvibe.actor/#site","url":"https://openvibe.actor/","name":"OpenVibe.Actor","description":"OpenVibe.Actor sends each task to the best agent for it, across hosted agent platforms, open-source runtimes, coding agents and OpenVibe's own, balanced live on price, speed and success. Install the OpenVibe Node on your computers, servers, Raspberry Pis and robots, and your agents can work on them for real, at the control level you choose, with a kill switch you hold. Run everything from one console, or host the whole thing yourself.","inLanguage":"en","publisher":{"@type":"Organization","@id":"https://openvibe.network/#org","name":"OpenVibe","url":"https://openvibe.network/","logo":"https://openvibe.network/assets/logo-512.png","sameAs":["https://github.com/OpenVibers","https://discord.gg/M6MuRUaeJj"]},"isPartOf":{"@type":"WebSite","@id":"https://openvibe.network/#site","name":"OpenVibe.Network","url":"https://openvibe.network/"}},{"@type":"WebPage","@id":"https://openvibe.actor/#page","url":"https://openvibe.actor/","name":"OpenVibe.Actor — Every AI agent, every device, one command console.","description":"OpenVibe.Actor sends each task to the best agent for it, across hosted agent platforms, open-source runtimes, coding agents and OpenVibe's own, balanced live on price, speed and success. Install the OpenVibe Node on your computers, servers, Raspberry Pis and robots, and your agents can work on them for real, at the control level you choose, with a kill switch you hold. Run everything from one console, or host the whole thing yourself.","isPartOf":{"@id":"https://openvibe.actor/#site"},"datePublished":"2026-09-17","dateModified":"2026-10-03","breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"OpenVibe","item":"https://openvibe.network/"},{"@type":"ListItem","position":2,"name":"OpenVibe.Actor","item":"https://openvibe.actor/"}]}},{"@type":"FAQPage","@id":"https://openvibe.actor/#faq","mainEntity":[{"@type":"Question","name":"Is this like OpenRouter?","acceptedAnswer":{"@type":"Answer","text":"Yes, for agents: one API and one bill for many agent systems, with live prices and rankings. Actor routes whole tasks rather than single model calls, and it checks the results before you get them."}},{"@type":"Question","name":"Which agent systems does it use?","acceptedAnswer":{"@type":"Answer","text":"OpenVibe's own runtime, hosted agent platforms from companies like OpenAI and Anthropic, coding agents, and open-source agents on OpenVibe's hardware. Each is an adapter, so new ones join quickly."}},{"@type":"Question","name":"How does it choose?","acceptedAnswer":{"@type":"Answer","text":"For each kind of task it compares price, speed, success rate and current health across agent systems, then applies your mode and budget. Every choice is recorded and explained."}},{"@type":"Question","name":"Can I keep my data on OpenVibe?","acceptedAnswer":{"@type":"Answer","text":"Yes. Private mode uses only OpenVibe's own runtime and open models on its own hardware."}},{"@type":"Question","name":"Can it act without asking?","acceptedAnswer":{"@type":"Answer","text":"Only as far as you allow. Anything with consequences, like publishing, spending or moving a robot, waits for your approval, and every action is logged."}},{"@type":"Question","name":"Can an agent take full control of my computer?","acceptedAnswer":{"@type":"Answer","text":"Only if you set that Node to Full control on the device itself. It is time-boxed and recorded, you can see when an agent is in control, and a button, a hotkey or one command ends it. Most people use Trusted: routine actions run and risky ones ask first."}},{"@type":"Question","name":"Can I run Actor myself?","acceptedAnswer":{"@type":"Answer","text":"Yes. The router, the runtime, the console and the Node are open source and run on your own server with local models, and can link to openvibe.actor when you want hosted agents or the rest of the network."}},{"@type":"Question","name":"What will it cost?","acceptedAnswer":{"@type":"Answer","text":"You will be able to start without paying, within limits published before launch; bigger tasks and stronger agents will be paid, with the cost shown per task."}}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://realtime.openvibe.network/#site","url":"https://realtime.openvibe.network/","name":"realtime.openvibe.network","description":"OpenVibe.Realtime was planned as a separate service for live updates in the browser. Decision record ADR-005 (accepted 2026-09-22) closed it: browser realtime is part of OpenVibe.Events, as server-sent events with cursor resume at events.openvibe.network/realtime/stream. This address serves only this notice.","inLanguage":"en","publisher":{"@type":"Organization","@id":"https://openvibe.network/#org","name":"OpenVibe","url":"https://openvibe.network/","logo":"https://openvibe.network/assets/logo-512.png","sameAs":["https://github.com/OpenVibers","https://discord.gg/M6MuRUaeJj"]},"isPartOf":{"@type":"WebSite","@id":"https://openvibe.network/#site","name":"OpenVibe.Network","url":"https://openvibe.network/"}},{"@type":"WebPage","@id":"https://realtime.openvibe.network/#page","url":"https://realtime.openvibe.network/","name":"realtime.openvibe.network — Closed: realtime delivery is part of OpenVibe.Events.","description":"OpenVibe.Realtime was planned as a separate service for live updates in the browser. Decision record ADR-005 (accepted 2026-09-22) closed it: browser realtime is part of OpenVibe.Events, as server-sent events with cursor resume at events.openvibe.network/realtime/stream. This address serves only this notice.","isPartOf":{"@id":"https://realtime.openvibe.network/#site"},"datePublished":"2026-09-17","dateModified":"2026-10-03","breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"OpenVibe","item":"https://openvibe.network/"},{"@type":"ListItem","position":2,"name":"realtime.openvibe.network","item":"https://realtime.openvibe.network/"}]}}]}</script>
 <script>(function(){try{var raw=localStorage.getItem('ov_theme');if(!raw)return;var t=JSON.parse(raw),v=t&&t.variables;if(!v)return;var el=document.documentElement;for(var k in v)if(k.charAt(0)==='-')el.style.setProperty(k,v[k]);if(t.id)el.setAttribute('data-theme',t.id);}catch(_){}})();</script>
 <script src="/shared/theme-loader.js?v=ee4a6754d0f7" defer></script>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
@@ -32,7 +32,7 @@
 <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg-primary:#0a0f1c;--bg-secondary:#101828;--bg-card:#131c2e;--bg-hover:#1c2a44;--border:#1f2d47;--text-primary:#e6edf7;--text-secondary:#96a7c2;--text-muted:#7386a3;--accent:#3b82f6;--accent-light:#60a5fa;--accent-rgb:59,130,246;--on-accent:#fff;--site:#a78bfa;--site-rgb:167,139,250}
+:root{--bg-primary:#0a0f1c;--bg-secondary:#101828;--bg-card:#131c2e;--bg-hover:#1c2a44;--border:#1f2d47;--text-primary:#e6edf7;--text-secondary:#96a7c2;--text-muted:#7386a3;--accent:#3b82f6;--accent-light:#60a5fa;--accent-rgb:59,130,246;--on-accent:#fff;--site:#34d399;--site-rgb:52,211,153}
 html{scroll-behavior:smooth}
 body{background:var(--bg-primary);color:var(--text-primary);font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden}
 main{flex:1;position:relative}
@@ -149,135 +149,27 @@ a.card:hover{transform:translateY(-3px);border-color:rgba(var(--site-rgb),.6);bo
 <div class="orbs"><i></i><i></i><i></i></div>
 <div id="navbar-mount"></div>
 <main class="wrap">
-  <header class="hero split"><div class="hero-main">
-    <div class="mark"><i class="fa-solid fa-user-astronaut" aria-hidden="true"></i></div>
-    <div class="badge"><span class="ov-mark" data-size="16" data-variant="actor"></span> Part of the OpenVibe network · <b>being built</b></div>
-    <h1>OpenVibe<span class="d">.</span><span class="tld">Actor</span></h1>
-    <div class="tag">Every AI agent, every device, one command console.</div>
-    <p class="lead">OpenVibe.Actor sends each task to the best agent for it, across hosted agent platforms, open-source runtimes, coding agents and OpenVibe&#39;s own, balanced live on price, speed and success. Install the OpenVibe Node on your computers, servers, Raspberry Pis and robots, and your agents can work on them for real, at the control level you choose, with a kill switch you hold. Run everything from one console, or host the whole thing yourself.</p>
+  <header class="hero">
+    <div class="mark"><i class="fa-solid fa-satellite-dish" aria-hidden="true"></i></div>
+    <div class="badge"><span class="ov-mark" data-size="16" data-variant="realtime"></span> Part of the OpenVibe network · <b>closed</b></div>
+    <h1><span class="d">realtime</span><span class="tld">.openvibe.network</span></h1>
+    <div class="tag">Closed: realtime delivery is part of OpenVibe.Events.</div>
+    <p class="lead">OpenVibe.Realtime was planned as a separate service for live updates in the browser. Decision record ADR-005 (accepted 2026-09-22) closed it: browser realtime is part of OpenVibe.Events, as server-sent events with cursor resume at events.openvibe.network/realtime/stream. This address serves only this notice.</p>
     <div class="ctas">
-      <a class="btn btn-primary" href="https://openvibe.network/login?return=https%3A%2F%2Fopenvibe.actor%2F"><i class="fa-solid fa-right-to-bracket"></i> Sign in with OpenVibe</a>
-      <a class="btn" href="https://openvibe.network/#network"><i class="fa-solid fa-circle-nodes"></i> See the network</a>
+      <a class="btn btn-primary" href="https://events.openvibe.network/"><i class="fa-solid fa-arrow-right"></i> OpenVibe.Events</a>
+      <a class="btn" href="https://openvibe.network/#network"><i class="fa-solid fa-circle-nodes"></i> The whole network</a>
       <a class="btn" href="https://discord.gg/M6MuRUaeJj" rel="noopener"><i class="fa-brands fa-discord"></i> Follow the build</a>
     </div>
-    </div>
-    <figure class="viz" aria-label="Design preview: a task routed across four agent systems with cost, time and success estimates, the balanced mode selected">
-      <div class="viz-top"><span class="av"><i class="fa-solid fa-route" aria-hidden="true"></i></span><b>New task</b><span class="lat"><i class="fa-solid fa-wallet" aria-hidden="true"></i> budget 50¢</span></div>
-      <p class="task">Research five competitors of my shop and write a one-page brief with sources.</p>
-      <div class="modes" aria-hidden="true"><span>Cheapest</span><span class="on">Balanced</span><span>Best</span><span>Fastest</span><span>Private</span></div>
-      <ol class="cands" aria-hidden="true"><li class="pick"><i class="fa-solid fa-circle-nodes"></i><b>OpenVibe runtime</b><span>6¢</span><span>3 min</span><span>92%</span><em>picked</em></li><li><i class="fa-solid fa-cloud"></i><b>Hosted frontier agent</b><span>31¢</span><span>2 min</span><span>95%</span></li><li><i class="fa-solid fa-code"></i><b>Coding agent</b><span>12¢</span><span>4 min</span><span>81%</span></li><li><i class="fa-solid fa-lock"></i><b>Open model on OpenVibe</b><span>1¢</span><span>7 min</span><span>74%</span></li></ol>
-      <p class="why"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> Meets this task&#39;s quality bar at the lowest expected cost; a second model family checks the brief before you get it.</p>
-      <figcaption>Design preview; the numbers are illustrative</figcaption>
-    </figure>
+    <p class="status"><i class="fa-solid fa-clock" aria-hidden="true"></i> Status: <b>closed</b> · <strong>realtime.openvibe.network</strong> is closed and stays as a decision record; no product launches at this address. · as of 2026-09-29 · <a href="/status.json">status.json</a></p>
   </header>
 
 
-  <section id="what">
-    <h2>How a task runs</h2>
-    <p class="lead2">Send a task from the site, the API or any OpenVibe app. Actor does the rest.</p>
-    <ol class="steps">
-      <li><span class="n">1</span><b>Describe the task</b><span>Say what you want done, pick a mode and set a budget. Attach files or give it a robot, a site or a stream to work with.</span></li>
-      <li><span class="n">2</span><b>Actor picks the agent</b><span>It weighs every agent system on live price, speed and success for this kind of task, picks one, and tells you why.</span></li>
-      <li><span class="n">3</span><b>Checked, then delivered</b><span>A different model checks the result; a failed check moves the task to a stronger agent. You see the cost to the cent.</span></li>
-    </ol>
-  </section>
-
-
-  <section>
-    <h2>Modes</h2>
-    <p class="lead2">Tell Actor what matters most. It balances the rest.</p>
-    <div class="grid three">
-      <div class="card"><div class="ic"><i class="fa-solid fa-coins" aria-hidden="true"></i></div><b>Cheapest</b><span>The lowest expected cost that still meets the task&#39;s quality bar.</span></div>
-      <div class="card"><div class="ic"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i></div><b>Balanced</b><span>The default: cost, quality and speed weighed together.</span></div>
-      <div class="card"><div class="ic"><i class="fa-solid fa-trophy" aria-hidden="true"></i></div><b>Best</b><span>The highest chance of a right answer first time; cost comes second.</span></div>
-      <div class="card"><div class="ic"><i class="fa-solid fa-bolt" aria-hidden="true"></i></div><b>Fastest</b><span>The shortest time to a checked result.</span></div>
-      <div class="card"><div class="ic"><i class="fa-solid fa-lock" aria-hidden="true"></i></div><b>Private</b><span>Only agents that keep your data on OpenVibe: its own runtime and open models on its hardware.</span></div>
-      <div class="card"><div class="ic"><i class="fa-solid fa-wallet" aria-hidden="true"></i></div><b>Budgets</b><span>A hard limit per task and per day. Actor never goes over it.</span></div>
-    </div>
-  </section>
-
-  <section id="routes">
-    <h2>What it routes to</h2>
-    <p class="lead2">Every agent system worth using, behind one API, one key and one bill.</p>
-    <div class="grid three">
-      <div class="card"><div class="ic"><i class="fa-solid fa-circle-nodes" aria-hidden="true"></i></div><b>OpenVibe&#39;s own runtime</b><span>Uses every OpenVibe product as a tool, with models chosen by OpenVibe.AI.</span></div>
-      <div class="card"><div class="ic"><i class="fa-solid fa-cloud" aria-hidden="true"></i></div><b>Hosted agent platforms</b><span>Agent platforms from companies like OpenAI and Anthropic, with their browsers, code runners and search.</span></div>
-      <div class="card"><div class="ic"><i class="fa-solid fa-code" aria-hidden="true"></i></div><b>Coding agents</b><span>For tasks that are really code: fixes, features, reviews and tests.</span></div>
-      <div class="card"><div class="ic"><i class="fa-solid fa-server" aria-hidden="true"></i></div><b>Open-source agents</b><span>Open runtimes and open models on OpenVibe&#39;s own hardware: the Private mode.</span></div>
-      <div class="card"><div class="ic"><i class="fa-solid fa-key" aria-hidden="true"></i></div><b>Your own keys</b><span>Bring a key for any platform and pay it directly; Actor still routes, checks and explains.</span></div>
-      <div class="card"><div class="ic"><i class="fa-solid fa-plug-circle-plus" aria-hidden="true"></i></div><b>New ones, fast</b><span>A new agent platform is one adapter. The day it lands, every app and agent can use it.</span></div>
-    </div>
-  </section>
-  <section id="devices">
-    <h2>Your devices, under control</h2>
-    <p class="lead2">Install the OpenVibe Node on a computer, a server, a Raspberry Pi or a phone. No open ports: it connects out. You decide how much an agent may do.</p>
-    <div class="grid three">
-      <div class="card"><div class="ic"><i class="fa-solid fa-terminal" aria-hidden="true"></i></div><b>Terminal and files</b><span>A live terminal, a file browser, processes and services, from anywhere, for you and your agents.</span></div>
-      <div class="card"><div class="ic"><i class="fa-solid fa-display" aria-hidden="true"></i></div><b>Screen, keyboard and mouse</b><span>Agents can use any app on the machine the way you would, and you watch the screen while they work.</span></div>
-      <div class="card"><div class="ic"><i class="fa-solid fa-code-branch" aria-hidden="true"></i></div><b>Your own coding agents</b><span>The coding agents already installed on the machine become agents Actor can hand tasks to.</span></div>
-      <div class="card"><div class="ic"><i class="fa-solid fa-sliders" aria-hidden="true"></i></div><b>Four control levels</b><span>Observe, Ask, Trusted or Full control, set on the device itself. Full control is time-boxed and recorded.</span></div>
-      <div class="card"><div class="ic"><i class="fa-solid fa-power-off" aria-hidden="true"></i></div><b>A kill switch you hold</b><span>A button, a hotkey or one command on the device ends any agent session at once. Work can stay inside a container.</span></div>
-      <a class="card" href="https://openvibe.bot"><div class="ic"><i class="fa-solid fa-robot" aria-hidden="true"></i></div><b>Robots too</b><span>The same Node drives robots on OpenVibe.Bot, so one install covers your computers and your robots.</span><span class="go">openvibe.bot →</span></a>
-    </div>
-  </section>
-  <section id="console">
-    <h2>One console for everything</h2>
-    <p class="lead2">Agents, tasks, approvals, devices, robots, sites, streams and costs in one place, on the web and on your phone.</p>
-    <div class="grid three">
-      <div class="card"><div class="ic"><i class="fa-solid fa-keyboard" aria-hidden="true"></i></div><b>Command bar</b><span>Type what you want in plain words or as a slash command; it goes to the right agent, device or product.</span></div>
-      <div class="card"><div class="ic"><i class="fa-solid fa-list-check" aria-hidden="true"></i></div><b>Tasks and approvals</b><span>Live progress for every task, and one inbox for everything waiting on you.</span></div>
-      <div class="card"><div class="ic"><i class="fa-solid fa-server" aria-hidden="true"></i></div><b>Devices</b><span>Every Node with its status, a terminal, its files and its screen.</span></div>
-      <a class="card" href="https://openvibe.bot"><div class="ic"><i class="fa-solid fa-robot" aria-hidden="true"></i></div><b>Robots</b><span>Your robots&#39; control panels from OpenVibe.Bot, next to everything else.</span><span class="go">openvibe.bot →</span></a>
-      <div class="card"><div class="ic"><i class="fa-solid fa-tower-broadcast" aria-hidden="true"></i></div><b>Sites and streams</b><span>Deploys on OpenVibe.Host and your streams on OpenVibe.Live and openre.stream.</span></div>
-      <div class="card"><div class="ic"><i class="fa-solid fa-wave-square" aria-hidden="true"></i></div><b>Events and costs</b><span>What happened across the network, live, and what every task cost.</span></div>
-    </div>
-  </section>
-  <section>
-    <h2>Balanced live, explained always</h2>
-    <p class="lead2">Choices come from what actually happens, not from marketing pages.</p>
-    <div class="grid three">
-      <div class="card"><div class="ic"><i class="fa-solid fa-chart-line" aria-hidden="true"></i></div><b>Live signals</b><span>Price, speed, success rate and outages per agent system and per kind of task, updated from real runs.</span></div>
-      <div class="card"><div class="ic"><i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i></div><b>Failover</b><span>When an agent system slows down or fails, tasks move to the next best one at once.</span></div>
-      <div class="card"><div class="ic"><i class="fa-solid fa-list-check" aria-hidden="true"></i></div><b>Checked results</b><span>Cheap first, then stronger agents only when a check fails: you pay for strength only when a task needs it.</span></div>
-      <div class="card"><div class="ic"><i class="fa-solid fa-magnifying-glass-chart" aria-hidden="true"></i></div><b>Public rankings</b><span>Success, cost and time per agent system for each kind of task, from real traffic, with dates.</span></div>
-      <div class="card"><div class="ic"><i class="fa-solid fa-receipt" aria-hidden="true"></i></div><b>Every choice explained</b><span>Which agent ran, why it won, what else was considered and what it cost.</span></div>
-      <div class="card"><div class="ic"><i class="fa-solid fa-user-astronaut" aria-hidden="true"></i></div><b>Your agents, on top</b><span>Always-on agents with memory, schedules and approvals; every task they take goes through the router.</span></div>
-    </div>
-  </section>
-
-  <section>
-    <h2>Start an agent from a template</h2>
-    <p class="lead2">Each one is a starting point you can change, and each routes its work through Actor.</p>
-    <div class="chips big"><span><i class="fa-solid fa-tower-broadcast" aria-hidden="true"></i>Stream co-host</span><span><i class="fa-solid fa-shield" aria-hidden="true"></i>Chat moderator</span><span><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>Research assistant</span><span><i class="fa-solid fa-globe" aria-hidden="true"></i>Site builder</span><span><i class="fa-solid fa-robot" aria-hidden="true"></i>Robot pilot</span><span><i class="fa-solid fa-calendar-check" aria-hidden="true"></i>Personal assistant</span></div>
-  </section>
-
-  <section class="meanwhile">
-    <h2>Reachable everywhere</h2>
-    <p class="lead2">Actor is part of the network, not a separate app.</p>
+  <section id="what" class="meanwhile">
+    <h2>Where to go</h2>
+    <p class="lead2">Realtime delivery for browsers is a part of OpenVibe.Events; the decision and its record are public.</p>
     <div class="grid">
-      <div class="card"><div class="ic"><i class="fa-solid fa-bars" aria-hidden="true"></i></div><b>On every OpenVibe site</b><span>An agent button in the navbar, with the page you are on as context.</span></div>
-      <a class="card" href="https://openvibe.chat"><div class="ic"><i class="fa-solid fa-comments" aria-hidden="true"></i></div><b>In chat</b><span>Direct messages on OpenVibe.Chat and @mentions in Live chat and Community threads.</span><span class="go">openvibe.chat →</span></a>
-      <a class="card" href="https://openvibe.bot"><div class="ic"><i class="fa-solid fa-robot" aria-hidden="true"></i></div><b>With your robots</b><span>Give an agent a robot on OpenVibe.Bot to patrol, check on or perform with, with your approval.</span><span class="go">openvibe.bot →</span></a>
-      <a class="card" href="https://openvibe.codes"><div class="ic"><i class="fa-solid fa-plug" aria-hidden="true"></i></div><b>From your own apps</b><span>An API, webhooks and an MCP server, so other assistants can hand tasks to Actor.</span><span class="go">openvibe.codes →</span></a>
-    </div>
-  </section>
-
-  <section id="questions" class="faq">
-    <h2>Questions</h2>
-    <details><summary>Is this like OpenRouter?</summary><p>Yes, for agents: one API and one bill for many agent systems, with live prices and rankings. Actor routes whole tasks rather than single model calls, and it checks the results before you get them.</p></details>
-    <details><summary>Which agent systems does it use?</summary><p>OpenVibe&#39;s own runtime, hosted agent platforms from companies like OpenAI and Anthropic, coding agents, and open-source agents on OpenVibe&#39;s hardware. Each is an adapter, so new ones join quickly.</p></details>
-    <details><summary>How does it choose?</summary><p>For each kind of task it compares price, speed, success rate and current health across agent systems, then applies your mode and budget. Every choice is recorded and explained.</p></details>
-    <details><summary>Can I keep my data on OpenVibe?</summary><p>Yes. Private mode uses only OpenVibe&#39;s own runtime and open models on its own hardware.</p></details>
-    <details><summary>Can it act without asking?</summary><p>Only as far as you allow. Anything with consequences, like publishing, spending or moving a robot, waits for your approval, and every action is logged.</p></details>
-    <details><summary>Can an agent take full control of my computer?</summary><p>Only if you set that Node to Full control on the device itself. It is time-boxed and recorded, you can see when an agent is in control, and a button, a hotkey or one command ends it. Most people use Trusted: routine actions run and risky ones ask first.</p></details>
-    <details><summary>Can I run Actor myself?</summary><p>Yes. The router, the runtime, the console and the Node are open source and run on your own server with local models, and can link to openvibe.actor when you want hosted agents or the rest of the network.</p></details>
-    <details><summary>What will it cost?</summary><p>You will be able to start without paying, within limits published before launch; bigger tasks and stronger agents will be paid, with the cost shown per task.</p></details>
-  </section>
-
-  <section class="build">
-    <div class="card">
-      <b><i class="fa-solid fa-person-digging" aria-hidden="true"></i> Build status</b>
-      <span>OpenVibe.Actor is being built now, on the network&#39;s accounts, AI router and event system that already run. Its own service is not running yet: this page is a placeholder, nothing here is live yet. It opens with the task router with its first agent adapters, then personal agents on OpenVibe.Network accounts. · as of 2026-09-29 · <a href="/status.json">status.json</a></span>
+      <a class="card" href="https://events.openvibe.network/"><div class="ic"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></div><b>OpenVibe.Events</b><span>Durable events, subscriptions and signed delivery; browsers subscribe at /realtime/stream.</span><span class="go">events.openvibe.network →</span></a>
+      <a class="card" href="https://github.com/OpenVibers/OpenVibe.Contracts/blob/main/docs/adr/ADR-005-realtime.md"><div class="ic"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></div><b>ADR-005: realtime</b><span>The decision, and when a separate realtime service would be reconsidered.</span><span class="go">github.com/OpenVibers/OpenVibe.Contracts/blob/main/docs/adr/ADR-005-realtime.md →</span></a>
     </div>
   </section>
 
@@ -324,12 +216,13 @@ a.card:hover{transform:translateY(-3px);border-color:rgba(var(--site-rgb),.6);bo
       <a href="https://openvibe.help/"><i class="fa-solid fa-life-ring" aria-hidden="true"></i>OpenVibe.Help</a>
       <a href="https://openvibe.bot/"><i class="fa-solid fa-robot" aria-hidden="true"></i>OpenVibe.Bot</a>
       <a href="https://openvibe.watch/"><i class="fa-solid fa-eye" aria-hidden="true"></i>OpenVibe.Watch</a>
+      <a href="https://openvibe.actor/"><i class="fa-solid fa-user-astronaut" aria-hidden="true"></i>OpenVibe.Actor</a>
       <a href="https://openvibe.events/"><i class="fa-solid fa-bolt" aria-hidden="true"></i>OpenVibe.Events</a>
     </div>
   </section>
 
   <div class="strip">
-    <span class="ov-mark" data-size="44" data-variant="actor"></span>
+    <span class="ov-mark" data-size="44" data-variant="realtime"></span>
     <h3>Open source. Community run.</h3>
     <p>Every OpenVibe site is built in the open by the people using it — free speech within the rules, no gatekeeping, one identity that follows you everywhere.</p>
     <a class="btn" href="https://github.com/OpenVibers" rel="noopener"><i class="fa-brands fa-github"></i> OpenVibers on GitHub</a>
@@ -419,9 +312,9 @@ a.card:hover{transform:translateY(-3px);border-color:rgba(var(--site-rgb),.6);bo
             <div class="ovf-account" id="ovf-account" hidden></div>
             <div class="ovf-bar">
                 <span class="ovf-copy">Open source &amp; community driven · built in the open</span>
-                <a class="ovf-shipped" data-ov-shipped="latest" data-service="actor" href="https://openvibe.network/updates?site=actor" hidden></a>
+                <a class="ovf-shipped" data-ov-shipped="latest" data-service="realtime" href="https://openvibe.network/updates?site=realtime" hidden></a>
                 <span class="ovf-legal-inline">
-                    <a href="https://openvibe.network/updates?site=actor">Updates</a>
+                    <a href="https://openvibe.network/updates?site=realtime">Updates</a>
                     <a href="https://openvibe.live/tos">Terms</a><a href="https://openvibe.live/privacy">Privacy</a><a href="https://openvibe.live/dmca">DMCA</a>
                 </span>
             </div>
@@ -431,8 +324,8 @@ a.card:hover{transform:translateY(-3px);border-color:rgba(var(--site-rgb),.6);bo
 <script src="/shared/footer.js?v=a85ab893be88"></script>
 <script>
 (function () {
-  if (window.OpenVibeNavbar) { try { OpenVibeNavbar.init({ service: 'actor', apiBase: 'https://openvibe.network', links: [{ label: 'How it works', href: '#what' }, { label: 'The network', href: 'https://openvibe.network/#network', external: false }], history: { type: 'page', title: 'OpenVibe.Actor' } }); } catch (e) {} }
-  if (window.OpenVibeFooter) { try { OpenVibeFooter.init({ service: 'actor', variant: 'full', links: [{ heading: 'OpenVibe.Actor', items: [{ name: 'Sign in', url: 'https://openvibe.network/login?return=https%3A%2F%2Fopenvibe.actor%2F' }, { name: 'The network', url: 'https://openvibe.network/#network' }, { name: 'Discord', url: 'https://discord.gg/M6MuRUaeJj' }] }] }); } catch (e) {} }
+  if (window.OpenVibeNavbar) { try { OpenVibeNavbar.init({ service: 'realtime', apiBase: 'https://openvibe.network', links: [{ label: 'Where to go', href: '#what' }, { label: 'The network', href: 'https://openvibe.network/#network', external: false }], history: { type: 'page', title: 'realtime.openvibe.network' } }); } catch (e) {} }
+  if (window.OpenVibeFooter) { try { OpenVibeFooter.init({ service: 'realtime', variant: 'full', links: [{ heading: 'realtime.openvibe.network', items: [{ name: 'Sign in', url: 'https://openvibe.network/login?return=https%3A%2F%2Frealtime.openvibe.network%2F' }, { name: 'The network', url: 'https://openvibe.network/#network' }, { name: 'Discord', url: 'https://discord.gg/M6MuRUaeJj' }] }] }); } catch (e) {} }
 })();
 </script>
 </body>

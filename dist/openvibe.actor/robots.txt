@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
 Disallow: /auth/
-Sitemap: https://openvibe.actor/sitemap.xml

@@ -1,7 +1,7 @@
 {
   "service": "bot",
-  "release": "8512ce660c7e",
-  "released_at": "2026-10-03T00:00:00.000Z",
+  "release": "8d11b6a3debb",
+  "released_at": "2026-10-04T00:00:00.000Z",
   "booted_at": null,
   "contracts_version": null,
   "packages": {
@@ -9,5 +9,5 @@
   },
   "min_client_release": null,
   "mixed_version_window_hours": 24,
-  "kind": "placeholder"
+  "kind": "notice"
 }
