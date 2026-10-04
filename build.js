@@ -1,57 +1,229 @@
 #!/usr/bin/env node
 'use strict';
-/**
- * OpenVibe.Sites is frozen (plan T11 lane D): the product catalog lives in OpenVibe.Contracts and
- * sites.json is its generated mirror (scripts/sync-catalog.js). The placeholder pages in
- * dist/<domain>/ and the vhosts in deploy/nginx/ are no longer generated: they stay as committed and
- * production serves them until each product serves its own domain (docs/retirement.md).
- *
- *   node build.js            → dist/<domain>/{terms,privacy,dmca}.html and dist/_shared/
- *   node build.js --check    → exit 1 when those are stale (CI / deploy guard)
- *
- * What still builds: the legal pages, from the pinned openvibe-shared, and one copy of its browser
- * files, served by every Sites vhost at /shared/.
- */
+/** OpenVibe.Sites: rebuild notices only; product pages and vhosts are frozen. */
 const fs = require('fs');
 const path = require('path');
-// The network's legal documents, from the pinned OpenVibe.Shared release (package.json).
+const crypto = require('crypto');
 const legal = require('openvibe-shared/legal');
-// D42 (roadmap WS-P task 4): the pages run this repository's pinned copy of the shared browser files, served by
-// every Sites vhost at /shared/ from one copy in dist/_shared/, never openvibe.network's.
 const sharedFiles = require('openvibe-shared/files');
-// Which clauses apply to each domain once it opens (mirrors OpenVibe.Network/server/frame/sites.js).
-const LEGAL_PROFILE = { chat: 'ugc', codes: 'ugc', blog: 'info', wiki: 'ugc', news: 'info', reviews: 'ugc', tips: 'streaming', vip: 'account', trade: 'ugc', host: 'hosting', deals: 'info', coupons: 'info', stream: 'streaming' };
-// Sites whose own server has no page routes: their legal pages are built here and served by nginx.
-const LEGAL_ONLY = [{ domain: 'openvibe.games', name: 'OpenVibe.Games', id: 'games', profile: 'games' }];
-const legalSite = (site) => ({ id: site.tld, service: 'network', host: site.domain, name: site.name, profile: site.legalProfile || LEGAL_PROFILE[site.tld] || 'info' });
-
+const notices = require('./notices.json');
+const frozen = require('./frozen.json');
 const ROOT = __dirname;
 const DIST = path.join(ROOT, 'dist');
-const catalog = JSON.parse(fs.readFileSync(path.join(ROOT, 'sites.json'), 'utf8'));
+const NET = { networkUrl: 'https://openvibe.network' };
+const today = new Date().toISOString().slice(0, 10);
+const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const legalSite = (site) => ({ id: site.tld, service: 'network', host: site.domain, name: site.name, profile: site.legalProfile || 'info' });
 
+// Presentation is owned by the product teams. These notice snapshots preserve the existing pages.
+function page(site) { return fs.readFileSync(path.join(ROOT, 'notice-pages', `${site.domain}.html`), 'utf8'); }
+function robots() { return 'User-agent: *\nAllow: /\nDisallow: /auth/\n'; }
+function sitemap(site) { return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url><loc>https://${site.domain}/</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>\n</urlset>\n`; }
+function manifest(site) { return JSON.stringify(require('openvibe-shared/app-icon').manifest({ site: 'network', name: site.name, shortName: site.name.split('.').pop(), description: site.tagline, iconBase: `${NET.networkUrl}/assets` }), null, 2) + '\n'; }
+
+/** 404.html: what nginx answers (with status 404) for any path that is not a file in dist/<domain>/. */
+function notFound(site) {
+    const home = `https://${site.domain}/`;
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Not found · ${esc(site.name)}</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="${esc(site.accent)}">
+${require('openvibe-shared/app-icon').headTags({ site: 'network' }).split('\n')[0]}
+${require('openvibe-shared/app-icon').CRITICAL}
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg-primary:#0a0f1c;--bg-secondary:#101828;--border:#1f2d47;--text-primary:#e6edf7;--text-secondary:#96a7c2;--site:${esc(site.accent)}}
+body{background:var(--bg-primary);color:var(--text-primary);font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-height:100vh;display:grid;place-items:center;padding:24px 16px}
+main{max-width:560px;text-align:center}
+.code{font-size:14px;font-weight:700;letter-spacing:.2em;color:var(--site)}
+h1{font-size:clamp(28px,5vw,40px);font-weight:800;letter-spacing:-.8px;margin:10px 0 12px}
+p{color:var(--text-secondary);font-size:15px;line-height:1.65}
+.links{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:24px}
+a{display:inline-block;padding:11px 18px;border-radius:12px;font-size:14px;font-weight:600;text-decoration:none;border:1px solid var(--border);color:var(--text-primary);background:var(--bg-secondary)}
+a:first-child{background:var(--site);border-color:var(--site);color:#0b0d10}
+</style>
+</head>
+<body>
+<main>
+  <p class="code">404</p>
+  <h1>This page does not exist</h1>
+  <p>${esc(site.domain)} has only its front page and legal pages for now. The address you followed is not one of them.</p>
+  <div class="links">
+    <a href="${home}">${esc(site.name)}</a>
+    <a href="${NET.networkUrl}/">OpenVibe.Network</a>
+  </div>
+</main>
+</body>
+</html>
+`;
+}
+
+/** nginx vhost: static root, wildcard cert, www → apex, long cache for the immutable bits, real 404s. */
+const SECURITY_HEADERS = [
+    'add_header X-Content-Type-Options nosniff always;',
+    'add_header X-Frame-Options SAMEORIGIN always;',
+    'add_header Referrer-Policy strict-origin-when-cross-origin always;',
+    'add_header Strict-Transport-Security "max-age=31536000" always;',
+];
+function vhost(site) {
+    const d = site.domain;
+    const sec = SECURITY_HEADERS.join('\n        ');
+    // Subdomains of a zone (e.g. events.openvibe.network) use the zone's wildcard cert and have no www.
+    const cert = site.zone || d;
+    const www = site.zone ? '' : `
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    http2 on;
+    server_name www.${d};
+    ssl_certificate     /etc/letsencrypt/live/${cert}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/${cert}/privkey.pem;
+    return 301 https://${d}$request_uri;
+}
+`;
+    return `# ${d} — static front page (OpenVibe.Sites). Generated by build.js; edit notices.json, not this.
+server {
+    listen 80;
+    listen [::]:80;
+    server_name ${d}${site.zone ? '' : ` www.${d}`};
+    return 301 https://${d}$request_uri;
+}
+${www}
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    http2 on;
+    server_name ${d};
+    include snippets/security-txt.conf;   # /.well-known/security.txt (host file; SECURITY.md in every repo)
+
+    ssl_certificate     /etc/letsencrypt/live/${cert}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/${cert}/privkey.pem;
+
+    root /opt/openvibe.sites/dist/${d};
+    index index.html;
+
+    access_log /var/log/nginx/${d}.access.log;
+    error_log  /var/log/nginx/${d}.error.log;
+
+    ${SECURITY_HEADERS.join('\n    ')}
+
+    gzip on;
+    gzip_types text/html text/plain text/css application/json application/javascript application/xml image/svg+xml application/manifest+json;
+
+    # An add_header inside a location replaces the server's list (nginx does not merge them), so every
+    # location that sets its own header repeats the security headers.
+    location = /robots.txt {
+        add_header Cache-Control "public, max-age=3600";
+        ${sec}
+    }
+    location = /sitemap.xml {
+        types { application/xml xml; }
+        add_header Cache-Control "public, max-age=3600";
+        ${sec}
+    }
+    location = /manifest.webmanifest {
+        types { application/manifest+json webmanifest; }
+        add_header Cache-Control "public, max-age=86400";
+        ${sec}
+    }
+    location = /status.json {
+        add_header Cache-Control "public, max-age=600";
+        add_header Access-Control-Allow-Origin "*";
+        ${sec}
+    }
+    location = /release.json {
+        add_header Cache-Control "no-cache";
+        add_header Access-Control-Allow-Origin "*";
+        ${sec}
+    }
+    # This repository's pinned shared browser files (navbar, footer, theme loader…), one copy for every Sites
+    # vhost. Pages ask for them content-addressed (?v=); the few loaded without it (navbar's companions) get
+    # the same hour.
+    location ^~ /shared/ {
+        alias /opt/openvibe.sites/dist/_shared/;
+        add_header Cache-Control "public, max-age=3600";
+        add_header Access-Control-Allow-Origin "*";
+        ${sec}
+    }
+
+    # Only the files in dist/ exist; anything else is a real 404 with a page, never the front page.
+    error_page 404 /404.html;
+    location = /404.html { internal; }
+
+    location / {
+        add_header Cache-Control "public, max-age=600";
+        ${sec}
+        try_files $uri $uri.html $uri/ =404;
+    }
+
+    location ~ /\\.(?!well-known) { deny all; }
+}
+`;
+}
+
+function releaseJson(site, html) {
+    const release = crypto.createHash('sha256').update(String(html).replace(/\d{4}-\d{2}-\d{2}/g, 'DATE')).digest('hex').slice(0, 12);
+    return JSON.stringify({
+        service: site.tld, release, released_at: `${today}T00:00:00.000Z`, booted_at: null,
+        contracts_version: null, packages: { 'openvibe-shared': require('openvibe-shared/package.json').version },
+        min_client_release: null, mixed_version_window_hours: 24, kind: 'notice',
+    }, null, 2) + '\n';
+}
+function statusJson(site) {
+    return JSON.stringify({
+        domain: site.domain, name: site.name, stage: site.kind, live: false,
+        network: NET.networkUrl, updated: today,
+        note: 'Static notice served by OpenVibers/OpenVibe.Sites. See the linked destination for current information.',
+    }, null, 2) + '\n';
+}
 function build() {
     const out = {};
-    for (const site of catalog.sites) for (const kind of ['terms', 'privacy', 'dmca']) out[`${site.domain}/${kind}.html`] = legal.page(kind, legalSite(site));
-    for (const g of LEGAL_ONLY) for (const kind of ['terms', 'privacy', 'dmca']) out[`${g.domain}/${kind}.html`] = legal.page(kind, { id: g.id, service: g.id, host: g.domain, name: g.name, profile: g.profile });
-    // One copy of every browser file of the pinned openvibe-shared (the pages' scripts and what they load beside them).
+    for (const site of notices) {
+        out[`${site.domain}/index.html`] = page(site);
+        out[`${site.domain}/404.html`] = notFound(site);
+        out[`${site.domain}/robots.txt`] = robots(site);
+        out[`${site.domain}/manifest.webmanifest`] = manifest(site);
+        out[`${site.domain}/release.json`] = releaseJson(site, out[`${site.domain}/index.html`]);
+        out[`${site.domain}/status.json`] = statusJson(site);
+        for (const kind of ['terms', 'privacy', 'dmca']) out[`${site.domain}/${kind}.html`] = legal.page(kind, legalSite(site));
+        if (!site.vhostOwner) out[`../deploy/nginx/${site.domain}.conf`] = vhost(site);
+    }
     for (const name of sharedFiles.BROWSER) out[`_shared/${name}`] = fs.readFileSync(sharedFiles.path(name), 'utf8');
     return out;
 }
-
-const files = build();
-if (process.argv.includes('--check')) {
-    let stale = 0;
-    for (const [rel, content] of Object.entries(files)) {
+function verifyFrozen() {
+    const noticeDomains = new Set(notices.map(site => site.domain));
+    let missing = 0;
+    for (const domain of frozen) {
+        if (noticeDomains.has(domain)) { console.error(`frozen domain is also a notice: ${domain}`); missing++; }
+        // Bot's own repository supplies its vhost; Sites keeps only its frozen files.
+        const files = [`dist/${domain}/index.html`, ...(domain === 'openvibe.bot' ? [] : [`deploy/nginx/${domain}.conf`])];
+        for (const file of files) {
+            if (!fs.existsSync(path.join(ROOT, file))) { console.error(`missing frozen file: ${file}`); missing++; }
+        }
+    }
+    return missing;
+}
+function check() {
+    let stale = verifyFrozen();
+    const norm = (s) => String(s).replace(/\d{4}-\d{2}-\d{2}/g, 'DATE');
+    for (const [rel, content] of Object.entries(build())) {
         const p = path.join(DIST, rel);
-        // lastmod/datePublished change daily; compare with dates neutralised.
-        const norm = (s) => String(s).replace(/\d{4}-\d{2}-\d{2}/g, 'DATE');
         if (!fs.existsSync(p) || norm(fs.readFileSync(p, 'utf8')) !== norm(content)) { console.error(`stale: ${rel}`); stale++; }
     }
-    process.exit(stale ? 1 : 0);
+    return stale;
 }
-for (const [rel, content] of Object.entries(files)) {
-    const p = path.join(DIST, rel);
-    fs.mkdirSync(path.dirname(p), { recursive: true });
-    fs.writeFileSync(p, content);
+if (require.main === module) {
+    if (process.argv.includes('--check')) process.exit(check() ? 1 : 0);
+    for (const [rel, content] of Object.entries(build())) {
+        const p = path.join(DIST, rel);
+        fs.mkdirSync(path.dirname(p), { recursive: true });
+        fs.writeFileSync(p, content);
+    }
+    console.log(`built ${notices.length} notices; preserved ${frozen.length} frozen product domains`);
 }
-console.log(`built legal pages and /shared/ for ${catalog.sites.length} sites → dist/`);
+module.exports = { build, check, verifyFrozen };

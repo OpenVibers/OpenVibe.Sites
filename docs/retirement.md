@@ -11,7 +11,10 @@ the release in which the product's own vhost is installed.
 `origin/main`, as of the local refs read on 2026-10-02. "Park: DNS only" means no repository will serve the
 domain yet. When the Sites vhost goes, the record stays in DNS (Cloudflare) and nothing on the host answers it.
 
-The Sites repository has 33 host files (the plan said 36; `deploy/nginx/` has 33, one per `sites.json` entry).
+The Sites repository had 33 host files on 2026-10-02 (the plan said 36), one per `sites.json` entry. Since then OpenVibe.Bot
+supplies the `openvibe.bot` vhost (Sites keeps publishing its frozen pages), and `openvibe.work` and `openvibe.zone` were
+added; they have no Contracts manifest yet, so `sync-catalog.js` keeps them as they are. That makes 34 host files for 35
+`sites.json` entries.
 
 | Host file | Sites serves today | Goes to | Own host config on origin/main |
 |---|---|---|---|
@@ -22,7 +25,7 @@ The Sites repository has 33 host files (the plan said 36; `deploy/nginx/` has 33
 | `auth.openvibe.network.conf` | placeholder | OpenVibe.Network | no |
 | `openre.stream.conf` | placeholder | OpenRe.Stream | yes: `deploy/nginx/openre.stream.conf` |
 | `openvibe.actor.conf` | placeholder (no repo) | park: DNS only (OpenVibe.Node exists but has no deploy config and does not run) | no |
-| `openvibe.bot.conf` | placeholder (no repo) | park: DNS only (OpenVibe.Bot exists but has no deploy config and does not run; Contracts still says `noRepo`) | no |
+| (`openvibe.bot`, no Sites host file) | placeholder (no repo) | OpenVibe.Bot, which already supplies the vhost; Sites keeps only the frozen pages | yes (Contracts still says `noRepo`) |
 | `openvibe.coupons.conf` | placeholder | OpenVibe.Coupons | yes: `deploy/nginx/openvibe.coupons.conf` |
 | `openvibe.deals.conf` | placeholder | OpenVibe.Deals | yes: `deploy/nginx/openvibe.deals.conf` |
 | `openvibe.download.conf` | placeholder (no repo) | park: DNS only (Contracts names OpenVibe.MediaHub, which does not exist yet) | no |
@@ -45,11 +48,13 @@ The Sites repository has 33 host files (the plan said 36; `deploy/nginx/` has 33
 | `openvibe.vip.conf` | placeholder | OpenVibe.VIP | yes: `deploy/nginx/openvibe.vip.conf` |
 | `openvibe.watch.conf` | placeholder (no repo) | park: DNS only | no |
 | `openvibe.website.conf` | placeholder (no repo) | park: DNS only | no |
+| `openvibe.work.conf` | placeholder (no repo) | park: DNS only (not in the Contracts catalog yet) | no |
+| `openvibe.zone.conf` | placeholder (no repo) | park: DNS only (not in the Contracts catalog yet) | no |
 | `realtime.openvibe.network.conf` | closed notice | park: DNS only (Realtime is closed; delivery is part of OpenVibe.Events at `events.openvibe.network`) | no |
 | `status.openvibe.network.conf` | status notice | OpenVibe.Network: its status page `openvibe.network/status` (a redirect from this host) | no |
 | `themes.openvibe.network.conf` | placeholder | OpenVibe.Network | no |
 
-Totals: 17 go to a product repository; 10 of those have their own host config on `origin/main`. The other 16 are parked: DNS only.
+Totals: 18 go to a product repository; 11 of those have their own host config (10 on `origin/main` as of 2026-10-02, and OpenVibe.Bot's). The other 17 are parked: DNS only.
 
 The Sites vhost for a domain is removed only when all of these are true:
 

@@ -1108,6 +1108,80 @@
       "launch": "the sandbox runtime"
     },
     {
+      "domain": "openvibe.work",
+      "tld": "work",
+      "name": "OpenVibe.Work",
+      "icon": "fa-briefcase",
+      "accent": "#34d399",
+      "noRepo": true,
+      "tagline": "Find work, with an agent on your side.",
+      "description": "OpenVibe.Work will gather job listings from open sources with their provenance, let you search them and watch for new ones that fit, and let an agent help you prepare and apply — with your approval at every step. Part of the OpenVibe network, with one account for every site.",
+      "pillars": [
+        [
+          "Every listing sourced",
+          "Where it came from and when, always shown."
+        ],
+        [
+          "Watch for fits",
+          "Get told when a job that matches appears."
+        ],
+        [
+          "An agent that helps",
+          "Drafts, tailors and tracks applications — you approve."
+        ],
+        [
+          "Yours to control",
+          "Your profile and history stay yours, exportable any time."
+        ]
+      ],
+      "meanwhile": [
+        [
+          "OpenVibe.Network",
+          "https://openvibe.network",
+          "One free account for every OpenVibe site, ready today."
+        ]
+      ],
+      "keywords": "openvibe work, job search, job listings, job alerts, ai job application assistant",
+      "launch": "job listings and alerts"
+    },
+    {
+      "domain": "openvibe.zone",
+      "tld": "zone",
+      "name": "OpenVibe.Zone",
+      "icon": "fa-box-archive",
+      "accent": "#2dd4bf",
+      "noRepo": true,
+      "tagline": "Your data, in zones.",
+      "description": "OpenVibe.Zone will keep your data and files in zones — S3-style buckets for persistent storage that every OpenVibe service and agent can use with your permission, also offered to developers through OpenVibe.Services. Part of the OpenVibe network, with one account for every site.",
+      "pillars": [
+        [
+          "An S3-style API",
+          "Buckets, objects and signed links that existing tools already speak."
+        ],
+        [
+          "Durable storage",
+          "Files and data that stay put, with copies kept safe."
+        ],
+        [
+          "Access you control",
+          "Decide which services, agents and people can read or write each zone."
+        ],
+        [
+          "Used across the network",
+          "The same zones back your streams, media, agents and apps."
+        ]
+      ],
+      "meanwhile": [
+        [
+          "OpenVibe.Network",
+          "https://openvibe.network",
+          "One free account for every OpenVibe site, ready today."
+        ]
+      ],
+      "keywords": "openvibe zone, object storage, s3 compatible storage, buckets, persistent storage, file storage api",
+      "launch": "zones for data and files"
+    },
+    {
       "domain": "openvibe.video",
       "tld": "video",
       "name": "OpenVibe.Video",
@@ -1240,6 +1314,7 @@
       "icon": "fa-robot",
       "accent": "#f472b6",
       "noRepo": true,
+      "vhostOwner": "OpenVibers/OpenVibe.Bot",
       "tagline": "Get your robot online in minutes.",
       "description": "OpenVibe.Bot is an open control panel for robots. Add a robot, pair it with one command or a QR code, and drive it from any browser with live video, real controls and a stop button that always works. Buy a ready-made bot or bring your own: a Raspberry Pi robot, an ESP32, a ROS 2 robot, a phone, or a Cozmo. Share control, automate it, hand it to your AI agent, and stream it to OpenVibe.Live or openre.stream when you want to.",
       "pillars": [

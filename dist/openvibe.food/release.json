@@ -1,11 +1,11 @@
 {
   "service": "food",
-  "release": "878d27edfc5d",
-  "released_at": "2026-10-01T00:00:00.000Z",
+  "release": "b602b6e1504e",
+  "released_at": "2026-10-03T00:00:00.000Z",
   "booted_at": null,
   "contracts_version": null,
   "packages": {
-    "openvibe-shared": "2.3.1"
+    "openvibe-shared": "2.5.0"
   },
   "min_client_release": null,
   "mixed_version_window_hours": 24,
