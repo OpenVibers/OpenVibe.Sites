@@ -1,12 +1,13 @@
 {
   "name": "openvibe-sites",
   "private": true,
-  "description": "Static notices and frozen product pages for OpenVibe domains",
+  "description": "Static notices and frozen product pages for OpenVibe domains; sites.json mirrors the OpenVibe.Contracts product catalog",
   "scripts": {
     "build": "node build.js",
     "test": "node test/run.js"
   },
   "dependencies": {
+    "openvibe-contracts": "https://codeload.github.com/OpenVibers/OpenVibe.Contracts/tar.gz/refs/tags/v0.84.0",
     "openvibe-shared": "https://codeload.github.com/OpenVibers/OpenVibe.Shared/tar.gz/refs/tags/v2.5.0"
   },
   "engines": {

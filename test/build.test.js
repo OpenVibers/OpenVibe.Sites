@@ -26,6 +26,16 @@ for (const domain of frozen) {
     if (domain !== 'openvibe.bot') assert.ok(exists(`deploy/nginx/${domain}.conf`), `${domain}: frozen vhost`);
 }
 assert.ok(!exists('deploy/nginx/openvibe.bot.conf'), 'Bot owns its vhost');
+// A frozen placeholder never claims a product is live, never uses pricing copy (no "free"/"$0"/"no ads"; "free
+// speech" is fine) and never offers hosting no OpenVibe service provides (2026-09-24 audit).
+const PRICING = /\$0\b|\bfor free\b|\bfree (forever|to use|of charge|plan|tier)\b|\bno ads\b|\bad-free\b/i;
+const UNBACKED = /handled for you|host your (bot|mod)|bots,? (and|&amp;|&) mods hosting|\bservice hosting\b/i;
+for (const domain of frozen) {
+    const html = read(`dist/${domain}/index.html`);
+    assert.ok(html.includes('this page is a placeholder, nothing here is live yet'), `${domain}: says it is a placeholder`);
+    assert.doesNotMatch(html, PRICING, `${domain}: pricing copy`);
+    assert.doesNotMatch(html, UNBACKED, `${domain}: claims a hosting product that does not exist`);
+}
 for (const domain of ['openvibe.actor', 'openvibe.bot']) {
     assert.ok(frozen.includes(domain), `${domain}: remains frozen`);
     assert.match(read(`dist/${domain}/index.html`), /<meta name="robots" content="index, follow, max-image-preview:large">/, `${domain}: original indexing`);

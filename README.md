@@ -14,7 +14,11 @@ All three are `noindex`. The existing page presentation is held in `notice-pages
 
 ## Frozen product pages
 
-`frozen.json` lists all 32 product domains, including OpenVibe.Actor and OpenVibe.Bot. Their committed front pages remain available as static files with their original indexing, status, and sitemaps. The build does not regenerate them. `node build.js --check` verifies that each frozen domain still has an index page and a Sites vhost where Sites owns one, while checking that notice outputs are current. The old catalog and repository facts snapshots are historical data, not build inputs.
+`frozen.json` lists all 32 product domains, including OpenVibe.Actor and OpenVibe.Bot. Their committed front pages remain available as static files with their original indexing, status, and sitemaps. The build does not regenerate them. `node build.js --check` verifies that each frozen domain still has an index page and a Sites vhost where Sites owns one, while checking that notice outputs are current. The repository facts snapshot is historical data, not a build input.
+
+## Product catalog
+
+The product catalog lives in OpenVibe.Contracts (`products.catalog()`, v0.84.0). `sites.json` is its generated mirror (`node scripts/sync-catalog.js`; `--check` fails when it differs); fields Contracts does not carry keep their frozen value, and a domain missing from the catalog is kept and reported, never dropped. `sites.json` is not a build input. Which product takes over each domain: [docs/retirement.md](docs/retirement.md).
 
 The owner cutover will transfer DNS and nginx ownership one domain at a time after each product can serve its address. That work is outside this repository change. Until then, the existing product pages and vhosts continue to serve their addresses. A missing file path is a real 404 through `try_files ... =404` and `error_page 404 /404.html`.
 
@@ -23,10 +27,12 @@ The owner cutover will transfer DNS and nginx ownership one domain at a time aft
 ```sh
 node build.js
 node build.js --check
+node scripts/sync-catalog.js --check
 ov test test/build.test.js
+ov test test/sync-catalog.test.js
 ov test test/deploy-wrapper.test.js
 ```
 
-The pinned `openvibe-shared` release supplies the Frame browser files under `dist/_shared/`. The deploy wrapper remains the existing OpenVibe.Host static build path. Sites has no server process, port, token, or environment file. The owner manages certificates and DNS.
+The pinned `openvibe-contracts` release supplies the catalog `sites.json` mirrors; the pinned `openvibe-shared` release supplies the Frame browser files under `dist/_shared/`. The deploy wrapper remains the existing OpenVibe.Host static build path. Sites has no server process, port, token, or environment file. The owner manages certificates and DNS.
 
 Report security issues through [SECURITY.md](SECURITY.md).
