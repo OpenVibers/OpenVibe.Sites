@@ -1,5 +1,5 @@
 'use strict';
-// The five notices are current, while every product page and vhost stays frozen.
+// The three notices are current, while product pages stay frozen.
 const assert = require('assert');
 const fs = require('fs');
 const path = require('path');
@@ -16,15 +16,23 @@ assert.doesNotMatch(read('scripts/facts.js'), /facts\.json|sites\.json/, 'retire
 
 assert.deepStrictEqual(notices.map(n => n.domain), [
     'ai.openvibe.network', 'realtime.openvibe.network', 'status.openvibe.network',
-    'openvibe.actor', 'openvibe.bot',
 ]);
 assert.strictEqual(new Set(frozen).size, frozen.length, 'frozen domains are unique');
-assert.strictEqual(frozen.length, 30, 'all 30 product domains are frozen');
+assert.strictEqual(frozen.length, 32, 'all 32 product domains are frozen');
 const active = new Set(notices.map(n => n.domain));
 for (const domain of frozen) {
     assert.ok(!active.has(domain), `${domain}: product is not a notice`);
     assert.ok(exists(`dist/${domain}/index.html`), `${domain}: frozen front page`);
-    assert.ok(exists(`deploy/nginx/${domain}.conf`), `${domain}: frozen vhost`);
+    if (domain !== 'openvibe.bot') assert.ok(exists(`deploy/nginx/${domain}.conf`), `${domain}: frozen vhost`);
+}
+assert.ok(!exists('deploy/nginx/openvibe.bot.conf'), 'Bot owns its vhost');
+for (const domain of ['openvibe.actor', 'openvibe.bot']) {
+    assert.ok(frozen.includes(domain), `${domain}: remains frozen`);
+    assert.match(read(`dist/${domain}/index.html`), /<meta name="robots" content="index, follow, max-image-preview:large">/, `${domain}: original indexing`);
+    assert.strictEqual(JSON.parse(read(`dist/${domain}/status.json`)).stage, 'placeholder', `${domain}: lifecycle stage`);
+    assert.strictEqual(JSON.parse(read(`dist/${domain}/release.json`)).kind, 'placeholder', `${domain}: release kind`);
+    assert.ok(exists(`dist/${domain}/sitemap.xml`), `${domain}: frozen sitemap`);
+    assert.ok(read(`dist/${domain}/robots.txt`).includes(`Sitemap: https://${domain}/sitemap.xml`), `${domain}: sitemap advertised`);
 }
 
 for (const notice of notices) {

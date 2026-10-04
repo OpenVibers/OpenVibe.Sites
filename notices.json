@@ -66,31 +66,5 @@
         "href": "https://openvibe.network/api/v1/registry/releases"
       }
     ]
-  },
-  {
-    "domain": "openvibe.actor",
-    "tld": "actor",
-    "name": "OpenVibe.Actor",
-    "tagline": "Every AI agent, every device, one command console.",
-    "description": "OpenVibe.Actor sends each task to the best agent for it, across hosted agent platforms, open-source runtimes, coding agents and OpenVibe's own, balanced live on price, speed and success. Install the OpenVibe Node on your computers, servers, Raspberry Pis and robots, and your agents can work on them for real, at the control level you choose, with a kill switch you hold. Run everything from one console, or host the whole thing yourself.",
-    "accent": "#a78bfa",
-    "kind": "router",
-    "links": []
-  },
-  {
-    "domain": "openvibe.bot",
-    "tld": "bot",
-    "name": "OpenVibe.Bot",
-    "tagline": "Get your robot online in minutes.",
-    "description": "OpenVibe.Bot is an open control panel for robots. Add a robot, pair it with one command or a QR code, and drive it from any browser with live video, real controls and a stop button that always works. Buy a ready-made bot or bring your own: a Raspberry Pi robot, an ESP32, a ROS 2 robot, a phone, or a Cozmo. Share control, automate it, hand it to your AI agent, and stream it to OpenVibe.Live or openre.stream when you want to.",
-    "accent": "#f472b6",
-    "vhostOwner": "OpenVibers/OpenVibe.Bot",
-    "kind": "panel",
-    "links": [
-      {
-        "label": "openvibe.bot",
-      "href": "https://openvibe.bot/"
-      }
-    ]
   }
 ]
