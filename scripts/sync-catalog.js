@@ -13,6 +13,9 @@
  * the value sites.json has today (frozen, never dropped): the `network` block, LOCAL fields, and for
  * a service-home row SERVICE_LOCAL (a service manifest's site name/icon/tagline/legalProfile are the
  * console card's, not the page's). A sites.json domain missing from the catalog is kept and reported.
+ *
+ * plannedRepo is noRepo with the repository named (an entry without a live repository yet): when
+ * sites.json names one, Contracts' noRepo does not come back (a row never carries both).
  */
 const fs = require('fs');
 const path = require('path');
@@ -43,6 +46,12 @@ function fromContracts(row, field) {
     return SHAPE[field] ? SHAPE[field](v) : v;
 }
 
+/** plannedRepo is noRepo with the repository named; a row must never carry both. */
+function dropNoRepo(out) {
+    if (out.plannedRepo !== undefined) delete out.noRepo;
+    return out;
+}
+
 function sync(current) {
     const rows = new Map(catalog().map(r => [r.domain, r]));
     const kept = [];
@@ -56,24 +65,28 @@ function sync(current) {
             if (v !== undefined) out[k] = v;
             else if (site[k] !== undefined) out[k] = site[k];
         }
-        return out;
+        return dropNoRepo(out);
     });
     for (const row of rows.values()) {
         const out = {};
         for (const k of FIELDS) { const v = fromContracts(row, k); if (v !== undefined) out[k] = v; }
-        sites.push(out);
+        sites.push(dropNoRepo(out));
     }
     return { json: { ...current, sites }, kept };
 }
 
-const before = fs.readFileSync(FILE, 'utf8');
-const { json, kept } = sync(JSON.parse(before));
-const after = JSON.stringify(json, null, 2) + '\n';
-for (const d of kept) console.error(`sync-catalog: ${d} is not in the Contracts catalog; kept as it is`);
-if (process.argv.includes('--check')) {
-    if (after !== before) { console.error('sync-catalog: sites.json differs from the Contracts catalog; run node scripts/sync-catalog.js'); process.exit(1); }
-    console.log(`sync-catalog: sites.json matches the Contracts catalog (${json.sites.length} sites)`);
-} else {
-    fs.writeFileSync(FILE, after);
-    console.log(`sync-catalog: wrote ${json.sites.length} sites to sites.json`);
+if (require.main === module) {
+    const before = fs.readFileSync(FILE, 'utf8');
+    const { json, kept } = sync(JSON.parse(before));
+    const after = JSON.stringify(json, null, 2) + '\n';
+    for (const d of kept) console.error(`sync-catalog: ${d} is not in the Contracts catalog; kept as it is`);
+    if (process.argv.includes('--check')) {
+        if (after !== before) { console.error('sync-catalog: sites.json differs from the Contracts catalog; run node scripts/sync-catalog.js'); process.exit(1); }
+        console.log(`sync-catalog: sites.json matches the Contracts catalog (${json.sites.length} sites)`);
+    } else {
+        fs.writeFileSync(FILE, after);
+        console.log(`sync-catalog: wrote ${json.sites.length} sites to sites.json`);
+    }
 }
+
+module.exports = { sync, dropNoRepo };

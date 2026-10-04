@@ -1039,7 +1039,7 @@
       "name": "OpenVibe.Services",
       "icon": "fa-server",
       "accent": "#38bdf8",
-      "noRepo": true,
+      "plannedRepo": "OpenVibe.Services",
       "tagline": "Build with the whole network.",
       "description": "OpenVibe.Services will be the way into everything programmable on OpenVibe. Start from what you want to build (monitor a page and summarise changes, run an AI agent, process uploads, control a robot, add support to a site) and it assembles the services, keys, permissions and working code for you. Then operate it all in one place: projects, grants, usage, quotas, runs, events, deploys and health, with each service keeping its own data.",
       "pillars": [
