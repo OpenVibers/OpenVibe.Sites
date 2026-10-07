@@ -35,3 +35,8 @@ ov test test/deploy-wrapper.test.js
 The pinned `openvibe-contracts` release supplies the catalog `sites.json` mirrors; the pinned `openvibe-shared` release supplies the Frame browser files under `dist/_shared/`. The deploy wrapper remains the existing OpenVibe.Host static build path. Sites has no server process, port, token, or environment file. The owner manages certificates and DNS.
 
 Report security issues through [SECURITY.md](SECURITY.md).
+
+<!-- versions:start -->
+- openvibe-contracts: v0.112.0
+- openvibe-shared: v2.13.0
+<!-- versions:end -->
