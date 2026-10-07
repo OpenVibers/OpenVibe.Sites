@@ -19,8 +19,8 @@ added; they have no Contracts manifest yet, so `sync-catalog.js` keeps them as t
 | Host file | Sites serves today | Goes to | Own host config on origin/main |
 |---|---|---|---|
 | `admin.openvibe.network.conf` | placeholder | OpenVibe.Network | no (`openvibe.network.conf` names only `openvibe.network`, `my.openvibe.network`) |
-| `ai.openvibe.network.conf` | moved notice | OpenVibe.AI | yes: `deploy/nginx/ai.openvibe.network.conf` (a reference vhost for the old address; Contracts says AI moved to `ai.openvibe.services`) |
-| `ai.openvibe.services.conf` | placeholder | OpenVibe.AI | no |
+| (`ai.openvibe.network`, no Sites host file) | nothing (removed 2026-10-07) | OpenVibe.AI: its repo vhost answers 301 to ai.openvibe.services (AI#23) | yes |
+| (`ai.openvibe.services`, no Sites host file) | nothing (removed 2026-10-07) | OpenVibe.AI: launched 2026-10-07 (AI#23), repo vhost deploy/nginx/ai.openvibe.services.conf | yes |
 | `api.openvibe.network.conf` | placeholder | OpenVibe.Network | no |
 | `auth.openvibe.network.conf` | placeholder | OpenVibe.Network | no |
 | `openre.stream.conf` | placeholder | OpenRe.Stream | yes: `deploy/nginx/openre.stream.conf` |
@@ -41,7 +41,7 @@ added; they have no Contracts manifest yet, so `sync-catalog.js` keeps them as t
 | `openvibe.reviews.conf` | placeholder | OpenVibe.Reviews | yes: `deploy/nginx/openvibe.reviews.conf` |
 | `openvibe.run.conf` | placeholder (no repo) | park: DNS only | no |
 | `openvibe.services.conf` | placeholder (no repo) | park: DNS only | no |
-| `openvibe.space.conf` | placeholder (no repo) | park: DNS only (Contracts' `space` manifest names OpenVibe.Space, which does not exist yet) | no |
+| (`openvibe.space`, no Sites host file) | nothing (removed 2026-10-07) | OpenVibe.Space: launched 2026-10-07 (Space#1); its repo vhost deploy/nginx/openvibe.space.conf is installed by ovhost | yes |
 | `openvibe.tips.conf` | placeholder | OpenVibe.Tips | yes: `deploy/nginx/openvibe.tips.conf` |
 | `openvibe.trade.conf` | placeholder | OpenVibe.Trade | yes: `deploy/nginx/openvibe.trade.conf` |
 | `openvibe.video.conf` | placeholder (no repo) | park: DNS only (Contracts names OpenVibe.MediaHub, which does not exist yet) | no |

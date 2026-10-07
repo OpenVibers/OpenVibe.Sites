@@ -1,20 +1,19 @@
 # OpenVibe.Sites
 
-OpenVibe.Sites serves static notices for three addresses during the domain handoff. It no longer builds product placeholders. `notices.json` is the build input; `frozen.json` records the 29 product domains whose existing `dist/<domain>/index.html` and nginx vhosts remain in place until their owners complete the DNS and nginx cutover. OpenVibe.Bot serves its own front page, robots.txt, release.json and status.json (OpenVibe.Bot#34, 2026-10-07), so Sites keeps only its legal pages, 404 page, sitemap and manifest there. OpenVibe.Events serves openvibe.events with its own vhost since 2026-10-07 (Events#16), so Sites keeps nothing for that domain.
+OpenVibe.Sites serves static notices for two addresses during the domain handoff. It no longer builds product placeholders. `notices.json` is the build input; `frozen.json` records the 27 product domains whose existing `dist/<domain>/index.html` and nginx vhosts remain in place until their owners complete the DNS and nginx cutover. OpenVibe.Bot serves its own front page, robots.txt, release.json and status.json (OpenVibe.Bot#34, 2026-10-07), so Sites keeps only its legal pages, 404 page, sitemap and manifest there. OpenVibe.Events serves openvibe.events with its own vhost since 2026-10-07 (Events#16), so Sites keeps nothing for that domain. OpenVibe.Space serves openvibe.space with its own vhost since 2026-10-07 (Space#1, the forum moved off OpenVibe.Community), so Sites keeps nothing there either. OpenVibe.AI serves ai.openvibe.services and answers 301 from ai.openvibe.network with its own vhosts since 2026-10-07 (AI#23), so the moved notice and the AI placeholder are gone.
 
 ## Remaining notices
 
 | Address | Purpose | Vhost owner |
 | --- | --- | --- |
-| `ai.openvibe.network` | Moved address for OpenVibe.AI | Sites |
 | `realtime.openvibe.network` | Closed service notice | Sites |
 | `status.openvibe.network` | Pointer to Network status | Sites |
 
-All three are `noindex`. The existing page presentation is held in `notice-pages/`; the notice build writes only these domains and shared browser assets. The status notice still reads Network's public health endpoint in the browser.
+Both are `noindex`. The existing page presentation is held in `notice-pages/`; the notice build writes only these domains and shared browser assets. The status notice still reads Network's public health endpoint in the browser.
 
 ## Frozen product pages
 
-`frozen.json` lists all 29 product domains, including OpenVibe.Actor. Their committed front pages remain available as static files with their original indexing, status, and sitemaps. The build does not regenerate them. `node build.js --check` verifies that each frozen domain still has an index page and a Sites vhost, while checking that notice outputs are current. The repository facts snapshot is historical data, not a build input.
+`frozen.json` lists all 27 product domains, including OpenVibe.Actor. Their committed front pages remain available as static files with their original indexing, status, and sitemaps. The build does not regenerate them. `node build.js --check` verifies that each frozen domain still has an index page and a Sites vhost, while checking that notice outputs are current. The repository facts snapshot is historical data, not a build input.
 
 ## Product catalog
 
