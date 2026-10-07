@@ -29,7 +29,7 @@ added; they have no Contracts manifest yet, so `sync-catalog.js` keeps them as t
 | `openvibe.coupons.conf` | placeholder | OpenVibe.Coupons | yes: `deploy/nginx/openvibe.coupons.conf` |
 | `openvibe.deals.conf` | placeholder | OpenVibe.Deals | yes: `deploy/nginx/openvibe.deals.conf` |
 | `openvibe.download.conf` | placeholder (no repo) | park: DNS only (Contracts names OpenVibe.MediaHub, which does not exist yet) | no |
-| (`openvibe.events`, no Sites host file) | nothing (removed 2026-10-07) | OpenVibe.Events, which serves its product home with `deploy/nginx/openvibe.events.conf` (Events#16); the API stays on events.openvibe.network until the T7 origin move | yes |
+| (`openvibe.events`, no Sites host file) | nothing (removed 2026-10-07) | OpenVibe.Events, which serves its product home with `deploy/nginx/openvibe.events.conf` (Events#16); the API and the realtime stream are on openvibe.events too (plan T7) until the T7 origin move | yes |
 | `openvibe.food.conf` | placeholder (no repo) | park: DNS only | no |
 | `openvibe.help.conf` | placeholder (no repo) | park: DNS only | no |
 | `openvibe.homes.conf` | placeholder (no repo) | park: DNS only | no |
@@ -50,7 +50,7 @@ added; they have no Contracts manifest yet, so `sync-catalog.js` keeps them as t
 | `openvibe.website.conf` | placeholder (no repo) | park: DNS only | no |
 | `openvibe.work.conf` | placeholder (no repo) | park: DNS only (not in the Contracts catalog yet) | no |
 | `openvibe.zone.conf` | placeholder (no repo) | park: DNS only (not in the Contracts catalog yet) | no |
-| `realtime.openvibe.network.conf` | closed notice | park: DNS only (Realtime is closed; delivery is part of OpenVibe.Events at `events.openvibe.network`) | no |
+| `realtime.openvibe.network.conf` | closed notice | park: DNS only (Realtime is closed; delivery is part of OpenVibe.Events at `openvibe.events`) | no |
 | `status.openvibe.network.conf` | status notice | OpenVibe.Network: its status page `openvibe.network/status` (a redirect from this host) | no |
 | `themes.openvibe.network.conf` | placeholder | OpenVibe.Network | no |
 

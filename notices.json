@@ -4,7 +4,7 @@
     "tld": "realtime",
     "name": "realtime.openvibe.network",
     "tagline": "Closed: realtime delivery is part of OpenVibe.Events.",
-    "description": "OpenVibe.Realtime was planned as a separate service for live updates in the browser. Decision record ADR-005 (accepted 2026-09-22) closed it: browser realtime is part of OpenVibe.Events, as server-sent events with cursor resume at events.openvibe.network/realtime/stream. This address serves only this notice.",
+    "description": "OpenVibe.Realtime was planned as a separate service for live updates in the browser. Decision record ADR-005 (accepted 2026-09-22) closed it: browser realtime is part of OpenVibe.Events, as server-sent events with cursor resume at openvibe.events/realtime/stream. This address serves only this notice.",
     "accent": "#34d399",
     "zone": "openvibe.network",
     "legalProfile": "info",
@@ -12,7 +12,7 @@
     "links": [
       {
         "label": "OpenVibe.Events",
-        "href": "https://events.openvibe.network/"
+        "href": "https://openvibe.events/"
       },
       {
         "label": "ADR-005: realtime",
