@@ -28,6 +28,5 @@
   "openvibe.website",
   "openvibe.help",
   "openvibe.watch",
-  "openvibe.events",
   "openvibe.actor"
 ]
