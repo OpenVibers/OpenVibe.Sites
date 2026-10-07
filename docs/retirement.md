@@ -41,7 +41,7 @@ added; they have no Contracts manifest yet, so `sync-catalog.js` keeps them as t
 | `openvibe.reviews.conf` | placeholder | OpenVibe.Reviews | yes: `deploy/nginx/openvibe.reviews.conf` |
 | `openvibe.run.conf` | placeholder (no repo) | park: DNS only | no |
 | `openvibe.services.conf` | placeholder (no repo) | park: DNS only | no |
-| `openvibe.space.conf` | placeholder (no repo) | park: DNS only (Contracts' `space` manifest names OpenVibe.Space, which does not exist yet) | no |
+| (`openvibe.space`, no Sites host file) | nothing (removed 2026-10-07) | OpenVibe.Space: launched 2026-10-07 (Space#1); its repo vhost deploy/nginx/openvibe.space.conf is installed by ovhost | yes |
 | `openvibe.tips.conf` | placeholder | OpenVibe.Tips | yes: `deploy/nginx/openvibe.tips.conf` |
 | `openvibe.trade.conf` | placeholder | OpenVibe.Trade | yes: `deploy/nginx/openvibe.trade.conf` |
 | `openvibe.video.conf` | placeholder (no repo) | park: DNS only (Contracts names OpenVibe.MediaHub, which does not exist yet) | no |
