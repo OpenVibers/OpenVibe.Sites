@@ -33,7 +33,7 @@ added; they have no Contracts manifest yet, so `sync-catalog.js` keeps them as t
 | `openvibe.food.conf` | placeholder (no repo) | park: DNS only | no |
 | `openvibe.help.conf` | placeholder (no repo) | park: DNS only | no |
 | `openvibe.homes.conf` | placeholder (no repo) | park: DNS only | no |
-| `openvibe.host.conf` | placeholder | OpenVibe.Host | yes: `deploy/nginx/openvibe.host.conf` (STATUS.json: loopback only, not launched) |
+| (`openvibe.host`, no Sites host file) | nothing (removed 2026-10-07) | OpenVibe.Host: Stage B launched 2026-10-07; `ovhost nginx tenants host --install` writes openvibe.host.conf and openvibe.host-custom-domains.conf (Host#26) | yes |
 | `openvibe.news.conf` | placeholder | OpenVibe.News | yes: `deploy/nginx/openvibe.news.conf` |
 | `openvibe.pics.conf` | placeholder (no repo) | park: DNS only (Contracts names OpenVibe.MediaHub, which does not exist yet) | no |
 | `openvibe.quest.conf` | placeholder (no repo) | park: DNS only | no |
