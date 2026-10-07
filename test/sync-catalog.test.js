@@ -14,7 +14,7 @@ const { catalog } = require('openvibe-contracts/lib/products');
 const domains = new Set(catalog().map(r => r.domain));
 // Placeholders added after openvibe-contracts v0.84.0 that have no product manifest there yet: sync-catalog
 // keeps them as they are. Drop a domain from this list with the Contracts bump that adds it.
-const AWAITING_CONTRACTS = ['openvibe.work', 'openvibe.zone'];
+const AWAITING_CONTRACTS = [];   // openvibe.work and openvibe.zone have product manifests since the v0.112.0 pin
 for (const d of AWAITING_CONTRACTS) assert.ok(!domains.has(d), `${d}: is in the Contracts catalog now; remove it from AWAITING_CONTRACTS`);
 const sites = JSON.parse(fs.readFileSync(path.join(ROOT, 'sites.json'), 'utf8')).sites;
 for (const conf of fs.readdirSync(path.join(ROOT, 'deploy', 'nginx'))) {
@@ -30,4 +30,4 @@ assert.deepStrictEqual(dropNoRepo({ noRepo: true }), { noRepo: true });
 const services = sites.find(s => s.domain === 'openvibe.services');
 assert.strictEqual(services && services.plannedRepo, 'OpenVibe.Services', 'openvibe.services records its planned repository');
 assert.ok(services && !('noRepo' in services), 'openvibe.services must not also carry noRepo');
-console.log(`sync-catalog: ${sites.length} sites, all in the Contracts catalog but ${AWAITING_CONTRACTS.join(', ')}`);
+console.log(`sync-catalog: ${sites.length} sites, all in the Contracts catalog${AWAITING_CONTRACTS.length ? ` but ${AWAITING_CONTRACTS.join(', ')}` : ''}`);
