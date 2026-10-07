@@ -637,7 +637,7 @@
       "links": [
         [
           "OpenVibe.Events",
-          "https://events.openvibe.network/",
+          "https://openvibe.events/",
           "Durable events, subscriptions and signed delivery; browsers subscribe at /realtime/stream."
         ],
         [
@@ -851,19 +851,19 @@
       "accent": "#818cf8",
       "noRepo": true,
       "tagline": "Start a forum for anything.",
-      "description": "OpenVibe.Space will be the forums of the OpenVibe network: create a forum for any topic, with the depth of classic boards like XenForo and phpBB, the feel of a modern community, and AI help for topics, research and moderation. The forums on OpenVibe.Community move here when it launches.",
+      "description": "OpenVibe.Space is the network forum: browse public and members-only boards, start threads, reply, vote and moderate spaces with one OpenVibe identity.",
       "pillars": [
         [
           "Any forum",
-          "Anyone can start one, for any topic."
+          "Browse boards for discussions, requests and the roadmap."
         ],
         [
           "Classic depth",
-          "Sub-forums, threads, ranks, moderation tools."
+          "Child boards, threads, categories and moderation tools."
         ],
         [
-          "AI assist",
-          "Topic ideas, research and summaries, always labelled."
+          "Make it yours",
+          "Moderators can shape boards, categories and visibility."
         ],
         [
           "One account",
@@ -878,7 +878,7 @@
         ]
       ],
       "keywords": "openvibe space, forums, create a forum, community boards, xenforo alternative, phpbb alternative",
-      "launch": "the forum engine moving over from OpenVibe.Community"
+      "launch": "Forums moved from OpenVibe.Community to OpenVibe.Space (plan T10 step 3)."
     },
     {
       "domain": "openvibe.food",
@@ -1150,7 +1150,6 @@
       "name": "OpenVibe.Zone",
       "icon": "fa-box-archive",
       "accent": "#2dd4bf",
-      "noRepo": true,
       "tagline": "Your data, in zones.",
       "description": "OpenVibe.Zone will keep your data and files in zones — S3-style buckets for persistent storage that every OpenVibe service and agent can use with your permission, also offered to developers through OpenVibe.Services. Part of the OpenVibe network, with one account for every site.",
       "pillars": [
@@ -1179,7 +1178,8 @@
         ]
       ],
       "keywords": "openvibe zone, object storage, s3 compatible storage, buckets, persistent storage, file storage api",
-      "launch": "zones for data and files"
+      "launch": "zones for data and files",
+      "plannedRepo": "OpenVibe.Zone"
     },
     {
       "domain": "openvibe.video",
@@ -1313,7 +1313,6 @@
       "name": "OpenVibe.Bot",
       "icon": "fa-robot",
       "accent": "#f472b6",
-      "noRepo": true,
       "vhostOwner": "OpenVibers/OpenVibe.Bot",
       "tagline": "Get your robot online in minutes.",
       "description": "OpenVibe.Bot is an open control panel for robots. Add a robot, pair it with one command or a QR code, and drive it from any browser with live video, real controls and a stop button that always works. Buy a ready-made bot or bring your own: a Raspberry Pi robot, an ESP32, a ROS 2 robot, a phone, or a Cozmo. Share control, automate it, hand it to your AI agent, and stream it to OpenVibe.Live or openre.stream when you want to.",
@@ -1524,7 +1523,8 @@
           "What will it cost?",
           "Controlling your own robot will not cost anything. Limits and any paid extras will be published before launch."
         ]
-      ]
+      ],
+      "plannedRepo": "OpenVibe.Bot"
     },
     {
       "domain": "openvibe.watch",
@@ -1993,7 +1993,7 @@
         ]
       ],
       "keywords": "event bus api, webhook retry service, sqs alternative, sns alternative, pub sub api, realtime sse api, dead letter queue, webhook replay",
-      "launch": "the developer site and queue and stream primitives; the API runs at events.openvibe.network",
+      "launch": "the developer site, the API and the realtime stream on openvibe.events; queue and stream primitives",
       "plannedRepo": "OpenVibe.Events"
     }
   ]
