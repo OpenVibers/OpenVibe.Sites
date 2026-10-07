@@ -1,6 +1,6 @@
 # OpenVibe.Sites
 
-OpenVibe.Sites serves static notices for three addresses during the domain handoff. It no longer builds product placeholders. `notices.json` is the build input; `frozen.json` records the 32 product domains whose existing `dist/<domain>/index.html` and nginx vhosts remain in place until their owners complete the DNS and nginx cutover. OpenVibe.Bot owns its own vhost.
+OpenVibe.Sites serves static notices for three addresses during the domain handoff. It no longer builds product placeholders. `notices.json` is the build input; `frozen.json` records the 31 product domains whose existing `dist/<domain>/index.html` and nginx vhosts remain in place until their owners complete the DNS and nginx cutover. OpenVibe.Bot serves its own front page, robots.txt, release.json and status.json (OpenVibe.Bot#34, 2026-10-07), so Sites keeps only its legal pages, 404 page, sitemap and manifest there.
 
 ## Remaining notices
 
@@ -14,7 +14,7 @@ All three are `noindex`. The existing page presentation is held in `notice-pages
 
 ## Frozen product pages
 
-`frozen.json` lists all 32 product domains, including OpenVibe.Actor and OpenVibe.Bot. Their committed front pages remain available as static files with their original indexing, status, and sitemaps. The build does not regenerate them. `node build.js --check` verifies that each frozen domain still has an index page and a Sites vhost where Sites owns one, while checking that notice outputs are current. The repository facts snapshot is historical data, not a build input.
+`frozen.json` lists all 31 product domains, including OpenVibe.Actor. Their committed front pages remain available as static files with their original indexing, status, and sitemaps. The build does not regenerate them. `node build.js --check` verifies that each frozen domain still has an index page and a Sites vhost, while checking that notice outputs are current. The repository facts snapshot is historical data, not a build input.
 
 ## Product catalog
 

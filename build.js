@@ -200,9 +200,7 @@ function verifyFrozen() {
     let missing = 0;
     for (const domain of frozen) {
         if (noticeDomains.has(domain)) { console.error(`frozen domain is also a notice: ${domain}`); missing++; }
-        // Bot's own repository supplies its vhost; Sites keeps only its frozen files.
-        const files = [`dist/${domain}/index.html`, ...(domain === 'openvibe.bot' ? [] : [`deploy/nginx/${domain}.conf`])];
-        for (const file of files) {
+        for (const file of [`dist/${domain}/index.html`, `deploy/nginx/${domain}.conf`]) {
             if (!fs.existsSync(path.join(ROOT, file))) { console.error(`missing frozen file: ${file}`); missing++; }
         }
     }
