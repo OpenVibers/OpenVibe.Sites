@@ -1,5 +1,5 @@
 'use strict';
-// The three notices are current, while product pages stay frozen.
+// The two notices are current, while product pages stay frozen.
 const assert = require('assert');
 const fs = require('fs');
 const path = require('path');
@@ -15,10 +15,12 @@ assert.doesNotMatch(read('build.js'), /repoFacts|visionViz|facts\.json|sites\.js
 assert.doesNotMatch(read('scripts/facts.js'), /facts\.json|sites\.json/, 'retired snapshot script has no catalog inputs');
 
 assert.deepStrictEqual(notices.map(n => n.domain), [
-    'ai.openvibe.network', 'realtime.openvibe.network', 'status.openvibe.network',
+    'realtime.openvibe.network', 'status.openvibe.network',
 ]);
 assert.strictEqual(new Set(frozen).size, frozen.length, 'frozen domains are unique');
-assert.strictEqual(frozen.length, 28, 'all 28 product domains are frozen');
+assert.strictEqual(frozen.length, 27, 'all 27 product domains are frozen');
+// OpenVibe.AI serves ai.openvibe.services itself and ai.openvibe.network answers 301 to it since 2026-10-07 (AI#23).
+assert.ok(!frozen.includes('ai.openvibe.services') && !exists('dist/ai.openvibe.services') && !exists('dist/ai.openvibe.network') && !exists('deploy/nginx/ai.openvibe.services.conf') && !exists('deploy/nginx/ai.openvibe.network.conf'), 'OpenVibe.AI owns both AI addresses');
 // OpenVibe.Events serves openvibe.events itself since 2026-10-07 (its own vhost; Events#16).
 assert.ok(!frozen.includes('openvibe.events') && !exists('dist/openvibe.events') && !exists('deploy/nginx/openvibe.events.conf'), 'Events owns openvibe.events');
 assert.ok(!frozen.includes('openvibe.host') && !exists('dist/openvibe.host') && !exists('deploy/nginx/openvibe.host.conf'), 'OpenVibe.Host owns openvibe.host');

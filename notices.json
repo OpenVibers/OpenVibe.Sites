@@ -1,26 +1,5 @@
 [
   {
-    "domain": "ai.openvibe.network",
-    "tld": "ai",
-    "name": "ai.openvibe.network",
-    "tagline": "Moved: OpenVibe.AI's public home is ai.openvibe.services.",
-    "description": "OpenVibe.AI's public address is now ai.openvibe.services, next to the rest of the network's programmable services on OpenVibe.Services. This address serves only this notice until every client has moved; then it redirects.",
-    "accent": "#c084fc",
-    "zone": "openvibe.network",
-    "legalProfile": "info",
-    "kind": "moved",
-    "links": [
-      {
-        "label": "ai.openvibe.services",
-        "href": "https://ai.openvibe.services/"
-      },
-      {
-        "label": "OpenVibe.Services",
-        "href": "https://openvibe.services/"
-      }
-    ]
-  },
-  {
     "domain": "realtime.openvibe.network",
     "tld": "realtime",
     "name": "realtime.openvibe.network",
