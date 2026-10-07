@@ -12,7 +12,7 @@ the release in which the product's own vhost is installed.
 domain yet. When the Sites vhost goes, the record stays in DNS (Cloudflare) and nothing on the host answers it.
 
 The Sites repository had 33 host files on 2026-10-02 (the plan said 36), one per `sites.json` entry. Since then OpenVibe.Bot
-supplies the `openvibe.bot` vhost (Sites keeps publishing its frozen pages), and `openvibe.work` and `openvibe.zone` were
+supplies the `openvibe.bot` vhost and, since 2026-10-07, serves its own front page (Sites keeps only its legal pages there), and `openvibe.work` and `openvibe.zone` were
 added; they have no Contracts manifest yet, so `sync-catalog.js` keeps them as they are. That makes 34 host files for 35
 `sites.json` entries.
 
@@ -25,7 +25,7 @@ added; they have no Contracts manifest yet, so `sync-catalog.js` keeps them as t
 | `auth.openvibe.network.conf` | placeholder | OpenVibe.Network | no |
 | `openre.stream.conf` | placeholder | OpenRe.Stream | yes: `deploy/nginx/openre.stream.conf` |
 | `openvibe.actor.conf` | placeholder (no repo) | park: DNS only (OpenVibe.Node exists but has no deploy config and does not run) | no |
-| (`openvibe.bot`, no Sites host file) | placeholder (no repo) | OpenVibe.Bot, which already supplies the vhost; Sites keeps only the frozen pages | yes (Contracts still says `noRepo`) |
+| (`openvibe.bot`, no Sites host file) | legal pages, 404, sitemap and manifest (its front page, robots.txt, release.json and status.json are Bot's since 2026-10-07, OpenVibe.Bot#34) | OpenVibe.Bot, which already supplies the vhost | yes (Contracts still says `noRepo`) |
 | `openvibe.coupons.conf` | placeholder | OpenVibe.Coupons | yes: `deploy/nginx/openvibe.coupons.conf` |
 | `openvibe.deals.conf` | placeholder | OpenVibe.Deals | yes: `deploy/nginx/openvibe.deals.conf` |
 | `openvibe.download.conf` | placeholder (no repo) | park: DNS only (Contracts names OpenVibe.MediaHub, which does not exist yet) | no |
