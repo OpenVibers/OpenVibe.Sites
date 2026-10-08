@@ -44,8 +44,8 @@ main{flex:1;position:relative}
 @keyframes drift{0%{transform:translate(0,0) scale(1)}50%{transform:translate(-26px,36px) scale(1.07)}100%{transform:translate(34px,-28px) scale(.95)}}
 .wrap{position:relative;z-index:1;max-width:1040px;margin:0 auto;padding:0 20px}
 .hero{padding:84px 0 44px;text-align:center}
-.hero .mark{display:inline-grid;place-items:center;width:84px;height:84px;border-radius:24px;background:rgba(var(--site-rgb),.12);border:1px solid rgba(var(--site-rgb),.35);color:var(--site);font-size:34px;margin-bottom:22px;box-shadow:0 20px 60px rgba(var(--site-rgb),.18);animation:rise .6s cubic-bezier(.2,.8,.2,1) both}
-.hero .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;border:1px solid var(--border);background:var(--bg-secondary);font-size:12px;font-weight:600;color:var(--text-secondary);letter-spacing:.3px;margin-bottom:22px;animation:rise .6s .05s cubic-bezier(.2,.8,.2,1) both}
+.hero .mark{display:grid;place-items:center;width:84px;margin-left:auto;margin-right:auto;height:84px;border-radius:24px;background:rgba(var(--site-rgb),.12);border:1px solid rgba(var(--site-rgb),.35);color:var(--site);font-size:34px;margin-bottom:22px;box-shadow:0 20px 60px rgba(var(--site-rgb),.18);animation:rise .6s cubic-bezier(.2,.8,.2,1) both}
+.hero .badge{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border-radius:999px;border:1px solid var(--border);background:var(--bg-secondary);font-size:13px;font-weight:600;color:var(--text-secondary);letter-spacing:.3px;margin-bottom:22px;animation:rise .6s .05s cubic-bezier(.2,.8,.2,1) both}
 .hero .badge b{color:var(--site)}
 .hero h1{font-size:clamp(34px,6vw,58px);font-weight:800;letter-spacing:-1.4px;line-height:1.08;animation:rise .6s .1s cubic-bezier(.2,.8,.2,1) both}
 .hero h1 .d{color:var(--site)}
