@@ -18,9 +18,11 @@ assert.deepStrictEqual(notices.map(n => n.domain), [
     'realtime.openvibe.network', 'status.openvibe.network',
 ]);
 assert.strictEqual(new Set(frozen).size, frozen.length, 'frozen domains are unique');
-assert.strictEqual(frozen.length, 25, 'all 25 product domains are frozen');
+assert.strictEqual(frozen.length, 22, 'all 22 product domains are frozen');
 // OpenVibe.Actor serves openvibe.actor itself since 2026-10-08 (its own vhost; Actor 0.1.0).
 assert.ok(!frozen.includes('openvibe.actor'), 'openvibe.actor left Sites');
+// OpenVibe.Food, OpenVibe.Help and OpenVibe.Work serve their domains themselves since 2026-10-08 (their own vhosts; contracts 0.116.0).
+for (const d of ['openvibe.food', 'openvibe.help', 'openvibe.work']) assert.ok(!frozen.includes(d) && !exists(`dist/${d}`) && !exists(`deploy/nginx/${d}.conf`), `${d} left Sites`);
 // OpenVibe.AI serves ai.openvibe.services itself and ai.openvibe.network answers 301 to it since 2026-10-07 (AI#23).
 assert.ok(!frozen.includes('ai.openvibe.services') && !exists('dist/ai.openvibe.services') && !exists('dist/ai.openvibe.network') && !exists('deploy/nginx/ai.openvibe.services.conf') && !exists('deploy/nginx/ai.openvibe.network.conf'), 'OpenVibe.AI owns both AI addresses');
 // OpenVibe.Events serves openvibe.events itself since 2026-10-07 (its own vhost; Events#16).
