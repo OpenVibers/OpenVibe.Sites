@@ -27,7 +27,7 @@ added; they have no Contracts manifest yet, so `sync-catalog.js` keeps them as t
 | (`openvibe.actor`, no Sites host file) | nothing (removed 2026-10-08) | OpenVibe.Actor: the task router and OpenVibe's own agent (Actor 0.1.0); its repo vhost deploy/nginx/openvibe.actor.conf replaces this one | yes |
 | (`openvibe.bot`, no Sites host file) | legal pages, 404, sitemap and manifest (its front page, robots.txt, release.json and status.json are Bot's since 2026-10-07, OpenVibe.Bot#34) | OpenVibe.Bot, which already supplies the vhost | yes (Contracts still says `noRepo`) |
 | `openvibe.coupons.conf` | placeholder | OpenVibe.Coupons | yes: `deploy/nginx/openvibe.coupons.conf` |
-| `openvibe.deals.conf` | placeholder | OpenVibe.Deals | yes: `deploy/nginx/openvibe.deals.conf` |
+| (`openvibe.deals`, no Sites host file) | nothing (removed 2026-10-08) | OpenVibe.Deals: deals from DealNews (links kept verbatim) and people, votes and watches; its repo vhost deploy/nginx/openvibe.deals.conf replaces this one | yes |
 | `openvibe.download.conf` | placeholder (no repo) | park: DNS only (Contracts names OpenVibe.MediaHub, which does not exist yet) | no |
 | (`openvibe.events`, no Sites host file) | nothing (removed 2026-10-07) | OpenVibe.Events, which serves its product home with `deploy/nginx/openvibe.events.conf` (Events#16); the API and the realtime stream are on openvibe.events too (plan T7) until the T7 origin move | yes |
 | (`openvibe.food`, no Sites host file) | nothing (removed 2026-10-08) | OpenVibe.Food: food near you, meal plans and a pantry (Food 0.1.0); its repo vhost deploy/nginx/openvibe.food.conf replaces this one | yes |
