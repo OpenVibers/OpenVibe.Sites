@@ -269,8 +269,8 @@
         ],
         [
           "Build on OpenVibe",
-          "https://openvibe.codes",
-          "Projects, apps and credentials on OpenVibe.Codes, the developer portal."
+          "https://openvibe.services",
+          "Projects, apps and credentials on OpenVibe.Services, the developer platform."
         ]
       ],
       "keywords": "openvibe host, static site hosting, deployment, openvibe projects",
@@ -526,9 +526,9 @@
           "The issuer, token and key endpoints, and where each service answers."
         ],
         [
-          "Developer portal",
-          "https://openvibe.codes",
-          "Projects, apps and credentials, contract and SDK docs on OpenVibe.Codes."
+          "Developer platform",
+          "https://openvibe.services",
+          "Projects, apps and credentials, contract and SDK docs on OpenVibe.Services."
         ]
       ],
       "keywords": "openvibe api, openvibe network api, openvibe platform"
@@ -1252,9 +1252,9 @@
       ],
       "meanwhile": [
         [
-          "OpenVibe.Codes",
-          "https://openvibe.codes",
-          "The developer portal, API and SDK docs work today."
+          "OpenVibe.Services",
+          "https://openvibe.services",
+          "The developer platform, API and SDK docs work today."
         ],
         [
           "OpenVibe.Tools",
@@ -1489,7 +1489,7 @@
             "fa-code",
             "Build on it",
             "The API, SDKs and examples.",
-            "https://openvibe.codes"
+            "https://openvibe.services"
           ]
         ],
         "building": "OpenVibe.Bot is being built now, starting with our own robots; stream-controlled robots already run on OpenVibe.Live."
@@ -1601,8 +1601,8 @@
           "Tools agents will call, usable by people today."
         ],
         [
-          "OpenVibe.Codes",
-          "https://openvibe.codes",
+          "OpenVibe.Services",
+          "https://openvibe.services",
           "The API and SDK agents are built on."
         ]
       ],
@@ -1919,7 +1919,7 @@
             "fa-plug",
             "From your own apps",
             "An API, webhooks and an MCP server, so other assistants can hand tasks to Actor.",
-            "https://openvibe.codes"
+            "https://openvibe.services"
           ]
         ],
         "building": "OpenVibe.Actor is being built now, on the network's accounts, AI router and event system that already run."
@@ -1987,8 +1987,8 @@
       ],
       "meanwhile": [
         [
-          "OpenVibe.Codes",
-          "https://openvibe.codes",
+          "OpenVibe.Services",
+          "https://openvibe.services/docs/api/events",
           "Events API and SDK reference."
         ]
       ],

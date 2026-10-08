@@ -37,6 +37,6 @@ The pinned `openvibe-contracts` release supplies the catalog `sites.json` mirror
 Report security issues through [SECURITY.md](SECURITY.md).
 
 <!-- versions:start -->
-- openvibe-contracts: v0.113.0
+- openvibe-contracts: v0.114.0
 - openvibe-shared: v2.13.2
 <!-- versions:end -->
