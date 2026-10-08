@@ -30,8 +30,8 @@ added; they have no Contracts manifest yet, so `sync-catalog.js` keeps them as t
 | `openvibe.deals.conf` | placeholder | OpenVibe.Deals | yes: `deploy/nginx/openvibe.deals.conf` |
 | `openvibe.download.conf` | placeholder (no repo) | park: DNS only (Contracts names OpenVibe.MediaHub, which does not exist yet) | no |
 | (`openvibe.events`, no Sites host file) | nothing (removed 2026-10-07) | OpenVibe.Events, which serves its product home with `deploy/nginx/openvibe.events.conf` (Events#16); the API and the realtime stream are on openvibe.events too (plan T7) until the T7 origin move | yes |
-| `openvibe.food.conf` | placeholder (no repo) | park: DNS only | no |
-| `openvibe.help.conf` | placeholder (no repo) | park: DNS only | no |
+| (`openvibe.food`, no Sites host file) | nothing (removed 2026-10-08) | OpenVibe.Food: food near you, meal plans and a pantry (Food 0.1.0); its repo vhost deploy/nginx/openvibe.food.conf replaces this one | yes |
+| (`openvibe.help`, no Sites host file) | nothing (removed 2026-10-08) | OpenVibe.Help: the help centre and support tickets (Help 0.1.0); its repo vhost deploy/nginx/openvibe.help.conf replaces this one | yes |
 | `openvibe.homes.conf` | placeholder (no repo) | park: DNS only | no |
 | (`openvibe.host`, no Sites host file) | nothing (removed 2026-10-07) | OpenVibe.Host: Stage B launched 2026-10-07; `ovhost nginx tenants host --install` writes openvibe.host.conf and openvibe.host-custom-domains.conf (Host#26) | yes |
 | `openvibe.news.conf` | placeholder | OpenVibe.News | yes: `deploy/nginx/openvibe.news.conf` |
@@ -48,7 +48,7 @@ added; they have no Contracts manifest yet, so `sync-catalog.js` keeps them as t
 | `openvibe.vip.conf` | placeholder | OpenVibe.VIP | yes: `deploy/nginx/openvibe.vip.conf` |
 | `openvibe.watch.conf` | placeholder (no repo) | park: DNS only | no |
 | `openvibe.website.conf` | placeholder (no repo) | park: DNS only | no |
-| `openvibe.work.conf` | placeholder (no repo) | park: DNS only (not in the Contracts catalog yet) | no |
+| (`openvibe.work`, no Sites host file) | nothing (removed 2026-10-08) | OpenVibe.Work: job listings from open boards and saved searches (Work 0.1.0); its repo vhost deploy/nginx/openvibe.work.conf replaces this one | yes |
 | `openvibe.zone.conf` | placeholder (no repo) | park: DNS only (not in the Contracts catalog yet) | no |
 | `realtime.openvibe.network.conf` | closed notice | park: DNS only (Realtime is closed; delivery is part of OpenVibe.Events at `openvibe.events`) | no |
 | `status.openvibe.network.conf` | status notice | OpenVibe.Network: its status page `openvibe.network/status` (a redirect from this host) | no |
