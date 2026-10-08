@@ -18,7 +18,9 @@ assert.deepStrictEqual(notices.map(n => n.domain), [
     'realtime.openvibe.network', 'status.openvibe.network',
 ]);
 assert.strictEqual(new Set(frozen).size, frozen.length, 'frozen domains are unique');
-assert.strictEqual(frozen.length, 26, 'all 26 product domains are frozen');
+assert.strictEqual(frozen.length, 25, 'all 25 product domains are frozen');
+// OpenVibe.Actor serves openvibe.actor itself since 2026-10-08 (its own vhost; Actor 0.1.0).
+assert.ok(!frozen.includes('openvibe.actor'), 'openvibe.actor left Sites');
 // OpenVibe.AI serves ai.openvibe.services itself and ai.openvibe.network answers 301 to it since 2026-10-07 (AI#23).
 assert.ok(!frozen.includes('ai.openvibe.services') && !exists('dist/ai.openvibe.services') && !exists('dist/ai.openvibe.network') && !exists('deploy/nginx/ai.openvibe.services.conf') && !exists('deploy/nginx/ai.openvibe.network.conf'), 'OpenVibe.AI owns both AI addresses');
 // OpenVibe.Events serves openvibe.events itself since 2026-10-07 (its own vhost; Events#16).
@@ -46,14 +48,6 @@ for (const domain of frozen) {
     assert.ok(html.includes('this page is a placeholder, nothing here is live yet'), `${domain}: says it is a placeholder`);
     assert.doesNotMatch(html, PRICING, `${domain}: pricing copy`);
     assert.doesNotMatch(html, UNBACKED, `${domain}: claims a hosting product that does not exist`);
-}
-for (const domain of ['openvibe.actor']) {
-    assert.ok(frozen.includes(domain), `${domain}: remains frozen`);
-    assert.match(read(`dist/${domain}/index.html`), /<meta name="robots" content="index, follow, max-image-preview:large">/, `${domain}: original indexing`);
-    assert.strictEqual(JSON.parse(read(`dist/${domain}/status.json`)).stage, 'placeholder', `${domain}: lifecycle stage`);
-    assert.strictEqual(JSON.parse(read(`dist/${domain}/release.json`)).kind, 'placeholder', `${domain}: release kind`);
-    assert.ok(exists(`dist/${domain}/sitemap.xml`), `${domain}: frozen sitemap`);
-    assert.ok(read(`dist/${domain}/robots.txt`).includes(`Sitemap: https://${domain}/sitemap.xml`), `${domain}: sitemap advertised`);
 }
 
 for (const notice of notices) {
