@@ -23,6 +23,5 @@
   "openvibe.video",
   "openvibe.website",
   "openvibe.help",
-  "openvibe.watch",
-  "openvibe.actor"
+  "openvibe.watch"
 ]

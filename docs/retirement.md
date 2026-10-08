@@ -24,7 +24,7 @@ added; they have no Contracts manifest yet, so `sync-catalog.js` keeps them as t
 | `api.openvibe.network.conf` | placeholder | OpenVibe.Network | no |
 | `auth.openvibe.network.conf` | placeholder | OpenVibe.Network | no |
 | `openre.stream.conf` | placeholder | OpenRe.Stream | yes: `deploy/nginx/openre.stream.conf` |
-| `openvibe.actor.conf` | placeholder (no repo) | park: DNS only (OpenVibe.Node exists but has no deploy config and does not run) | no |
+| (`openvibe.actor`, no Sites host file) | nothing (removed 2026-10-08) | OpenVibe.Actor: the task router and OpenVibe's own agent (Actor 0.1.0); its repo vhost deploy/nginx/openvibe.actor.conf replaces this one | yes |
 | (`openvibe.bot`, no Sites host file) | legal pages, 404, sitemap and manifest (its front page, robots.txt, release.json and status.json are Bot's since 2026-10-07, OpenVibe.Bot#34) | OpenVibe.Bot, which already supplies the vhost | yes (Contracts still says `noRepo`) |
 | `openvibe.coupons.conf` | placeholder | OpenVibe.Coupons | yes: `deploy/nginx/openvibe.coupons.conf` |
 | `openvibe.deals.conf` | placeholder | OpenVibe.Deals | yes: `deploy/nginx/openvibe.deals.conf` |
