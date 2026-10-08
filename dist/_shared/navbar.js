@@ -8,17 +8,7 @@
         onLogin: null, onLogout: null, loginUrl: null, sessionUrl: null, logoutUrl: null,
         brand: null, brandName: null, brandIcon: null, compact: 'auto',
         links: null, menu: null, recent: true,
-        // history: { type: 'tool'|'stream'|'paste'|'page'|…, title, url, icon } — recorded for the
-        // signed-in user once auth resolves (cross-site "Recently used" / History on the Network).
-        history: null,
-        // silentLogin: 'https://site/auth/login?silent=1&next={url}' — when nobody is signed in here
-        // but this browser has signed in to the network before (ov_sso_hint), try one silent
-        // prompt=none round trip per tab so a session on one site becomes a session on all.
-        silentLogin: null,
-        // fedcm: false to opt out; 'optional' (default) shows the browser's native chip the first
-        // time and re-authenticates silently afterwards; 'silent' only re-authenticates.
-        fedcm: 'optional',
-        fedcmLogin: null,           // POST target for the assertion (default: this site's /auth/fedcm)
+        history: null, silentLogin: null, fedcm: 'optional', fedcmLogin: null,   // README.md, "The navbar"
     };
     const _runtimeMenu = { before: [], after: [] };
     let _runtimeLinks = null;
@@ -37,6 +27,19 @@
                 font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
                 color: var(--text-primary, #e0e0e0);
             }
+            /* At the very top the bar fades into the page (no background, no border); a scroll brings the frosted bar back.
+               A page whose hero runs under the bar opts in with body.ov-nav-overlay: the bar then sits over the hero, with a
+               soft scrim for the text. ovnav-top is kept by the navbar itself on every render and scroll. */
+            .openvibe-navbar { transition: background-color .45s cubic-bezier(.2,.7,.2,1), border-color .45s cubic-bezier(.2,.7,.2,1), box-shadow .45s cubic-bezier(.2,.7,.2,1), -webkit-backdrop-filter .45s, backdrop-filter .45s; }
+            .openvibe-navbar::before { content: ""; position: absolute; inset: 0 0 -28px; pointer-events: none; z-index: -1; opacity: 0; transition: opacity .45s cubic-bezier(.2,.7,.2,1); background: linear-gradient(180deg, rgba(4,7,14,.62), rgba(4,7,14,.28) 55%, rgba(4,7,14,0)); }
+            .openvibe-navbar:not(.ovnav-top) { background-color: color-mix(in srgb, var(--bg-secondary, #252530) 84%, transparent); -webkit-backdrop-filter: saturate(1.5) blur(16px); backdrop-filter: saturate(1.5) blur(16px); box-shadow: 0 12px 32px -14px rgba(0,0,0,.6); }
+            .openvibe-navbar.ovnav-top { background-color: transparent; border-bottom-color: transparent; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
+            /* The bar is sticky, but a #navbar-mount wrapper exactly its height gave it no room to stick in: the wrapper sticks. */
+            #navbar-mount { position: sticky; top: 0; z-index: 10000; }
+            body.ov-nav-overlay .openvibe-navbar.ovnav-top::before { opacity: 1; }
+            body.ov-nav-overlay > #navbar-mount, body.ov-nav-overlay > .openvibe-navbar { margin-bottom: calc(-1 * var(--ovnav-real-h, 52px)); }
+            body.ov-panel-open .openvibe-navbar.ovnav-top { background-color: var(--bg-secondary, #252530); border-bottom-color: var(--border, #333340); }
+            @media (prefers-reduced-motion: reduce) { .openvibe-navbar, .openvibe-navbar::before { transition: none; } }
             .openvibe-navbar-brand { display: flex; align-items: center; gap: 9px; text-decoration: none; color: inherit; margin-right: 8px; min-width: 0; }
             /* Brand group: mark + linked wordmark + launcher read as one control. Every property a host
                page might set on bare "nav a" / "a" is reset here, so the brand looks the same everywhere. */
@@ -592,6 +595,10 @@
         } catch { return null; }
     }
 
+    // A render's document/window listeners and panels; the next render (each boost page move) aborts them, so the old bar can go.
+    let _renderAbort = null;
+    const onDocument = () => (_renderAbort ? { signal: _renderAbort.signal } : undefined);
+
     function bindLauncher(nav) {
         const btn = nav.querySelector('#openvibe-launcher-btn'); if (!btn) return;
         let panel = null;
@@ -646,7 +653,7 @@
                     ev.preventDefault(); const n = i + (ev.key === 'ArrowDown' ? 1 : -1); (links[n] || (n < 0 ? input : links[0])).focus();
                 });
                 panel.addEventListener('click', (ev) => ev.stopPropagation());
-                document.addEventListener('click', close);
+                document.addEventListener('click', close, onDocument());
                 launcherCatalog().then((c) => { if (c) { cat = c; paint(cat, input.value.trim().toLowerCase()); } });
             }
             panel.classList.add('open'); btn.setAttribute('aria-expanded', 'true');
@@ -697,7 +704,7 @@
             }
             closeDrawer();
         });
-        document.addEventListener('click', (e) => { if (!e.target.closest || !e.target.closest('.ovnav-dd')) nav.querySelectorAll('.ovnav-dd.open').forEach(x => x.classList.remove('open')); });
+        document.addEventListener('click', (e) => { if (!e.target.closest || !e.target.closest('.ovnav-dd')) nav.querySelectorAll('.ovnav-dd.open').forEach(x => x.classList.remove('open')); }, onDocument());
         // Dropdowns hang below the links row, which scrolls sideways and would clip them: fixed, under the link (less a filtered bar's offset).
         const placeDd = (dd) => {
             const m = dd && dd.querySelector(':scope>.ovnav-dd-menu'); if (!m) return;
@@ -710,7 +717,7 @@
         nav.addEventListener('pointerover', place); nav.addEventListener('focusin', place);
         if (burger && drawer) {
             burger.addEventListener('click', (e) => { e.stopPropagation(); const open = drawer.classList.toggle('open'); burger.setAttribute('aria-expanded', String(open)); });
-            document.addEventListener('click', (e) => { if (drawer.classList.contains('open') && !drawer.contains(e.target) && !burger.contains(e.target)) closeDrawer(); });
+            document.addEventListener('click', (e) => { if (drawer.classList.contains('open') && !drawer.contains(e.target) && !burger.contains(e.target)) closeDrawer(); }, onDocument());
             regPanel(drawer, 'nav-drawer', closeDrawer);
         }
     }
@@ -720,7 +727,7 @@
     const _panelQueue = [];
     function regPanel(el, id, close) {
         if (!el) return;
-        const opts = { el, openClass: 'open', id, close };
+        const opts = Object.assign({ el, openClass: 'open', id, close }, onDocument());
         if (root.OpenVibePanels) return root.OpenVibePanels.register(opts);
         _panelQueue.push(opts);
         if (document.getElementById('ov-panels-loader')) return;
@@ -745,7 +752,7 @@
         const LABEL = { text: { 100: 'Default', 112: 'Large', 125: 'Largest' }, motion: { auto: 'On', reduced: 'Calm' } };
         const paint = () => { const d = L.display.get(); rows.forEach(r => { const k = r.getAttribute('data-ov-display'); r.querySelector('.ud-val').textContent = LABEL[k][d[k]] || ''; }); };
         rows.forEach(r => r.addEventListener('click', (e) => { e.stopPropagation(); const k = r.getAttribute('data-ov-display'), o = L.display.options[k], cur = L.display.get()[k]; L.display.set({ [k]: o[(o.indexOf(cur) + 1) % o.length] }); paint(); }));
-        root.addEventListener('ov:display', paint); paint();
+        root.addEventListener('ov:display', paint, onDocument()); paint();
     }
 
     /** OpenCoins balance in the menu header (one request when the menu first opens). */
@@ -784,7 +791,7 @@
             box.hidden = false;
         };
         box.addEventListener('click', (e) => { const b = e.target.closest('button[data-k]'); if (!b) return; L.display.set({ [b.dataset.k]: b.dataset.v }); paint(); });
-        root.addEventListener('ov:display', paint);
+        root.addEventListener('ov:display', paint, onDocument());
         paint();
     }
 
@@ -1319,6 +1326,8 @@
         // A site may put state classes on the bar (Live's transparent hero mode). A re-render must not lose them.
         let carried = []; try { carried = Array.from((_navEl && _navEl.classList) || []).filter(c => c !== 'openvibe-navbar'); } catch { carried = []; }
         if (_navEl) _navEl.remove();
+        if (_renderAbort) { _renderAbort.abort(); _panelQueue.length = 0; }
+        _renderAbort = typeof AbortController === 'function' ? new AbortController() : null;
 
         const nav = document.createElement('nav');
         nav.className = 'openvibe-navbar';
@@ -1335,8 +1344,7 @@
         const loginHref = resolveLoginHref(currentHost(), window.location.href);
         const addAccountHref = `${_config.apiBase}/login?add_account=1&return=${encodeURIComponent(window.location.href)}`;
 
-        // The OV brand mark is a self-contained drop-in (mounts every .ov-mark it finds). A page may already carry its own
-        // async <script src=".../ov-mark.js?v=…"> that has not run yet: never load a second copy.
+        // The OV brand mark is a drop-in (mounts every .ov-mark); never a second copy of a page's own tag.
         if (!window.__ovMark && !document.getElementById('ov-mark-loader') && !(document.querySelector && document.querySelector('script[src*="/ov-mark.js"]'))) {
             try { const sc = document.createElement('script'); sc.id = 'ov-mark-loader'; sc.src = sibling('ov-mark.js'); sc.async = true; document.head.appendChild(sc); } catch { /* */ }
         }
@@ -1444,7 +1452,7 @@
             // Close on outside click
             document.addEventListener('click', e => {
                 if (!nav.contains(e.target)) dropdown.classList.remove('open');
-            });
+            }, onDocument());
 
             // Account switching
             dropdown.querySelectorAll('[data-account-id]').forEach(el => {
@@ -1494,7 +1502,29 @@
         }
         _navEl = nav;
         attachAvatarFallbacks(nav);
+        hookTop();
         return nav;
+    }
+
+    // The bar's at-the-top state (ovnav-top, see injectStyles), on every render and scroll. One window listener pair for
+    // the page's life, a frame at most per update; --ovnav-real-h is the bar's height for overlay pages.
+    let _topHooked = false;
+    function syncTop() {
+        if (!_navEl) return;
+        _navEl.classList.toggle('ovnav-top', (root.scrollY || (document.documentElement && document.documentElement.scrollTop) || 0) <= 4);
+        // A fixed bar (a site that positions it itself, like Live) takes no room, so an overlay page needs no pull-up.
+        const fixed = root.getComputedStyle && root.getComputedStyle(_navEl).position === 'fixed';
+        const de = document.documentElement;
+        if (de && de.style) de.style.setProperty('--ovnav-real-h', `${fixed ? 0 : (_navEl.offsetHeight || 52)}px`);
+    }
+    function hookTop() {
+        syncTop();
+        if (_topHooked || typeof root.addEventListener !== 'function') return;
+        _topHooked = true;
+        let raf = 0;
+        const later = () => { if (!raf) raf = (root.requestAnimationFrame || setTimeout)(() => { raf = 0; syncTop(); }); };
+        root.addEventListener('scroll', later, { passive: true });
+        root.addEventListener('resize', later, { passive: true });
     }
 
     // openvibe-shared/boost swapped the page in place: this is a new page for the history and the
