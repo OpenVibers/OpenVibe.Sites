@@ -18,7 +18,7 @@ assert.deepStrictEqual(notices.map(n => n.domain), [
     'realtime.openvibe.network', 'status.openvibe.network',
 ]);
 assert.strictEqual(new Set(frozen).size, frozen.length, 'frozen domains are unique');
-assert.strictEqual(frozen.length, 27, 'all 27 product domains are frozen');
+assert.strictEqual(frozen.length, 26, 'all 26 product domains are frozen');
 // OpenVibe.AI serves ai.openvibe.services itself and ai.openvibe.network answers 301 to it since 2026-10-07 (AI#23).
 assert.ok(!frozen.includes('ai.openvibe.services') && !exists('dist/ai.openvibe.services') && !exists('dist/ai.openvibe.network') && !exists('deploy/nginx/ai.openvibe.services.conf') && !exists('deploy/nginx/ai.openvibe.network.conf'), 'OpenVibe.AI owns both AI addresses');
 // OpenVibe.Events serves openvibe.events itself since 2026-10-07 (its own vhost; Events#16).
