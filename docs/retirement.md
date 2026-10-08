@@ -36,8 +36,8 @@ added; they have no Contracts manifest yet, so `sync-catalog.js` keeps them as t
 | (`openvibe.host`, no Sites host file) | nothing (removed 2026-10-07) | OpenVibe.Host: Stage B launched 2026-10-07; `ovhost nginx tenants host --install` writes openvibe.host.conf and openvibe.host-custom-domains.conf (Host#26) | yes |
 | `openvibe.news.conf` | placeholder | OpenVibe.News | yes: `deploy/nginx/openvibe.news.conf` |
 | `openvibe.pics.conf` | placeholder (no repo) | park: DNS only (Contracts names OpenVibe.MediaHub, which does not exist yet) | no |
-| `openvibe.quest.conf` | placeholder (no repo) | park: DNS only | no |
-| `openvibe.rent.conf` | placeholder (no repo) | park: DNS only | no |
+| (`openvibe.quest`, no Sites host file) | nothing (removed 2026-10-08) | OpenVibe.Quest: the shared quest log (Quest 0.1.0); its repo vhost deploy/nginx/openvibe.quest.conf replaces this one | yes |
+| (`openvibe.rent`, no Sites host file) | nothing (removed 2026-10-08) | OpenVibe.Rent: listings people post (Rent 0.1.0); its repo vhost deploy/nginx/openvibe.rent.conf replaces this one | yes |
 | `openvibe.reviews.conf` | placeholder | OpenVibe.Reviews | yes: `deploy/nginx/openvibe.reviews.conf` |
 | `openvibe.run.conf` | placeholder (no repo) | park: DNS only | no |
 | (`openvibe.services`, no Sites host file) | nothing (removed 2026-10-08) | OpenVibe.Services: the developer console moved there from openvibe.codes (Services#6); its repo vhost deploy/nginx/openvibe.services.conf replaces this one | yes |
@@ -46,7 +46,7 @@ added; they have no Contracts manifest yet, so `sync-catalog.js` keeps them as t
 | `openvibe.trade.conf` | placeholder | OpenVibe.Trade | yes: `deploy/nginx/openvibe.trade.conf` |
 | `openvibe.video.conf` | placeholder (no repo) | park: DNS only (Contracts names OpenVibe.MediaHub, which does not exist yet) | no |
 | `openvibe.vip.conf` | placeholder | OpenVibe.VIP | yes: `deploy/nginx/openvibe.vip.conf` |
-| `openvibe.watch.conf` | placeholder (no repo) | park: DNS only | no |
+| (`openvibe.watch`, no Sites host file) | nothing (removed 2026-10-08) | OpenVibe.Watch: its public site (Watch 0.2.0); its repo vhost deploy/nginx/openvibe.watch.conf replaces this one | yes |
 | `openvibe.website.conf` | placeholder (no repo) | park: DNS only | no |
 | (`openvibe.work`, no Sites host file) | nothing (removed 2026-10-08) | OpenVibe.Work: job listings from open boards and saved searches (Work 0.1.0); its repo vhost deploy/nginx/openvibe.work.conf replaces this one | yes |
 | `openvibe.zone.conf` | placeholder (no repo) | park: DNS only (not in the Contracts catalog yet) | no |
