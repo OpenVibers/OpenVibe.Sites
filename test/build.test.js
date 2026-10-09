@@ -22,7 +22,7 @@ assert.deepStrictEqual(frozen, ['openvibe.tips', 'openvibe.vip'], 'only Tips and
 // OpenVibe.Actor serves openvibe.actor itself since 2026-10-08 (its own vhost; Actor 0.1.0).
 assert.ok(!frozen.includes('openvibe.actor'), 'openvibe.actor left Sites');
 // OpenVibe.Food, OpenVibe.Help and OpenVibe.Work serve their domains themselves since 2026-10-08 (their own vhosts; contracts 0.116.0).
-// 2026-10-09 (plan T11): News, Reviews, Trade, Coupons and OpenRe.Stream serve their own domains; Network serves its
+// 2026-10-09 (plan T11): News, Reviews, Trade, Coupons and OpenRestream serve their own domains; Network serves its
 // subdomains and the parked domains (Network#107: network-subdomains.conf, parked-domains.conf).
 const RETIRED = ['openvibe.food', 'openvibe.help', 'openvibe.work', 'openvibe.quest', 'openvibe.rent', 'openvibe.watch', 'openvibe.deals', 'openvibe.download', 'openvibe.pics', 'openvibe.video',
     'openvibe.news', 'openvibe.reviews', 'openvibe.trade', 'openvibe.coupons', 'openre.stream',

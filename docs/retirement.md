@@ -1,6 +1,6 @@
 # Retiring OpenVibe.Sites
 
-**2026-10-09 (plan T11):** fifteen domains left Sites in one change. News, Reviews, Trade, Coupons and OpenRe.Stream
+**2026-10-09 (plan T11):** fifteen domains left Sites in one change. News, Reviews, Trade, Coupons and OpenRestream
 serve their own domains after an independent pre-launch security review. OpenVibe.Network serves its subdomains as
 redirects and parks the domains with no product yet. Sites keeps only openvibe.tips and openvibe.vip (until plan T5)
 and the Bot and Games legal pages. The table below is current; the paragraphs before it describe the 2026-10-02 freeze.
@@ -28,7 +28,7 @@ added; they have no Contracts manifest yet, so `sync-catalog.js` keeps them as t
 | (`ai.openvibe.services`, no Sites host file) | nothing (removed 2026-10-07) | OpenVibe.AI: launched 2026-10-07 (AI#23), repo vhost deploy/nginx/ai.openvibe.services.conf | yes |
 | (`api.openvibe.network`, no Sites host file) | nothing (removed 2026-10-09) | OpenVibe.Network: 301 to openvibe.network (its front page to openvibe.services) (network-subdomains.conf, Network#107) | yes |
 | (`auth.openvibe.network`, no Sites host file) | nothing (removed 2026-10-09) | OpenVibe.Network: 301 to openvibe.network (network-subdomains.conf, Network#107) | yes |
-| (`openre.stream`, no Sites host file) | nothing (removed 2026-10-09) | OpenRe.Stream: launched after its security review (OpenRe.Stream#25; cutover B0 (a)), repo vhost deploy/nginx/openre.stream.conf, which also serves ingest.openre.stream | yes |
+| (`openre.stream`, no Sites host file) | nothing (removed 2026-10-09) | OpenRestream: launched after its security review (OpenRestream#25; cutover B0 (a)), repo vhost deploy/nginx/openre.stream.conf, which also serves ingest.openre.stream | yes |
 | (`openvibe.actor`, no Sites host file) | nothing (removed 2026-10-08) | OpenVibe.Actor: the task router and OpenVibe's own agent (Actor 0.1.0); its repo vhost deploy/nginx/openvibe.actor.conf replaces this one | yes |
 | (`openvibe.bot`, no Sites host file) | legal pages, 404, sitemap and manifest (its front page, robots.txt, release.json and status.json are Bot's since 2026-10-07, OpenVibe.Bot#34) | OpenVibe.Bot, which already supplies the vhost | yes (Contracts still says `noRepo`) |
 | (`openvibe.coupons`, no Sites host file) | nothing (removed 2026-10-09) | OpenVibe.Coupons: launched after its security review (Coupons#22), repo vhost deploy/nginx/openvibe.coupons.conf | yes |
