@@ -38,5 +38,5 @@ Report security issues through [SECURITY.md](SECURITY.md).
 
 <!-- versions:start -->
 - openvibe-contracts: v0.120.0
-- openvibe-shared: v2.15.0
+- openvibe-shared: v2.17.0
 <!-- versions:end -->
