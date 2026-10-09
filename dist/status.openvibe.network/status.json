@@ -1,9 +1,0 @@
-{
-  "domain": "status.openvibe.network",
-  "name": "status.openvibe.network",
-  "stage": "status",
-  "live": false,
-  "network": "https://openvibe.network",
-  "updated": "2026-10-09",
-  "note": "Static notice served by OpenVibers/OpenVibe.Sites. See the linked destination for current information."
-}

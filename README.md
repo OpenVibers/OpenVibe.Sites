@@ -1,25 +1,37 @@
 # OpenVibe.Sites
 
-OpenVibe.Sites serves static notices for two addresses during the domain handoff. It no longer builds product placeholders. `notices.json` is the build input; `frozen.json` records the 27 product domains whose existing `dist/<domain>/index.html` and nginx vhosts remain in place until their owners complete the DNS and nginx cutover. OpenVibe.Bot serves its own front page, robots.txt, release.json and status.json (OpenVibe.Bot#34, 2026-10-07), so Sites keeps only its legal pages, 404 page, sitemap and manifest there. OpenVibe.Events serves openvibe.events with its own vhost since 2026-10-07 (Events#16), so Sites keeps nothing for that domain. OpenVibe.Space serves openvibe.space with its own vhost since 2026-10-07 (Space#1, the forum moved off OpenVibe.Community), so Sites keeps nothing there either. OpenVibe.AI serves ai.openvibe.services and answers 301 from ai.openvibe.network with its own vhosts since 2026-10-07 (AI#23), so the moved notice and the AI placeholder are gone.
+OpenVibe.Sites is being deleted (plan T11). Since 2026-10-09 it serves only what is listed below; every other OpenVibe
+domain is served by its own product, and OpenVibe.Network serves its subdomains and the parked domains (Network#107).
 
-## Remaining notices
+## What is left
 
-| Address | Purpose | Vhost owner |
+| Address | What Sites serves | Until |
 | --- | --- | --- |
-| `realtime.openvibe.network` | Closed service notice | Sites |
-| `status.openvibe.network` | Pointer to Network status | Sites |
+| `openvibe.tips` | its frozen front page, legal pages and vhost | OpenVibe.Tips launches with Billing (plan T5) |
+| `openvibe.vip` | its frozen front page, legal pages and vhost | OpenVibe.VIP launches with Billing (plan T5) |
+| `openvibe.bot` | legal pages, 404, sitemap and manifest (OpenVibe.Bot's vhost serves them from here) | Bot serves its own legal pages |
+| `openvibe.games` | legal pages (OpenVibe.Games' vhost serves them from here) | Games serves its own legal pages |
 
-Both are `noindex`. The existing page presentation is held in `notice-pages/`; the notice build writes only these domains and shared browser assets. The status notice still reads Network's public health endpoint in the browser.
+When the last of these moves, the repository and its host checkout are deleted. `frozen.json` lists the two frozen
+domains and `node build.js --check` verifies each still has its page and vhost. `notices.json` is empty: the
+realtime and status notices became Network redirects.
 
-## Frozen product pages
+### Where the retired domains went (2026-10-09)
 
-`frozen.json` lists all 15 product domains. Their committed front pages remain available as static files with their original indexing, status, and sitemaps. The build does not regenerate them. `node build.js --check` verifies that each frozen domain still has an index page and a Sites vhost, while checking that notice outputs are current. The repository facts snapshot is historical data, not a build input.
+- **Their own products** (after an independent pre-launch security review): openvibe.news, openvibe.reviews,
+  openvibe.trade, openvibe.coupons and openre.stream.
+- **OpenVibe.Network:**
+  - status., themes., admin., auth. and api.openvibe.network permanently redirect to the openvibe.network page that
+    does their job (`network-subdomains.conf`).
+  - openvibe.homes, openvibe.run, openvibe.website, openvibe.zone and realtime.openvibe.network have no product yet.
+    They redirect to the network's front door (`parked-domains.conf`).
 
 ## Product catalog
 
 The product catalog lives in OpenVibe.Contracts (`products.catalog()`, v0.84.0). `sites.json` is its generated mirror (`node scripts/sync-catalog.js`; `--check` fails when it differs); fields Contracts does not carry keep their frozen value, and a domain missing from the catalog is kept and reported, never dropped. `sites.json` is not a build input. Which product takes over each domain: [docs/retirement.md](docs/retirement.md).
 
-The owner cutover will transfer DNS and nginx ownership one domain at a time after each product can serve its address. That work is outside this repository change. Until then, the existing product pages and vhosts continue to serve their addresses. A missing file path is a real 404 through `try_files ... =404` and `error_page 404 /404.html`.
+A vhost removed from `deploy/nginx/` stays installed on the host until it is removed by hand. On 2026-10-09 the
+retired ones were swapped out behind `nginx -t` (backups under `/root/vhost-swap-*` and `/root/nginx-*.bak-*`).
 
 ## Build and verification
 
@@ -32,7 +44,7 @@ ov test test/sync-catalog.test.js
 ov test test/deploy-wrapper.test.js
 ```
 
-The pinned `openvibe-contracts` release supplies the catalog `sites.json` mirrors; the pinned `openvibe-shared` release supplies the Frame browser files under `dist/_shared/`. The deploy wrapper remains the existing OpenVibe.Host static build path. Sites has no server process, port, token, or environment file. The owner manages certificates and DNS.
+The pinned `openvibe-contracts` release supplies the catalog `sites.json` mirrors; the pinned `openvibe-shared` release supplies the Frame browser files under `dist/_shared/`. The deploy wrapper remains the existing OpenVibe.Host static build path. Sites has no server process, port, token, or environment file.
 
 Report security issues through [SECURITY.md](SECURITY.md).
 

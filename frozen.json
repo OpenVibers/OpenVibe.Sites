@@ -1,17 +1,4 @@
 [
-  "openvibe.news",
-  "openvibe.reviews",
   "openvibe.tips",
-  "openvibe.vip",
-  "openvibe.trade",
-  "openvibe.coupons",
-  "openre.stream",
-  "auth.openvibe.network",
-  "api.openvibe.network",
-  "admin.openvibe.network",
-  "themes.openvibe.network",
-  "openvibe.homes",
-  "openvibe.run",
-  "openvibe.zone",
-  "openvibe.website"
+  "openvibe.vip"
 ]
