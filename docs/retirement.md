@@ -28,14 +28,14 @@ added; they have no Contracts manifest yet, so `sync-catalog.js` keeps them as t
 | (`openvibe.bot`, no Sites host file) | legal pages, 404, sitemap and manifest (its front page, robots.txt, release.json and status.json are Bot's since 2026-10-07, OpenVibe.Bot#34) | OpenVibe.Bot, which already supplies the vhost | yes (Contracts still says `noRepo`) |
 | `openvibe.coupons.conf` | placeholder | OpenVibe.Coupons | yes: `deploy/nginx/openvibe.coupons.conf` |
 | (`openvibe.deals`, no Sites host file) | nothing (removed 2026-10-08) | OpenVibe.Deals: deals from DealNews (links kept verbatim) and people, votes and watches; its repo vhost deploy/nginx/openvibe.deals.conf replaces this one | yes |
-| `openvibe.download.conf` | placeholder (no repo) | park: DNS only (Contracts names OpenVibe.MediaHub, which does not exist yet) | no |
+| (`openvibe.download`, no Sites host file) | nothing (removed 2026-10-08) | OpenVibe.MediaHub: the private drive (MediaHub 0.1.0); its repo vhost deploy/nginx/openvibe.download.conf serves all three domains | yes |
 | (`openvibe.events`, no Sites host file) | nothing (removed 2026-10-07) | OpenVibe.Events, which serves its product home with `deploy/nginx/openvibe.events.conf` (Events#16); the API and the realtime stream are on openvibe.events too (plan T7) until the T7 origin move | yes |
 | (`openvibe.food`, no Sites host file) | nothing (removed 2026-10-08) | OpenVibe.Food: food near you, meal plans and a pantry (Food 0.1.0); its repo vhost deploy/nginx/openvibe.food.conf replaces this one | yes |
 | (`openvibe.help`, no Sites host file) | nothing (removed 2026-10-08) | OpenVibe.Help: the help centre and support tickets (Help 0.1.0); its repo vhost deploy/nginx/openvibe.help.conf replaces this one | yes |
 | `openvibe.homes.conf` | placeholder (no repo) | park: DNS only | no |
 | (`openvibe.host`, no Sites host file) | nothing (removed 2026-10-07) | OpenVibe.Host: Stage B launched 2026-10-07; `ovhost nginx tenants host --install` writes openvibe.host.conf and openvibe.host-custom-domains.conf (Host#26) | yes |
 | `openvibe.news.conf` | placeholder | OpenVibe.News | yes: `deploy/nginx/openvibe.news.conf` |
-| `openvibe.pics.conf` | placeholder (no repo) | park: DNS only (Contracts names OpenVibe.MediaHub, which does not exist yet) | no |
+| (`openvibe.pics`, no Sites host file) | nothing (removed 2026-10-08) | OpenVibe.MediaHub: its coming page (MediaHub 0.1.0); its repo vhost deploy/nginx/openvibe.download.conf serves all three domains | yes |
 | (`openvibe.quest`, no Sites host file) | nothing (removed 2026-10-08) | OpenVibe.Quest: the shared quest log (Quest 0.1.0); its repo vhost deploy/nginx/openvibe.quest.conf replaces this one | yes |
 | (`openvibe.rent`, no Sites host file) | nothing (removed 2026-10-08) | OpenVibe.Rent: listings people post (Rent 0.1.0); its repo vhost deploy/nginx/openvibe.rent.conf replaces this one | yes |
 | `openvibe.reviews.conf` | placeholder | OpenVibe.Reviews | yes: `deploy/nginx/openvibe.reviews.conf` |
@@ -44,7 +44,7 @@ added; they have no Contracts manifest yet, so `sync-catalog.js` keeps them as t
 | (`openvibe.space`, no Sites host file) | nothing (removed 2026-10-07) | OpenVibe.Space: launched 2026-10-07 (Space#1); its repo vhost deploy/nginx/openvibe.space.conf is installed by ovhost | yes |
 | `openvibe.tips.conf` | placeholder | OpenVibe.Tips | yes: `deploy/nginx/openvibe.tips.conf` |
 | `openvibe.trade.conf` | placeholder | OpenVibe.Trade | yes: `deploy/nginx/openvibe.trade.conf` |
-| `openvibe.video.conf` | placeholder (no repo) | park: DNS only (Contracts names OpenVibe.MediaHub, which does not exist yet) | no |
+| (`openvibe.video`, no Sites host file) | nothing (removed 2026-10-08) | OpenVibe.MediaHub: its coming page (MediaHub 0.1.0); its repo vhost deploy/nginx/openvibe.download.conf serves all three domains | yes |
 | `openvibe.vip.conf` | placeholder | OpenVibe.VIP | yes: `deploy/nginx/openvibe.vip.conf` |
 | (`openvibe.watch`, no Sites host file) | nothing (removed 2026-10-08) | OpenVibe.Watch: its public site (Watch 0.2.0); its repo vhost deploy/nginx/openvibe.watch.conf replaces this one | yes |
 | `openvibe.website.conf` | placeholder (no repo) | park: DNS only | no |

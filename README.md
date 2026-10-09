@@ -13,7 +13,7 @@ Both are `noindex`. The existing page presentation is held in `notice-pages/`; t
 
 ## Frozen product pages
 
-`frozen.json` lists all 18 product domains. Their committed front pages remain available as static files with their original indexing, status, and sitemaps. The build does not regenerate them. `node build.js --check` verifies that each frozen domain still has an index page and a Sites vhost, while checking that notice outputs are current. The repository facts snapshot is historical data, not a build input.
+`frozen.json` lists all 15 product domains. Their committed front pages remain available as static files with their original indexing, status, and sitemaps. The build does not regenerate them. `node build.js --check` verifies that each frozen domain still has an index page and a Sites vhost, while checking that notice outputs are current. The repository facts snapshot is historical data, not a build input.
 
 ## Product catalog
 
