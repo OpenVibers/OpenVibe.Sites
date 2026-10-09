@@ -1,11 +1,11 @@
 {
   "service": "realtime",
   "release": "5c4e1331f0b3",
-  "released_at": "2026-10-08T00:00:00.000Z",
+  "released_at": "2026-10-09T00:00:00.000Z",
   "booted_at": null,
   "contracts_version": null,
   "packages": {
-    "openvibe-shared": "2.15.0"
+    "openvibe-shared": "2.17.0"
   },
   "min_client_release": null,
   "mixed_version_window_hours": 24,
