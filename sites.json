@@ -851,19 +851,19 @@
       "accent": "#818cf8",
       "noRepo": true,
       "tagline": "Start a forum for anything.",
-      "description": "OpenVibe.Space is the network forum: browse public and members-only boards, start threads, reply, vote and moderate spaces with one OpenVibe identity.",
+      "description": "OpenVibe.Space will host code and \"spaces\" — apps that use your OpenVibe account and the SDK — and both are still being built. Until they land it serves a home, and its former /s/* forum paths redirect permanently to openvibe.community.",
       "pillars": [
         [
-          "Any forum",
-          "Browse boards for discussions, requests and the roadmap."
+          "Code hosting",
+          "The network's code, hosted here."
         ],
         [
-          "Classic depth",
-          "Child boards, threads, categories and moderation tools."
+          "Spaces",
+          "Apps that use your OpenVibe account and the SDK."
         ],
         [
-          "Make it yours",
-          "Moderators can shape boards, categories and visibility."
+          "Coming next",
+          "Neither is built yet; Space serves a home until they land."
         ],
         [
           "One account",
@@ -877,8 +877,8 @@
           "Forums, pastes and people live there today."
         ]
       ],
-      "keywords": "openvibe space, forums, create a forum, community boards, xenforo alternative, phpbb alternative",
-      "launch": "Forums moved from OpenVibe.Community to OpenVibe.Space (plan T10 step 3)."
+      "keywords": "openvibe space, code hosting, openvibe spaces, openvibe account, openvibe sdk",
+      "launch": "Code hosting and spaces are still to be built; the forum moved back to OpenVibe.Community (2026-10-08)."
     },
     {
       "domain": "openvibe.food",
@@ -888,7 +888,7 @@
       "accent": "#fb923c",
       "noRepo": true,
       "tagline": "What should we eat?",
-      "description": "OpenVibe.Food will bring food together: compare delivery prices across apps, find coupons and budget meal kits, plan meals alone, as a couple or as a group, and turn what is in your cupboard into recipes with the network's AI. The food tools on OpenVibe.Tools will live here too.",
+      "description": "OpenVibe.Food finds food banks, pantries and budget grocers near you from OpenStreetMap, plans meals for one person, a couple or a household for the days ahead with the shopping list and what it costs, and tells you what your cupboard can already make. Next: delivery price comparison, meal kits and planning together.",
       "pillars": [
         [
           "Compare delivery",
@@ -920,7 +920,29 @@
         ]
       ],
       "keywords": "openvibe food, compare food delivery prices, meal kits, meal planning, recipe ideas, grocery tools",
-      "launch": "the food tools moving over from OpenVibe.Tools"
+      "launch": "delivery price comparison and shared plans",
+      "faq": [
+        [
+          "Is it free?",
+          "Yes. Searching for food and reading the food list need no account; a free OpenVibe account keeps your plans and your cupboard."
+        ],
+        [
+          "Where do the food banks and stores come from?",
+          "From OpenStreetMap, the map anyone can edit, under the Open Database License. Every result is credited and links to its OpenStreetMap entry, and answers are cached for a week so OpenStreetMap is asked politely."
+        ],
+        [
+          "Are the prices live?",
+          "No. The food list carries typical prices from budget chains, and every price says so. Live delivery and store prices come with the comparison feature."
+        ],
+        [
+          "How does the meal planner work?",
+          "Tell it how many people, how many days and, if you like, a budget. It picks budget foods that cover each food group, splits the shopping by the cheapest store and lays out a menu for each day."
+        ],
+        [
+          "Is the cupboard advice dietary advice?",
+          "No. It matches what you have against simple recipes written by OpenVibe and says which ones you can make now and which need one or two more things."
+        ]
+      ]
     },
     {
       "domain": "openvibe.quest",
@@ -930,7 +952,7 @@
       "accent": "#fbbf24",
       "noRepo": true,
       "tagline": "Quests across the whole network.",
-      "description": "OpenVibe.Quest will be the network's shared quest and rewards system: quests that span every OpenVibe site, from a streamer's getting-started steps on OpenVibe.Live to community challenges, cosmetics and OpenCoins, moddable and open to anyone through the API.",
+      "description": "OpenVibe.Quest is the network's shared quest log: real things you do on OpenVibe sites — going live, following someone, starting a thread, chatting, playing, improving a wiki page — complete quests that pay badges, and OpenCoins once they are switched on. Quest counts only the events the sites already report. Next: OpenCoins rewards, quests streamers and communities write, and quests for OpenVibe.Games.",
       "pillars": [
         [
           "Quests everywhere",
@@ -957,7 +979,25 @@
         ]
       ],
       "keywords": "openvibe quest, quests, achievements, rewards, gamification, streamer quests",
-      "launch": "the shared quest service"
+      "launch": "OpenCoins rewards and community quests",
+      "faq": [
+        [
+          "How does Quest know what I did?",
+          "The OpenVibe sites already report events such as a stream starting or a thread being posted. Quest counts the ones its quests name, for the person each event names, and nothing else: no page views, no clicks, nothing you wrote."
+        ],
+        [
+          "What do quests pay?",
+          "A badge for each completed quest, shown on your profile across the network. OpenCoins rewards are built and switch on soon."
+        ],
+        [
+          "Are OpenCoins money?",
+          "No. OpenCoins are loyalty points for the OpenVibe network. They are never money, and Quest never pays in Vibes."
+        ],
+        [
+          "Can my community make its own quests?",
+          "Not yet: community quests need moderation tools first. The quest log and its API are already built for them."
+        ]
+      ]
     },
     {
       "domain": "openvibe.rent",
@@ -967,7 +1007,7 @@
       "accent": "#22d3ee",
       "noRepo": true,
       "tagline": "Every rental, one search.",
-      "description": "OpenVibe.Rent will bring rentals into one place: apartments, rooms, commercial space, equipment and services from many listing sites, with alerts, AI summaries that link their sources, and one OpenVibe account for your searches.",
+      "description": "OpenVibe.Rent is one place to find and offer things to rent — apartments, rooms, houses, workspace, parking and storage, and equipment — posted by people, with no street addresses, contact details only for signed-in people, reports that hide a listing until staff look, and saved searches. Nothing is scraped and no payments are taken. Next: listing sources whose terms are verified, and alerts.",
       "pillars": [
         [
           "One search",
@@ -994,7 +1034,29 @@
         ]
       ],
       "keywords": "openvibe rent, rental search, apartments for rent, rooms for rent, commercial rentals, rental alerts",
-      "launch": "verified listing sources and the shared discovery system"
+      "launch": "verified listing sources and alerts",
+      "faq": [
+        [
+          "Who posts the listings?",
+          "People with an OpenVibe account. In this first version nothing is copied from other listing sites; sources whose terms allow it come later, each named and linked."
+        ],
+        [
+          "Does OpenVibe take payments or deposits?",
+          "No. A listing carries a way to contact the person who posted it and nothing more. Never pay or send a deposit before you have seen the place and signed an agreement."
+        ],
+        [
+          "Why can't I add my street address?",
+          "For your safety: a listing names a city and, if you like, a neighbourhood. A street address is refused."
+        ],
+        [
+          "How long does a listing stay up?",
+          "Thirty days. You can renew it, edit it, hide it or delete it at any time."
+        ],
+        [
+          "What happens when a listing is reported?",
+          "Three reports from different people hide it until OpenVibe staff look at it and restore or remove it."
+        ]
+      ]
     },
     {
       "domain": "openvibe.homes",
@@ -1115,7 +1177,7 @@
       "accent": "#34d399",
       "noRepo": true,
       "tagline": "Find work, with an agent on your side.",
-      "description": "OpenVibe.Work will gather job listings from open sources with their provenance, let you search them and watch for new ones that fit, and let an agent help you prepare and apply — with your approval at every step. Part of the OpenVibe network, with one account for every site.",
+      "description": "OpenVibe.Work gathers job listings from open job boards (Arbeitnow, Remotive and RemoteOK) into one search, shows a short excerpt with the board named and links every listing back to where you apply, and keeps your saved searches with a count of what is new. Next: alerts through OpenVibe.Watch and an agent that helps you prepare and apply, with your approval at every step.",
       "pillars": [
         [
           "Every listing sourced",
@@ -1142,7 +1204,29 @@
         ]
       ],
       "keywords": "openvibe work, job search, job listings, job alerts, ai job application assistant",
-      "launch": "job listings and alerts"
+      "launch": "alerts and the application agent",
+      "faq": [
+        [
+          "Where do the jobs come from?",
+          "From the public job-board APIs of Arbeitnow, Remotive and RemoteOK, read every six hours. Each listing names its board and links to the original, where you read the full listing and apply."
+        ],
+        [
+          "Do you copy the whole job post?",
+          "No. OpenVibe.Work keeps a short plain-text excerpt and sends you to the board for the rest, as the boards ask."
+        ],
+        [
+          "Is it free?",
+          "Yes. Searching needs no account; a free OpenVibe account keeps your saved searches."
+        ],
+        [
+          "Can it tell me when new jobs match?",
+          "Saved searches show how many listings are new since you last looked. Notifications come with OpenVibe.Watch."
+        ],
+        [
+          "Will an AI apply for me?",
+          "Not yet, and never without you: the agent that helps you prepare and apply is coming, and it asks before every step."
+        ]
+      ]
     },
     {
       "domain": "openvibe.zone",
@@ -1273,7 +1357,7 @@
       "accent": "#4ade80",
       "noRepo": true,
       "tagline": "Answers, support and a way to reach people.",
-      "description": "OpenVibe.Help will be the help and support center for every OpenVibe site: search answers drawn from the docs, wiki, blog and service status, follow troubleshooting guides, and open a ticket that stays one conversation on the web and by email. A Report Problem button on every site will attach the safe details staff need (release, request and trace ids) and never secrets.",
+      "description": "OpenVibe.Help is the help centre for every OpenVibe site: what each site does and whether it is live, the common questions each one answers about itself, search across all of them, and a support ticket that stays one conversation with the people who run OpenVibe. Next: answers from the docs, wiki and status pages, and a Report Problem button on every site.",
       "pillars": [
         [
           "Grounded answers",
@@ -1305,7 +1389,25 @@
         ]
       ],
       "keywords": "openvibe help, openvibe support, help center, support tickets, troubleshooting",
-      "launch": "the ticket service and the Frame's Help button"
+      "launch": "grounded answers and the Report Problem button",
+      "faq": [
+        [
+          "Where do the answers come from?",
+          "From each OpenVibe site's own description of itself, kept word for word, with a link to where it was read. Nothing is written by an AI."
+        ],
+        [
+          "How do I reach a person?",
+          "Sign in with your OpenVibe account and open a ticket. Replies stay in one conversation that only you and OpenVibe staff can read."
+        ],
+        [
+          "Do I need an account to read the help centre?",
+          "No. Reading and searching are open to everyone; only tickets need an account."
+        ],
+        [
+          "Which sites does it cover?",
+          "Every OpenVibe product site, live or coming, from OpenVibe.Live to OpenRe.Stream. Each one has its own page with its questions and where it lives."
+        ]
+      ]
     },
     {
       "domain": "openvibe.bot",
@@ -1533,7 +1635,7 @@
       "icon": "fa-eye",
       "accent": "#facc15",
       "tagline": "Watch anything. Hear about what matters.",
-      "description": "OpenVibe.Watch will watch web pages, feeds, APIs, prices and stock, Git releases, OpenVibe activity, videos, livestreams and your own cameras, pull out what changed or what matters, and tell you, your apps or your AI agents. Checks respect site terms and robots rules, heavy work runs on shared workers, and cameras are read by a small agent on your own network so nothing is exposed to the internet.",
+      "description": "OpenVibe.Watch checks a web page, an RSS or Atom feed or a JSON API on the cadence you pick, pulls out the value you care about, and tells you when it changes or crosses the line you set — politely: it asks sites whether anything changed before reading them, spaces its requests per site and waits when a site asks. Next: events and webhooks, browser checks, prices and releases, cameras on your own network, and actions for your apps and agents.",
       "pillars": [
         [
           "Any source",
@@ -1565,8 +1667,30 @@
         ]
       ],
       "keywords": "website change monitoring, uptime monitoring api, price drop alerts, restock alerts, release monitoring, youtube video analysis, security camera alerts",
-      "launch": "the watch service on the shared queue and workers",
-      "noRepo": true
+      "launch": "events, webhooks, browser checks and actions",
+      "noRepo": true,
+      "faq": [
+        [
+          "What can I watch today?",
+          "A web page (all of it, or the part a CSS selector or a pattern picks), an RSS or Atom feed (for example a GitHub releases feed), or a JSON API and a path into it."
+        ],
+        [
+          "How often does it check?",
+          "Every 15 minutes, hourly, every 6 hours or daily — your choice. It never checks faster than that, backs off when a site fails, and waits when a site asks it to."
+        ],
+        [
+          "How will I hear about a change?",
+          "When your condition fires, a notification arrives on your OpenVibe account, and the watch page shows every check and the value it found."
+        ],
+        [
+          "Does it hammer the sites it watches?",
+          "No. It sends the site's own validators first, so an unchanged page costs no body, keeps a minimum gap between requests to one site, and records every check."
+        ],
+        [
+          "Is it free?",
+          "Yes, while it is in alpha."
+        ]
+      ]
     },
     {
       "domain": "openvibe.actor",
