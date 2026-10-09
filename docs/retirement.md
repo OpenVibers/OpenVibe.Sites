@@ -40,7 +40,7 @@ added; they have no Contracts manifest yet, so `sync-catalog.js` keeps them as t
 | (`openvibe.homes`, no Sites host file) | nothing (removed 2026-10-09) | parked: OpenVibe.Network answers 302 to openvibe.network (parked-domains.conf, Network#107) | yes |
 | (`openvibe.host`, no Sites host file) | nothing (removed 2026-10-07) | OpenVibe.Host: Stage B launched 2026-10-07; `ovhost nginx tenants host --install` writes openvibe.host.conf and openvibe.host-custom-domains.conf (Host#26) | yes |
 | (`openvibe.news`, no Sites host file) | nothing (removed 2026-10-09) | OpenVibe.News: launched after its security review (News#21), repo vhost deploy/nginx/openvibe.news.conf | yes |
-| (`openvibe.pics`, no Sites host file) | nothing (removed 2026-10-08) | OpenVibe.MediaHub: its coming page (MediaHub 0.1.0); its repo vhost deploy/nginx/openvibe.download.conf serves all three domains | yes |
+| (`openvibe.pics`, no Sites host file) | nothing (removed 2026-10-08) | parked: OpenVibe.MediaHub's repo vhost deploy/nginx/openvibe.download.conf answers 302 to openvibe.network (MediaHub#4, 2026-10-09; the coming pages are gone) | yes |
 | (`openvibe.quest`, no Sites host file) | nothing (removed 2026-10-08) | OpenVibe.Quest: the shared quest log (Quest 0.1.0); its repo vhost deploy/nginx/openvibe.quest.conf replaces this one | yes |
 | (`openvibe.rent`, no Sites host file) | nothing (removed 2026-10-08) | OpenVibe.Rent: listings people post (Rent 0.1.0); its repo vhost deploy/nginx/openvibe.rent.conf replaces this one | yes |
 | (`openvibe.reviews`, no Sites host file) | nothing (removed 2026-10-09) | OpenVibe.Reviews: launched after its security review (Reviews#22), repo vhost deploy/nginx/openvibe.reviews.conf | yes |
@@ -49,7 +49,7 @@ added; they have no Contracts manifest yet, so `sync-catalog.js` keeps them as t
 | (`openvibe.space`, no Sites host file) | nothing (removed 2026-10-07) | OpenVibe.Space: launched 2026-10-07 (Space#1); its repo vhost deploy/nginx/openvibe.space.conf is installed by ovhost | yes |
 | `openvibe.tips.conf` | placeholder | OpenVibe.Tips | yes: `deploy/nginx/openvibe.tips.conf` |
 | (`openvibe.trade`, no Sites host file) | nothing (removed 2026-10-09) | OpenVibe.Trade: launched after its security review (Trade#24), repo vhost deploy/nginx/openvibe.trade.conf | yes |
-| (`openvibe.video`, no Sites host file) | nothing (removed 2026-10-08) | OpenVibe.MediaHub: its coming page (MediaHub 0.1.0); its repo vhost deploy/nginx/openvibe.download.conf serves all three domains | yes |
+| (`openvibe.video`, no Sites host file) | nothing (removed 2026-10-08) | parked: OpenVibe.MediaHub's repo vhost deploy/nginx/openvibe.download.conf answers 302 to openvibe.network (MediaHub#4, 2026-10-09; the coming pages are gone) | yes |
 | `openvibe.vip.conf` | placeholder | OpenVibe.VIP | yes: `deploy/nginx/openvibe.vip.conf` |
 | (`openvibe.watch`, no Sites host file) | nothing (removed 2026-10-08) | OpenVibe.Watch: its public site (Watch 0.2.0); its repo vhost deploy/nginx/openvibe.watch.conf replaces this one | yes |
 | (`openvibe.website`, no Sites host file) | nothing (removed 2026-10-09) | parked: OpenVibe.Network answers 302 to openvibe.network (parked-domains.conf, Network#107) | yes |
