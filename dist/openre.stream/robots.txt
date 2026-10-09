@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /auth/
-Sitemap: https://openre.stream/sitemap.xml

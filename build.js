@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 'use strict';
-/** OpenVibe.Sites: rebuild notices only; product pages and vhosts are frozen. */
+/** OpenVibe.Sites: the shared browser files and the two frozen pages (Tips, VIP) until plan T5 launches them. */
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');

@@ -1,5 +1,5 @@
 'use strict';
-// The two notices are current, while product pages stay frozen.
+// Sites serves no notices any more; only the Tips and VIP pages stay frozen until plan T5 launches them.
 const assert = require('assert');
 const fs = require('fs');
 const path = require('path');
@@ -14,15 +14,21 @@ assert.strictEqual(require('../build.js').check(), 0, 'generated notice files ar
 assert.doesNotMatch(read('build.js'), /repoFacts|visionViz|facts\.json|sites\.json/, 'builder has no product generator dependencies');
 assert.doesNotMatch(read('scripts/facts.js'), /facts\.json|sites\.json/, 'retired snapshot script has no catalog inputs');
 
-assert.deepStrictEqual(notices.map(n => n.domain), [
-    'realtime.openvibe.network', 'status.openvibe.network',
-]);
+// status. and realtime.openvibe.network moved to OpenVibe.Network's vhosts on 2026-10-09 (Network#107).
+assert.deepStrictEqual(notices, [], 'no notices are left');
+assert.ok(!exists('notice-pages'), 'the notice page snapshots are gone');
 assert.strictEqual(new Set(frozen).size, frozen.length, 'frozen domains are unique');
-assert.strictEqual(frozen.length, 15, 'all 15 product domains are frozen');
+assert.deepStrictEqual(frozen, ['openvibe.tips', 'openvibe.vip'], 'only Tips and VIP stay frozen (they launch with Billing, plan T5)');
 // OpenVibe.Actor serves openvibe.actor itself since 2026-10-08 (its own vhost; Actor 0.1.0).
 assert.ok(!frozen.includes('openvibe.actor'), 'openvibe.actor left Sites');
 // OpenVibe.Food, OpenVibe.Help and OpenVibe.Work serve their domains themselves since 2026-10-08 (their own vhosts; contracts 0.116.0).
-for (const d of ['openvibe.food', 'openvibe.help', 'openvibe.work', 'openvibe.quest', 'openvibe.rent', 'openvibe.watch', 'openvibe.deals', 'openvibe.download', 'openvibe.pics', 'openvibe.video']) assert.ok(!frozen.includes(d) && !exists(`dist/${d}`) && !exists(`deploy/nginx/${d}.conf`), `${d} left Sites`);
+// 2026-10-09 (plan T11): News, Reviews, Trade, Coupons and OpenRe.Stream serve their own domains; Network serves its
+// subdomains and the parked domains (Network#107: network-subdomains.conf, parked-domains.conf).
+const RETIRED = ['openvibe.food', 'openvibe.help', 'openvibe.work', 'openvibe.quest', 'openvibe.rent', 'openvibe.watch', 'openvibe.deals', 'openvibe.download', 'openvibe.pics', 'openvibe.video',
+    'openvibe.news', 'openvibe.reviews', 'openvibe.trade', 'openvibe.coupons', 'openre.stream',
+    'auth.openvibe.network', 'api.openvibe.network', 'admin.openvibe.network', 'themes.openvibe.network', 'status.openvibe.network', 'realtime.openvibe.network',
+    'openvibe.homes', 'openvibe.run', 'openvibe.zone', 'openvibe.website'];
+for (const d of RETIRED) assert.ok(!frozen.includes(d) && !exists(`dist/${d}`) && !exists(`deploy/nginx/${d}.conf`), `${d} left Sites`);
 // OpenVibe.AI serves ai.openvibe.services itself and ai.openvibe.network answers 301 to it since 2026-10-07 (AI#23).
 assert.ok(!frozen.includes('ai.openvibe.services') && !exists('dist/ai.openvibe.services') && !exists('dist/ai.openvibe.network') && !exists('deploy/nginx/ai.openvibe.services.conf') && !exists('deploy/nginx/ai.openvibe.network.conf'), 'OpenVibe.AI owns both AI addresses');
 // OpenVibe.Events serves openvibe.events itself since 2026-10-07 (its own vhost; Events#16).

@@ -1,5 +1,10 @@
 # Retiring OpenVibe.Sites
 
+**2026-10-09 (plan T11):** fifteen domains left Sites in one change. News, Reviews, Trade, Coupons and OpenRe.Stream
+serve their own domains after an independent pre-launch security review. OpenVibe.Network serves its subdomains as
+redirects and parks the domains with no product yet. Sites keeps only openvibe.tips and openvibe.vip (until plan T5)
+and the Bot and Games legal pages. The table below is current; the paragraphs before it describe the 2026-10-02 freeze.
+
 Sites is frozen (plan T11 lane D, audit item 12, 2026-10-02). The product catalog now lives in
 OpenVibe.Contracts (`products.catalog()`, v0.84.0), and `sites.json` is a generated mirror of it
 (`node scripts/sync-catalog.js`). The placeholder pages in `dist/<domain>/` and the vhosts in `deploy/nginx/`
@@ -18,41 +23,41 @@ added; they have no Contracts manifest yet, so `sync-catalog.js` keeps them as t
 
 | Host file | Sites serves today | Goes to | Own host config on origin/main |
 |---|---|---|---|
-| `admin.openvibe.network.conf` | placeholder | OpenVibe.Network | no (`openvibe.network.conf` names only `openvibe.network`, `my.openvibe.network`) |
+| (`admin.openvibe.network`, no Sites host file) | nothing (removed 2026-10-09) | OpenVibe.Network: 301 to openvibe.network/admin (network-subdomains.conf, Network#107) | yes |
 | (`ai.openvibe.network`, no Sites host file) | nothing (removed 2026-10-07) | OpenVibe.AI: its repo vhost answers 301 to ai.openvibe.services (AI#23) | yes |
 | (`ai.openvibe.services`, no Sites host file) | nothing (removed 2026-10-07) | OpenVibe.AI: launched 2026-10-07 (AI#23), repo vhost deploy/nginx/ai.openvibe.services.conf | yes |
-| `api.openvibe.network.conf` | placeholder | OpenVibe.Network | no |
-| `auth.openvibe.network.conf` | placeholder | OpenVibe.Network | no |
-| `openre.stream.conf` | placeholder | OpenRe.Stream | yes: `deploy/nginx/openre.stream.conf` |
+| (`api.openvibe.network`, no Sites host file) | nothing (removed 2026-10-09) | OpenVibe.Network: 301 to openvibe.network (its front page to openvibe.services) (network-subdomains.conf, Network#107) | yes |
+| (`auth.openvibe.network`, no Sites host file) | nothing (removed 2026-10-09) | OpenVibe.Network: 301 to openvibe.network (network-subdomains.conf, Network#107) | yes |
+| (`openre.stream`, no Sites host file) | nothing (removed 2026-10-09) | OpenRe.Stream: launched after its security review (OpenRe.Stream#25; cutover B0 (a)), repo vhost deploy/nginx/openre.stream.conf, which also serves ingest.openre.stream | yes |
 | (`openvibe.actor`, no Sites host file) | nothing (removed 2026-10-08) | OpenVibe.Actor: the task router and OpenVibe's own agent (Actor 0.1.0); its repo vhost deploy/nginx/openvibe.actor.conf replaces this one | yes |
 | (`openvibe.bot`, no Sites host file) | legal pages, 404, sitemap and manifest (its front page, robots.txt, release.json and status.json are Bot's since 2026-10-07, OpenVibe.Bot#34) | OpenVibe.Bot, which already supplies the vhost | yes (Contracts still says `noRepo`) |
-| `openvibe.coupons.conf` | placeholder | OpenVibe.Coupons | yes: `deploy/nginx/openvibe.coupons.conf` |
+| (`openvibe.coupons`, no Sites host file) | nothing (removed 2026-10-09) | OpenVibe.Coupons: launched after its security review (Coupons#22), repo vhost deploy/nginx/openvibe.coupons.conf | yes |
 | (`openvibe.deals`, no Sites host file) | nothing (removed 2026-10-08) | OpenVibe.Deals: deals from DealNews (links kept verbatim) and people, votes and watches; its repo vhost deploy/nginx/openvibe.deals.conf replaces this one | yes |
 | (`openvibe.download`, no Sites host file) | nothing (removed 2026-10-08) | OpenVibe.MediaHub: the private drive (MediaHub 0.1.0); its repo vhost deploy/nginx/openvibe.download.conf serves all three domains | yes |
 | (`openvibe.events`, no Sites host file) | nothing (removed 2026-10-07) | OpenVibe.Events, which serves its product home with `deploy/nginx/openvibe.events.conf` (Events#16); the API and the realtime stream are on openvibe.events too (plan T7) until the T7 origin move | yes |
 | (`openvibe.food`, no Sites host file) | nothing (removed 2026-10-08) | OpenVibe.Food: food near you, meal plans and a pantry (Food 0.1.0); its repo vhost deploy/nginx/openvibe.food.conf replaces this one | yes |
 | (`openvibe.help`, no Sites host file) | nothing (removed 2026-10-08) | OpenVibe.Help: the help centre and support tickets (Help 0.1.0); its repo vhost deploy/nginx/openvibe.help.conf replaces this one | yes |
-| `openvibe.homes.conf` | placeholder (no repo) | park: DNS only | no |
+| (`openvibe.homes`, no Sites host file) | nothing (removed 2026-10-09) | parked: OpenVibe.Network answers 302 to openvibe.network (parked-domains.conf, Network#107) | yes |
 | (`openvibe.host`, no Sites host file) | nothing (removed 2026-10-07) | OpenVibe.Host: Stage B launched 2026-10-07; `ovhost nginx tenants host --install` writes openvibe.host.conf and openvibe.host-custom-domains.conf (Host#26) | yes |
-| `openvibe.news.conf` | placeholder | OpenVibe.News | yes: `deploy/nginx/openvibe.news.conf` |
+| (`openvibe.news`, no Sites host file) | nothing (removed 2026-10-09) | OpenVibe.News: launched after its security review (News#21), repo vhost deploy/nginx/openvibe.news.conf | yes |
 | (`openvibe.pics`, no Sites host file) | nothing (removed 2026-10-08) | OpenVibe.MediaHub: its coming page (MediaHub 0.1.0); its repo vhost deploy/nginx/openvibe.download.conf serves all three domains | yes |
 | (`openvibe.quest`, no Sites host file) | nothing (removed 2026-10-08) | OpenVibe.Quest: the shared quest log (Quest 0.1.0); its repo vhost deploy/nginx/openvibe.quest.conf replaces this one | yes |
 | (`openvibe.rent`, no Sites host file) | nothing (removed 2026-10-08) | OpenVibe.Rent: listings people post (Rent 0.1.0); its repo vhost deploy/nginx/openvibe.rent.conf replaces this one | yes |
-| `openvibe.reviews.conf` | placeholder | OpenVibe.Reviews | yes: `deploy/nginx/openvibe.reviews.conf` |
-| `openvibe.run.conf` | placeholder (no repo) | park: DNS only | no |
+| (`openvibe.reviews`, no Sites host file) | nothing (removed 2026-10-09) | OpenVibe.Reviews: launched after its security review (Reviews#22), repo vhost deploy/nginx/openvibe.reviews.conf | yes |
+| (`openvibe.run`, no Sites host file) | nothing (removed 2026-10-09) | parked: OpenVibe.Network answers 302 to openvibe.network (parked-domains.conf, Network#107) | yes |
 | (`openvibe.services`, no Sites host file) | nothing (removed 2026-10-08) | OpenVibe.Services: the developer console moved there from openvibe.codes (Services#6); its repo vhost deploy/nginx/openvibe.services.conf replaces this one | yes |
 | (`openvibe.space`, no Sites host file) | nothing (removed 2026-10-07) | OpenVibe.Space: launched 2026-10-07 (Space#1); its repo vhost deploy/nginx/openvibe.space.conf is installed by ovhost | yes |
 | `openvibe.tips.conf` | placeholder | OpenVibe.Tips | yes: `deploy/nginx/openvibe.tips.conf` |
-| `openvibe.trade.conf` | placeholder | OpenVibe.Trade | yes: `deploy/nginx/openvibe.trade.conf` |
+| (`openvibe.trade`, no Sites host file) | nothing (removed 2026-10-09) | OpenVibe.Trade: launched after its security review (Trade#24), repo vhost deploy/nginx/openvibe.trade.conf | yes |
 | (`openvibe.video`, no Sites host file) | nothing (removed 2026-10-08) | OpenVibe.MediaHub: its coming page (MediaHub 0.1.0); its repo vhost deploy/nginx/openvibe.download.conf serves all three domains | yes |
 | `openvibe.vip.conf` | placeholder | OpenVibe.VIP | yes: `deploy/nginx/openvibe.vip.conf` |
 | (`openvibe.watch`, no Sites host file) | nothing (removed 2026-10-08) | OpenVibe.Watch: its public site (Watch 0.2.0); its repo vhost deploy/nginx/openvibe.watch.conf replaces this one | yes |
-| `openvibe.website.conf` | placeholder (no repo) | park: DNS only | no |
+| (`openvibe.website`, no Sites host file) | nothing (removed 2026-10-09) | parked: OpenVibe.Network answers 302 to openvibe.network (parked-domains.conf, Network#107) | yes |
 | (`openvibe.work`, no Sites host file) | nothing (removed 2026-10-08) | OpenVibe.Work: job listings from open boards and saved searches (Work 0.1.0); its repo vhost deploy/nginx/openvibe.work.conf replaces this one | yes |
-| `openvibe.zone.conf` | placeholder (no repo) | park: DNS only (not in the Contracts catalog yet) | no |
-| `realtime.openvibe.network.conf` | closed notice | park: DNS only (Realtime is closed; delivery is part of OpenVibe.Events at `openvibe.events`) | no |
-| `status.openvibe.network.conf` | status notice | OpenVibe.Network: its status page `openvibe.network/status` (a redirect from this host) | no |
-| `themes.openvibe.network.conf` | placeholder | OpenVibe.Network | no |
+| (`openvibe.zone`, no Sites host file) | nothing (removed 2026-10-09) | parked: OpenVibe.Network answers 302 to openvibe.network (parked-domains.conf, Network#107) | yes |
+| (`realtime.openvibe.network`, no Sites host file) | nothing (removed 2026-10-09) | parked: OpenVibe.Network answers 302 to openvibe.network (parked-domains.conf, Network#107) | yes |
+| (`status.openvibe.network`, no Sites host file) | nothing (removed 2026-10-09) | OpenVibe.Network: 301 to openvibe.network/status (network-subdomains.conf, Network#107) | yes |
+| (`themes.openvibe.network`, no Sites host file) | nothing (removed 2026-10-09) | OpenVibe.Network: 301 to openvibe.network/themes (network-subdomains.conf, Network#107) | yes |
 
 Totals: 18 go to a product repository; 11 of those have their own host config (10 on `origin/main` as of 2026-10-02, and OpenVibe.Bot's). The other 17 are parked: DNS only.
 
