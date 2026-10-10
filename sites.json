@@ -359,19 +359,19 @@
       "icon": "fa-satellite-dish",
       "accent": "#ef4444",
       "tagline": "Go live from your browser, or any encoder, and restream everywhere.",
-      "description": "OpenRe.Stream is OpenVibe's open streaming engine, split out of OpenVibe.Live. Go live from a web browser with no OBS, no downloads and no follower minimum, or send RTMP or WHIP from any encoder, and restream to Twitch, YouTube, Kick and any RTMP, RTMPS or SRT destination. Browser broadcasts start on OpenVibe.Live today, and move to OpenRe.Stream ingest channel by channel.",
+      "description": "OpenRestream is an open restreaming platform. Send one stream from OBS or any RTMP encoder and it goes to Twitch, YouTube, Kick and any RTMP, RTMPS or SRT destination at the same time, each with its own health, logs and retries. Your OpenVibe Live channel is on by default, so every stream also shows on openvibe.live with its chat, clips and VODs; switch it off for any stream. It is free and open source, with no follower minimum. No OBS? Go live from your browser on OpenVibe.Live.",
       "pillars": [
         [
-          "Browser go-live",
-          "Stream from a browser over WebRTC and WHIP, with nothing to install and no follower minimum."
+          "Stream once, go everywhere",
+          "Twitch, YouTube, Kick and any RTMP, RTMPS or SRT server at the same time, each with its own health, logs and retries."
         ],
         [
-          "Ingest",
-          "RTMP ingest with keys and lifecycle in one place, plus WHIP/WebRTC; SRT ingest to follow."
+          "OpenVibe Live on by default",
+          "Every stream also shows on your openvibe.live channel, with chat, clips and VODs. Switch it off for any stream."
         ],
         [
-          "Restream",
-          "Twitch, YouTube, Kick and any RTMP, RTMPS or SRT destination."
+          "Keys you control",
+          "One ingest key per stream, shown once and stored only as a hash. Rotate it any time."
         ],
         [
           "Open API and SDK",
@@ -380,9 +380,9 @@
       ],
       "meanwhile": [
         [
-          "Go live on OpenVibe.Live",
+          "Go live from your browser",
           "https://openvibe.live/broadcast",
-          "Ingest and restreaming run inside Live today."
+          "No OBS: OpenVibe.Live's browser broadcaster."
         ],
         [
           "Restreaming docs",
@@ -390,9 +390,9 @@
           "How the restream paths work."
         ]
       ],
-      "keywords": "go live from browser, stream without obs, browser streaming, no follower minimum, stream from chromebook, webrtc streaming, whip, rtmp ingest, srt, restream to twitch youtube kick, open source streaming",
-      "plannedRepo": "OpenRe.Stream",
-      "launch": "the stream slots to move from OpenVibe.Live's ingest to OpenRe.Stream, one at a time; no stream uses it yet",
+      "keywords": "restream, open restreaming, multistream, restream to twitch youtube kick, rtmp restream, srt, obs restream, free restream, open source restream, go live from browser, no follower minimum",
+      "plannedRepo": "OpenRestream",
+      "launch": "live on openre.stream since 2026-10-09: sign in, create a stream and restream it from OBS; OpenVibe.Live stream slots move onto its ingest one at a time",
       "highlight": {
         "title": "Go live from your browser — no OBS needed",
         "text": "Press Go Live, allow your camera and microphone, and you're live, with your own channel and chat. There's nothing to install and no follower or subscriber minimum. It works on a Chromebook, a laptop or a phone.",
@@ -412,6 +412,18 @@
         ]
       },
       "faq": [
+        [
+          "What is OpenRestream?",
+          "An open restreaming platform at openre.stream: you send one stream from OBS or any RTMP encoder, and it forwards it to every platform you add, plus your OpenVibe Live channel by default."
+        ],
+        [
+          "Is OpenVibe Live on by default?",
+          "Yes. A new stream also goes live on your openvibe.live channel, with chat, clips and VODs. You can switch that off for any stream, and your other destinations keep working."
+        ],
+        [
+          "Does it cost anything?",
+          "No. Restreaming is free for every OpenVibe account, and the code is open source."
+        ],
         [
           "Can I stream without OBS?",
           "Yes. Go live from your browser on OpenVibe.Live: press Go Live, allow your camera and microphone, and you are live. There is nothing to install."
@@ -448,7 +460,7 @@
       "plannedRepo": "OpenVibe.Network",
       "legalProfile": "account",
       "tagline": "Sign in, once, for the whole network.",
-      "description": "auth.openvibe.network will be the dedicated home of OpenVibe identity: sign-in, registration, OAuth 2.0 / OpenID Connect for apps, sessions and linked accounts. Today all of this runs inside openvibe.network itself.",
+      "description": "auth.openvibe.network redirects to openvibe.network, which runs OpenVibe identity: sign-in, registration, OAuth 2.0 / OpenID Connect for apps, sessions and linked accounts.",
       "pillars": [
         [
           "OAuth 2.0 + PKCE",
@@ -495,7 +507,7 @@
       "plannedRepo": "OpenVibe.Network",
       "legalProfile": "info",
       "tagline": "The network, machine-readable.",
-      "description": "api.openvibe.network is the planned home of the network's public APIs. The ecosystem registry (services, capabilities, event topics, namespaces and releases, backed by the OpenVibe contracts) already answers on openvibe.network; this subdomain is not routed to it yet.",
+      "description": "api.openvibe.network redirects to the network's public APIs, which answer on openvibe.network: the ecosystem registry (services, capabilities, event topics, namespaces and releases, backed by the OpenVibe contracts) and service discovery. Its front page goes to OpenVibe.Services, the developer console and docs.",
       "pillars": [
         [
           "Service registry",
@@ -547,7 +559,7 @@
       "plannedRepo": "OpenVibe.Network",
       "legalProfile": "account",
       "tagline": "One operator console for every service.",
-      "description": "admin.openvibe.network will be the federated operator console: users, roles, bans, registry and policy, event queues, storage, billing, migrations and emergency controls, discovered from each service rather than hard-wired.",
+      "description": "admin.openvibe.network redirects to openvibe.network/admin, the staff console (users, roles, bans, registry and policy). A federated operator console discovered from each service is planned there.",
       "pillars": [
         [
           "Users & roles",
@@ -589,7 +601,7 @@
       "plannedRepo": "OpenVibe.Network",
       "legalProfile": "info",
       "tagline": "Your look, on every site.",
-      "description": "themes.openvibe.network will be the theme catalog and API: built-in and community themes, previews, per-site overrides, import/export and the shared design tokens every OpenVibe site renders.",
+      "description": "themes.openvibe.network redirects to openvibe.network/themes, where a person picks the theme every OpenVibe site renders. A theme catalog with community themes, previews, per-site overrides and import/export is planned there.",
       "pillars": [
         [
           "Catalog",
@@ -1299,7 +1311,7 @@
           "Streams, recordings and clips live on OpenVibe.Live today."
         ],
         [
-          "OpenRe.Stream",
+          "OpenRestream",
           "https://openre.stream",
           "Restreaming to many platforms is the sibling product."
         ]
@@ -1405,7 +1417,7 @@
         ],
         [
           "Which sites does it cover?",
-          "Every OpenVibe product site, live or coming, from OpenVibe.Live to OpenRe.Stream. Each one has its own page with its questions and where it lives."
+          "Every OpenVibe product site, live or coming, from OpenVibe.Live to OpenRestream. Each one has its own page with its questions and where it lives."
         ]
       ]
     },
