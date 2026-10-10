@@ -41,12 +41,9 @@ for (const domain of frozen) {
     assert.ok(exists(`deploy/nginx/${domain}.conf`), `${domain}: frozen vhost`);
 }
 assert.ok(!exists('deploy/nginx/openvibe.bot.conf'), 'Bot owns its vhost');
-// OpenVibe.Bot serves its own front page, robots.txt, release.json and status.json (OpenVibe.Bot#34,
-// 2026-10-07); Sites keeps only the legal pages, 404 page, sitemap and manifest for openvibe.bot.
-assert.deepStrictEqual(fs.readdirSync(path.join(ROOT, 'dist/openvibe.bot')).sort(),
-    ['404.html', 'dmca.html', 'manifest.webmanifest', 'privacy.html', 'sitemap.xml', 'terms.html'],
-    'openvibe.bot holds only its legal pages, 404, sitemap and manifest (Bot#34)');
-assert.ok(!exists('dist/openvibe.bot/index.html'), 'openvibe.bot has no Sites front page (Bot#34)');
+// OpenVibe.Bot serves its own front page and, since 2026-10-10, its legal pages, sitemap, manifest and 404 (Bot#51);
+// OpenVibe.Games serves its own legal pages. Sites keeps nothing for either.
+assert.ok(!exists('dist/openvibe.bot') && !exists('dist/openvibe.games'), 'nothing left for Bot or Games');
 // A frozen placeholder never claims a product is live, never uses pricing copy (no "free"/"$0"/"no ads"; "free
 // speech" is fine) and never offers hosting no OpenVibe service provides (2026-09-24 audit).
 const PRICING = /\$0\b|\bfor free\b|\bfree (forever|to use|of charge|plan|tier)\b|\bno ads\b|\bad-free\b/i;

@@ -9,10 +9,8 @@ domain is served by its own product, and OpenVibe.Network serves its subdomains 
 | --- | --- | --- |
 | `openvibe.tips` | its frozen front page, legal pages and vhost | OpenVibe.Tips launches with Billing (plan T5) |
 | `openvibe.vip` | its frozen front page, legal pages and vhost | OpenVibe.VIP launches with Billing (plan T5) |
-| `openvibe.bot` | legal pages, 404, sitemap and manifest (OpenVibe.Bot's vhost serves them from here) | Bot serves its own legal pages |
-| `openvibe.games` | legal pages (OpenVibe.Games' vhost serves them from here) | Games serves its own legal pages |
 
-When the last of these moves, the repository and its host checkout are deleted. `frozen.json` lists the two frozen
+When Tips and VIP launch (plan T5), the repository and its host checkout are deleted. Bot (Bot#51, 2026-10-10) and Games serve their own legal pages. `frozen.json` lists the two frozen
 domains and `node build.js --check` verifies each still has its page and vhost. `notices.json` is empty: the
 realtime and status notices became Network redirects.
 
