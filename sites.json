@@ -644,7 +644,7 @@
       "noRepo": true,
       "legalProfile": "info",
       "tagline": "Closed: realtime delivery is part of OpenVibe.Events.",
-      "description": "OpenVibe.Realtime was planned as a separate service for live updates in the browser. Decision record ADR-005 (accepted 2026-09-22) closed it: browser realtime is part of OpenVibe.Events, as server-sent events with cursor resume at events.openvibe.network/realtime/stream. This address serves only this notice.",
+      "description": "OpenVibe.Realtime was planned as a separate service for live updates in the browser. Decision record ADR-005 (accepted 2026-09-22) closed it: browser realtime is part of OpenVibe.Events, as server-sent events with cursor resume at openvibe.events/realtime/stream. This address serves only this notice.",
       "linksLead": "Realtime delivery for browsers is a part of OpenVibe.Events; the decision and its record are public.",
       "links": [
         [
@@ -659,37 +659,6 @@
         ]
       ],
       "keywords": "openvibe realtime, openvibe events, server-sent events"
-    },
-    {
-      "domain": "ai.openvibe.network",
-      "zone": "openvibe.network",
-      "hostParts": [
-        "ai",
-        "openvibe.network"
-      ],
-      "tld": "ai",
-      "name": "ai.openvibe.network",
-      "icon": "fa-robot",
-      "accent": "#c084fc",
-      "plannedRepo": "OpenVibe.AI",
-      "legalProfile": "info",
-      "tagline": "Moved: OpenVibe.AI's public home is ai.openvibe.services.",
-      "description": "OpenVibe.AI's public address is now ai.openvibe.services, next to the rest of the network's programmable services on OpenVibe.Services. This address serves only this notice until every client has moved; then it redirects.",
-      "keywords": "openvibe ai, openvibe network ai, openvibe platform",
-      "kind": "moved",
-      "linksLead": "OpenVibe.AI lives on OpenVibe.Services now.",
-      "links": [
-        [
-          "ai.openvibe.services",
-          "https://ai.openvibe.services/",
-          "OpenVibe.AI: the gateway, templates, workflows and runs."
-        ],
-        [
-          "OpenVibe.Services",
-          "https://openvibe.services/",
-          "Every programmable OpenVibe service in one place."
-        ]
-      ]
     },
     {
       "domain": "ai.openvibe.services",
