@@ -1,0 +1,18 @@
+# OpenVibe.Tips
+
+> Support the people you watch: tips and goals, paid messages read out on stream, and alert overlays, all on the OpenVibe network's own ledger. OpenVibe.Tips is not open yet; it launches with the network's Billing cutover. Tipping with Vibes already works on OpenVibe.Live.
+
+## Today
+
+- [OpenVibe.Live](https://openvibe.live/): live streaming, where tips with Vibes work now
+- [OpenVibe.Network](https://openvibe.network/): one OpenVibe account for every site, and the OpenCoins wallet
+
+## Not open yet
+
+- [OpenVibe.VIP](https://openvibe.vip/): creator memberships and perks, launching with OpenVibe.Tips
+
+## Legal
+
+- [Terms](https://openvibe.tips/terms)
+- [Privacy](https://openvibe.tips/privacy)
+- [DMCA](https://openvibe.tips/dmca)
