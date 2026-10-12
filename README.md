@@ -72,7 +72,7 @@ The pinned `openvibe-contracts` release supplies the catalog `sites.json` mirror
 ## Depends on
 
 - `openvibe-contracts` v0.143.0 — `scripts/sync-catalog.js` reads `openvibe-contracts/lib/products` (`catalog()`) to generate `sites.json`.
-- `openvibe-shared` v4.1.1 — `build.js` uses `legal` for the terms, privacy and dmca pages, `files` for the `BROWSER` list copied to `dist/_shared/`, and `app-icon` for the manifest and head tags; `test/run.js` uses `test-runner`.
+- `openvibe-shared` v4.1.2 — `build.js` uses `legal` for the terms, privacy and dmca pages, `files` for the `BROWSER` list copied to `dist/_shared/`, and `app-icon` for the manifest and head tags; `test/run.js` uses `test-runner`.
 - OpenVibe.Host — the deploy wrapper calls `ovhost deploy sites --restart`, or `ovhost plan sites --restart` with `DRY_RUN=1`.
 - OpenVibe.Network at `https://openvibe.network` — the frozen pages and shared browser files load its assets and API in the browser; `NET.networkUrl` in `build.js` is that base.
 
@@ -108,5 +108,5 @@ Report security issues through [SECURITY.md](SECURITY.md).
 
 <!-- versions:start -->
 - openvibe-contracts: v0.143.0
-- openvibe-shared: v4.1.1
+- openvibe-shared: v4.1.2
 <!-- versions:end -->
