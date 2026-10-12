@@ -23,7 +23,7 @@
     "status.openvibe.network (status notice)"
   ],
   "contracts": "openvibe-contracts v0.143.0: sites.json mirrors products.catalog() (scripts/sync-catalog.js)",
-  "shared": "openvibe-shared v4.0.0",
+  "shared": "openvibe-shared v4.1.0",
   "deployed": true,
   "deployment": "Deployed with `sudo ovhost deploy sites --restart` (OpenVibe.Host strategy static-build since the 2026-09-27 cutover): /opt/openvibe.sites, nginx serves dist/<domain>/ through deploy/nginx/<domain>.conf; no unit, no port, no env file",
   "features": [
@@ -35,5 +35,5 @@
     "generated notice vhosts and preserved product vhosts",
     "a release.json per domain and host.release.published on deploy"
   ],
-  "updated": "2026-10-11"
+  "updated": "2026-10-12"
 }
