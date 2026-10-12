@@ -242,23 +242,23 @@
       "icon": "fa-server",
       "accent": "#94a3b8",
       "tagline": "Static sites for OpenVibe projects.",
-      "description": "OpenVibe.Host is the network's deployment tooling and, next, static site hosting for OpenVibe projects. The tooling (ovhost) already runs on the network's host: deploys with automatic rollback, backups and restore drills for the network's own services. The hosting part will let a project upload a folder of HTML, CSS, JavaScript and images, serve it at <site>.openvibe.host and roll back to any earlier deploy in one step. Static files only: nothing uploaded is run as code.",
+      "description": "OpenVibe.Host compares hosting: plans from providers' official APIs (through OpenVibe.Sources) and staff entries that name their source, with the monthly price, the price per vCPU and per GB of RAM and disk, the day each price was checked and a link to where it came from. The order comes only from the sort a visitor picks; affiliate links are marked and disclosed beside the link. OpenVibe's own static hosting (immutable deploys, custom domains, one-step rollback) is built and opens after a launch review.",
       "pillars": [
         [
-          "Static sites",
-          "Upload a folder or a .tar.gz of HTML, CSS, JavaScript, images and fonts; it is served at <site>.openvibe.host over HTTPS."
+          "Sourced prices",
+          "Plans come from providers' official APIs or from staff entries that name the page they were copied from. Nothing is estimated."
         ],
         [
-          "Every deploy kept",
-          "Deploys are immutable and content-addressed: switch to, or roll back to, any earlier one in one step."
+          "Dated",
+          "Every price shows the day it was last checked, and each plan keeps its price history."
         ],
         [
-          "Your own domain",
-          "Custom domains you prove with a DNS TXT record; their certificates are issued by an operator for now."
+          "Compare what matters",
+          "Sort by monthly price or by price per vCPU, per GB of RAM or per GB of disk; unknown values stay unknown."
         ],
         [
-          "Static only",
-          "No build step and no server-side code: nothing you upload is run. Running bots, mods or apps is not offered; that needs isolation the network has not built yet."
+          "Ranked by you",
+          "No paid placement: affiliate links are marked, disclosed beside the link, and never change the order."
         ]
       ],
       "meanwhile": [
@@ -273,7 +273,7 @@
           "Projects, apps and credentials on OpenVibe.Services, the developer platform."
         ]
       ],
-      "keywords": "openvibe host, static site hosting, deployment, openvibe projects",
+      "keywords": "openvibe host, hosting comparison, vps comparison, cloud server prices, price per vcpu, static site hosting",
       "plannedRepo": "OpenVibe.Host",
       "launch": "the owner's go on its launch checklist"
     },
@@ -1121,23 +1121,23 @@
       "accent": "#a78bfa",
       "noRepo": true,
       "tagline": "Run anything, safely.",
-      "description": "OpenVibe.Run will run code, tools and AI agent tasks in sandboxes: quick jobs in WebAssembly, full environments in small virtual machines, with queued jobs, live output, and files through OpenVibe.Download. A free, limited tier for everyone, and the engine the rest of the network uses to get work done.",
+      "description": "OpenVibe.Run executes jobs: a project submits a job (a pre-registered artifact, its input and its limits) to one API, Run chooses a node from the network's offers that its requirements allow, OpenVibe.Bot hands it to the node and meters every wall-clock second, the output streams back, and the job ends succeeded, failed, cancelled or expired. Alpha: jobs run on nodes paired with OpenVibe through the OpenVibe Node.",
       "pillars": [
         [
-          "Sandboxed",
-          "Every run is isolated, budgeted and stoppable."
+          "One API",
+          "Submit, read, list, cancel and stream jobs over HTTP, with RFC 9457 problems for every refusal."
         ],
         [
-          "Async & streaming",
-          "Queue work, watch its output live, get the result."
+          "Placed, not guessed",
+          "Each job goes to a node whose offer meets its requirements; the placement records the node, provider and region."
         ],
         [
-          "Agent tasks",
-          "Let AI tools run steps for you, safely."
+          "Live output",
+          "A short-lived ticket opens the job's event stream: state changes and the node's output as they happen."
         ],
         [
-          "For every site",
-          "The same engine behind tools, pictures, video and chat."
+          "Metered per second",
+          "The node link measures each job's wall clock; that reading is what the job is charged against."
         ]
       ],
       "meanwhile": [
@@ -1147,7 +1147,7 @@
           "Hundreds of online tools work today."
         ]
       ],
-      "keywords": "openvibe run, code sandbox, run code online, serverless functions, ai agent tasks",
+      "keywords": "openvibe run, job runner, run jobs on nodes, sandbox api, per-second metering",
       "launch": "the sandbox runtime"
     },
     {
