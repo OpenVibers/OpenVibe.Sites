@@ -672,10 +672,10 @@
       "icon": "fa-robot",
       "accent": "#c084fc",
       "plannedRepo": "OpenVibe.AI",
-      "launch": "a public API with its own keys, quotas and playground, live since 2026-10-07 with its developer console",
+      "launch": "a public API with its own keys, quotas and playground; today only other OpenVibe services call it",
       "legalProfile": "info",
       "tagline": "One AI gateway for every model you choose.",
-      "description": "OpenVibe.AI is the network's AI gateway: OpenAI-compatible providers, Anthropic, local and open models behind one API, with routing for cost, speed, quality or privacy, provider fallback, versioned prompt templates and typed workflows, durable runs, structured output, embeddings, speech to text and media analysis, budgets and your own provider keys. Its public API and developer console are live here, and OpenVibe.Live and OpenVibe.Network call it too.",
+      "description": "OpenVibe.AI is the network's AI gateway: OpenAI-compatible providers, Anthropic, local and open models behind one API, with routing for cost, speed, quality or privacy, provider fallback, versioned prompt templates and typed workflows, durable runs, structured output, embeddings, speech to text and media analysis, budgets and your own provider keys. It runs today as an internal service that OpenVibe.Live and OpenVibe.Network call; its public API and playground open here.",
       "pillars": [
         [
           "Any provider",
